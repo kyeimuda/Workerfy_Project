@@ -1,0 +1,87 @@
+{% extends "Discover/intro/base.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'Discover/GetS-Home.css' %}">
+    
+{% endblock styles %}
+ 
+{% block body %}
+
+<header>
+    <div>
+        <img src="{% static 'images/Workerfy logo2.png' %}" alt="Workerfy Logo" class="workerfyLogo">
+    </div>
+</header>  
+<main>
+    
+    <div class="homeLearnContent">
+        <section id="for-clients">
+            <h1>For Clients: How Workerfy Connects You to Skilled Tradespeople</h1>
+            <p>Workerfy is designed to simplify your search for reliable, skilled tradespeople, making it easier to get your projects done on time and within budget. Whether you need a carpenter, electrician, plumber, or any other tradesperson, Workerfy connects you directly to trusted professionals who can meet your needs.</p>
+            
+            <h2>Key Benefits for Clients</h2>
+            <h3>1. Find Qualified Tradespeople Quickly</h3>
+            <ul>
+                <li><strong>Search and Filters:</strong> Easily browse a wide range of tradespeople with the skills you need. Use filters such as location, skillset, availability, ratings, and more to find the perfect match for your project.</li>
+                <li><strong>Verified Profiles:</strong> All tradespeople on Workerfy are verified, ensuring you only connect with qualified professionals.</li>
+            </ul>
+        
+            <h3>2. View Portfolios and Reviews</h3>
+            <ul>
+                <li><strong>Portfolios:</strong> Each tradesperson has a portfolio showcasing their previous work. You can browse photos and descriptions to see the quality of their services before making a decision.</li>
+                <li><strong>Ratings & Reviews:</strong> Read reviews from other clients to gauge the reliability and performance of tradespeople, helping you make an informed choice.</li>
+            </ul>
+        
+            <h3>3. Post Jobs and Receive Offers</h3>
+            <ul>
+                <li><strong>Create Job Postings:</strong> If you have a specific project in mind, you can post it on Workerfy, describing the scope, budget, and timeline. Tradespeople can then apply to your job, giving you multiple options to choose from.</li>
+                <li><strong>Competitive Bidding:</strong> Receive offers from different tradespeople and compare prices, experience, and reviews before deciding who to hire.</li>
+            </ul>
+        
+            <h3>4. Seamless Communication and Booking</h3>
+            <ul>
+                <li><strong>Direct Messaging:</strong> Once you find a tradesperson you’re interested in, you can reach out to them directly via our secure messaging system. This allows you to discuss project details, negotiate terms, and clarify expectations before booking.</li>
+                <li><strong>Booking & Scheduling:</strong> When you’re ready to proceed, easily schedule the tradesperson for the date and time that works best for you. Workerfy's integrated booking system ensures a smooth and hassle-free process.</li>
+            </ul>
+        
+            <h3>5. Secure Payment System</h3>
+            <ul>
+                <li><strong>Safe Transactions:</strong> Workerfy offers a secure payment system, ensuring that you can pay for services with confidence. Payments are held securely and released only when you are satisfied with the work completed.</li>
+                <li><strong>Milestone Payments:</strong> For larger projects, payments can be broken down into milestones, ensuring both you and the tradesperson are satisfied at every stage.</li>
+            </ul>
+        
+            <h3>6. Track Progress and Manage Jobs</h3>
+            <ul>
+                <li><strong>Project Management Tools:</strong> Keep track of the progress of your jobs within the app. You’ll have full visibility into the status of the project, any upcoming tasks, and timelines, helping you stay organized.</li>
+            </ul>
+        
+            <h3>7. Premium Services for Extra Convenience</h3>
+            <ul>
+                <li><strong>Upgrade for More:</strong> For clients looking for more support, Workerfy offers premium services such as priority customer support, faster bookings, or specialized tradespeople, ensuring your project gets the attention it deserves.</li>
+            </ul>
+        
+            <h2>Why Choose Workerfy?</h2>
+            <p>At Workerfy, we believe in making the process of finding and hiring tradespeople as seamless as possible. With a focus on quality, convenience, and trust, we ensure that you can quickly connect with the right professionals to get your job done with confidence.</p>
+            
+            <p>With Workerfy, clients can connect with skilled tradespeople efficiently and securely, making it the perfect platform for managing all your trade service needs. Whether it's a small home repair or a large construction project, Workerfy provides everything you need to get the job done right.</p>
+        </section>
+        
+    </div>
+
+
+
+</main>
+<footer>
+    <div class="main_nav">
+
+        {% if request.user %}
+        <button class="BTNhomeLearnC" onclick="document.location='/Home_learn'">Back</button>
+
+        {% else %}
+        <button class="BTNhomeLearnC" onclick="document.location='/get_started'">Back</button>
+        {% endif %}
+      </div>
+</footer>
+
+{% endblock body %}

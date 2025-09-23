@@ -1,0 +1,61 @@
+{% extends "Discover/intro/base.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'Discover/GetS-Home.css' %}">
+    
+{% endblock styles %}
+ 
+{% block body %}
+
+<header>
+    <div>
+        <img src="{% static 'images/Workerfy logo2.png' %}" alt="Workerfy Logo" class="workerfyLogo">
+    </div>
+</header>  
+<main>
+    
+    <div class="homeLearnContent">
+        <section id="for-tradespeople">
+            <h2>For Tradespeople: Empowering Your Trade, Connecting You to Opportunities</h2>
+            <p>At Workerfy, we understand the unique challenges tradespeople face—whether you're a skilled artisan, a construction expert, or a trades professional working with your hands every day. Our platform is designed to bridge the gap between your skills and the clients who need them, while helping you grow your business, build your reputation, and stay organized.</p>
+            
+            <h3>Why Join Workerfy?</h3>
+            
+            <h4>1. Showcase Your Talents</h4>
+            <p>Stand out by creating a professional profile that highlights your skills and completed projects. Our <strong>Talent Showcase</strong> feature allows you to post articles, pictures, and videos of your work, attracting attention from clients and fellow tradespeople alike.</p>
+            
+            <h4>2. Find Work Easily</h4>
+            <p>Workerfy’s <strong>Growth Hub</strong> connects you directly with clients seeking your expertise. With our advanced search and booking tools, clients can easily find you, post jobs, and book your services with just a few clicks. You’ll receive notifications for new job opportunities, making sure you never miss a chance to grow your business.</p>
+            
+            <h4>3. Build Trust and Reputation</h4>
+            <p>Gain credibility with client reviews and ratings that showcase the quality of your work. The more jobs you complete and positive feedback you receive, the stronger your reputation grows, helping you attract even more clients.</p>
+            
+            <h4>4. Collaborate and Connect</h4>
+            <p>Join a vibrant community of tradespeople through our <strong>Collaborative Space</strong> feature, similar to Discord. Share tips, learn from others, discuss industry trends, and even find partners to work with on bigger projects. Workerfy fosters a sense of community among professionals like you.</p>
+            
+            <h4>5. Access to Learning and Resources</h4>
+            <p>Stay ahead of the game by continuously improving your skills. Our <strong>Learning & Resources</strong> section offers courses, certifications, and practical resources that can enhance your productivity and career growth. Additionally, you can access or buy tools and equipment from the platform’s marketplace.</p>
+            
+            <h4>6. Streamline Your Business</h4>
+            <p>Workerfy’s integrated <strong>Profile & Management</strong> tools help you manage projects, keep track of clients, and organize your tasks. Spend less time on admin and more time doing what you do best—your trade.</p>
+          </section>
+          
+    </div>
+
+
+
+</main>
+<footer>
+    <div class="main_nav">
+
+        {% if request.user %}
+        <button class="BTNhomeLearnC" onclick="document.location='/Home_learn'">Back</button>
+
+        {% else %}
+        <button class="BTNhomeLearnC" onclick="document.location='/get_started'">Back</button>
+        {% endif %}
+      </div>
+</footer>
+
+{% endblock body %}

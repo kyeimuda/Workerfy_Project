@@ -1,0 +1,69 @@
+{% extends "Discover/page2/base.html" %}
+{% load static %}
+{% load socialaccount %}
+{% block styles %} 
+<link rel="stylesheet" href={% static "Discover/page2/loginPage.css" %}>
+{% endblock %}
+
+{% block body %}
+<body>
+    <header class="WokerfyLogo">
+        <img src={% static "images/WorkerfyLogo01-removebg-preview(1).png" %} alt="WokerfyLogo" width="200px" height="200px">
+    </header>
+    <section class="loginSection">
+        <h2 class="login">Login</h2>
+        <div class="loginForm">
+            <form method="POST" action="">
+                {% csrf_token %}
+
+                <!-- Non-field errors (e.g. "Invalid email or password.") -->
+                {% if form.non_field_errors %}
+                    <div class="form-error">
+                        {% for error in form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <label for="email">Email:</label><br>
+                <input type="email" name="email" id="email" placeholder="Email" value="{{ form.data.email }}" required autofocus>
+                {% if form.email.errors %}
+                    <p>{{ form.email.errors.0 }}</p>
+                {% endif %}
+
+                <label for="password">Password:</label><br>
+                <input type="password" name="password" id="password" placeholder="Password" required><br>
+                {% if form.password.errors %}
+                    <p>{{ form.password.errors.0 }}</p>
+                {% endif %}
+
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+
+        </div>
+
+        <div class="separatingLine">
+
+            <span class="line"></span> <span class="or">or</span> <span class="line"></span> <!-- This is the line that separates the login form from the signup link -->
+            
+        </div>
+
+        <div class="altSignIn">
+            <h3>Sign in with:</h3>
+            <div class="links">
+                <form method="post" action="{% url 'account_login' %}">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="IicfHtHW4ZgcMKrCKHTtXmH8wIMDyWTRHHZitSnGvFFE7GCARSopIeOiTjGRzuko">
+                    <button type="submit">Continue</button>
+                   <!--  <a href="{% provider_login_url 'google' %}" class="google-login"><img src={% static "images/google_cover-removebg-preview.png" %} alt="Sign in with Google" width="100" height="100"></a> -->
+                </form>
+                <a href="{% provider_login_url 'google' %}" class="google-login"><img src={% static "images/google_cover-removebg-preview.png" %} alt="Sign in with Google" width="100" height="100"></a>
+                <a href="facebook"><img src={% static "images/facebook.png" %} alt="Sign in with Google" width="100" height="100"></a>
+            </div>
+        </div>
+        
+    </section>
+    <section class="signupLink">
+        <h3>Don't have an account?&nbsp;<a href={% url "Signup" %}>Sign Up</a></h3>
+    </section>
+</body>
+{% endblock %}

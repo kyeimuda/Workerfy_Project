@@ -1,0 +1,299 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    overflow-y: hidden;
+    background-color: whitesmoke;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    height: 9vh;
+    background-color: #F1EADF;
+    border-bottom-right-radius: 2vh;
+    border-bottom-left-radius: 2vh;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+.header header h1 {
+    font-size: 2.5vh;
+    color: #000080;
+    font-family: 'Playpen Sans', cursive;
+    font-weight: 600;
+}
+
+.content {
+    width: 100%;
+    height: 83vh;
+    overflow: auto;
+}
+
+/* .footer {
+    height: 8vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-top: 1px solid rgba(128, 128, 128, 0.5);
+} */
+.footer {
+    width: 100%;
+    height: 8vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-top: 1px solid rgba(128, 128, 128, 0.2);
+    background-color: #F1EADF;
+}
+
+.footer button{
+    width: 35%;
+    height: min(60%, 45px);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: none;
+    font-size: 2vh;
+    font-family: 'Playpen Sans', cursive;
+    color: whitesmoke;
+    background-color: #000080;
+    border-radius: 5vh;
+}
+
+form {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.content section {
+    width: 100%;
+    padding: 2vh;
+    min-height: 100%;
+    /* border: 2px solid #000080; */
+    background-color: whitesmoke;
+    scroll-snap-align: start;
+    scroll-behavior: smooth;
+}
+
+.ProPic{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#ProfilePicHolder {
+    position: relative;
+    width: 35%;
+    height: 100%;
+    /* border: 2px solid #000080; */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 0px 2px 0px #1818e9;
+}
+
+#ProfilePicHolder img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+#ProfilePicHolder input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    opacity: 0;
+}
+
+#ProfilePicHolder .penSVG {
+    position: absolute;
+    bottom: 2vh;
+    right: 3vh;
+    background-color: rgb(245, 245, 245, 0.7);
+    border-radius: 50%;
+    padding: 0.7vh;
+}
+
+.helpTexts {
+    font-size: 1.2vh;
+    color: #000080;
+    font-family: 'Playpen Sans', cursive;
+    padding-bottom: 1vh;
+}
+
+.ProPic .helpTexts {
+    font-size: 1.2vh;
+    color: #000080;
+    font-family: 'Playpen Sans', cursive;
+    padding: 1vh;
+}
+
+#help_text{
+    color: #000080;
+    margin: 2vh;
+}
+
+.penSVG{
+    position: absolute;
+    bottom: 3vh;
+    right: 4vh;
+    background-color: rgb(245, 245, 245, 0.7);
+    border-radius: 50%;
+    padding: 0.7vh;
+}
+
+.penSVG svg{
+    fill: #000080;
+}
+
+.inputContainer {
+    margin: 3vh 0;
+}
+
+label {
+    font-size: 2vh;
+    display: block;
+    color: #000080;
+    font-weight: 500;
+    font-family: "Nunito", sans-serif;
+    margin: 1vh 0;
+}
+.inputContainer label, .inputContainer h3{
+    font-size: 2vh;
+    display: block;
+    color: #000080;
+    font-weight: 500;
+    font-family: "Playpen Sans", cursive;
+}
+
+.inputContainer input, .inputContainer select, .inputContainer textarea, .addHolder input, .addHolder textarea {
+    width: 100%;
+    padding: 2vh 4.5vw;
+    border: none;
+    border-radius: 1.8vh;
+    background-color: whitesmoke;
+    border: 1px solid rgba(0, 0, 128, 0.2);
+    font-size: 2vh;
+    font-family: "Poppins", sans-serif;
+    outline: none;
+    display: block;
+    margin: auto;
+    box-shadow: 0 2px 6px 0 rgba(128, 128, 128, 0.5);
+}
+
+h2 {
+    padding: 1vh 2vh;
+    text-align: center;
+    background-color: #F1EADF;
+    border-radius: 2vh;
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    color: #000080;
+}
+
+.socialContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vh;
+}
+
+.socialContainer input {
+    width: 80%;
+    margin: 1vh 0;
+}
+
+.inputContainer button{
+    width: 50%;
+    padding: 1vh 2vh;
+    background-color: #000080;
+    color: whitesmoke;
+    border-radius: 5vh;
+    margin: 1vh;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.addHolder button{
+    width: 50%;
+    padding: 1vh 2vh;
+    background-color: #000080;
+    color: whitesmoke;
+    border-radius: 5vh;
+    margin: 1vh;
+    border: none;
+}
+
+#experience_years input {
+    width: 40%;
+}
+
+.addHolder label {
+    width: 100%;
+    text-align: center;
+}
+
+/* This styles for the .EducationInfo */
+.addHolder {
+    display: block;
+    margin: 2vh 0;
+    /* border: 1px solid rgba(128, 128, 128, 0.5); */
+    border-radius: 5vh;
+    box-shadow: 0 2px 10px  rgba(115, 115, 116, 0.5);
+}
+
+.addHolder div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 2vh 0;
+    gap: 1vh;
+    padding: 1vh 2vh;
+    align-self: center;
+}
+
+.addHolder button {
+    display: block;
+    margin: auto;
+}
+
+.addHolder h3 {
+    font-family: "Nunito", cursive;
+    font-weight: 600;
+    margin-bottom: 2vh;
+    margin-top: 1vh;
+}
+
+#jobAddPopUp {
+    display: none;
+}
+
+#SchoolAddPopUp {
+    display: none;
+}
+
+#certAddPopUp {
+    display: none;
+}
+
+#portAddPopUp {
+    display: none;
+}
+

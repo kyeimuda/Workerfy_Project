@@ -1,0 +1,75 @@
+{% extends "Discover/intro/base.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'Discover/GetS-Home.css' %}">
+    
+{% endblock styles %}
+ 
+{% block body %}
+
+<header>
+    <div>
+        <img src="{% static 'images/Workerfy logo2.png' %}" alt="Workerfy Logo" class="workerfyLogo">
+    </div>
+</header>  
+<main>
+    
+    <div class="homeLearnContent">
+        <h1> How Workerfy Works</h1>
+        <p> Workerfy is designed to help tradespeople grow their careers and find job opportunities. Whether you're a skilled carpenter, plumber, electrician, or in any other trade, Workerfy connects you with clients and resources that matter most.</p>
+        <h2>For Tradespeople</h2>
+            <ol>
+                <li>Create a Profile</li>
+                <p>Start by setting up your profile. This is where you’ll showcase your skills, experience, and projects. It’s important to make this profile shine because clients will browse through profiles to find the right tradesperson for their jobs.</p>
+                
+                <li>Find Job Opportunities</li>
+                <p>Workerfy job postings from clients looking for skilled tradespeople. You can search for jobs that match your skills and experience, apply for jobs directly, or wait for clients to reach out to you through your profile.</p>
+
+                <li>Connect and Book Jobs</li>
+                <p>Once a client shows interest, you can chat with them directly on Workerfy. Discuss the job details, agree on the terms, and finalize the booking—all through the platform.</p>
+
+                <li>Build Your Reputation</li>
+                <p>Every job you complete through Workerfy allows clients to leave feedback. Positive reviews will help you attract more clients and build your reputation. A good reputation means more opportunities!</p>
+
+            </ol>
+
+        <h2>For Clients</h2>
+            <ol>
+                <li>Post a Job</li>
+                <p>If you need a skilled tradesperson, start by posting a job. Describe what you need, whether it’s fixing a plumbing issue, building something, or any other skilled task. Workerfy help you find the right person for the job.</p>
+
+                <li>Browse Tradespeople</li>
+                <p>You can also search and browse tradespeople profiles based on your specific needs. Check out their skills, past work, and reviews from previous clients before making your decision.</p>
+                
+                <li>Book and Manage Jobs</li>
+                <p>Once you find the right tradesperson, you can book them directly through the platform. Discuss the project, set up the payment, and manage the entire process from start to finish within Workerfy.</p>
+
+                <li>Leave a Review</li>
+                <p>After the job is done, you can leave a review of the tradesperson’s work. This helps other clients make informed decisions and helps tradespeople build their reputations on the platform.</p>
+
+                <h2>Why Workerfy</h2>
+                <p>Workerfy makes it easy for both tradespeople and clients to connect, collaborate, and succeed. Whether you're looking to grow your career or find the right person for a job, Workerfy offers everything you need in one convenient place. Start using Workerfy today to simplify your work, increase opportunities, and take your business to the next level</p>
+            
+            </ol>
+
+            
+
+    </div>
+
+
+
+</main>
+<footer>
+    <div class="main_nav">
+
+        {% if request.user %}
+        <button class="BTNhomeLearnC" onclick="document.location='/Home_learn'">Back</button>
+
+        {% else %}
+        <button class="BTNhomeLearnC" onclick="document.location='/get_started'">Back</button>
+        {% endif %}
+      </div>
+</footer>
+ 
+{% endblock body %}

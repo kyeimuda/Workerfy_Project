@@ -1,0 +1,93 @@
+{% extends "Discover/page2/base.html"%}
+{% load static %}
+{% load socialaccount %}
+{% block styles %}
+<link rel="stylesheet" href={% static "Discover/page2/registerPage.css" %}>
+{% endblock styles%}
+
+{% block body %}
+<main class="registerPage">
+        <div class="container">
+            <header class="headerContainer">
+                <img src={% static "images/WorkerfyLogo01-removebg-preview(1).png" %} alt="Workerfy Logo" width="200" height="200">
+            </header>
+
+            <div class="regcontainer">
+                <h2>Sign Up</h2>
+                    <form action="/accounts/signup/" method="post">
+
+                       {% comment %}  <label for="email">Phone Number Or Email</label>
+                        <input type="email" name="email" id="email" placeholder="Phone Number or Email" autofocus required><br>
+
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" placeholder="Password" required><br>
+
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required><br>
+ {% endcomment %}
+                         {% csrf_token %}
+
+                            
+                                <label for="S_email">Email</label>
+                                {{ form.email }}
+                                {% for error in form.email.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                                {% endfor %}
+                            
+
+                            
+                                <label for="S_password">Password</label>
+                                {{ form.password1 }}
+                                {% for error in form.password1.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                                {% endfor %}
+                            
+
+                            
+                                <label for="S_password2">Password</label>
+                                {{ form.password2 }}
+                                {% for error in form.password2.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                                {% endfor %}
+                           
+                        <button type="submit">Register</button>
+                    </form>
+            </div>
+
+            <div class="separatingLine">
+
+            <span class="line"></span> <span class="or">or</span> <span class="line"></span> <!-- This is the line that separates the login form from the signup link -->
+            
+        </div>
+
+        <div class="altSignIn">
+            <h3>Sign up with:</h3>
+            <div class="links">
+                
+                <div class="altsignUpBTN">
+                    <form method="post" action="/accounts/google/login/">
+                        {% csrf_token %}
+                        <button type="submit" class="google-login" ><img id='google_img' src={% static "images/google_cover-removebg-preview.png" %} alt="Sign in with Google" width="100" height="100"> <p>Login with Google</p> </button>
+                    <!--  <a href="{% provider_login_url 'google' %}" class="google-login"><img src={% static "images/google_cover-removebg-preview.png" %} alt="Sign in with Google" width="100" height="100"></a> -->
+                    </form>
+                </div>
+                <div class="altsignUpBTN">
+                    <form method="post" action="/accounts/facebook/login/">
+                        {% csrf_token %}
+                        <button type="submit" class="google-login" ><img id='facebook_img' src={% static "images/facebook.png" %} alt="Sign in with Google" width="100" height="100"> <p>Login with Facebook</p> </button>
+                    <!--  <a href="{% provider_login_url 'google' %}" class="google-login"><img src={% static "images/google_cover-removebg-preview.png" %} alt="Sign in with Google" width="100" height="100"></a> -->
+                      <!-- <a href="facebook"><img src={% static "images/facebook.png" %} alt="Sign in with Google" width="100" height="100"></a> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+
+            <div class="GoToLogin">
+                <h3>Already have an account? <a href={% url "account_login" %}>Log in</a></h>
+
+            </div>
+        </div>
+
+    </main>
+
+{% endblock body%}

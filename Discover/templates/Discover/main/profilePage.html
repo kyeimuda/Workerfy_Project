@@ -1,0 +1,33 @@
+{% extends "Discover/main/base.html" %}
+{% load static %}
+{% block styles%}
+<link rel="stylesheet" href="{% static 'Discover/profilepage.css' %}">
+{% endblock styles %}
+
+{% block HeaderAndMain %} 
+<header>
+    <div class="profileimg">
+        <img src="{% static 'images/Workerfy logo2.png' %}" alt="Workerfy Logo" class="workerfyLogo"> 
+    </div>
+
+    <div class="profiledetails">
+        <div id="detailtext">
+            <h1>Name</h1>
+            <h2> Other details</h2>
+        </div> 
+
+        <div id="detailsedit">
+            <a href="editProfileAsC.html"><img src="{% static 'images/search.png'%}" width="30px" height="30px" alt="edit profile"></a>
+        </div>
+
+    </div>
+</header>  
+<main>
+    <div id="workmanagerHead">
+        <h3>Work Manager</h2>
+    </div>
+ 
+
+
+</main>
+{% endblock HeaderAndMain%}

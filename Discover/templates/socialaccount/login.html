@@ -1,0 +1,30 @@
+{% extends "Discover/page2/base.html" %}
+{% load i18n %}
+{% load allauth %}
+
+{% load static %}
+{% load socialaccount %}
+{% block styles %} 
+<link rel="stylesheet" href={% static "Discover/page2/loginPage.css" %}>
+{% endblock %}
+
+{% block body %}
+<body>
+
+     <header class="WokerfyLogo">
+        <img src={% static "images/WorkerfyLogo01-removebg-preview(1).png" %} alt="WokerfyLogo" width="200px" height="200px">
+    </header>
+
+    <h1>Workerfy</h>1
+
+    <h1>Sign In Via Google</h1>
+    <p>You are about to sign in using a third-party account from Google.</p>
+    <p>A verification link will be sent to your email address. Make Sure to visit your email and oprn the link to get your account verified</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Continue</button>
+    </form>
+
+</body>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "Discover/intro/base.html" %}
+{% load static %}
+{% block styles%}
+    <link rel="stylesheet" href="{% static 'Discover/CorT.css' %}">
+{% endblock styles%}
+ 
+{% block body %}
+ <div class="homepageDiv">
+    <header> 
+         <a href="/" class="workerfyLogo-a"> <img src="{% static 'images/Workerfy logo2.png' %}" class="workerfyLogo" alt="home"></a>
+    </header>  
+    <main>
+        <div class="CorT">
+            <div class="info">
+                <h2 class="in_info"> Are you a looking for a tradesperson(Client)</h2>
+                <h2 class="in_info">or</h2>
+                <h2 class="in_info">You are a tradesperson</h2>
+            </div>
+
+            <div class="links">
+                <a href="{% url 'Create_As_C' %}"> Client</a>
+                <a href="{% url 'Create_As_T' %}" id="tradeslink"> Tradespeople</a>
+            </div>
+        </div>
+
+
+    </main>
+    <footer>
+        <p>&copy; Workerfy. All rights reserved.</p>
+    </footer>
+
+{% endblock body %}

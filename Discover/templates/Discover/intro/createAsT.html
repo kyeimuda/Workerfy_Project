@@ -1,0 +1,91 @@
+{% extends "Discover/intro/base.html" %}
+{% load static %}
+{% block styles%}
+    <link rel="stylesheet" href="{% static 'Discover/create.css' %}">
+{% endblock styles%}
+ 
+{% block body %}
+
+<header>
+    <img src="{% static 'images/Workerfy logo2.png' %}" alt="Workerfy Logo" class="workerfyLogo"> 
+</header>  
+
+<main>
+   
+   <div>
+       <P> Fill in the Your info to set you up </P>
+   </div>
+   <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="formC">
+        <label for="CT_firstname">First Name:</label><br>
+        {{ form.first_name }}<br>
+        
+        <label for="CT_othernames">Other Names:</label><br>
+        {{ form.middle_name }}<br>
+        
+        <label for="CT_lastname">Last Name:</label><br>
+        {{ form.last_name }}<br>
+        
+        <label for="CT_profilePicture">Profile Picture:</label><br>
+        {{ form.profile_picture }}<br>
+        
+        <label for="CTphone1">Phone Number:</label><br>
+        {{ form.phone }}<br>
+        
+        <label for="CTphone2">Second Phone Number:</label><br>
+        {{ form.phone2 }}<br>
+        
+        <label for="CT_location">Region you are based:</label><br>
+        {{ form.location }}<br>
+        
+        <label for="CT_address">The area you work from in your region:</label><br>
+        {{ form.address }}<br>
+        
+        <label for="CT_tradestype">What kind of trades work are you into:</label><br>
+        {{ form.trades_type }}<br>
+        
+        <label for="CT_specialization">What do you specialize in your field:</label><br>
+        {{ form.specialization }}<br>
+        
+        <label for="CT_experience">How many years of experience do you have:</label><br>
+        {{ form.years_of_experience }}<br>
+        
+        <label for="CT_tradestype">Do you have a secondary skill?:</label><br>
+        {{ form.extra_skills }}<br>
+        
+        <label for="CT_certification">Do hold any certificate. List your latest or most valuable certificate:</label><br>
+        {{ form.certification }}<br>
+        
+        <label for="CT_workHoursStart">How many hours do you work:</label><br>
+        {{ form.work_hours }}<br>
+        
+        <label for="CT_jobType">What is you job type(Part time, Full time, Freelance contracts):</label><br>
+        {{ form.job_type }}<br>
+        
+        <label for="CT_serviceRange">'What is your job range:</label><br>
+        {{ form.service_range }}<br>
+        
+        <label for="CT_pastJobs">Upload pictures of your past work:</label><br>
+        <input type="file" id="CT_pastJobs" name="past_jobs" multiple><br>
+        
+        <label for="CT_Rate">Rate per Job (in GH₵):</label><br>
+        {{ form.rate_charged }}<br>
+        
+        <label for="CT_language">Languages: What languages are you fluent(Separeate with a (,)):</label><br>
+        {{ form.languages }}<br>
+        
+        <label for="CT_availability">Availability status:</label><br>
+        {{ form.availability_status }}<br>
+        
+        <label for="CT_Bio">Write about yourself.(Tell Clients why you are the best fit.):</label><br>
+        {{ form.bio }}<br>
+
+        <input class="lastBTN" type="submit" value="Submit">
+        <input class="lastBTN" type="reset" value="Reset" id="lastBTNbutton">
+    </div>
+</form>
+
+
+</main>
+{% endblock body %}

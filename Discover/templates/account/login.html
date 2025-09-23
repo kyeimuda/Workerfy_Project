@@ -1,0 +1,80 @@
+{% extends "Discover/page2/base.html" %}
+{% load static %}
+{% load socialaccount %}
+{% block styles %} 
+<link rel="stylesheet" href={% static "Discover/page2/loginPage.css" %}>
+{% endblock %}
+
+{% block body %}
+<body>
+    <header class="WokerfyLogo">
+        <img src={% static "images/WorkerfyLogo01-removebg-preview(1).png" %} alt="WokerfyLogo" width="200px" height="200px">
+    </header>
+    <section class="loginSection">
+        <h2 class="login">Login</h2>
+        <div class="loginForm">
+            <form method="POST" action="/accounts/login/" >
+                {% csrf_token %}
+
+                {% comment %} <!-- Non-field errors (e.g. "Invalid email or password.") --> {% endcomment %}
+                {% if form.non_field_errors %}
+                    <div class="form-error">
+                        {% for error in form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <label for="id_login">Email:</label><br>
+                <input type="email" name="login" id="id_login" placeholder="Email" value="{{ form.data.email }}" maxlength="320" required autofocus>
+                {% if form.email.errors %}
+                    <p>{{ form.email.errors.0 }}</p>
+                {% endif %}
+
+                <label for="id_password">Password:</label><br>
+                <input type="password" name="password" id="id_password" placeholder="Password" required><br>
+                {% if form.password.errors %}
+                    <p>{{ form.password.errors.0 }}</p>
+                {% endif %}
+                <span class="helptext" id="id_password_helptext"><a href="/accounts/password/reset/">Forgot your password?</a></span>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+
+        </div>
+
+        <!-- <span class="helptext" id="id_password_helptext"><a href="/accounts/password/reset/">Forgot your password?</a></span> -->
+
+        <div class="separatingLine">
+
+            <span class="line"></span> <span class="or">or</span> <span class="line"></span> <!-- This is the line that separates the login form from the signup link -->
+            
+        </div>
+
+        <div class="altSignIn">
+            <h3>Login with:</h3>
+            <div class="links">
+                
+                <div class="altsignUpBTN">
+                    <form method="post" action="/accounts/google/login/">
+                        {% csrf_token %}
+                        <button type="submit" class="google-login" ><img id='google_img' src={% static "images/google_cover-removebg-preview.png" %} alt="Sign in with Google" width="100" height="100"> <p>Login with Google</p> </button>
+                    <!--  <a href="{% provider_login_url 'google' %}" class="google-login"><img src={% static "images/google_cover-removebg-preview.png" %} alt="Sign in with Google" width="100" height="100"></a> -->
+                    </form>
+                </div>
+                <div class="altsignUpBTN">
+                    <form method="post" action="/accounts/facebook/login/">
+                        {% csrf_token %}
+                        <button type="submit" class="google-login" ><img id='facebook_img' src={% static "images/facebook.png" %} alt="Sign in with Google" width="100" height="100"> <p>Login with Facebook</p> </button>
+                    <!--  <a href="{% provider_login_url 'google' %}" class="google-login"><img src={% static "images/google_cover-removebg-preview.png" %} alt="Sign in with Google" width="100" height="100"></a> -->
+                      <!-- <a href="facebook"><img src={% static "images/facebook.png" %} alt="Sign in with Google" width="100" height="100"></a> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+    <section class="signupLink">
+        <h3>Don't have an account?&nbsp;<a href={% url "account_signup" %}>Sign Up</a></h3>
+    </section>
+</body>
+{% endblock %}

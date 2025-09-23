@@ -1,0 +1,318 @@
+{% extends "Discover/page2/base.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href={% static "Discover/page2/profileCompletionFrom1.css" %}>
+{% endblock styles %}
+
+{% block body %}
+    <div class="container">
+        <section class="introSection">
+             <div class="onboarding_image">
+                <img src={% static "images/WorkerfyLogo01-removebg-preview(1).png" %} alt="Onboarding Screen 1" width="300" height="300">
+            </div> <!-- This is the image for the first onboarding screen. -->
+            <P>Let's fill out some important information about you</P>
+
+            <figure>
+                <img src={% static "images/girl_holding_a_sapnner_illustration-removebg-preview.png" %} alt="An image of a girl holding a sapnner illustration" width="300">
+            </figure>
+        </section>
+
+        <section class="formSection">
+            <div class="progressBulbs"> 
+                <div class="bulbs active" id="bulb1"> <p>1</p></div>
+                <div class="bulbs" id="bulb2"><p>2</p></div>
+                <div class="bulbs" id="bulb3"><p>3</p></div>
+                <div class="bulbs" id="bulb4"><p>4</p></div>
+                <div class="bulbs" id="bulb5"><p>5</p></div>
+            </div>
+            <!-- <h2>Personal information:</h2>
+            <div class="seperationline"></div> -->
+
+            
+                
+                <form action="#" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div class="containerForForm">
+                        
+                        <div class="forms" id="form1">
+                            <div class="Info">
+                                <fieldset class="fieldset">
+                                <legend>Personal information</legend>
+                                <div class="seperationline"></div>
+                                <div class="inputContainer">
+                                    {% comment %} <label for="FName">First Name:</label> {% endcomment %}
+                                     {{form.first_name.label_tag }}
+                                   {% comment %}  <input type="text" name="FName" id="FName" placeholder="Kofi" required autofocus><br> {% endcomment %}
+                                    {{ form.first_name }}
+                                </div>
+                                <div class="inputContainer">
+                                    {% comment %} <label for="LName">Last Name:</label> {% endcomment %}
+                                    {{form.last_name.label_tag }}
+                                    {% comment %} <input type="text" name="LName" id="LName" placeholder="Mensah" required><br> {% endcomment %}
+                                    {{ form.last_name }}
+                                    {% comment %} <input type="text" name="LName" id="LName" placeholder="Mensah" required><br> {% endcomment %}
+                                </div>
+                                <div class="inputContainer">
+                                    {% comment %}  <label for="Other">Other names:</label> {% endcomment %}
+                                    {% comment %} <input type="text" name="Other" id="Other" placeholder="Kumi"><br> {% endcomment %}
+                                    {{ form.other_names.label_tag }}
+                                    {{ form.other_names }}
+                        
+                                    {% comment %} <input type="text" name="Other" id="Other" placeholder="Kumi"><br> {% endcomment %}
+                                </div>
+                                <div class="inputContainer">
+                                    {% comment %} <label for="age">Date of birth:</label> {% endcomment %}
+                                    {{form.date_of_birth.label_tag }}
+                                    {% comment %} <input type="date" name="age" id="age" placeholder="Date of Birth" required><br> {% endcomment %}
+                                    {{ form.date_of_birth }}
+                                    {% comment %} <input type="date" name="age" id="age" placeholder="Date of Birth" required><br> {% endcomment %}
+                                </div>
+                                <div class="inputContainer">
+            
+                                    {{ form.gender.label_tag }}
+                                    {{ form.gender }}
+                                </div>
+                                <!-- <button class="backBTN">&lt; Back</button> -->
+                                <a class="nextBTN" id="PersonalInformation" href="#form2">Next &gt;</a>
+                                </fieldset>
+                            </div>
+                        </div>
+                        
+
+                        <div class="forms" id="form2">
+                            <div class="Info">
+                                <fieldset class="fieldset">
+                                <legend>Contact information</legend>
+                                <div class="seperationline"></div>
+                                <div class="inputContainer">
+
+                                    {{ form.contact_number.label_tag }}
+                                    {{ form.contact_number }}
+
+                                    {% comment %} <label for="ContactNumber">Contact Number:</label> {% endcomment %}
+                                    {% comment %} <input type="tel" name="ContactNumber" id="ContactNumber" placeholder="050 524 1706" required><br> {% endcomment %}
+                                    {% comment %} <label for="Phone">Phone Number:</label>
+                                    <input type="tel" name="Phone" id="Phone" placeholder="050 524 1706" required><br> {% endcomment %}
+                                </div>
+                                <div class="inputContainer">
+
+                                    {{ form.contact_number2.label_tag }}
+                                    {{ form.contact_number2 }}
+                                    <p id="help_text">{{ form.contact_number2.help_text}}</p>
+                                   {% comment %}  <label for="OtherPhone">Other Phone Number(Whatsapp):</label>
+                                    <input type="tel" name="OtherPhone" id="OtherPhone" placeholder="050 300 4659"><br>
+                                </div> {% endcomment %}
+                               <!--  <div class="inputContainer">
+                                    <label for="WhatsappPhone">Whatsapp Phone Number:</label>
+                                    <input type="tel" name="WhatsappPhone" id="WhatsappPhone" placeholder="050 300 4659"><br>
+                                </div>
+                                 -->
+                                
+                               <a href="#form1" class="backBTN">&lt; Back</a>
+                                <a href="#form3" id="ContactInformation" class="nextBTN">Next &gt;</a>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <div class="forms" id="form3">
+                            <div class="Info">
+                                <fieldset class="fieldset">
+                                <legend> Location information</legend>
+                                <div class="seperationline"></div>
+                                <div class="inputContainer">
+                                    {{ form.base_location.label_tag }}
+                                    {{ form.base_location}}
+                                    <!-- <label for="CT_location">Region you are based:</label>
+                                    <div class="select-wrapper">
+                                    <select name="location" id="CT_location" required>
+                                        <option value="Greater_Accra">Greater Accra</option>
+                                        <option value="Volta">Volta Region</option>
+                                        <option value="Ashanti">Ashanti Region</option>
+                                        <option value="Western_North">Western North Region</option>
+                                        <option value="Western">Western Region</option>
+                                        <option value="Central">Central Region</option>
+                                        <option value="Upper_East">Upper East Region</option>
+                                        <option value="Savannah">Savannah Region</option>
+                                        <option value="North_East">North East Region</option>
+                                        <option value="Bono">Bono Region</option>
+                                        <option value="Ahafo">Ahafo Region</option>
+                                        <option value="Bono_East">Bono East Region</option>
+                                        <option value="Upper_West">Upper West Region</option>
+                                        <option value="Nortern">Nortern Region</option>
+                                        <option value="Oti">Oti Region</option>
+                                        <option value="Eastern">Eastern Region</option>
+                                    </select>
+                                    </div><br> -->
+                                <div class="inputContainer">
+                                    {{ form.sub_location.label_tag }}
+                                    {{ form.sub_location}}
+
+                                    <datalist id="{{ form.sub_location.id_for_label}}">
+                                        {% for city in cities %}
+                                            <option value="{{ city.name }}">
+                                        {% endfor %}
+                                    </datalist>
+                                    <!-- <label for="Town">Which town do you work from:</label>
+                                    <input list="Towns" placeholder="Accra" id="Town" name="Town" required>
+                                    <datalist id="Towns">
+                                        <option value="Accra">
+                                        <option value="Tema">
+                                        <option value="Kumasi">
+                                        <option value="Takoradi">
+                                        <option value="Cape Coast">
+                                        <option value="Tamale">
+                                        <option value="Sunyani">
+                                        <option value="Bolgatanga">
+                                        <option value="Wa">
+                                        <option value="Ho">
+                                </div> -->
+                                <div class="inputContainer">
+                                    {{ form.work_areas.label_tag }}
+                                    {{ form.work_areas}}
+
+                                    <datalist id="{{ form.work_areas.id_for_label}}">
+                                        {% for area in areas %}
+                                            <option value="{{ area.name }}">
+                                        {% endfor %}
+                                    </datalist>
+                                    <!-- <label for="Other">Which area are you located(Sub of the town):</label>
+                                    <input type="text" name="Area" id="Area" placeholder="Atadeka"><br> -->
+                                </div>
+                                
+                                <a href="#form2" class="backBTN">&lt; Back</a>
+                                <a href="#form4" id="LocationInformation" class="nextBTN">Next &gt;</a>
+                            </fieldset>
+                            </div>
+                        </div>
+
+                        <div class="forms" id="form4">
+                            <div class="Info">
+                                <fieldset class="fieldset">
+                                <legend>Trades information:</legend>
+                                <div class="seperationline"></div>
+                                <div class="inputContainer">
+                                    {{ form.trade_category.label_tag }}
+                                    <p class='helpTexts'>What is kind of Tradesperson are you.(Eg. Mason, Carpenter etc.)</p>
+
+                                    {{ form.trade_category}}
+                                    <!-- <label for="CT_tradestype">What is your main trades type:</label>
+                                    <div class="select-wrapper">
+                                    <select name="trades_type" id="CT_tradestype">
+                                        <option value="Carpenter">Carpenter</option>
+                                        <option value="Electrician">Electrician</option>
+                                        <option value="Plumber">Plumber</option>
+                                        <option value="Roofer">Roofer</option>
+                                        <option value="Painter">Painter</option>
+                                        <option value="Drywall">Drywall </option>
+                                        <option value="Glazier">Glazier</option>
+                                        <option value="Tiler">Tiler</option>
+                                        <option value="Ironworker">Iron worker or Steel Worker</option>
+                                        <option value="Welder">Welder</option>
+                                        <option value="HVAC_Technician">HVAC Technician( Installs and repairs heating, ventilation, and air conditioning systems.)</option>
+                                        <option value="Concrete_Worker">Concrete Worker</option>
+                                        <option value="Refrigeration_Technician">Refrigeration Technician</option>  <option value="Landscaper/Gardener">Landscaper/Gardener</option>
+                                        <option value="Locksmith">Locksmith</option>
+                                        <option value="Pest_Control_Technician">Pest Control Technician</option>
+                                        <option value="Cleaning_Technician">Cleaning Technician</option>
+                                        <option value="Gas_Fitter">Gas Fitter</option>
+                                        <option value="Septic_Tank_Installer/Repairer">Septic Tank Installer/Repairer</option>
+                                        <option value="Appliance_Repair_Technician">Appliance Repair Technician</option>
+                                        <option value="Solar_Panel_Installer">Solar Panel Installer</option>
+                                        <option value="Green_Energy_Technician">Green Energy Technician</option>
+                                        <option value="Smart_Home_Technician">Smart Home Technician</option>
+                                        <option value="Waterproofing_Specialist">Waterproofing Specialist</option>
+                                        <option value="General_Contractor">General Contractor</option>
+                                        <option value="Handyman">Handyman</option>
+                                        <option value="Scaffolder">Scaffolder</option>
+                                        <option value="Labourer">Labourer</option>
+                                        <option value="Elevator_Installer_Repairer">Elevator Installer/Repairre</option>
+                                        <option value="Auto_Mechanic">Auto Mechanic</option>
+                                        <option value="Heavy_Equipment_Operator">Heavy Equipment Operator</option>
+                                        <option value="Sheet_Metal_Worker">Sheet Metal Worker</option>
+                                        <option value="Industrial_Electrician">Industrial Electrician</option>
+                                        <option value="Pipefitter">Pipefitter/Steamfitter</option>
+                                    
+                                    </select>
+                                    </div><br> -->
+                                </div>
+                                <div class="inputContainer">
+                                    {{ form.trade_specialties.label_tag }}
+                                    <p class='helpTexts'>What is your speciality under your Trades.(Eg. Kitchen sink repair)</p>
+
+                                    {{ form.trade_specialties}}
+                                    <datalist id="{{ form.trade_specialties.id_for_label}}">
+                                        {% for specialty in specialties %}
+                                            <option value="{{ specialty.name }}">
+                                        {% endfor %}
+                                         
+                                    </datalist>
+                                    <!-- <label for="subTrades">What your expertise in your trades :</label>
+                                    <input type="tel" name="subTrades" id="subTrades" placeholder="roofing"><br> -->
+                                </div>
+                                <div class="inputContainer">
+                                    {{ form.skills.label_tag }}
+                                    <p class='helpTexts'>Add special keywords under you Trdaes.(For Search purposes.)</p>
+                                    {{ form.skills}}
+                                    
+
+                                    <datalist id="{{ form.skills.id_for_label}}">
+                                        {% for tag in skill_tags %}
+                                            <option value="{{ tag.name }}">
+                                        {% endfor %}
+                                    </datalist>
+                                   <!--  <label for="tags">Add your tags:</label>
+                                    <input type="email" name="Email" id="tags" placeholder="fitting"><br> -->
+                                </div>
+                                
+                                <a href="#form3" class="backBTN">&lt; Back</a>
+                                <a href="#form5" id="TradesInformation" class="nextBTN">Next &gt;</a>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <div class="forms" id="form5">
+                            <div class="Info">
+                                <fieldset class="fieldset">
+                                <legend>Profile Picture & Bio</legend>
+                                <div class="seperationline"></div>
+                                <div class="inputContainer ProPic">
+
+                                    {{ form.profile_picture.label_tag }}
+
+                                    <div id="ProfilePicHolder">
+                                        <img src={% static "images/agent.png" %} alt="Profile Image" width="100" height="100" id='imageHolder'>
+                                    <div class="penSVG">
+                                        <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="25" height="25"><path d="M22.853,1.148a3.626,3.626,0,0,0-5.124,0L1.465,17.412A4.968,4.968,0,0,0,0,20.947V23a1,1,0,0,0,1,1H3.053a4.966,4.966,0,0,0,3.535-1.464L22.853,6.271A3.626,3.626,0,0,0,22.853,1.148ZM5.174,21.122A3.022,3.022,0,0,1,3.053,22H2V20.947a2.98,2.98,0,0,1,.879-2.121L15.222,6.483l2.3,2.3ZM21.438,4.857,18.932,7.364l-2.3-2.295,2.507-2.507a1.623,1.623,0,1,1,2.295,2.3Z"/></svg>
+
+                                    </div>
+
+                                        {{ form.profile_picture }}
+                                    </div>
+
+                                    <p class='helpTexts'>Note: a headshot is recommended.</p>
+
+                                </div>
+                                <div class="inputContainer BioDiv">
+
+                                    {{ form.bio.label_tag }}
+                                    {{ form.bio }}
+
+                                </div>
+                               <a href="#form4" class="backBTN">&lt; Back</a>
+                                <button type="submit" class="nextBTN" id='TradesDone'>Done</button>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>   
+                </form>        
+            
+        </section>
+    </div>
+
+{% endblock body%}
+
+{% block scripts %}
+    <script src={% static "Discover/page2/profileCompletionForm1.js" %}></script>
+{% endblock scripts%}

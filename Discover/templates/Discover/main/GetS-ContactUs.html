@@ -1,0 +1,92 @@
+{% extends "Discover/intro/base.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'Discover/GetS-Home.css' %}">
+    
+{% endblock styles %}
+ 
+{% block body %}
+
+<header>
+  <div>
+      <img src="{% static 'images/Workerfy logo2.png' %}" alt="Workerfy Logo" class="workerfyLogo">
+      <h1 id="workerfyhead"> Workerfy </h1>
+  </div>
+</header>  
+<main>
+  
+  <div class="homeLearnContent">
+      <section id="contact-us">
+          <h2>Contact Us</h2>
+          <p>We’re here to help! Whether you have questions, need support, or want to learn more about Workerfy, feel free to get in touch with us. Our team is dedicated to assisting you in any way we can.</p>
+          
+          <h3>How to Reach Us</h3>
+          
+          <h4>Customer Support</h4>
+          <p>For general inquiries or support, please email us at:  
+            <a href="mailto:workerfy01@gmail.com">workerfy01@gmail.com</a>
+          </p>
+          
+          <h4>Business Inquiries</h4>
+          <p>Interested in partnerships, sponsorships, or other business-related inquiries? Contact us at:  
+            <a href="mailto:workerfy01@gmail.com">workerfy01@gmail.com</a>
+          </p>
+          
+          <h4>Phone</h4>
+          <p>Need to speak with someone? Call us at:  
+            <strong>+233 (050) 524-1706</strong>  
+            <br>Available Monday – Friday, 9 AM – 6 PM (GMT)
+          </p>
+          
+          <h4>Social Media</h4>
+          <p>Follow us and reach out through our social media channels:</p>
+          <ul>
+            <li><a href="#">Facebook: facebook.com/workerfy</a></li>
+            <li><a href="#">Twitter/X: twitter.com/workerfy</a></li>
+            <li><a href="#">Instagram: instagram.com/workerfy</a></li>
+            <li><a href="#">LinkedIn: linkedin.com/company/workerfy</a></li>
+          </ul>
+          
+         <!-- <h3>Location</h3>
+          <p><strong>Our Office</strong><br>
+            123 Workerfy Street,<br>
+            Suite 400,<br>
+            City Name, State, ZIP Code,<br>
+            Country
+          </p>-->
+          
+          <h3>Get in Touch with the Workerfy Team</h3>
+          <p>Have a specific question or feedback for us? Fill out the form below, and we’ll get back to you as soon as possible.</p>
+          
+          <!-- Contact Form -->
+          <form action="#" method="post">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+        
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+        
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="5" required></textarea><br><br>
+        
+            <input type="submit" value="Submit">
+          </form>
+        </section>
+        
+  </div>
+
+</main>
+<footer>
+  <div class="main_nav">
+
+    {% if request.user %}
+    <button class="BTNhomeLearnC" onclick="document.location='/Home_learn'">Back</button>
+
+    {% else %}
+    <button class="BTNhomeLearnC" onclick="document.location='/get_started'">Back</button>
+    {% endif %}
+    </div>
+</footer>
+
+{% endblock body %}

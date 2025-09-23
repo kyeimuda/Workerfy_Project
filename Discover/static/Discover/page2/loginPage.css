@@ -1,0 +1,230 @@
+/* This file contains the css for the login page */
+
+/* Reset styling*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --mainBlue: #000080;
+    --mainDun: #ddcdb4;
+}
+
+/* Body styling */
+body{
+    height: 100vh;
+    align-items: center;
+    background-color: var(--mainDun);
+    display: flex;
+    flex-direction: column;
+}
+
+/* header styling */
+header{
+    padding-top: 7vh;
+}
+header img{
+    width: 20vh;
+    height: auto;
+    margin: auto;
+}
+
+/* .loginSection styling  */
+.loginSection{
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 6vw;
+}
+.loginSection h2{
+    font-size: 3.7vh;
+    font-weight: 900;
+    color: var(--mainBlue);
+    font-family: "Playpen Sans", cursive;
+    align-self: flex-start;
+}
+
+.loginForm{
+    width: 100%;
+
+
+}
+.loginSection form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label{
+    display: none;
+}
+
+.loginForm input{
+    width: 100%;
+    padding: 2vh 4.5vw;
+    border: none;
+    border-radius: 1.8vh;
+    background-color: rgba(245, 245, 245, 0.9);
+    font-size: 2vh;
+    font-family: "Poppins", sans-serif;
+    outline: none;   
+}
+
+.loginForm button{
+    width: 70%;
+    padding: 1.3vh 2.9vw;
+    border: none;
+    border-radius: 10vh;
+    background-color: var(--mainBlue);
+    color: whitesmoke;
+    font-size: 2.2vh;
+    font-weight: 800;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    outline: none;
+    margin: 0vh 5.2vw;
+    cursor: pointer;
+}
+
+.loginForm input:focus{
+    background-color: rgba(245, 245, 245, 0.8);
+    box-shadow: 0 1px 6px 0 #1818e9;
+}
+
+.or{
+    font-size: 2vh;
+    color: #000080;
+    font-family: "Nunito", sans-serif;
+}
+
+.line{
+    width: 44%;
+    border-bottom: 0.2vh solid #000080;
+    border-radius: 4vh;
+    box-shadow: 0 2px 20px px #0000B6;
+}
+
+.separatingLine{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.9vh 2vw;
+    
+
+}
+
+/* Styling the alternative login section */
+
+.altSignIn{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.altSignIn h3{
+    font-size: 2vh;
+    font-weight: 500;
+    color: var(--mainBlue);
+    /* letter-spacing: 0.2vw; */
+    font-family: "Playpen Sans", cursive;
+}
+
+.links{
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1vh;
+}
+
+.links div{
+    width: 100%;
+    height: 6vh;
+    margin-top: 1vh;
+}
+
+.links div button{
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5vh;
+    border: none;
+}
+
+.google-login p {
+    font-size: 1.6vh;
+    font-family: "Nunito", sans-serif;
+    font-weight: 500;
+    color: var(--mainBlue);
+}
+
+#google_img{
+    width: 4vh;
+    height: auto;
+    margin: 0 4vw;
+}
+
+#facebook_img{
+    width: 3vh;
+    height: auto;
+    margin: 0 4vw;
+}
+
+/* Styling the footer */
+.signupLink{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   /*  background-color: var(--mainBlue); */
+    color: white;
+    padding: 1vh;
+    margin-bottom: 0.5vh;
+    bottom: 0;
+}
+
+.signupLink h3{
+    font-size: 2vh;
+    font-family: "Nunito", sans-serif;
+    font-weight: 500;
+    /* letter-spacing: 0.2vw; */
+
+    color: var(--mainBlue);
+}
+
+.signupLink h3 a{
+    color: var(--mainBlue);
+    font-family: "Playpen Sans", cursive;
+    font-size: 2.4vh;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+button:hover {
+    background-color: #0000B6 ;
+    box-shadow: 0 2px 8px 0 #1818e9;
+    transition: 0.3s;
+}
+
+.helptext{
+    margin-bottom: 2vh;
+}
+
+.helptext a {
+    text-decoration: none;
+    font-size: 1.5vh;
+
+   /*  color: #000080; */
+}
+

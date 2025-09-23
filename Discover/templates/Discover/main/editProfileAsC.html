@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Workerfy" content="Connecting tradespeople with clieits">
+    <meta name="Tradespeople" content="tradespeople, clients, 'skilled trades', 'connect tradespeople'">
+    <meta name="author" content="Your Name">
+    <title>Your Website Title</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="homeLearn.css">
+    <link rel="stylesheet" href="GetS-Home.css">
+</head>
+<body>
+    <header>
+        <div>
+            <img src="images/Workerfy logo2.png" alt="Workerfy Logo" class="workerfyLogo">
+            <h1 id="workerfyhead"> Workerfy </h1>
+        </div>
+    </header>  
+
+    <main>
+        
+        <div class="homeLearnContent">
+        <div>
+        
+            <h2>Edit you profile</h2>
+            <label for="CT_firstname">First Name</label>
+            <input type="text" id="CT_firstname" name="firstname" autofocus required><br>
+            <label for="CT_othernames"> Other Names</label>
+            <input type="text" id="CT_othernames" name="othernames"><br>
+            <lable for="CT_lastname">Last Name</lable>
+            <input type="text" id="CT_lastname" name="lastname" required><br>
+            <label for="CT_ProfilePicture">Profile Picture</label>
+            <input type="file" id="CT_profilePicture" name="profile_picture" required><br>
+            <label for="CT_phone1">Phone Number</label>
+            <input type="tel" name="phone1" id="CTphone1" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"><br>
+            <label for="CT_phone2"> Second Phone Number</label>
+            <input type="tel" name="phone2" id="CTphone2" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"><br>
+            <label for="CT_location">Region you are based</label>
+            <select name="location" id="CT_location" required>
+                <option value="Greater Accra">Greater Accra</option>
+                <option value="Volta">Volta Region</option>
+                <option value="Ashanti">Ashanti Region</option>
+                <option value="Western_North">Western North Region</option>
+                <option value="Western">Western Region</option>
+                <option value="Central">Central Region</option>
+                <option value="Upper_East">Upper East Region</option>
+                <option value="Savannah">Savannah Region</option>
+                <option value="North_East">North East Region</option>
+                <option value="Bono">Bono Region</option>
+                <option value="Ahafo">Ahafo Region</option>
+                <option value="Bono_East">Bono East Region</option>
+                <option value="Upper_West">Upper West Region</option>
+                <option value="Nortern">Nortern Region</option>
+                <option value="Oti">Oti Region</option>
+                <option value="Eastern">Eastern Region</option>
+            </select><br>
+            <label for="CT_address">The area you work in in your region</label>
+            <input type="text" name="CT_address" id="CT_address"><br>
+            <label for="CT_Bio">Write about yourself.(Tell Clients why you are the best fit.)</label><br>
+            <textarea id="CT_Bio" name="bio" row="50" cols="60">Tell who you are</textarea><br>
+
+            <a href="profilePage.html"><input type="submit" value="Submit"></a>
+            <input type="reset" value="Reset">
+
+
+
+
+        </div>
+        </div>
+
+    </main>
+    <footer>
+        <div class="main_nav">
+  
+            <button class="BTNhomeLearnC" onclick="document.location='homeLearn.html'">Back</button>
+  
+          </div>
+    </footer>
+    </body>
+    </html>

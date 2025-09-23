@@ -1,0 +1,37 @@
+{% extends "Discover/intro/base.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'Discover/signin.css' %}">
+    
+{% endblock styles %}
+ 
+{% block body %}
+
+<header>
+  <a href="/"><img src="{% static 'images/Workerfy logo2.png' %}" alt="Workerfy Logo" class="workerfyLogo"></a>
+</header>       
+<main>
+
+  <div>
+    <h2>Welcome</h2>
+    <p>Enter Your Details to sign up</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" id="signUpBTNpage" value="Submit"><br>
+    </form>
+        <label for="loginBTNpage">Already have an account?</label><br>
+        <input type="button" onclick="document.location ='/login'" value="Log in" id="loginBTNpage">
+
+
+    
+    
+
+  </div>
+</main>
+<footer>
+    <p>&copy; Workerfy. All rights reserved.</p>
+</footer>
+ 
+{% endblock body %}

@@ -1,0 +1,197 @@
+{% extends 'Discover/page2/base.html' %}
+<!-- {% load static %} -->
+
+{% block styles %}
+    <link rel="stylesheet" href={% static 'Discover/page2/onboardings.css'%}>
+    <link rel="stylesheet" href={% static 'Discover/page2/get_startedNow.css'%}>
+{% endblock %}
+
+{% block body %}
+    <body>
+   <!--  This is the onboarding page for the Workerfy app. It is a series of screens that introduce the user to the app and its features. The user can swipe left or right to navigate through the screens. There is also a "Skip" button that allows the user to skip the onboarding and go straight to the login or sign up page. */ -->
+    <div class="onboarding_container">
+        <div class="firstOnboardingPage" id="form1">
+            <div class="skip-btn" onclick="skip(event)">
+                <button>Skip&gt&gt;</button>
+            </div> <!-- This id the skip button that allows the user to skip the onboarding and go straight to the login or sign up page. -->
+
+           <!--  Image/Illustration -->
+            <div class="onboarding_image">
+                <img src={% static "images/WorkerfyLogo01-removebg-preview(1).png" %} alt="Onboarding Screen 1" width="300" height="300">
+            </div> <!-- This is the image for the first onboarding screen. -->
+
+            <div class="content">
+                <h2>Welcome to <span>Workerfy</span></h2>
+                <p class="P1"><strong>Workerfy</strong> is the digital home for skilled trades. Whether you're a seasoned professional or a new client seeking reliable craftsmanship, Workerfy connects you to the right people for the job.</p>
+
+                <p class="P2"> We're building a community where tradespeople can grow their careers and clients can find trusted services—all in one easy-to-use platform.</p>
+
+                <p class="LSHW P3">Let’s show you how it works.</p>
+
+                <button class="next-btn" id="firstOnboardingPage" onclick= "moveToNextPage(event)">Let Go&gt</button>
+            </div> <!-- This is the content for the first onboarding screen. It introduces the user to the app and its features. -->
+            
+            <!-- Pagination Dots -->
+            <div class="DotsAndNext">
+
+                <div class="pagination">
+                    <a href="#form1" class="dot active" id="Fdot1"></a>
+                    <a href="#form2" class="dot" id="Fdot2"></a>
+                    <a href="#form3" class="dot" id="Fdot3"></a>
+                    <a href="#form4" class="dot" id="Fdot4"></a>
+                </div>
+
+                <!-- Next Button: commented out -->
+                <!-- <button class="next-btn">Next &gt</button> -->
+            </div> <!-- This is the pagination and next button for the first onboarding screen. -->
+        </div>
+
+       <!--  This is the second onboarding screen. It introduces the user to the app and its features. -->
+        <div class="secondOnboardingPage" id="form2">
+            <div class="skip-btn" onclick="skip(event)">
+                <button>Skip&gt;&gt;</button>
+            </div> <!-- This id the skip button that allows the user to skip the onboarding and go straight to the login or sign up page. -->
+
+           <!--  Image/Illustration -->
+            <div class="onboarding_image tradesperson">
+                <img src={% static "images/OnBTradespersom.jpeg" %} alt="Onboarding Screen 1" width="200" height="200">
+            </div> <!-- This is the image for the first onboarding screen. -->
+
+            <div class="content">
+                <h3>For tradespeople:</h3>
+                <p>Workerfy is designed to elevate your professionalism and grow your business. Here’s what you can do:</p>
+
+                <ul>
+                    <li> <img src={% static "images/check.png" %} alt="check" width="15" > Create a professional digital profile</li>
+                    <li> <img src={% static "images/check.png" %} alt="check" width="15" > Showcase your skills and past work</li>
+                    <li> <img src={% static "images/check.png" %} alt="check" width="15" > Get discovered by clients looking for your services</li>
+                    <li> <img src={% static "images/check.png" %} alt="check" width="15" > Level your credibility with verifications and reviews and ratings</li>
+                </ul>
+
+                <p>Whether you're a builder, electrician, plumber, or artisan, Workerfy gives you the platform to shine.</p>
+            </div> <!-- This is the content for the first onboarding screen. It introduces the user to the app and its features. -->
+            
+            <!-- Pagination Dots -->
+            <div class="DotsAndNext">
+
+                <div class="pagination">
+                    <a href="#form1" class="dot" id="Sdot1"></a>
+                    <a href="#form2" class="dot active" id="Sdot2"></a>
+                    <a href="#form3" class="dot" id="Sdot3"></a>
+                    <a href="#form4" class="dot" id="Sdot4"></a>
+                </div>
+
+                <!-- Next Button -->
+                <button class="next-btn" id="secondOnboardingPage" onclick= "moveToNextPage(event)">Next&gt;</button>
+            </div> <!-- This is the pagination and next button for the first onboarding screen. -->
+        </div>
+
+        <!-- This is the third onboarding screen. It introduces the user to the app and its features. -->
+        <div class="ThirdOnboardingPage" id="form3">
+            <div class="skip-btn" onclick="skip(event)">
+                <button>Skip&gt&gt;</button>
+            </div> <!-- This id the skip button that allows the user to skip the onboarding and go straight to the login or sign up page. -->
+
+           <!--  Image/Illustration -->
+            <div class="onboarding_image tradesperson">
+                <img src={% static "images/OnClient.jpeg" %} alt="Onboarding Screen 1" width="600" height="600">
+            </div> <!-- This is the image for the first onboarding screen. -->
+
+            <div class="content">
+                <h3>For Clients:</h3>
+                <p>Finding the right tradesperson just got easier.</p>
+
+                <ul>
+                    <li> <img src={% static "images/check.png" %} alt="check" width="15" > Search Tradespeople or Post job requests and get matched with qualified professionals</li>
+                    <li> <img src={% static "images/check.png" %} alt="check" width="15" > Browse tradespeople based on location, skills, or ratings</li>
+                    <li> <img src={% static "images/check.png" %} alt="check" width="15" > View work portfolios and verified profiles</li>
+                    <li> <img src={% static "images/check.png" %} alt="check" width="15" > Have a say by reviewing and rating tradespeople</li>
+                </ul>
+
+                <p>Your project deserves the right hands—and they’re right here on Workerfy.</p>
+            </div> <!-- This is the content for the first onboarding screen. It introduces the user to the app and its features. -->
+            
+            <!-- Pagination Dots -->
+            <div class="DotsAndNext">
+
+                <div class="pagination">
+                    <a href="#form1" class="dot" id="Tdot1"></a>
+                    <a href="#form2" class="dot" id="Tdot2"></a>
+                    <a href="#form3" class="dot active" id="Tdot3"></a>
+                    <a href="#form4" class="dot" id="Tdot4"></a>
+                </div>
+
+                <!-- Next Button -->
+                <button class="next-btn" id="ThirdOnboardingPage" onclick= "moveToNextPage(event)">Next&gt;</button>
+            </div> <!-- This is the pagination and next button for the first onboarding screen. -->
+        </div>
+
+        <!-- This is the fourth onboarding screen. It introduces the user to the app and its features. -->
+        <div class="fourthOnboardingPage" id="form4">
+            <div class="skip-btn" onclick="skip(event)">
+                <button>Skip&gt;&gt;</button>
+            </div> <!-- This id the skip button that allows the user to skip the onboarding and go straight to the login or sign up page. -->
+
+           <!--  Image/Illustration -->
+            <div class="onboarding_image tradesperson">
+                <img src={% static "images/tradespeople_who_are_happy_and_jubilation.jpeg" %} alt="Onboarding Screen 1" width="600" height="600">
+            </div> <!-- This is the image for the first onboarding screen. -->
+
+            <div class="content">
+                <h3>Why Join Workerfy?</h3>
+                <p>Workerfy is more than a platform—it’s a movement.</p>
+
+                <ul>
+                    <li> <img src={% static "images/check.png" %} alt="check" width="15" > Grow your network</li>
+                    <li> <img src={% static "images/check.png" %} alt="check" width="15" > Improve your visibility</li>
+                    <li> <img src={% static "images/check.png" %} alt="check" width="15" > Save time and find quality work or services</li>
+                    <li> <img src={% static "images/check.png" %} alt="check" width="15" > Build trust through transparent profiles and real reviews</li>
+                    <li> <img src={% static "images/check.png" %} alt="check" width="15" > Be part of a professional and growing trade community</li>
+                </ul>
+
+                <p>No matter who you are—a skilled professional or someone with a project to complete—Workerfy is here to help you succeed.</p>
+            </div> <!-- This is the content for the first onboarding screen. It introduces the user to the app and its features. -->
+            
+            <!-- Pagination Dots -->
+            <div class="DotsAndNext">
+
+                <div class="pagination">
+                    <a href="#form1" class="dot" id="Ftdot1"></a>
+                    <a href="#form2" class="dot" id="Ftdot2"></a>
+                    <a href="#form3" class="dot" id="Ftdot3"></a>
+                    <a href="#form4" class="dot active" id="Ftdot4"></a>
+                </div>
+
+                <!-- Next Button -->
+                <button class="next-btn" id="fourthOnboardingPage" onclick= "moveToNextPage(event)">Next&gt;</button>
+            </div> <!-- This is the pagination and next button for the first onboarding screen. -->
+        </div>
+
+        <div class="fifthOnboardingPage" id="form5">
+            <div class="container">
+            <!-- heading -->
+             <header class="logoandmsg">
+                <div>
+                    <img src={% static "images/WorkerfyLogo01-removebg-preview(1).png" %} alt="Workerfy Logo" width="200" height="200">
+                    <h1>Get Started Now!</h1>
+                </div>
+             </header>
+             
+             <section class="regAsBNT">
+                <div class="regAs">
+                    <button class="SaT" onclick="document.location = '/TradespeopleRegistration'">Signup as a Worker</button>
+                    <button class="SaT">Signup as a Client</button>
+                </div>
+             </section>
+
+             <section class="learn">
+                <h2>Already have an account?</h2>
+                <button id="LNB" onclick="window.location = '/accounts/login/'">Log in</button>
+             </section>
+        </div>    
+        </div>
+    </div> 
+    
+</body>
+<script src={% static "Discover/page2/onboardings.js" %}></script>
+{% endblock %}

@@ -1,0 +1,28 @@
+body{
+    height: 100vh;
+    margin: 0;
+    position: relative;
+    background-color: rgb(250, 235, 215, 0.3);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    box-sizing: content-box;
+    
+}
+
+*{
+    text-align: center;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-sizing: content-box;
+}
+
+.workerfyLogo{
+    margin-top: 20px;
+    width: 200px;
+    background-color: rgb(250, 235, 215);
+    border-radius: 7px;
+/*8border: solid 1px saddlebrown;*/
+}
+

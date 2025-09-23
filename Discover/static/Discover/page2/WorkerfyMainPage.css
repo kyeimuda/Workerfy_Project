@@ -1,0 +1,1165 @@
+/* Resets */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Nunito", sans-serif;
+}
+
+html {
+    scroll-behavior: smooth; /* For smooth scrolling when clicking nav links */
+}
+
+body{
+    width: 100%;
+    background-color: whitesmoke;
+}
+
+main{
+    width: 100%;
+    height: 100vh;
+}
+
+
+/*This section styles the buttom nav bar */
+.buttom_nav{
+    width: 100%;
+    height: 8vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    background-color: #E3D5C0;
+    padding: 0 2vw;
+
+}
+
+.buttom_nav ul{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color: #E3D5C0;
+}
+
+.navlist li{
+    height: 80%;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    list-style-position: inside;
+}
+
+.navlist a{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #000080;
+    font-weight: 500;
+}
+
+.navimage{
+    width: 100%;
+}
+
+.svgNavs svg{
+    display: block;
+    margin: auto;
+    fill: #000080
+}
+.navimage h5{
+    display: flex;
+    font-family: "Nunito", sans-serif;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 0.7vh;
+    align-items: center;
+    font-size: max(0.4rem, 1.2vh);
+}
+
+.activeNav {
+    background-color: #0000B6;
+    border-radius: 2vh;
+}
+
+.activeNav svg, .activeNav h5 {
+    fill: whitesmoke;
+    color: whitesmoke;
+}
+
+
+
+/* This is the the styling of the main sections of the page */
+
+.mainSection {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.mainSections {
+    width: 100%;
+    height: 100vh;
+}
+
+
+
+#mainSection2 {
+    background-color: hotpink;
+}
+
+#mainSection4 {
+    background-color:aliceblue;
+}
+
+#mainSection5 {
+    background-color: tomato;
+}
+
+
+/* This is the styling of the notification page */
+
+.notificationSection {
+    border-radius: 0 0 4.6vh 4.6vh;
+    width: 100%;
+    height: 10.5vh;
+    background-color: #F1EADF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000080;
+}
+
+/* section {
+    overflow: scroll;
+} */
+
+.notificationSection h2 {
+    font-family: "Nunito", sans-serif;
+    font-size: 2.5vh;
+    text-align: center;
+}
+
+.notificationGroups h4 {
+    font-family: "Nunito", sans-serif;
+    font-size: max(0.5rem, 1.5vh);
+    text-align: right;
+    padding: 0.5vh 6vw;
+    margin-top: 1.2vh;
+    margin-bottom: 0.7vh;
+}
+
+.seperationLine {
+    width: 95%;
+    margin: auto;
+    /* padding: 0 0.5vh 0.5vh; */
+    display: block;
+    border-bottom: 0.3vh solid grey;
+}
+
+.notification {
+    margin: 2vh 3vw;
+    padding: 2vh 5vw;
+    border-radius: 2.5vh;
+    background-color: rgba(241, 234, 223, 0.5);
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+.TopicAndDate {
+    display: flex;
+    margin-bottom: 0.5vh;
+    padding: 1vw ;
+    justify-content: space-between;
+    font-family: "Nunito", sans-serif;
+}
+
+.msg {
+    font-size: 1.5vh;
+    width: 95%;
+    font-family: "Nunito", sans-serif;
+}
+
+.notifications {
+    height: 82%;
+    overflow: scroll;
+}
+
+.time {
+    font-family: "Nunito", sans-serif;
+    font-size: 1.5vh;
+    font-weight: 500;
+}
+
+.topic {
+    font-family: "Nunito", sans-serif;
+}
+
+/* THis is the styling of the discover page */
+.DiscoverSection {
+    height: 100vh;
+    display: flex;
+    position: relative;
+}
+
+#containerHolder1 {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    flex: 0 0 100%;
+}
+
+#containerHolder2 {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    flex: 0 0 100%;
+}
+
+.findTradespeople, .findJobPostings {
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.FTPContainer {
+    height: 150vh;
+    overflow: scroll;
+}
+
+.PaJ {
+    position: absolute;
+    right: 1vh;
+    bottom: 10vh;
+    padding: 1vh 4vw;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 1.75vh;
+    background-color: #0000ED;
+    color: white;
+    border: none;
+    text-align: center;
+    border-radius: 2.8vh;
+    text-decoration: none;
+    cursor: pointer;
+    letter-spacing: 0.2vw;
+}
+
+.header {
+    background-color: #F1EADF;
+    padding: 2vh;
+    height: 30vh;
+    /* border-radius: 0 0 4vh 4vh; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    /*  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2); */
+}
+
+.heads {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2vh 1vh;
+}
+.heads h2{
+    color: #000080;
+    
+}
+
+.svgIcon {
+    width: 3vh;
+    fill: #000080;
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.svgIcon:focus, .svgIcon:active {
+    transform: rotate(-180deg);
+}
+
+#searchTrades {
+    display: block;
+    font-size: 1.72vh;
+    font-family: "Nunito", sans-serif;
+    width: 100%;
+    height: 4.5vh;
+    font-weight: 500;
+    border-radius: 4vh;
+    padding: 0 2vh;
+    border: none;
+    margin-bottom: 2vh;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.selects {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2vh;
+    padding: 0 1vh;
+}
+
+.select-wrapper {
+    width: 45%;
+    position: relative;
+    display: inline-block;
+    border-radius: 1vh;
+    box-shadow: 0 2px 8px 4px rgba(0, 0, 0, 0.2);
+}
+
+.header select {
+    appearance: none;
+    width: 100%;
+    font-size: 1.5vh;
+    height: 4.5vh;
+    font-weight: 500;
+    border: none;
+    border-radius: 1vh;
+    background-color: #0000B6;
+    color: whitesmoke;
+    flex-shrink: 0;
+    padding: 0 1vh;
+    outline: none;
+}
+
+.select-wrapper::after {
+    content: "▼";
+    position: absolute;
+    top: 50%;
+    right: 2vh;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 1.5vh;
+    color: whitesmoke;
+}
+
+
+.tradesType {
+    align-items: center;
+    background-color: #F8F5EF;
+    column-gap: 5vw;
+    display: flex;
+    overflow: scroll;
+    scrollbar-width: none;
+    margin: 0.7vh 0;
+    padding: 1vh;
+    width: 100%;
+    box-shadow: 0 2px 8px 2px rgba(0, 0, 0, 0.2);
+}
+
+.tradesTypeContainer {
+    /* background-color: #E7DCCA; */
+    padding-top: 1vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 13vh;
+    flex-shrink: 0;
+    border-radius: 2vh;
+    box-shadow: 0 2px 8px 2px rgba(0, 0, 0, 0.2);
+}
+
+.tradesTypeContainer img{
+    width: 80%;
+    height: 8vh;
+    display: block;
+    margin: auto;
+}
+
+.tradesTypeContainer h4{
+    text-align: center;
+    color: #000080;
+    padding: 0.5vh 0;
+}
+
+.cards {
+    width: 100%;
+    /* height: 100%; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    padding-top: 2vh;
+}
+
+.card {
+    border-radius: 2vh;
+    box-shadow: 0 2px 8px 0 rgba(9, 9, 255, 0.2);
+    width: 95%;
+    padding: 1vh 1vh;
+    background-color: #FAF8F4;
+    margin-bottom: 4vh;
+}
+
+.card:hover, .card:active {
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2) , 0 6px 20px 0 rgba(0, 0, 0, 0.19) ;
+}
+
+.cardSections{
+    width: 100%;
+}
+
+.cardDetails{
+    display: flex;
+}
+
+
+.profileIMG{
+    width: 20%;
+    padding-top: 2vh;
+}
+
+.profileINFO {
+    width: 50%;
+    padding: 1vh 1vh 1vh 1vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.ProfileJOB{
+    width: 30%;
+    padding: 1vh;
+    border-left: 2px solid rgba(0, 0, 55, 0.2);
+}
+
+.profileBOOK {
+    display: flex;
+    padding: 1vh 2vh;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+.profileBOOK button {
+    width: 10vh;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    border-radius: 3vh;
+    font-size: 1.72vh;
+    border: none;
+    background-color: #000080;
+    color: whitesmoke;
+    cursor: pointer;
+    padding: 1vh 4vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profileBOOK span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 30%; */
+    font-weight: 600;
+    padding: 1vh 2vh;
+    font-size: 1.3vh;
+    font-family: "Poppins", sans-serif;
+    border-radius: 2vh;
+    background-color: #B6FFDC;
+    color: #000037;
+    border: 0.1vh solid #44FF33;
+}
+
+.cardSections p, .cardSections h3 {
+    color: #000037
+}
+
+.profileIMG img {
+    display: block;
+    margin: auto;
+    width: 96%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.profileINFO .profileName {
+    font-size: 2.2vh;
+    font-weight: 700;
+    padding: 0;
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    margin: 0 0.5vh 0.5vh 0.5vh;
+}
+
+.profileINFO .profileName h3{
+    font-size: 2.2vh
+}
+
+.profileINFO .profileTradeType {
+    font-size: 1.72vh;
+    font-weight: 400;
+    margin: 0 0.5vh 0.5vh 0.5vh;
+}
+
+.profileTags{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.profileINFO .tags {
+    font-size: 1.2vh;
+    display: inline-block;
+    background-color: #ebdfce;
+    border-radius: 2vh;
+    padding: 0 1vh;
+    font-weight: 200;
+    flex-shrink: 0;
+    margin: 0 0.5vh 0.5vh 0.5vh;
+}
+
+.profileINFO .profileLocation {
+    font-size: 1.5vh;
+    font-weight: 200;
+    margin: 0 0.5vh 0.5vh 0.5vh;
+}
+.profileINFO .profileRate {
+    font-size: 1.5vh;
+    font-weight: 200;
+    margin: 0 0.5vh 0.5vh 0.5vh;
+}
+.profileINFO .profileRatings {
+    font-size: 1.5vh;
+    font-weight: 200;
+    margin: 0 0.5vh 0.5vh 0.5vh;
+}
+
+.ProfileJOB img{
+    width: 98%;
+    height: 95%;
+    border-radius: 1vh;
+}
+
+/* Styling for the Job Posting Page */
+
+.findJobPostings .card{
+    /* border: solid 0.2vh #000080; */
+    border-radius: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: #F6EFEC;
+    padding: 2vh 3vh;
+    color: #000037;
+}
+
+.jobTitle {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding: 1vh 0;
+    
+}
+
+.budgetAndLocation{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.25vh 0;
+    padding: 0.5vh 0;
+}
+
+.jobBudget {
+    display: flex;
+    align-items: center;
+}
+
+
+.jobDuration{
+    display: flex;
+    justify-content: right;
+    align-items: center;;
+}
+
+.jobDuration p {
+    font-size: 1.2vh;
+    font-weight: 600;
+    border-radius: 2vh;
+    background-color: #ECE0DA;
+    color: #4F3528;
+    padding: 0.5vh 1vh;
+    font-family: "Poppins", sans-serif;
+    border: solid 0.1vh #4F3528;
+}
+
+.jobBudget p{
+    font-size: 1.5vh;
+    font-weight: 200;
+}
+
+.jobLoaction{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin: 0.25vh 0;
+}
+
+.jobLoaction  p{
+    font-size: 1.5vh;
+    font-weight: 600;
+}
+
+.jobOwner{
+    margin: 0.25vh 0;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.jobOwner p{
+    font-size: 1.5vh;
+    font-weight: 600;
+}
+
+.jobDiscription {
+    font-weight: 100;
+    display: flex;
+    margin: 0.4vh 0;
+}
+
+.jobDiscription p{
+    font-size: 1.5vh;
+    font-weight: 300;
+}
+
+.datePosted {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin: 0.4vh 0;
+}
+
+.datePosted p {
+    font-size: 1.3vh;
+    font-weight: 600;
+}
+
+.jobApply {
+    display: flex;
+    margin: 0.4vh 0;
+    justify-content: right;
+    align-items: center;
+}
+
+.jobApply button{
+    width: 30%;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    border-radius: 2vh;
+    font-size: 1.6vh;
+    background-color: #000080;
+    color: whitesmoke;
+    border: none;
+    padding: 1vh 2vh;
+    cursor: pointer;
+}
+
+#verified{
+    width: 2vh;
+    height: auto;
+    fill: #2424FF;
+}
+
+/* This is the styling for the Profile page */
+
+#mainSection1 {
+    position: relative;
+}
+
+#mainSection1 header{
+    width: 100%;
+}
+
+
+.profileHeader {
+    width: 100%;
+    height: 100%;
+    padding: 2vh;
+    background-color: #F1EADF;
+    border-bottom-left-radius: 4vh;
+    border-bottom-right-radius: 4vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+   /*  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2); */
+}
+
+.bookBTN {
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: 10vh;
+    right: 3vh;
+}
+
+.bookBTN button {
+    width: 100%;
+    height: 100%;
+    padding: 1.2vh 2vh;
+    font-family: "Playpen Sans", cursive;
+    font-weight: 600;
+    font-size: 1.75vh;
+    background-color: #0000B6;
+    color: white;
+    border: none;
+    text-align: center;
+    border-radius: 2.8vh;
+    text-decoration: none;
+    cursor: pointer;
+    letter-spacing: 0.2vw;
+}
+
+.workerfyLogoAndProfileEditingLogo {
+    margin-bottom: 2vh;
+    width: 100%;
+}
+
+.workerfyLogoAndProfileEditingLogo P{
+    font-size: 2.2vh;
+    font-weight: 700;
+    color: #000080;
+}
+
+.profileEditing {
+    width: 100%;
+    display: flex;
+    gap: 0.5vh;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.profileEditing p{
+    font-size: small;
+    font-family: "Nunito", sans-serif;
+    color: whitesmoke;
+    font-weight: 600;
+}
+
+.profileEditing svg{
+    width: 2.2vh;
+    height: auto;
+    fill: whitesmoke;
+}
+
+.profileImg img {
+    display: block;
+    margin: auto;
+    width: 15vh;
+    height: auto;
+    border-radius: 50%;
+}
+
+.progressBar {
+    width: 96%;
+    height: 1.2vh;
+    border-radius: 5vh;
+    border: 1px solid rgba(180, 180, 180, 0.5);
+    background-color: whitesmoke;
+}
+
+#progressfluid {
+    width: 80%;
+    height: 100%;
+    font-size: 1vh;
+    border-radius: 5vh;
+    color: #F1EADF;
+    background-color: #6478e7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profileName{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;;
+    align-items: center;
+    gap: 0.5vh;
+    padding-bottom: 1vh;
+}
+
+.profileName h2{
+    color: #000080;
+    font-size: 3vh
+}
+
+.profileName p{
+    font-size: 2.2vh;
+    font-weight: 500;
+    color: #000080
+}
+
+.headingsAndBulbs {
+    width: 100%;
+    margin: 0;
+    padding-top: 1vh;
+    border-bottom: 2px solid rgba(128, 128, 128, 0.5);
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+.bulbs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7vw;
+    padding: 1vh;
+}
+
+.bulbs div {
+    width: 25vw;
+    height: 2.4vh;
+    border-radius: 30vh;
+    background-color: #8F8CC3;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.headings {
+    width: 100%;
+    color:#706bc7;
+    padding: 0 25vw;
+    display: flex;
+    margin: 0 20px;
+    gap: 20px;
+    overflow: auto;
+    align-items: center;
+    scrollbar-width: none;
+
+}
+
+.headings p {
+    font-size: 1.9vh;
+    font-weight: 600;
+    flex-shrink: 0;
+    padding: 0 4vw;
+}
+
+.detailsArea {
+    height: 55vh;
+    display: flex;
+    overflow: auto;
+}
+
+.detailsGroup{
+    width: 100%;
+    padding: 2vh 2vh;
+    flex-shrink: 0;
+    overflow: auto;
+    height: 100%;
+}
+
+
+.basics{
+    display: flex;
+    padding-left: 2vh;
+    flex-direction: column;
+    flex-wrap: wrap;
+    /* align-items: center; */
+    gap: 2vw;
+    height: 15vh;
+}
+
+.basics p{
+    display: inline-block;
+    width: 20vh;
+    font-size: 1.52vh;
+    color: #000037;
+    
+}
+
+
+.bio {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 4vh;
+}
+
+.bio h4 {
+    font-size: 2.2vh;
+    padding: 0.5vh, 1vh;
+    margin-bottom: 1vh;
+    color: #000037;
+}
+
+.bio p {
+    padding: 2vh;
+    background-color:rgba(221, 205, 180, 0.3);
+    border-radius: 2vh;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2) /* , 0 6px 20px 0 rgba(0, 0, 0, 0.19) */;
+    color: #000037;
+    line-height: 20px;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.52vh;
+}
+
+.skills{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 4vh;
+}
+
+.tags{
+    display: flex;
+    gap: 2vw;
+    flex-wrap: wrap;
+}
+
+.skills h4 {
+    font-size: 2.2vh;
+    padding: 0.5vh, 1vh;
+    margin-bottom: 2vh;
+    color: #000037;
+}
+
+.tags p{
+    padding: 0 2vw;
+    flex-shrink: 0;
+    background-color: rgba(221, 205, 180, 0.5);
+    border-radius: 2vh;
+    color: #000037;
+    padding: 1vh;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+#jobPortfoilio {
+    padding: 2vh;
+    display: flex;
+    gap: 4vw;
+}
+
+#jobPortfoilio .pastJobCard {
+    width: 186px;
+    height: 220px;
+    box-shadow: 0 2px 8px 0 rgba(9, 9, 255, 0.2);
+    padding: 0;
+    overflow: hidden;
+    border-radius: 2vh;
+    background-color: rgba(221, 205, 180, 0.4);
+}
+
+#jobPortfoilio .pastJobCard img{
+    width: 100%;
+    border-radius: 2vh;
+    height: 16vh;
+    display: block;
+    margin: auto;
+}
+
+#jobPortfoilio .pastJobCard h4 {
+   font-size: 1rem;
+   letter-spacing: 0.05vh;
+   color: #000037;
+}
+
+#jobPortfoilio .pastJobCard time {
+   font-size: 0.8rem;
+   letter-spacing: 0.05vh;
+   color: #000037;
+}
+
+.PJT {
+    display: flex;
+    height: 8vh;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 1vh;
+
+}
+
+#jobPortfoilio .pastJobCard:hover, #jobPortfoilio  .pastJobCard:active {
+    box-shadow: 0 2px 8px 0 rgba(9, 9, 255, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.MoreDetailsHeading{
+    padding: 1vh 2vh;
+    background-color: rgba(221, 205, 180, 0.4);
+    color: #000080;
+    border-radius: 1.5vh;
+}
+
+.detailsInfo {
+    padding: 1vh 2vh;
+    display: flex;
+    overflow: hidden;
+    font-size: 1.52;
+    /* font-family: "Poppins", sans-serif; */
+}
+
+.detailsInfo .infoType {
+    width: 30%;
+}
+
+#moreDetails .moreDetailsContainer .valueContainer{
+    width: 60%;
+    padding: 0;
+}
+
+/* This is the styling for the booking process popup */
+
+.bookingProcess{
+    visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 5vh;
+}
+
+.bookingcard{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #E3D5C0;
+    padding: 3vh;
+    border-radius: 1vh;
+    border: 2px solid #000080;
+}
+
+.bookingcard h4{
+    font-size: 2.8vh;
+    color: #000080;
+    font-weight: 800;
+}
+
+.bookingcard p{
+    font-size: 2vh;
+    color: #000080;
+    font-weight: 700;
+}
+
+.bookingtypes{
+    width: 100%;
+    height: 35vh;
+    margin-bottom: 2vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.bookingtypes div{
+    width: 90%;
+    height: 8vh;
+    font-size: 2vh;
+    color: #000080;
+    font-weight: 600;
+    background-color: #dba34a;
+    margin: 2vh;
+    box-shadow: 0 2px 8px 0 rgba(9, 9, 255, 0.5)
+
+}
+.bookingtypes p{
+    font-size: 2vh;
+    color: #000080;
+    font-weight: 800;
+}
+
+.cancel button{
+    padding: 1vh 2vh;
+    background-color: #000080;
+    font-size: 1.7vh;
+    margin-bottom: 1vh;
+    color: whitesmoke;
+    border: none;
+    border-radius: 3vh;
+    font-weight: 700;
+}
+
+.bookingsSVG{
+    width: 3.5vh;
+    height: auto;
+    fill: #000080;
+    margin-left: 2vw;
+}
+
+.method{
+    display: flex;
+    align-items: center;
+    padding: 2vh;border-radius: 5vh;
+}
+.method p{
+    width: 80%;
+    text-align: center;
+}
+
+
+/* This is the styling of the Work section */
+
+#mainSection2 {
+    background-color: whitesmoke;
+}
+
+#mainSection2 header{
+    width: 100%;
+    height: 10vh;
+    background-color: rgba(221, 205, 180, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000080;
+    border-radius: 0 0 4vh 4vh;
+}
+#mainSection2 header h2{
+    font-size: 2.666vh;
+}
+
+.sideNav {
+    width: 70%;
+    height: 84%;
+    display: flex;
+    background-color: rgba(221, 205, 180, 0.4);
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 4vh 2vh;   
+}
+
+.navs h4 {
+    font-size: 2.5vh;
+    color: #000080;
+    margin: 1vh;
+}
+
+.sideNavFooter {
+    padding: 1vh;
+    display: flex;
+    gap: 1vh;
+    align-items: center;
+    box-shadow: inset 0 2px 8px 0 rgba(9, 9, 255, 0.2);
+}
+.sideNavFooter img{
+    width: 6.666vh;
+    height: auto;
+    border-radius: 50%;
+}
+
+.sideNavFooter h4{
+    display: flex;
+    font-size: 2.5vh;
+    color: #000080;
+    align-items:end;
+    justify-content: space-between;
+}

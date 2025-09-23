@@ -1,0 +1,26 @@
+{% extends "Discover/intro/base.html" %}
+{% load static %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'Discover/home.css '%}">
+    <link rel="stylesheet" href="{% static 'Discover/setupComplete.css'%}">
+{% endblock styles%}
+ 
+{% block body %}
+    <header>
+         <img src="{% static 'images/Workerfy logo2.png '%}" alt="Workerfy Logo" class="workerfyLogo"> 
+    </header>  
+    <main>
+        <div>
+            
+            <h2 class="congrats"> Congratualtion you are verified</h2>
+
+            <a href="{% url 'profile-page' %}" id="profileBTN"> Go to your Profile page</a>
+            <a href="{% url 'discover' %}" id="discoverBtN"> Go to Discover page</a>
+          
+        </div>
+
+    </main>
+    <footer>
+        <p>&copy; Workerfy. All rights reserved.</p>
+    </footer>
+{% endblock body %}

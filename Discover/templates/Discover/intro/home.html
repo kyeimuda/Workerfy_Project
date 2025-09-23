@@ -1,0 +1,30 @@
+{% extends "Discover/intro/base.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'Discover/home.css' %}">
+    <link rel="stylesheet" href="{% static 'Discover/homepage.css' %}">
+{% endblock styles %}
+ 
+{% block body %}
+ <div class="homepageDiv">
+        <header>
+            <a href="/"><img src="{% static 'images/Workerfy logo2.png' %}" alt="Workerfy Logo" class="workerfyLogo"></a> 
+        </header>       
+    <main>
+        <div id='movingInfo'>
+                <p>Welcome to The new way of connecting Tradesprople to clients</p>
+                <h1 id="workerfyfont">Workerfy</h1>
+                <p>Connecting skilled tredespeople with clients easily and effectively</p>
+        </div>
+
+        <button onclick="document.location='/login'" id="log_inBTN">Log in</button>
+        <button onclick="document.location='/get_started'" id="GBTN">Let's Get Started</button>
+        
+
+    </main>
+    <footer>
+        <p>&copy; Workerfy. All rights reserved.</p>
+    </footer>
+    </div>
+{% endblock body %}

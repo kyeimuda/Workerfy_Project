@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wokerfy</title>
+    
+    <link rel="icon" type="image/x-icon" href={% static "images/WorkerfyLogo01-removebg-preview(1).png" %}>
+    <link rel="stylesheet" href={% static 'Discover/page2/index.css'%}>
+
+    <!-- Google font links-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playpen+Sans:wght@100..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- This is the introductory screen for the the splash screen. consisting of and image and a tagline -->
+    <section class="splash_screen">
+        <div class="logo_container">
+            <img src={% static "images/WorkerfyLogo01-removebg-preview(1).png" %} alt="Workerfy Logo" width="200" height="200">
+        </div>
+        <h3 class="tagline">Connecting Skills with Opportunity</h3>
+    </section>
+
+    <!-- This is the section for the log-in section of the splash screen -->
+    <section class="enterPage">
+        <div class="logo_and_name">
+            <img src={% static "images/WorkerfyLogo01-removebg-preview(1).png" %} alt="Workerfy Logo" width="200" height="200">
+            <h3 class="tagline2">Workerfy</h3>
+        </div>
+        <nav class="navsection">
+            <div class="getStartedBTN">
+                <button onclick="window.location = '/accounts/signup'">Get Started</button>
+            </div>
+            <div class="loginBTN">
+                <button onclick="window.location.href = '/accounts/login/'">Login</button>
+            </div>
+        </nav>
+    </section>
+
+</body>

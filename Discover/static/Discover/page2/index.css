@@ -1,0 +1,181 @@
+/* Reset */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* Styling the Slash page */
+body{
+    height: 100vh;
+    align-items: center;
+    background-color: #ddcdb4;
+    position: relative;
+    /* display: flex;
+    overflow-y: hidden; */
+
+}
+
+body>section{
+    flex: 0 0 100%;
+}
+
+.splash_screen {
+    background-color: #ddcdb4;
+    width: 100%;
+    height: 100vh;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    animation-name: splashScreenOff;
+    animation-duration: 4s;
+    animation-delay: 4s;
+    animation-fill-mode: forwards;
+}
+
+.logo_container{
+    padding-bottom: min(6%, 2rem);
+    width: /* max(250px, 30%) */ 100%;
+    height: auto;
+}
+
+.tagline{
+    text-align: center;
+    font-weight: 400;
+    font-family: "playpen sans", cursive;
+    color: #000080;
+    font-size: min(1.5em, 2.1vh);  
+}
+
+.splash_screen img{
+    display: block;
+    margin: auto;
+    width: 0;
+    height: auto;
+    animation-name: homeImageAnimation;
+    animation-duration: 4s;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+
+
+}
+
+/* Styling the Enter page */
+
+.enterPage{
+    background-color: #ddcdb4;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10%;
+    position: absolute;
+    top: 0;
+}
+
+.tagline2{
+    font-size: max(1.5rem, 5vh);
+    display: inline-block;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    font-weight: bolder;
+    color: #000080;;
+    /* animation-name: tagline2animation;
+    animation-duration: 2s;
+    animation-delay: 8s;
+    animation-fill-mode: forwards; */
+
+
+}
+
+.logo_and_name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 15vh;
+}
+
+.enterPage img{
+    width: 30%;
+    height: auto;
+    /* animation-name: enterPageImgAnimation;
+    animation-duration: 2s;
+    animation-delay: 8s;
+    animation-fill-mode: forwards; */
+
+}
+
+.getStartedBTN{
+    padding-top: 15vh;
+}
+.getStartedBTN button{
+    width: 60vw;
+    height: 7vh;
+    background-color: #000080;
+    font-family: "Nunito", sans-serif;
+    border: none;
+    border-radius: 10vh;
+    font-size: 2.8vh;
+    color: whitesmoke;
+    text-decoration: none;
+    box-shadow: 0 2px 8px 0 #000003;
+}
+
+.getStartedBTN button:hover {
+    box-shadow: 0 2px 20px 0 #0202c5;
+}
+
+.loginBTN{
+    padding-top: 7vh;
+}
+.loginBTN button{
+    background-color: rgb(247, 237, 222);
+    display: block;
+    width: 40vw;
+    height: 6.5vh;
+    font-weight: bolder;
+    font-family: "Nunito", sans-serif;
+    border: 2px solid #ddcdb4;
+    border-radius: 9vh;
+    font-size: 2.7vh;
+    box-shadow: 0 2px 8px 0 rgb(0, 0, 0);
+    color: #000080;
+    text-decoration: none;
+    margin: auto;
+}
+
+.loginBTN button:hover {
+    box-shadow: 0 2px 20px 0 #0202c5;
+}
+
+@keyframes homeImageAnimation {
+    from { width: 0vh; }
+    to { width: 30vh; }
+}
+
+@keyframes homeTaglineAnimation {
+    from { font-size: 0vh; }
+    to { font-size: min(1.5em, 2.5vh); }
+}
+
+@keyframes splashScreenOff {
+    from { display: flex; }
+    to { display: none; }
+}
+
+@keyframes tagline2animation {
+    from { font-size: 0vh; }
+    to { font-size: max(1.5rem, 5vh); }
+}
+
+@keyframes enterPageImgAnimation {
+    from { width: 0vh; }
+    to { width: 30%; }
+}

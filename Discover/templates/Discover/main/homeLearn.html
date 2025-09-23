@@ -1,0 +1,28 @@
+{% extends "Discover/main/base.html" %}
+{% load static %}
+{% block styles%}
+<link rel="stylesheet" href="{% static 'Discover/homeLearn.css'%}">
+{% endblock styles %}
+
+{% block HeaderAndMain %} 
+<header>
+    <div>
+        <img src="{% static 'images/Workerfy logo2.png' %}" alt="Workerfy Logo" class="workerfyLogo">
+        <h1 id="workerfyhead"> Workerfy </h1>
+    </div>
+</header>  
+<main>
+    
+    <div>
+        <ul>
+            <a href="{% url 'learn-home' %}"> <li>How it Works</li> </a>
+            <a href="{% url 'learn-featues' %}"> <li>Features</li> </a>
+            <a href="{% url 'learn-forC' %}"> <li>For Clients</li> </a>
+            <a href="{% url 'learn-forT' %}"><li>For tradespeople</li> </a>
+            <a href="{% url 'learn-aboutUs' %}"> <li>About Us</li> </a>
+            <a href="{% url 'learn-contact' %}"> <li>Contact Us</li>  </a>
+        </ul>
+    </div>
+
+</main>
+{% endblock HeaderAndMain%}

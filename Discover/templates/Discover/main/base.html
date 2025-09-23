@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Workerfy" content="Connecting tradespeople with clients">
+    <meta name="Tradespeople" content="tradespeople, clients, 'skilled trades', 'connect tradespeople'">
+    <meta name="author" content="Your Name">
+    <title>Your Website Title</title>
+    <!-- Link to external CSS file -->
+    {% block styles %} {% endblock %}
+</head>
+<body>
+    {% block HeaderAndMain %} {% endblock%}
+    <footer>
+        <div class="main_nav">
+            <!-- this div holds the main navigations-->
+            <div><a href="{% url 'home-learn' %}"><img src="{% static 'images/home.png' %}"></a></div>
+            <div><a href="{% url 'discover' %}"><img src="{% static 'images/find.png' %}"></a></div>
+            <div><a href="{% url 'notifications' %}"><img src="{% static 'images/notification.png' %}"></a></div>
+            <div><a href="{% url 'profile-page' %}"><img src="{% static 'images/account.png' %}"></a></div>
+
+        </div>
+    </footer>
+</body>
+</html> 

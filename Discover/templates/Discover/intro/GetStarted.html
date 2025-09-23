@@ -1,0 +1,30 @@
+{% extends "Discover/intro/base.html" %}
+{% load static %}
+{% block styles%}
+    <link rel="stylesheet" href="{% static 'Discover/getStarted.css' %}">
+{% endblock styles%}
+ 
+{% block body %}
+     <header> 
+        <a href="/"><img src="{% static 'images/Workerfy logo2.png' %}" alt="Workerfy Logo" class="workerfyLogo"></a>
+    </header>  
+    <main>
+        <div id="help">
+                <a href="/learn-home" class="next">Home</a>
+                <a href="/learn-HiW" class="next">How it Works</a>
+                <a href="/learn-featues" class="next">Features</a>
+                <a href="/learn-forC" class="next">For Clients</a>
+                <a href="/learn-forT" class="next">For Tradespeople</a>
+                <a href="/learn-aboutUs" class="next">About Us</a>
+                <a href="/learn-contact" class="next">Contact Us</a><br>
+
+            <label for="signUpBTN" id="signUpBTNlabel"><b>Enter Workerfy:</b></label><br>
+            <a href="/Sign_up"><button id="signUpBTN">Sign Up</button></a>
+
+        </div>
+
+    </main>
+    <footer>
+        <p>&copy; Workerfy. All rights reserved.</p>
+    </footer>
+{% endblock body %}

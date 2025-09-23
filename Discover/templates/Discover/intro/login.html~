@@ -1,0 +1,36 @@
+{% extends "Discover/intro/base.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'Discover/login.css' %}">
+    
+{% endblock styles %}
+ 
+{% block body %}
+
+<header>
+    <a href="/"><img src="{% static 'images/Workerfy logo2.png' %}" alt="Workerfy Logo" class="workerfyLogo"></a>
+</header>  
+<main>
+        <!-- this div contains the for to login-->
+        <h2 id="loginHeader">Log in</h2>
+
+        <form action="#">
+            <div id="credentials">
+                <label for="L_username">Username Or Email:</label><br>
+                <input type="text" id="L_username" name="username" autofocus><br>
+                <label for="L_password">Password:</label><br>
+                <input type="password" id="L_password" name="password" autofocus><br>
+                <input type="button" id="L_submit" name="submitbtn" value="Log In" onclick="document.location='discoverT.html'"><br>
+
+                <label for="S_submit">Don't have an account?</label><br>
+                <input type="button" id="S_submit" name="signUpbtn" value="Sign Up" onclick="document.location='/Sign_up'">
+            </div>
+        </form>
+
+</main>
+<footer>
+    <p>&copy; Workerfy. All rights reserved.</p>
+</footer>
+ 
+{% endblock body %}

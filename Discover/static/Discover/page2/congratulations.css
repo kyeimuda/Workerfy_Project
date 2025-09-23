@@ -1,0 +1,184 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    background-color: #ddcdb4;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 100%;
+}
+
+.headerContainer {
+    margin-top: 12vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.headerContainer img {
+    width: 20vh;
+    height: auto;
+}
+
+.regcontainer{
+    width: 100%;
+    padding: 2% 5%;
+}
+
+.regcontainer h2{
+    color: #000080;
+    font-size: max(24px, 3.4vh);
+    font-weight: 900;
+    font-family: "Playpen Sans", cursive;
+    text-align: center;
+    margin-top: 2vh;
+}
+
+.regcontainer p{
+    color: #000080;
+    font-size: max(16px, 2.5vh) ;
+    font-weight: 500;
+    font-family: "Playpen Sans", cursive;
+    margin-bottom: 3vh;
+    text-align: center;
+}
+
+.buttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 4vh;
+}
+
+.buttons button{
+    width: 70%;
+    padding: 1.3vh 2.9vw;
+    border: none;
+    border-radius: 10vh;
+    background-color: #000080;
+    color: whitesmoke;
+    font-size: 2.2vh;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    outline: none;
+    /* margin: 2.5vh 5.2vw; */
+    cursor: pointer;;
+}
+
+.GoToLogin{
+    padding: 1.75vh 4.5vh;
+}
+.GoToLogin h3{
+    font-family: "Playpen Sans", cursive;
+    font-weight: 300;
+    font-size: max(12px, 1.72vh);
+    line-height: 2.5vh;
+    color: #000080;
+    text-align: center;
+    margin-bottom: 2vh;
+}
+
+.regcontainer2 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 6vw;
+    position: relative;
+}
+
+.regcontainer2 p{
+    font-family: "Playpen Sans", cursive;
+    font-size: max(12px, 2vh);
+    color: #000080;
+    font-weight: 300;
+    text-align: center;
+    margin: 2vh 0;
+
+
+}
+
+#greetings1{
+    animation: p_animations 2s linear 2s;
+    animation-fill-mode: forwards;
+    position: absolute;
+    padding: 0 6vw;
+    z-index: 1;
+}
+
+#greetings2 {
+    visibility: hidden;
+    animation: p_on_animation2 5s ease-in-out 4s;
+    animation-fill-mode: forwards;
+    padding: 0 6vw;
+    position: absolute;
+
+}
+
+#greetings3{
+    visibility: hidden;
+    animation: p_on_animation 2s ease-in-out 10s;
+    animation-fill-mode: forwards;
+    padding: 0 6vw;
+   /*  position: absolute; */
+}
+
+@keyframes p_animations {
+    0% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+@keyframes p_on_animation{
+    from {
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    to {
+        visibility: visible;
+        opacity: 1;
+    }
+    
+}
+
+@keyframes p_on_animation2{
+    0% {
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    50% {
+        visibility: visible;
+        opacity: 1;
+    }
+    
+    100% {
+        visibility: hidden;
+        opacity: 0;
+    }
+}

@@ -1,0 +1,37 @@
+{% extends "Discover/intro/base.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'Discover/GetS-Home.css' %}">
+    
+{% endblock styles %}
+ 
+{% block body %}
+
+<header>
+    <div>
+        <img src="{% static 'images/Workerfy logo2.png' %}" alt="Workerfy Logo" class="workerfyLogo">
+        <h1 id="workerfyhead"> Workerfy </h1>
+    </div>
+</header>  
+<main>
+    
+    <div class="homeLearnContent">
+    </div>
+
+
+
+</main>
+<footer>
+    <div class="main_nav">
+
+        {% if request.user %}
+        <button class="BTNhomeLearnC" onclick="document.location='/Home_learn'">Back</button>
+
+        {% else %}
+        <button class="BTNhomeLearnC" onclick="document.location='/get_started'">Back</button>
+        {% endif %}
+      </div>
+</footer>
+
+{% endblock body %}

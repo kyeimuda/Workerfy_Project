@@ -1,0 +1,198 @@
+{% extends "Discover/main/base.html" %}
+{% load static %}
+
+
+{% block styles%}
+<link rel="stylesheet" href={% static 'Discover/discover.css' %}>
+{% endblock styles %}
+
+{% block HeaderAndMain %} 
+<header>
+    <input type="search" id="Discover_search" name="Discover_search" placeholder="Search with keyword (eg. accra)">
+    <input type="submit" value="Search" id="keywordSearch">
+</header>  
+<main>
+    <div id="filterBTNs">
+        
+        <input type="checkbox" id="mycheckbox_filterbylocation">
+        <label for="mycheckbox_filterbylocation" class="filtersBTN" id="mycheckbox_filterbylocationID"> filter by location</label>
+
+        <input type="checkbox" id="mycheckbox_filterbytrades">
+        <label for="mycheckbox_filterbytrades" class="filtersBTN" id="mycheckbox_filterbytradesID"> filter by Tradespeople</label>
+
+    </div>
+
+
+    <div  class="bbbb" id="T_discover_filters">
+        <h2>Filter by location</h2>
+        <form action="#">
+            
+            <label for="L1">Greater Accra</label>
+                <input  type="checkbox" id="L1" name="location_filter" value="Greater_Accra">
+            
+            <label for="L2"> Volta Region</label>
+                <input  type="checkbox" id="L2" name="location_filter" value="Volta">
+            
+            <label for="L3">Ashanti Region</label>
+                <input  type="checkbox" id="L3" name="location_filter" value="Ashanti">
+            
+            <label for="L4">Western North Region</label>
+               <input  type="checkbox" id="L4" name="location_filter" value="Western_North">
+             
+             <label for="L5">Western Region</label>
+                <input  type="checkbox" id="L5" name="location_filter" value="Western">
+            
+            <label for="L6">Central Region</label>
+                <input  type="checkbox" id="L6" name="location_filter" value="Central">
+            
+            <label for="L7">Upper East Region</label>
+                <input  type="checkbox" id="L7" name="location_filter" value="Upper_East">
+            
+            <label for="L8">Savannah Region</label>
+                <input  type="checkbox" id="L8" name="location_filter" value="Savannah">
+            
+            <label for="L9">North East Region</label>
+                <input  type="checkbox" id="L9" name="location_filter" value="North_East">
+            
+            <label for="L10">Bono Region</label>
+                <input  type="checkbox" id="L10" name="location_filter" value="Bono">
+            
+            <label for="L11">Ahafo Region</label>
+                <input  type="checkbox" id="L11" name="location_filter" value="Ahafo">
+            
+            <label for="L12">Upper East Region</label>
+                <input  type="checkbox" id="L12" name="location_filter" value="Upper_West">
+            
+            <label for="L13">Northern Region</label>
+                <input  type="checkbox" id="L13" name="location_filter" value="Nortern">
+            
+            <label for="L14">Oti Region</label>
+                <input  type="checkbox" id="L14" name="location_filter" value="Oti">
+            
+            <label for="L15">Eastern Region</label>
+                <input  type="checkbox" id="L15" name="location_filter" value="Eastern">
+            
+            <label for="L16">Bono East Region</label>  
+                <input  type="checkbox" id="L16" name="location_filter" value="Bono_East">
+                <button types="submit">Submit</button>
+        </form>      
+    </div>
+        
+    
+    <div id="fillterbyt">
+        <form>
+            <h2>Filter by Trades Type</h2>
+            <label for="T1">Carpenter
+            <input  type="checkbox" id="T1" name="Trades_filter" value="Carpenter">
+            </label>
+            <label for="T2">Electrician
+                <input  type="checkbox" id="T2" name="Trades_filter" value="Electrician">
+            </label>
+            <label for="T3">Plumber
+                <input  type="checkbox" id="T3" name="Trades_filter" value="Plumber">
+            </label>
+            <label for="T4">Roofer
+               <input  type="checkbox" id="T4" name="Trades_filter" value="Roofer">
+             </label>
+             <label for="T5">Painter
+                <input  type="checkbox" id="T5" name="Trades_filter" value="Painter">
+            </label>
+            <label for="T6">Drywall
+                <input  type="checkbox" id="T6" name="Trades_filter" value="Drywall">
+            </label>
+            <label for="T7">Glazier
+                <input  type="checkbox" id="T7" name="Trades_filter" value="Glazier">
+            </label>
+            <label for="T8">Tiler
+                <input  type="checkbox" id="T8" name="Trades_filter" value="Tiler">
+            </label>
+            <label for="T9">Ironworker
+                <input  type="checkbox" id="T9" name="Trades_filter" value="Ironworker">
+            </label>
+            <label for="T10">Welder
+                <input  type="checkbox" id="T10" name="Trades_filter" value="Welder">
+            </label>
+            <label for="T11">HVAC Technician
+                <input  type="checkbox" id="T11" name="Trades_filter" value="HVAC_Technician">
+            </label>
+            <label for="T12">Concrete Worker
+                <input  type="checkbox" id="T12" name="Trades_filter" value="Concrete_Worker">
+            </label>
+            <label for="T13">Refrigeration Technician
+                <input  type="checkbox" id="T13" name="Trades_filter" value="Refrigeration_Technician">
+            </label>
+            <label for="T14">Locksmith
+                <input  type="checkbox" id="T14" name="Trades_filter" value="Locksmith">
+            </label>
+            <label for="T15">Pest_Control_Technician
+                <input  type="checkbox" id="T15" name="Trades_filter" value="Pest_Control_Technician">
+            </label>
+            <label for="T16">Cleaning_Technician
+                <input  type="checkbox" id="T16" name="Trades_filter" value="Cleaning_Technician">
+            </label>
+            <label for="T17">Gas Fitter
+                <input  type="checkbox" id="T17" name="Trades_filter" value="Gas_Fitter">
+             </label>
+             <label for="T18">Septic Tan Installer
+                <input  type="checkbox" id="T18" name="Trades_filter" value="Septic_Tank_Installer">
+            </label>                    
+            <label for="T19">Appliance Repair Technician
+                <input  type="checkbox" id="T19" name="Trades_filter" value="Appliance_Repair_Technician">
+            </label>
+            <label for="T20">Solar_Panel_Installer
+                <input  type="checkbox" id="T20" name="Trades_filter" value="Solar_Panel_Installer">
+            </label>
+            <label for="T21">Smart Home Technician
+                <input  type="checkbox" id="T21" name="Trades_filter" value="Smart_Home_Technician">
+            </label>
+            <label for="T22">Green_Energy_Technician
+                <input  type="checkbox" id="T22" name="Trades_filter" value="Green_Energy_Technician">
+            </label>
+            <label for="T23">Waterproofing Specialist
+                <input  type="checkbox" id="T23" name="Trades_filter" value="Waterproofing_Specialist">
+            </label>
+            <label for="T24">General_Contractor
+                <input  type="checkbox" id="T24" name="Trades_filter" value="General_Contractor">
+            </label>
+            <label for="T25">Handyman
+                <input  type="checkbox" id="T25" name="Trades_filter" value="Handyman">
+            </label>
+            <label for="T26">Scaffolder
+                <input  type="checkbox" id="T26" name="Trades_filter" value="Scaffolder">
+            </label>
+            <label for="T27">Labourer
+                <input  type="checkbox" id="T27" name="Trades_filter" value="Labourer">
+            </label>
+            <label for="T28">Elevator_Installer/ Repairer
+                <input  type="checkbox" id="T28" name="Trades_filter" value="Elevator_Installer_Repairer">
+            </label>
+            <label for="T29">Auto_Mechanic
+                <input  type="checkbox" id="T29" name="Trades_filter" value="Auto_Mechanic">-
+            </label>
+            <label for="T30">Heavy_Equipment_Operator
+                <input  type="checkbox" id="T30" name="Trades_filter" value="Heavy_Equipment_Operator">
+            </label>
+            <label for="T31">Sheet_Metal_Worker
+                <input  type="checkbox" id="T31" name="Trades_filter" value="Sheet_Metal_Worker">
+            </label>
+            <label for="T32">Industrial_Electrician
+                <input  type="checkbox" id="T32" name="Trades_filter" value="Industrial_Electrician">
+            </label>
+            <label for="T33">Pipefitter
+                <input  type="checkbox" id="T33" name="Trades_filter" value="Pipefitter">
+            </label>
+
+            <button types="submit">Submit</button>
+
+        
+               
+        </form>
+
+    </div>
+    
+    <div class="holder">
+        <!-- waiting to hold content-->
+    </div>
+
+</main>
+{% endblock HeaderAndMain%}

@@ -1,0 +1,68 @@
+{% extends 'Discover/page2/base.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href={% static "Discover/page2/congratulations.css" %}>
+{% endblock styles %}
+
+{% block body %}
+    <main class="registerPage">
+        <div class="container">
+            <header class="headerContainer">
+                <img src={% static 'images/workerfy_badge.png' %} alt="Workerfy Logo" width="200" height="200">
+            </header>
+
+            <div class="regcontainer">
+                <h2>Congratulations!</h2>
+            </div>
+            <div class="regcontainer2">
+                <p id="greetings1">Welcome to Workerfy, your journey to success begins now.</p>
+                <p id="greetings2">We are excited to have you on board.</p>
+                <p id="greetings3">Your profile is almost complete — and that means more eyes on your skills, more trust from clients, and more chances to shine. Welcome to the Workerfy community where your work speaks loud and clear.</p>
+            </div>
+
+            <div class="buttons">
+                <button onclick="window.location = '/main/Main'">Discover</button>
+            </div>
+
+            <div class="GoToLogin">
+                <h3>Complete your profile 100% to increase your visibility and chances of success!</h>
+            </div>
+        </div>
+
+    </main>
+{% endblock body %}
+
+{% block scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+  function confetii() {
+    confetti({
+      particleCount: 300,
+      spread: 70,
+      angle: 90,
+      scalar: 1.2,
+      origin: { y: 0.4 }
+    });
+    };
+
+
+    function frame() {
+    confetti({
+        particleCount: 100,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 }
+    });
+    confetti({
+        particleCount: 100,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 }
+    });
+    }   
+
+    window.addEventListener('load', () => setInterval(frame, 3000));
+  
+</script>
+{% endblock scripts %}

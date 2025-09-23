@@ -1,0 +1,70 @@
+{% extends "Discover/intro/base.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'Discover/GetS-Home.css' %}">
+    
+{% endblock styles %}
+ 
+{% block body %}
+
+<header>
+    <div>
+        <img src="{% static 'images/Workerfy logo2.png' %}" alt="Workerfy Logo" class="workerfyLogo">
+    </div>
+</header>  
+<main>
+    
+    <div class="homeLearnContent">
+        <section id="about-us">
+            <h2>About Workerfy</h2>
+            <p><strong>Empowering Tradespeople. Connecting Communities. Building the Future.</strong></p>
+            <p>Workerfy is more than just a platform—it’s a movement designed to empower skilled tradespeople and connect them with the clients and resources they need to thrive. Whether you're a master craftsman or just starting your journey, Workerfy is here to help you showcase your skills, find opportunities, and grow your business.</p>
+            
+            <h3>Our Mission</h3>
+            <p>At Workerfy, our mission is simple: <strong>To empower tradespeople by providing tools for growth, productivity, and connection.</strong> We believe that skilled trades are the backbone of society, and by helping you succeed, we help build stronger, more resilient communities.</p>
+            
+            <h3>Who We Serve</h3>
+            <p>Workerfy is built for skilled tradespeople in industries such as construction, craftsmanship, and industrial trades. We also serve clients—from individual homeowners to large companies—who are seeking reliable, skilled professionals to get the job done.</p>
+            <p>By providing a platform that bridges the gap between tradespeople and clients, Workerfy creates a space for trust, collaboration, and opportunity. We make it easier for tradespeople to find work, manage their businesses, and continuously improve their skills.</p>
+            
+            <h3>What We Offer</h3>
+            
+            <h4>1. Job Opportunities and Client Connections</h4>
+            <p>Our <strong>Growth Hub</strong> is designed to connect tradespeople with job postings and clients seeking skilled workers. With easy-to-use tools, tradespeople can browse job listings, book jobs, and build long-term client relationships.</p>
+            
+            <h4>2. Showcase Your Work</h4>
+            <p>The <strong>Talent Showcase</strong> feature allows tradespeople to highlight their best work by posting pictures, videos, and articles. It’s a space where professionals can demonstrate their craftsmanship and attract attention from clients.</p>
+            
+            <h4>3. Learning and Resources</h4>
+            <p>Workerfy’s <strong>Learning & Resources</strong> section offers educational content, certifications, and practical tools to help tradespeople continue growing in their professions. Our marketplace also gives tradespeople access to the tools and materials they need to succeed.</p>
+            
+            <h4>4. Community and Collaboration</h4>
+            <p>Through our <strong>Collaborative Space</strong>, Workerfy fosters a thriving community of tradespeople who can exchange ideas, learn from each other, and collaborate on projects. This sense of community is at the heart of what we do.</p>
+            
+            <h3>Our Vision</h3>
+            <p>We envision a world where skilled trades are celebrated and tradespeople have easy access to opportunities and resources. Workerfy aims to be the go-to platform for connecting skilled professionals with meaningful work while fostering a strong, supportive community.</p>
+            
+            <h3>Join the Workerfy Movement</h3>
+            <p>At Workerfy, we are dedicated to giving tradespeople the tools they need to succeed. Whether you're looking to grow your client base, improve your skills, or connect with fellow professionals, Workerfy is here for you. Together, we can shape the future of skilled trades and empower the professionals who build and maintain our world.</p>
+          </section>
+          
+    </div>
+
+
+
+</main>
+<footer>
+    <div class="main_nav">
+
+        {% if request.user %}
+        <button class="BTNhomeLearnC" onclick="document.location='/Home_learn'">Back</button>
+
+        {% else %}
+        <button class="BTNhomeLearnC" onclick="document.location='/get_started'">Back</button>
+        {% endif %}
+
+      </div>
+</footer>
+
+{% endblock body %}

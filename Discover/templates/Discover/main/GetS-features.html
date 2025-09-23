@@ -1,0 +1,72 @@
+{% extends "Discover/intro/base.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'Discover/GetS-Home.css' %}">
+    
+{% endblock styles %}
+ 
+{% block body %}
+
+<header>
+    <div>
+        <img src="{% static 'images/Workerfy logo2.png' %}" alt="Workerfy Logo" class="workerfyLogo">
+    </div>
+</header>  
+<main>
+    
+    <div class="homeLearnContent">
+        <h1>Features of Workerfy</h1>
+            <p>At Workerfy, we offer a range of features that are designed to empower tradespeople and make it easy for clients to find and hire the right professionals. Whether you're a skilled tradesperson looking to grow your business or a client in need of quality services, Workerfy has everything you need in one place. Here’s a look at our key features and how they can benefit you:</p>
+            
+            <p>Growth Hub</p>
+            <p>The Growth Hub is the core of Workerfy. It’s where tradespeople can find job opportunities, and clients can easily search for and connect with the right tradespeople. With advanced search and filtering options, job postings, and booking tools, the Growth Hub creates a seamless way for clients and tradespeople to collaborate and get work done.</p>
+            
+            <p>1. Spotlight Showcase</p>
+            <p>The Spotlight Showcase is a space for tradespeople to post and share their work. By uploading pictures, videos, and details of completed projects, tradespeople can attract attention and build credibility.</p>
+            
+            <p>3. Collaborate</p>
+            <p>Workerfy’s Collaborate feature is like a community hub for tradespeople. Here, you can ask questions, share knowledge, and engage with fellow tradespeople to improve your skills and learn from others.</p>
+            
+            <p>4. Learning & Resources</p>
+            <p>Workerfy’s Learning & Resources section offers educational materials, courses, and certifications for tradespeople who want to sharpen their skills and stay competitive. You can even buy or rent tools and equipment through the platform.</p>
+            
+            <p>5. My Workspace</p>
+            <p>The My Workspace feature helps tradespeople manage their profiles, track their progress, and organize their tasks in one place. This section also includes productivity tools to help you stay on top of your work and client interactions.</p>
+            
+            <p>6. Messaging and Direct Communication</p>
+            <p>Workerfy makes communication between clients and tradespeople easy and convenient. You can directly message each other on the platform to discuss project details, timelines, and expectations before finalizing bookings.</p>
+            
+            <p>7. Secure Payments</p>
+            <p>Workerfy offers a secure payment system that protects both tradespeople and clients. Payments can be made safely through the platform, ensuring transparency and trust in all transactions.</p>
+            
+            <p>8. Reviews & Referrals</p>
+            <p>After a job is completed, both clients and tradespeople can leave reviews. These reviews help build credibility and trust within the Workerfy community, encouraging higher standards of work.</p>
+            
+            <p>9. Dispute Resolution</p>
+            <p>Workerfy offers a dispute resolution system to handle any issues that may arise between tradespeople and clients. If there are disagreements, the platform provides a fair and neutral process to ensure both parties are satisfied.</p>
+            
+            
+        <p>Conclusion</p>
+            <p>Workerfy is designed to make life easier for both tradespeople and clients. With our powerful features, we offer a one-stop platform that simplifies finding, hiring, and managing jobs, all while ensuring quality and trust. Whether you're looking to grow your trades business, improve your skills, or find the perfect professional for your project, Workerfy brings value, efficiency, and convenience right to your fingertips.</p>
+            
+            </p>
+    </div>
+
+
+
+</main>
+<footer>
+    <div class="main_nav">
+
+        {% if request.user %}
+        <button class="BTNhomeLearnC" onclick="document.location='/Home_learn'">Back</button>
+
+        {% else %}
+        <button class="BTNhomeLearnC" onclick="document.location='/get_started'">Back</button>
+        {% endif %}
+      </div>
+</footer>
+{% endblock body %}
+                
+                
