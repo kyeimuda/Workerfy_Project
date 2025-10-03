@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from .forms import TradespersonOnboardingForm, ProfileEditPageform, CertificateForm, PortfolioForm
 from django.contrib.auth.decorators import login_required
-from MainWorkerfy.models import TradespersonProfile, City, Area, TradeSpecialty, TradeSkillTag, Region, Certificate, PortfolioItem
+from MainWorkerfy.models import TradespersonProfile, City, Area, TradeCategory, TradeSpecialty, TradeSkillTag, Region, Certificate, PortfolioItem
 from django.contrib.auth.models import User
+import json
+import datetime
 
 # Create your views here.
 
@@ -46,12 +48,11 @@ def TradespersonProfileEdit(request):
         certForm = CertificateForm(request.POST, request.FILES)
         portfolioForm = PortfolioForm(request.POST, request.FILES)
 
-        print(form.is_valid())
-        
-
 
         if form.is_valid() and certForm.is_valid() and portfolioForm.is_valid():
 
+            user = TradespersonProfile.objects.filter(user = request.user).first()
+            print(form.cleaned_data)
             if form.cleaned_data.get('work_areas'):
                 if Area.objects.filter(name__iexact=form.cleaned_data.get('work_areas')).exists():
                         area = Area.objects.get(name__iexact=form.cleaned_data.get('work_areas'))
@@ -60,33 +61,83 @@ def TradespersonProfileEdit(request):
                         area.save()
 
             if form.cleaned_data.get('trade_specialties'):
+
                 if TradeSpecialty.objects.filter(name__iexact=form.cleaned_data.get('trade_specialties')).exists():
                         specialty = TradeSpecialty.objects.get(name__iexact=form.cleaned_data.get('trade_specialties'))
                 else:
-                        specialty = TradeSpecialty.objects.create(name=safe_capitalize(form.cleaned_data.get('trade_specialties')), category=form.cleaned_data.get('trade_category'))
-                        specialty.save()
+                        if form.cleaned_data.get('trade_category'):
+                            specialty = TradeSpecialty.objects.create(name=safe_capitalize(form.cleaned_data.get('trade_specialties')), category=form.cleaned_data.get('trade_category'))
+                            specialty.save()
+                        else:
+                            specialty = TradeSpecialty.objects.create(name=safe_capitalize(form.cleaned_data.get('trade_specialties')), category=user.trade_category)
+                            specialty.save()
 
             if form.cleaned_data.get('skills'):
-                if TradeSkillTag.objects.filter(name__iexact=form.cleaned_data.get('skills')).exists():
-                        skill = TradeSkillTag.objects.get(name__iexact=form.cleaned_data.get('skills'))
-                else:
-                        skill = TradeSkillTag.objects.create(name=safe_capitalize(form.cleaned_data.get('skills')), category=form.cleaned_data.get('trade_category'))
-                        skill.save()
+                Skills = form.cleaned_data.get('skills').split(",")
+                print(Skills)
+                for skill_name in Skills:
+                    skill_name = skill_name.strip()
+                    if skill_name:
+                         if TradeSkillTag.objects.filter(name__iexact=skill_name).exists():
+                             skill = TradeSkillTag.objects.get(name__iexact=skill_name)
+                         else:
+                             if form.cleaned_data.get('trade_category'):
+                                 skill = TradeSkillTag.objects.create(name=safe_capitalize(skill_name), category=form.cleaned_data.get('trade_category'))
+                                 skill.save()
+                             else:
+                                 skill = TradeSkillTag.objects.create(name=safe_capitalize(skill_name), category=user.trade_category)
+                                 skill.save()
+                             user.skills.add(skill)
         
-            user = TradespersonProfile.objects.filter(user = request.user).first()
+            
 
-            print(form.cleaned_data)
 
             for key, value in form.cleaned_data.items():
+                 print(key, value)
+                 
                  if value:
-                    setattr(user, key, safe_capitalize(value))
-                    """ if key == 'work_areas':
+                    if key == 'work_areas':
                         user.work_areas.add(area)
                     elif key == 'trade_specialties':
                         user.trade_specialties.add(specialty)
-                    elif key == 'skills':
-                        user.skills.add(skill)
-                    else: """
+                    elif key == 'social_links':
+                         value = json.loads(value)
+                         setattr(user, key, value)
+                    elif key == 'working_areas':
+                         covValue = []
+                         
+                         works = value.split("-- ")
+                         print(works)
+                         for work in works:  
+                            value = json.loads(work)
+                            covValue.append(value)
+                         setattr(user, key, covValue)
+                    elif key == 'education_schools':
+                         covValue = []
+                         
+                         schools = value.split("-- ")
+                         print(schools)
+                         for school in schools:  
+                            value = json.loads(school)
+                            covValue.append(value)
+                         setattr(user, key, covValue)
+                    elif key == 'other_skills':
+                         covValue = value.split(",")
+                         setattr(user, key, covValue)
+                    elif key == 'trade_category':
+                         Trades = TradeCategory.objects.filter(name = "value").first()
+                         user.trade_category = Trades
+                    elif key == "experience_years":
+                         setattr(user, key, int(value))
+                    elif key == "skills":
+                         continue
+                    elif key == "date_of_birth":
+                         print(type(value))
+                         user.date_of_birth = value
+                    else:
+                         setattr(user, key, safe_capitalize(value))
+
+                    
             user.save()
 
             # I will code entry for ares, specialization and skills here:
@@ -98,22 +149,19 @@ def TradespersonProfileEdit(request):
             # Next is the certificate entry
 
             if certForm.cleaned_data:
-                 
-                 tradesperson = TradespersonProfile.objects.get(user = request.user)
-                 
-                 Cert = Certificate(tradesperson = tradesperson)
+                                  
+                 Cert = Certificate(tradesperson = user)
 
                  for key, value in certForm.cleaned_data.items():
-                      print(key,value)
+                      #print(key,value)
                       setattr(Cert, key, value)
 
                  Cert.save()
 
             if portfolioForm.cleaned_data:
-                 print(portfolioForm.cleaned_data)
-                 tradesperson = TradespersonProfile.objects.get(user = request.user)
+                 #print(portfolioForm.cleaned_data)
 
-                 item = PortfolioItem(tradesperson = tradesperson)
+                 item = PortfolioItem(tradesperson = user)
 
                  for key, value in portfolioForm.cleaned_data.items():
                       print(key,value)

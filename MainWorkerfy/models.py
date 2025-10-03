@@ -267,7 +267,7 @@ class TradespersonProfile(models.Model):
 
     education_schools = models.JSONField(default=dict, blank=True, help_text="List of schools attended")
 
-    other_skills = models.JSONField(default=dict, blank=True, help_text="Other skills not covered by tags")
+    other_skills = models.JSONField(default=list, blank=True, help_text="Other skills not covered by tags")
     rate_charged = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True, help_text="Hourly or project rate charged by the tradesperson")
 
     def __str__(self):

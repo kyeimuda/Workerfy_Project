@@ -6,6 +6,22 @@
 {% endblock styles %}
 
 {% block body %}
+
+<div class="Cancel" id="CancelPopUp">
+    <div>
+        <img src="{% static "images/discard.png" %}" alt="Cancel Image" width="100" height="100">
+        <h2>Are you sure you want to cancel?</h2>
+        <p>All unsaved changes will be lost.</p>
+        
+        <div class="cancelBTN">
+            
+            <button type="button" id="ContinueEditing">Continue Editing</button>
+            <button type="button" id="StillCancel">Still Cancel</button>
+
+        </div>
+    </div>
+</div>
+
 <form action="#" method="post" id="form" enctype="multipart/form-data">
         {% csrf_token %}
 <div class="header">
@@ -105,12 +121,12 @@
 <g>
 	<path d="M24,12.073c0,5.989-4.394,10.954-10.13,11.855v-8.363h2.789l0.531-3.46H13.87V9.86c0-0.947,0.464-1.869,1.95-1.869h1.509   V5.045c0,0-1.37-0.234-2.679-0.234c-2.734,0-4.52,1.657-4.52,4.656v2.637H7.091v3.46h3.039v8.363C4.395,23.025,0,18.061,0,12.073   c0-6.627,5.373-12,12-12S24,5.445,24,12.073z"/>
 </g>
-</svg> {{ form.social_links }}
+</svg> <input type="text" name="facebook" placeholder="https//facebook.com" class="slinks" id="facebook_link">
                     </div>
 
                     <div class="socialContainer"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="40" height="40">
 <path id="Logo_00000038394049246713568260000012923108920998390947_" d="M21.543,7.104c0.014,0.211,0.014,0.423,0.014,0.636  c0,6.507-4.954,14.01-14.01,14.01v-0.004C4.872,21.75,2.252,20.984,0,19.539c0.389,0.047,0.78,0.07,1.172,0.071  c2.218,0.002,4.372-0.742,6.115-2.112c-2.107-0.04-3.955-1.414-4.6-3.42c0.738,0.142,1.498,0.113,2.223-0.084  c-2.298-0.464-3.95-2.483-3.95-4.827c0-0.021,0-0.042,0-0.062c0.685,0.382,1.451,0.593,2.235,0.616  C1.031,8.276,0.363,5.398,1.67,3.148c2.5,3.076,6.189,4.946,10.148,5.145c-0.397-1.71,0.146-3.502,1.424-4.705  c1.983-1.865,5.102-1.769,6.967,0.214c1.103-0.217,2.16-0.622,3.127-1.195c-0.368,1.14-1.137,2.108-2.165,2.724  C22.148,5.214,23.101,4.953,24,4.555C23.339,5.544,22.507,6.407,21.543,7.104z"/>
-</svg> {{ form.social_links }}
+</svg> <input type="text" name="twitter" placeholder="https//Twitter.com" class="slinks" is="X_link">
                     </div>
 
                     <div class="socialContainer"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="40" height="40">
@@ -120,13 +136,16 @@
 	<circle cx="18.406" cy="5.594" r="1.44"/>
 </g>
 
-</svg> {{ form.social_links }}
+</svg> <input type="text" name="instagram" placeholder="https//Instagram.com" class="slinks" id="Instagram_link">
                     </div>
 
                     <div class="socialContainer"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="40" height="40">
 <path d="M22.465,9.866c-2.139,0-4.122-0.684-5.74-1.846v8.385c0,4.188-3.407,7.594-7.594,7.594c-1.618,0-3.119-0.51-4.352-1.376  c-1.958-1.375-3.242-3.649-3.242-6.218c0-4.188,3.407-7.595,7.595-7.595c0.348,0,0.688,0.029,1.023,0.074v0.977v3.235  c-0.324-0.101-0.666-0.16-1.023-0.16c-1.912,0-3.468,1.556-3.468,3.469c0,1.332,0.756,2.489,1.86,3.07  c0.481,0.253,1.028,0.398,1.609,0.398c1.868,0,3.392-1.486,3.462-3.338L12.598,0h4.126c0,0.358,0.035,0.707,0.097,1.047  c0.291,1.572,1.224,2.921,2.517,3.764c0.9,0.587,1.974,0.93,3.126,0.93V9.866z"/>
-</svg> {{ form.social_links }}
+</svg> <input type="text" name="tiktok" placeholder="https//Tiktok.com" class="slinks" id="Tiktok_link">
                     </div>
+
+                    {{ form.social_links.label_tag }}
+                    {{ form.social_links}}
                 
 
                 </div>
@@ -146,20 +165,23 @@
 
             <div class="inputContainer">
                 {{ form.trade_specialties.label_tag }}
+                <input type="text" name="Speciality_nput" id="Speciality_input">
                 {{ form.trade_specialties }}
-                <button type="button">Add Trade Speciality <p>+</p></button>
+                <button type="button" id="add_speciality_BTN">Add Trade Speciality <p>+</p></button>
             </div>
             
             <div class="inputContainer">
                 {{ form.skills.label_tag }}
+                <input type="text" name="Skill_nput" id="Skills_input">
                 {{ form.skills }}
-                <button type="button">Add Skill <p>+</p></button>
+                <button type="button" id="add_skill_BTN">Add Skill <p>+</p></button>
             </div>
 
             <div class="inputContainer">
                 {{ form.other_skills.label_tag }}
+                <input type="text" name="other_nput" id="Other_Skills_input">
                 {{ form.other_skills }}
-                <button type="button">Add Other Skill <p>+</p></button>
+                <button type="button" id="add_otherskill_BTN">Add Other Skill <p>+</p></button>
             </div>
         </section>
 
@@ -203,6 +225,8 @@
                <h3>Work Experience:</h3><br>
                <button type="button" id="ID_add_job">Add Past Job <p>+</p> </button>
 
+               {{ form.working_areas }}
+
                <div class="addHolder holderForSchoolAdd" id="jobAddPopUp"> 
                     <div>
                         <h3>Adding Past Work</h3>
@@ -231,6 +255,7 @@
 
             <div class="inputContainer" id="add_school">
                <h3>Schools:</h3>
+               {{ form.education_schools }}
                <button type="button" id="ID_add_school">Add a school <p>+</p></button>
 
                <div class="addHolder holderForSchoolAdd" id="SchoolAddPopUp"> 
@@ -238,6 +263,7 @@
                         <h3>Adding a School:</h3>
                         <label for="institution_or_school">Name of institution or school:</label>
                         <input type="text" name="SchoolName" id="institution_or_school" >
+                        
                         
                         <label for="school_date">Year:</label>
                         <input type="date" name="school_date" id="school_date">
@@ -337,7 +363,7 @@
 </div>
 
 <div class="footer">
-    <button type="button" class="cancel-btn">Cancel</button>
+    <button type="button" class="cancel-btn" id="CancelBTNmain">Cancel</button>
     <button type="submit" class="save-btn" for="form">Submit</button>
 </div>
 

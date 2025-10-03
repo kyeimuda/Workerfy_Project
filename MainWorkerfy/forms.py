@@ -303,7 +303,7 @@ class ProfileEditPageform(forms.Form):
     )
 
     gender = forms.ChoiceField(
-        choices = [('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')],
+        choices = [('', '---------'),('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')],
         required=False,
         label= "Gender",
         widget=forms.Select(attrs={
@@ -429,7 +429,7 @@ class ProfileEditPageform(forms.Form):
         widget=forms.TextInput(attrs={
             "id": "Social_Links",
             "placeholder": "https://facebook.com/yourprofile",
-            "class": "inputField"
+            "class": "inputField",
         })
     )
     working_areas = forms.CharField(
@@ -464,15 +464,15 @@ class ProfileEditPageform(forms.Form):
         })
     )
 
-    other_skills = forms.CharField(
-        required=False,
-        widget=forms.TextInput(attrs={
-            "id": "education",
-            "placeholder": "https://facebook.com/yourprofile",
-            "class": "inputField"
-        })
-    )
-
+  #  other_skills = forms.CharField(
+   #     required=False,
+   #     widget=forms.TextInput(attrs={
+   #         "id": "education",
+   #         "placeholder": "https://facebook.com/yourprofile",
+   #         "class": "inputField"
+   #     })
+    #)
+ 
 class CertificateForm(forms.Form):
     title = forms.CharField(
         label="Certificate Title",

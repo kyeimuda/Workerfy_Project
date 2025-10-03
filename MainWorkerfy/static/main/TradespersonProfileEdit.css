@@ -9,7 +9,65 @@ body {
     width: 100%;
     height: 100vh;
     overflow-y: hidden;
-    background-color: whitesmoke;
+    position: relative;
+}
+
+.Cancel {
+    width: 100%;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.Cancel > div{
+    border: 1px solid rgb(0, 0, 128);
+    background-color: #ddcdb4;
+    border-radius: 1vh;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 50vh;
+    justify-content: center;
+    align-items: center;
+    gap: 4vh;
+    
+}
+
+.Cancel > div h2{
+    font-size: 2.2vh;
+    color: #000080;
+    font-family: 'Playpen Sans', cursive;
+    font-weight: 600;
+}
+
+.Cancel > div p{
+    font-size: 1.72vh;
+    color: #000080;
+    font-weight: 600;
+}
+
+.cancelBTN {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.cancelBTN button {
+    border: none;
+    border-radius: 5vh;
+    padding: 1vh 2vh;
+    font-size: 1.72vh;
+    font-family: 'Playpen Sans', cursive;
+    font-weight: 500;
+    background-color: #000080;
+    color: whitesmoke;
+    width: 18vh;
+    box-shadow: 0 2px 6px 0 rgb(68, 68, 68);
+
 }
 
 .header {
@@ -104,6 +162,12 @@ form {
     box-shadow: 0 0px 2px 0px #1818e9;
 }
 
+.sociallinks svg{
+    fill: blue;
+    width: 4.44vh;
+    height: 4.44vh;
+}
+
 #ProfilePicHolder img {
     width: 100%;
     height: auto;
@@ -194,7 +258,7 @@ label {
     box-shadow: 0 2px 6px 0 rgba(128, 128, 128, 0.5);
 }
 
-h2 {
+.header2 > h2 {
     padding: 1vh 2vh;
     text-align: center;
     background-color: #F1EADF;
