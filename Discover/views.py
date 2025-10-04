@@ -30,6 +30,7 @@ def tradesPeopleRegistration(request):
         if request.method == "POST":
                 form = TradespersonOnboardingForm2(request.POST, request.FILES)
                 print(form.is_valid())
+                print(form.errors)
                 if form.is_valid():
 
                         if Area.objects.filter(name__iexact=form.cleaned_data.get('work_areas')).exists():
@@ -83,6 +84,7 @@ def tradesPeopleRegistration(request):
                                 Past_Works = PastWorkImage(user=request.user, image=file)
                                 Past_Works.save()
                         USER.save() """
+
                         return redirect('Congratulations')
                 else:
                         context = {

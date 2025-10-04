@@ -13,6 +13,7 @@ User = get_user_model() # This will use the custom user model if one is defined,
 # Country model
 class Country(models.Model):
     name = models.CharField(max_length=100, unique=True)
+    initials = models.CharField(max_length=10, default="N/A")
 
     def __str__(self):
         return self.name
@@ -31,7 +32,7 @@ class City(models.Model):
     region = models.ForeignKey(Region, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.name}, {self.region.name}"
+        return f"{self.name}, {self.region.name}, {self.region.country.initials}"
 
 
 class Area(models.Model):
@@ -257,7 +258,7 @@ class TradespersonProfile(models.Model):
     availability_status = models.CharField(
         max_length=50, 
         choices=[
-            ('Available', 'Available'),
+            ('Available Now', 'Available Now'),
             ('Urgent', 'Urgent'),
             ('Busy', 'Busy'),
             ('On Leave', 'On Leave')

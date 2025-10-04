@@ -52,7 +52,7 @@
                         </div>
                         <div class="profileName">
                             <h2 class="name">{{ user.first_name }} {{ user.last_name}}</h2>
-                            <p class="tradeType">Plumber</p>
+                            <p class="tradeType">{{ user.trade_category }}</p>
                         </div>
                         <div class="progressBar">
                             <div id="progressfluid"> Profile completion</div>
@@ -81,17 +81,17 @@
 
                         <div class="detailsGroup" id="basicInformation">
                             <div class="basics">
-                                <p>Ashaiman, Accra, GH.</p>
-                                <p>+233 050 5241706</p>
-                                <p>+233 024 1547788</p>
-                                <p>5yrs Experience</p>
+                                <p>{{user.sub_location}}</p>
+                                <p>{{user.contact_number}}</p>
+                                <p>{{user.contact_number2}}</p>
+                                <p>{{user.experience_years}} Experience</p>
                                 <p>GHC100/hr</p>
                                 <p>Verified</p>
-                                <p>Available Now</p>
+                                <p>{{ user.availability_status }}</p>
                             </div>
                             <div class="bio">
                                 <h4>Bio</h4>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ipsa debitis adipisci veritatis quaerat. Distinctio ex maxime dolorem quam quis nihil error dicta velit perspiciatis aspernatur cumque repellat, non recusandae.</p>
+                                <p>{{ user.bio }}</p>
                             </div>
                             <div class="skills">
                                 <h4>Skills</h4>
@@ -128,15 +128,15 @@
                                 </h3>
                                 <div class="detailsInfo">
                                     <p class="infoType">Full Name:</p>
-                                    <p class="infoValue">Bernard Kyei Mensah</p>
+                                    <p class="infoValue">{{user.first_name}} {% if user.other_names %} {{ user.other_names}} {% endif %} {{ user.last_name}}</p>
                                 </div>
                                 <div class="detailsInfo">
                                     <p class="infoType">Username:</p>
-                                    <p class="infoValue">Kyeimuda</p>
+                                    <p class="infoValue">{% if user.username %} {{ user.username}} {% endif %}</p>
                                 </div>
                                 <div class="detailsInfo">
                                     <p class="infoType">Age:</p>
-                                    <p class="infoValue">30yrs</p>
+                                    <p class="infoValue">{{user.age}}</p>
                                 </div>
                                 <div class="detailsInfo">
                                     <p class="infoType">Location:</p>
@@ -152,7 +152,7 @@
                                 </div>
                                 <div class="detailsInfo">
                                     <p class="infoType">Email:</p>
-                                    <p class="infoValue">bernrard234@gmail.com</p>
+                                    <p class="infoValue">{{user.Email}}</p>
                                 </div>
                                 <div class="detailsInfo">
                                     <p class="infoType">Socials:</p>

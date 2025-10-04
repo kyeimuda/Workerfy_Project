@@ -33,6 +33,14 @@
                 
                 <form action="#" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                    <div class="form-error">
+                        {% for error in form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
                     
                     <div class="containerForForm">
                         
@@ -46,12 +54,14 @@
                                      {{form.first_name.label_tag }}
                                    {% comment %}  <input type="text" name="FName" id="FName" placeholder="Kofi" required autofocus><br> {% endcomment %}
                                     {{ form.first_name }}
+                                    {{ form.first_name.errors }}
                                 </div>
                                 <div class="inputContainer">
                                     {% comment %} <label for="LName">Last Name:</label> {% endcomment %}
                                     {{form.last_name.label_tag }}
                                     {% comment %} <input type="text" name="LName" id="LName" placeholder="Mensah" required><br> {% endcomment %}
                                     {{ form.last_name }}
+                                    {{ form.last_name.errors }}
                                     {% comment %} <input type="text" name="LName" id="LName" placeholder="Mensah" required><br> {% endcomment %}
                                 </div>
                                 <div class="inputContainer">
@@ -59,6 +69,7 @@
                                     {% comment %} <input type="text" name="Other" id="Other" placeholder="Kumi"><br> {% endcomment %}
                                     {{ form.other_names.label_tag }}
                                     {{ form.other_names }}
+                                    {{ form.other_names.error }}
                         
                                     {% comment %} <input type="text" name="Other" id="Other" placeholder="Kumi"><br> {% endcomment %}
                                 </div>
@@ -67,6 +78,7 @@
                                     {{form.date_of_birth.label_tag }}
                                     {% comment %} <input type="date" name="age" id="age" placeholder="Date of Birth" required><br> {% endcomment %}
                                     {{ form.date_of_birth }}
+                                    {{ form.date_of_birth.errors }}
                                     {% comment %} <input type="date" name="age" id="age" placeholder="Date of Birth" required><br> {% endcomment %}
                                 </div>
                                 <div class="inputContainer">
@@ -90,6 +102,7 @@
 
                                     {{ form.contact_number.label_tag }}
                                     {{ form.contact_number }}
+                                    {{ form.contact_number.errors }}
 
                                     {% comment %} <label for="ContactNumber">Contact Number:</label> {% endcomment %}
                                     {% comment %} <input type="tel" name="ContactNumber" id="ContactNumber" placeholder="050 524 1706" required><br> {% endcomment %}
@@ -100,6 +113,7 @@
 
                                     {{ form.contact_number2.label_tag }}
                                     {{ form.contact_number2 }}
+                                    {{ form.contact_number2.errors }}
                                     <p id="help_text">{{ form.contact_number2.help_text}}</p>
                                    {% comment %}  <label for="OtherPhone">Other Phone Number(Whatsapp):</label>
                                     <input type="tel" name="OtherPhone" id="OtherPhone" placeholder="050 300 4659"><br>
@@ -121,9 +135,17 @@
                                 <fieldset class="fieldset">
                                 <legend> Location information</legend>
                                 <div class="seperationline"></div>
+
+                                <div class="inputContainer">
+                                    {{ form.country.label_tag }}
+                                    {{ form.country }}
+                                    {{ form.country.errors }}
+                                </div>
+
                                 <div class="inputContainer">
                                     {{ form.base_location.label_tag }}
-                                    {{ form.base_location}}
+                                    {{ form.base_location }}
+                                    {{ form.base_location.errors }}
                                     <!-- <label for="CT_location">Region you are based:</label>
                                     <div class="select-wrapper">
                                     <select name="location" id="CT_location" required>
@@ -145,9 +167,12 @@
                                         <option value="Eastern">Eastern Region</option>
                                     </select>
                                     </div><br> -->
+                                </div>
+
                                 <div class="inputContainer">
                                     {{ form.sub_location.label_tag }}
-                                    {{ form.sub_location}}
+                                    {{ form.sub_location }}
+                                    {{ form.sub_location.errors }}
 
                                     <datalist id="{{ form.sub_location.id_for_label}}">
                                         {% for city in cities %}
@@ -168,9 +193,11 @@
                                         <option value="Wa">
                                         <option value="Ho">
                                 </div> -->
+                                </div>
                                 <div class="inputContainer">
                                     {{ form.work_areas.label_tag }}
-                                    {{ form.work_areas}}
+                                    {{ form.work_areas }}
+                                    {{ form.work_areas.errors }}
 
                                     <datalist id="{{ form.work_areas.id_for_label}}">
                                         {% for area in areas %}
@@ -196,7 +223,8 @@
                                     {{ form.trade_category.label_tag }}
                                     <p class='helpTexts'>What is kind of Tradesperson are you.(Eg. Mason, Carpenter etc.)</p>
 
-                                    {{ form.trade_category}}
+                                    {{ form.trade_category }}
+                                    {{ form.trade_category.errors }}
                                     <!-- <label for="CT_tradestype">What is your main trades type:</label>
                                     <div class="select-wrapper">
                                     <select name="trades_type" id="CT_tradestype">
@@ -242,6 +270,7 @@
                                     <p class='helpTexts'>What is your speciality under your Trades.(Eg. Kitchen sink repair)</p>
 
                                     {{ form.trade_specialties}}
+                                    {{ form.trade_specialties.errors}}
                                     <datalist id="{{ form.trade_specialties.id_for_label}}">
                                         {% for specialty in specialties %}
                                             <option value="{{ specialty.name }}">
@@ -254,7 +283,8 @@
                                 <div class="inputContainer">
                                     {{ form.skills.label_tag }}
                                     <p class='helpTexts'>Add special keywords under you Trdaes.(For Search purposes.)</p>
-                                    {{ form.skills}}
+                                    {{ form.skills }}
+                                    {{ form.skills.errors }}
                                     
 
                                     <datalist id="{{ form.skills.id_for_label}}">
@@ -289,6 +319,7 @@
                                     </div>
 
                                         {{ form.profile_picture }}
+                                        {{ form.profile_picture.errors }}
                                     </div>
 
                                     <p class='helpTexts'>Note: a headshot is recommended.</p>
@@ -298,6 +329,7 @@
 
                                     {{ form.bio.label_tag }}
                                     {{ form.bio }}
+                                    {{ form.bio.errors }}
 
                                 </div>
                                <a href="#form4" class="backBTN">&lt; Back</a>
