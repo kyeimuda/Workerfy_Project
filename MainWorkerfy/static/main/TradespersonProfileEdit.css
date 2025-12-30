@@ -10,6 +10,7 @@ body {
     height: 100vh;
     overflow-y: hidden;
     position: relative;
+    scrollbar-width: none;
 }
 
 .Cancel {
@@ -25,7 +26,7 @@ body {
 
 .Cancel > div{
     border: 1px solid rgb(0, 0, 128);
-    background-color: #ddcdb4;
+    background-color: #F1EADF;
     border-radius: 1vh;
     display: flex;
     flex-direction: column;
@@ -93,6 +94,7 @@ body {
     width: 100%;
     height: 83vh;
     overflow: auto;
+    scrollbar-width: none;
 }
 
 /* .footer {
@@ -122,31 +124,48 @@ body {
     font-size: 2vh;
     font-family: 'Playpen Sans', cursive;
     color: whitesmoke;
-    background-color: #000080;
+    background-color: #0000D1;
     border-radius: 5vh;
 }
+
+.footer .cancel-btn {
+    background-color: white;
+    color: #000080;
+   /*  border: 1px solid rgba(0, 0, 128, 0.5); */
+   box-shadow: 0 0 6px 0 rgba(0, 0, 255, 0.4);
+}
+
+.footer .save-btn {
+    box-shadow: 0 0 6px 0 rgba(0, 0, 255, 0.2);
+}
+
+
 
 form {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    scrollbar-width: none;
 }
 
 .content section {
     width: 100%;
     padding: 2vh;
-    min-height: 100%;
+    margin-bottom: 2vh;
     /* border: 2px solid #000080; */
-    background-color: whitesmoke;
     scroll-snap-align: start;
     scroll-behavior: smooth;
+    scrollbar-width: none;
+}
+
+.inputContainer {
+    margin-bottom: 5vh;
+    padding: 0 2vh;
 }
 
 .ProPic{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 #ProfilePicHolder {
@@ -157,15 +176,12 @@ form {
     border-radius: 50%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-self: center;
     overflow: hidden;
-    box-shadow: 0 0px 2px 0px #1818e9;
 }
 
-.sociallinks svg{
-    fill: blue;
-    width: 4.44vh;
-    height: 4.44vh;
+.ProPic .helpTexts{
+    align-self: center;
 }
 
 #ProfilePicHolder img {
@@ -192,14 +208,14 @@ form {
 }
 
 .helpTexts {
-    font-size: 1.2vh;
+    font-size: 1.1111vh;
     color: #000080;
     font-family: 'Playpen Sans', cursive;
     padding-bottom: 1vh;
 }
 
 .ProPic .helpTexts {
-    font-size: 1.2vh;
+    font-size: 1.333vh;
     color: #000080;
     font-family: 'Playpen Sans', cursive;
     padding: 1vh;
@@ -208,6 +224,7 @@ form {
 #help_text{
     color: #000080;
     margin: 2vh;
+
 }
 
 .penSVG{
@@ -223,9 +240,6 @@ form {
     fill: #000080;
 }
 
-.inputContainer {
-    margin: 3vh 0;
-}
 
 label {
     font-size: 2vh;
@@ -236,35 +250,46 @@ label {
     margin: 1vh 0;
 }
 .inputContainer label, .inputContainer h3{
-    font-size: 2vh;
+    font-size: 1.7778vh;
     display: block;
     color: #000080;
-    font-weight: 500;
+    font-weight: 600;
     font-family: "Playpen Sans", cursive;
 }
 
-.inputContainer input, .inputContainer select, .inputContainer textarea, .addHolder input, .addHolder textarea {
+.inputContainer input {
+    width: 100%;
+    padding: 2vh 4.5vw;
+    font-size: 1.7778vh;
+    font-family: "Nunito", sans-serif;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #634E2D;
+    background-color: transparent;
+
+}
+
+ .inputContainer select, .inputContainer textarea, .addHolder input, .addHolder textarea {
     width: 100%;
     padding: 2vh 4.5vw;
     border: none;
-    border-radius: 1.8vh;
-    background-color: whitesmoke;
-    border: 1px solid rgba(0, 0, 128, 0.2);
-    font-size: 2vh;
-    font-family: "Poppins", sans-serif;
+    background-color: transparent;
+    border-bottom: 1px solid #634E2D;
+    font-size: 1.7778vh;
+    font-family: "Playpen Sans", sans-serif;
     outline: none;
     display: block;
     margin: auto;
-    box-shadow: 0 2px 6px 0 rgba(128, 128, 128, 0.5);
 }
 
 .header2 > h2 {
     padding: 1vh 2vh;
-    text-align: center;
     background-color: #F1EADF;
-    border-radius: 2vh;
-    border: 1px solid rgba(128, 128, 128, 0.2);
+    border-radius: 2.2222vh;
     color: #000080;
+    font-family: "Playpen Sans", cursive;
+    font-size: 2vh;
+    margin-bottom: 2vh;
 }
 
 .socialContainer {
@@ -282,12 +307,13 @@ label {
 
 .inputContainer button{
     width: 50%;
-    padding: 1vh 2vh;
-    background-color: #000080;
+    padding: 0.5vh 1vh;
+    background-color: #0000ff;
     color: whitesmoke;
     border-radius: 5vh;
     margin: 1vh;
     border: none;
+    gap: 0.5vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -296,7 +322,7 @@ label {
 
 .addHolder button{
     width: 50%;
-    padding: 1vh 2vh;
+    padding: 1vh 1vh;
     background-color: #000080;
     color: whitesmoke;
     border-radius: 5vh;
@@ -311,6 +337,10 @@ label {
 .addHolder label {
     width: 100%;
     text-align: center;
+}
+
+#Social_Links {
+    display: none;
 }
 
 /* This styles for the .EducationInfo */
@@ -341,6 +371,7 @@ label {
 .addHolder h3 {
     font-family: "Nunito", cursive;
     font-weight: 600;
+    font-size: 2vh ;
     margin-bottom: 2vh;
     margin-top: 1vh;
 }
@@ -359,5 +390,219 @@ label {
 
 #portAddPopUp {
     display: none;
+}
+
+
+/* This is where the new css for the refinement to fit UI design is made */
+.flagAndcontact {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.flagAndcontact .flag{
+    width: 20%;
+}
+
+.flagAndcontact input {
+    width: 75%;
+    padding-left: 0;
+    padding-right: 0;;
+}
+
+.flagAndcontact select{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.socialContainer svg{
+    fill: blue;
+    width: 24;
+    height: 24;
+}
+
+
+/* The website input styling */
+
+.website {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #634E2D;
+}
+
+.website svg {
+    fill: #0000ff;
+}
+
+.website input {
+    width: 90%;
+    padding-left: 0;
+    padding-right: 0;
+    border: none;
+}
+
+#Selects select {
+    border: none;
+    background-color: #000080;
+    color: white;
+    border-radius: 1.1111vh;
+    appearance: none;
+    font-family: "Playpen Sans", cursive;
+}
+
+.selects{
+    position: relative;
+}
+
+.selects svg {
+    position: absolute;
+    right: 2vh;
+    top: 3vh;
+}
+
+#Trade_Specialties {
+    display: none;
+}
+
+.skillsDiv {
+    position: relative;
+}
+.skillsDiv  svg{
+    position: absolute;
+    right: 2vh;
+    top: 3vh;
+}
+
+.addBTN button {
+    width: 60%;
+    margin-top: 2vh;
+    margin-left: auto;
+    font-size: 1.5556vh;
+    font-family: "Playpen Sans", cursive;
+}
+
+#Skills {
+    display: none;
+}
+
+#OtherSkills {
+    display: none;
+}
+
+.flagAndDrop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5vh;
+    position: absolute;
+    right: 2vh;
+    top: 2vh;
+}
+
+.locationHolder > svg {
+    position: absolute;
+    left: 2vh;
+    top: 2vh;
+}
+
+.locationHolder > select, .locationHolder > input {
+    padding-left: 6vh;
+}
+
+
+#Country, #Base_Location, #Sub_Location {
+    appearance: none;
+}
+
+
+.locationHolder {
+    position: relative;
+}
+
+#experience_years {
+    display: flex;
+    align-items: center;
+
+}
+
+#experience_years input{
+    width: 70%;
+    border: none;
+    font-family: "Playpen Sans", cursive;
+}
+
+#experience_years label{
+    flex-wrap: nowrap;
+    width: 50vw;
+}
+
+.experienceInput {
+    position: relative;
+    width: 40%;
+    border: 1px solid #000080;
+    border-radius: 1.1111vh;
+}
+
+
+.upAndDown {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    gap: 1vh;
+    top: 2vh;
+    right: 2vh;
+}
+
+#add_work_experience > input{
+    display: none;
+}
+
+#add_work_experience > button{
+    margin-left: auto;
+    font-family: "Playpen Sans", cursive;
+}
+
+#add_school > input{
+    display: none;
+}
+
+#add_school > button{
+    margin-left: auto;
+    font-family: "Playpen Sans", cursive;
+}
+
+#add_certificate > input{
+    display: none;
+}
+
+#add_certificate > button{
+    margin-left: auto;
+    font-family: "Playpen Sans", cursive;
+}
+
+#AddPortfoilio > button{
+    margin-left: auto;
+    font-family: "Playpen Sans", cursive;
+}
+
+#Availability_Status{
+    border: none;
+    border-radius: 2vh;
+    background-color: rgb(67, 233, 67);
+    color: white;
+    appearance: none;
+}
+
+.availabilitystatsHolder {
+    position: relative;
+}
+
+.availabilitystatsHolder svg {
+    position: absolute;
+    right: 2vh;
+    top: 3vh;
+    fill: white;
 }
 

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from .forms import TradespersonOnboardingForm, ProfileEditPageform, CertificateForm, PortfolioForm
+from .forms import TradespersonOnboardingForm, ProfileEditPageform, CertificateForm, PortfolioForm, JobPostForm
 from django.contrib.auth.decorators import login_required
-from MainWorkerfy.models import TradespersonProfile, City, Area, TradeCategory, TradeSpecialty, TradeSkillTag, Region, Certificate, PortfolioItem
+from MainWorkerfy.models import TradespersonProfile, City, Area, TradeCategory, TradeSpecialty, TradeSkillTag, Region, Certificate, PortfolioItem, JobPost, JobPostAttachment
 from django.contrib.auth.models import User
 import json
 import datetime
@@ -21,6 +21,33 @@ def forms(request):
 
     return render(request, 'main/forms.html', {'form': form})
 
+
+# This view handels the work page
+@login_required
+def More_Page(request):
+     return render(request, 'main/TradespeopleMorePage.html')
+
+# This view handels the work page
+@login_required
+def Notifications_Page(request):
+     return render(request, 'main/TradespeopleNotificationsPage.html')
+
+# This view handels the work page
+@login_required
+def Discover_Page(request):
+     return render(request, 'main/TradespeopleDiscoverPage.html')
+
+# This view handels the work page
+@login_required
+def Profile_Page(request):
+     user = TradespersonProfile.objects.filter(user = request.user).first()
+     return render(request, 'main/TradespeopleProfilePage.html', {'user': user})
+
+# This view handels the Profile page
+@login_required
+def Work_Page(request):
+     return render(request, 'main/TradespeopleWorkPage.html')
+
 # This view handles the Discover page
 @login_required
 def Main_page(request):
@@ -34,6 +61,7 @@ def Main_page(request):
     context = {
         'Tradespeople': Tradespeople,
         'user': TradespersonProfile.objects.filter(user = request.user).first(),
+        'Jobposts': JobPost.objects.all().order_by('-created_at'),
     }
 
     return render(request, 'main/mainPageTradesperson.html', context)
@@ -171,13 +199,12 @@ def TradespersonProfileEdit(request):
 
 
                  
-                        
-
+            user = TradespersonProfile.objects.get(user = request.user)
             print(user)
 
             print(user.first_name)
 
-        return render(request, 'main/mainPageTradesperson.html')
+        return render(request, 'main/TradespeopleProfilePage.html', {'user' : user})
 
 
 
@@ -193,3 +220,41 @@ def TradespersonProfileEdit(request):
         print(context['user'].first_name)
 
         return render(request, 'main/TradespersonProfileEdit.html', context)
+
+@login_required
+def job_Post_Page(request):
+    if request.method == "POST":
+        jobPostForm = JobPostForm(request.POST, request.FILES)
+        jobAttachments = request.FILES.getlist('imageUpload')
+
+        print(jobAttachments)
+
+        if jobPostForm.is_valid():
+
+
+            Job = JobPost(user = request.user)
+            print(jobPostForm.cleaned_data)
+
+            for key, value in jobPostForm.cleaned_data.items():
+                print(key, value)
+                setattr(Job, key, value)
+
+            Job.save()  # Save the Job instance before adding attachments
+
+            for attachment in jobAttachments:
+                jobAttachment = JobPostAttachment(job_post=Job, file=attachment)
+                jobAttachment.save()
+                
+
+            return redirect('jobPostPage')
+        else:
+            print(jobPostForm.errors)
+            return render(request, 'main/jobPostpage.html', {"form":jobPostForm, "errors": jobPostForm.errors})
+    else:
+        form=JobPostForm()
+        user = TradespersonProfile.objects.get(user = request.user)
+        return render(request, 'main/jobPostpage.html', {"form":form, "user":user})
+    
+@login_required
+def jobPostDetailsPage(request):
+     return render(request, 'main/jobPostDetails.html')

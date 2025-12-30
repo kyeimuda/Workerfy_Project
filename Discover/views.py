@@ -32,7 +32,6 @@ def tradesPeopleRegistration(request):
                 print(form.is_valid())
                 print(form.errors)
                 if form.is_valid():
-
                         if Area.objects.filter(name__iexact=form.cleaned_data.get('work_areas')).exists():
                                 area = Area.objects.get(name__iexact=form.cleaned_data.get('work_areas'))
                         else:
@@ -44,12 +43,7 @@ def tradesPeopleRegistration(request):
                         else:
                                 specialty = TradeSpecialty.objects.create(name=safe_capitalize(form.cleaned_data.get('trade_specialties')), category=form.cleaned_data.get('trade_category'))
                                 specialty.save()
-
-                        if TradeSkillTag.objects.filter(name__iexact=form.cleaned_data.get('skills')).exists():
-                                skill = TradeSkillTag.objects.get(name__iexact=form.cleaned_data.get('skills'))
-                        else:
-                                skill = TradeSkillTag.objects.create(name=safe_capitalize(form.cleaned_data.get('skills')), category=form.cleaned_data.get('trade_category'))
-                                skill.save()
+        
 
                         print(form.cleaned_data)
                         print(request.FILES)
@@ -75,7 +69,24 @@ def tradesPeopleRegistration(request):
                         Tradesperson.save()
 
                         Tradesperson.trade_specialties.add(specialty)
-                        Tradesperson.skills.add(skill)
+
+                        if form.cleaned_data.get('skills'):
+                                Skills = form.cleaned_data.get('skills').split(",")
+                                print(Skills)
+                                for skill_name in Skills:
+                                        skill_name = skill_name.strip()
+                                        if skill_name:
+                                                if TradeSkillTag.objects.filter(name__iexact=skill_name).exists():
+                                                        skill = TradeSkillTag.objects.get(name__iexact=skill_name)
+                                                else:
+                                                        if form.cleaned_data.get('trade_category'):
+                                                                skill = TradeSkillTag.objects.create(name=safe_capitalize(skill_name), category=form.cleaned_data.get('trade_category'))
+                                                                skill.save()
+                                                        else:
+                                                                skill = TradeSkillTag.objects.create(name=safe_capitalize(skill_name), category=user.trade_category)
+                                                                skill.save()
+                                                        Tradesperson.skills.add(skill)
+                        
 
                         """ USER = form.save(commit=False)
                         USER.user = request.user

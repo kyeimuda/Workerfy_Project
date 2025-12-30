@@ -37,7 +37,7 @@ document.getElementById('PersonalInformation').onclick = function() {
 };
 
 document.getElementById('ContactInformation').onclick = function() {
-    if (document.getElementById('Phone').value || document.getElementById('OtherPhone').value) {
+    if (document.getElementById('number_id').value || document.getElementById('number2_id').value) {
         document.getElementById('bulb3').style.backgroundColor = "#0000ff";
         document.getElementById('bulb2').style.backgroundColor = "#0000ff";
         document.getElementById('bulb2').style.boxShadow = "0 0 8px 0 green";
@@ -61,7 +61,7 @@ document.getElementById('LocationInformation').onclick = function() {
 };
 
 document.getElementById('TradesInformation').onclick = function() {
-    if (document.getElementById('id_trade_category').value && document.getElementById('id_trade_specialties').value && document.getElementById('id_skills').value) {
+    if (document.getElementById('id_trade_category').value && document.getElementById('id_trade_specialties').value && document.getElementById('Skills').value) {
         document.getElementById('bulb5').style.backgroundColor = "#0000ff";
         document.getElementById('bulb4').style.backgroundColor = "#0000ff";
         document.getElementById('bulb4').style.boxShadow = "0 0 8px 0 green";
@@ -82,6 +82,46 @@ document.getElementById('TradesDone').onclick = function() {
         document.getElementById('bulb5').style.border = "1px solid #6b0404ff";
     }
 };
+
+function addAbility(inputValue, inputField) {
+    inputcontainer = inputValue;
+    inputValue = inputValue.value;
+    inputField = inputField;
+
+
+    if (inputValue) {
+        inputField.value += inputValue + ",";
+
+        const tagHolder = document.getElementById('TagHolder');
+
+        const newTag = document.createElement('p');
+        newTag.textContent = inputValue;
+        newTag.classList.add('Tags');
+        
+        tagHolder.appendChild(newTag);
+        }
+
+    inputcontainer.value = "";
+    
+}
+
+document.getElementById('add_skill_BTN').addEventListener('click', function () {
+    addAbility(document.getElementById('Skills_input'), document.getElementById("Skills"))
+});
+
+
+document.getElementById('number_id').addEventListener('change', function(event) {
+    const code = document.getElementById('countryCode_id').value;
+    const number = event.target.value.replace(/^0+/, '');
+    document.getElementById('Phone').value = code + number;
+});
+
+document.getElementById('number2_id').addEventListener('change', function(event) {
+    const code = document.getElementById('countryCode2_id').value;
+    const number = event.target.value.replace(/^0+/, '');
+    document.getElementById('OtherPhone').value = code + number;
+});
+
 function pop(event) {
     alert('hello');
 }

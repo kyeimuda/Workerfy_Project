@@ -12,7 +12,6 @@ html {
 
 body{
     width: 100%;
-    background-color: whitesmoke;
 }
 
 main{
@@ -125,10 +124,15 @@ main{
 
 /* This is the styling of the notification page */
 
+.Notifications_section {
+    height: 100vh;
+    overflow: scroll;
+    padding-bottom: 10vh;
+}
 .notificationSection {
-    border-radius: 0 0 4.6vh 4.6vh;
+    border-radius: 0 0 2.2222vh 2.2222vh;
     width: 100%;
-    height: 10.5vh;
+    height: 10.2222vh;
     background-color: #F1EADF;
     display: flex;
     justify-content: center;
@@ -140,77 +144,168 @@ main{
     overflow: scroll;
 } */
 
+
+
 .notificationSection h2 {
-    font-family: "Nunito", sans-serif;
-    font-size: 2.5vh;
+    font-family: "Playpen Sans", cursive;
+    font-size: 2.6666vh;
     text-align: center;
 }
 
-.notificationGroups h4 {
-    font-family: "Nunito", sans-serif;
-    font-size: max(0.5rem, 1.5vh);
-    text-align: right;
-    padding: 0.5vh 6vw;
-    margin-top: 1.2vh;
-    margin-bottom: 0.7vh;
-}
-
-.seperationLine {
-    width: 95%;
-    margin: auto;
-    /* padding: 0 0.5vh 0.5vh; */
-    display: block;
-    border-bottom: 0.3vh solid grey;
-}
-
-.notification {
-    margin: 2vh 3vw;
-    padding: 2vh 5vw;
-    border-radius: 2.5vh;
-    background-color: rgba(241, 234, 223, 0.5);
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-
-.TopicAndDate {
+.notificationFilterContainer{
+    width: 100%;
     display: flex;
-    margin-bottom: 0.5vh;
-    padding: 1vw ;
     justify-content: space-between;
-    font-family: "Nunito", sans-serif;
+    align-items: center;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+    margin-bottom: 1vh;
+    position: sticky;
+    top: 0;
+    background-color: whitesmoke;
 }
 
-.msg {
-    font-size: 1.5vh;
-    width: 95%;
-    font-family: "Nunito", sans-serif;
+.notificationFilter{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1vh;
+    width: 12vh;
+    padding: 1vh;
+    border-radius: 1.6666vh;
+    background-color: #F8F5EF;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    margin: 1vh ;
 }
 
-.notifications {
-    height: 82%;
+.indicationlights div .switchindication {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    gap: 0.5vh;
+}
+
+.switchindication p{
+    font-family: "Playpen Sans", cursive;
+    font-weight: 600;
+    color: #000080;
+    font-size: 1.1111vh;
+
+}
+
+.indicationlights div{
+    padding: 1vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notificationFilter select {
+    border: none;
+    font-family: "Nunito", sans-serif;
+    appearance: none;
+    font-size: 1.7777vh;
+    background-color: inherit;
+    color: #000080;
+    font-weight: 700;
+    text-align: center;
+}
+
+.notificationFilter select:focus, .notificationFilter select:active {
+    border: none;
+}
+
+.notificationCats {
     overflow: scroll;
+    scrollbar-width: none;
 }
 
-.time {
+.notificationDay {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    padding: 0 2vh;
+}
+
+.notificationDay p{
+    color: #000080;
     font-family: "Nunito", sans-serif;
-    font-size: 1.5vh;
+    font-weight: 600;
+    padding: 0 1vh;
+}
+
+.notificationCard{
+    margin: 2vh 1vh 2vh 1vh;
+    padding: 1.5vh 1.5vh 2.5vh 1.5vh;
+    border-radius: 2.2222vh;
+    border-left: 3px solid #006AFF;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.notificationCardOld{
+    margin: 2vh 1vh 2vh 1vh;
+    padding: 1.5vh 1.5vh 2.5vh 1.5vh;
+    border-radius: 2.2222vh;
+    border-left: 3px solid rgba(164, 164, 164, 0.5);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+
+.switch {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.TitleAndTime{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 4vh 0 2vh ;
+    margin-bottom: 1vh;
+
+}
+
+.TitleAndTime h3{
+    width: 152px;
+    height: 26px;
+
+    font-family: 'Nunito', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.7777vh;
+    line-height: 22px;
+
+    color: #000049;
+}
+
+.TitleAndTime time{
+    font-size: 1.3333vh;
+    color: #000049;
+}
+
+.details {
+
+    font-family: 'Nunito Sans' sans-serif;
+    font-style: normal;
     font-weight: 500;
+    line-height: 16px;
+    color: #000049;
+    font-size: 1.333vh;
+    
 }
 
-.topic {
-    font-family: "Nunito", sans-serif;
-}
+
+
 
 /* THis is the styling of the discover page */
 .DiscoverSection {
-    height: 100vh;
     display: flex;
     position: relative;
 }
 
 #containerHolder1 {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     position: relative;
     flex: 0 0 100%;
 }
@@ -223,12 +318,11 @@ main{
 }
 
 .findTradespeople, .findJobPostings {
-    height: 100vh;
-    overflow-y: auto;
+    height: 100%;
 }
 
 .FTPContainer {
-    height: 150vh;
+    height: 100%;
     overflow: scroll;
 }
 
@@ -237,7 +331,7 @@ main{
     right: 1vh;
     bottom: 10vh;
     padding: 1vh 4vw;
-    font-family: "Poppins", sans-serif;
+    font-family: "Nunito", sans-serif;
     font-weight: 600;
     font-size: 1.75vh;
     background-color: #0000ED;
@@ -251,6 +345,8 @@ main{
 }
 
 .header {
+    position: sticky;
+    top: -30vh;
     background-color: #F1EADF;
     padding: 2vh;
     height: 30vh;
@@ -270,6 +366,8 @@ main{
     padding: 2vh 1vh;
 }
 .heads h2{
+    font-family: "Playpen Sans", cursive;
+    font-size: 2.2222vh;
     color: #000080;
     
 }
@@ -285,10 +383,28 @@ main{
     transform: rotate(-180deg);
 }
 
+.serchBar {
+    position: relative;
+    width: 100%;
+}
+
+.serchSVG {
+    position: absolute;
+    right: 2vh;
+    top: 0.8vh;
+}
+
+.serchSVG svg {
+    width: 2.6667vh;
+    height: 2.6667vh;
+    fill: rgba(128, 128, 128, 0.1)
+}
+
 #searchTrades {
     display: block;
     font-size: 1.72vh;
     font-family: "Nunito", sans-serif;
+    color: rgba(128, 128, 128, 0.5);
     width: 100%;
     height: 4.5vh;
     font-weight: 500;
@@ -344,6 +460,9 @@ main{
 
 
 .tradesType {
+    position: sticky;
+    top: 0;
+    z-index: 1;
     align-items: center;
     background-color: #F8F5EF;
     column-gap: 5vw;
@@ -362,6 +481,7 @@ main{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    align-items: center;
     width: 13vh;
     flex-shrink: 0;
     border-radius: 2vh;
@@ -371,11 +491,13 @@ main{
 .tradesTypeContainer img{
     width: 80%;
     height: 8vh;
+    border-radius: 1vh;
     display: block;
     margin: auto;
 }
 
 .tradesTypeContainer h4{
+    font-family: "Nunito", sans-serif;
     text-align: center;
     color: #000080;
     padding: 0.5vh 0;
@@ -383,22 +505,17 @@ main{
 
 .cards {
     width: 100%;
-    /* height: 100%; */
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    overflow-y: scroll;
-    scrollbar-width: none;
+    padding-bottom: 5vh;
     padding-top: 2vh;
 }
 
 .card {
     border-radius: 2vh;
-    box-shadow: 0 2px 8px 0 rgba(9, 9, 255, 0.2);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
     width: 95%;
-    padding: 1vh 1vh;
-    background-color: #FAF8F4;
-    margin-bottom: 4vh;
+    padding: 1.5vh;
+    background-color: whitesmoke;
+    margin: 0 auto 4vh;
 }
 
 .card:hover, .card:active {
@@ -416,39 +533,47 @@ main{
 
 .profileIMG{
     width: 20%;
-    padding-top: 2vh;
+    padding: 2vh 0.5vh 0 0.5vh;
 }
 
 .profileINFO {
-    width: 50%;
-    padding: 1vh 1vh 1vh 1vh;
+    width: 55%;
+    padding: 0vh 1vh 0vh 1vh;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 }
 
 .ProfileJOB{
-    width: 30%;
-    padding: 1vh;
-    border-left: 2px solid rgba(0, 0, 55, 0.2);
+    width: 25%;
+    display: flex;
+    justify-content: end;
+}
+
+.ProfileJOB img{
+    width: 10vh;
+    height: 14.4444vh;
+    justify-items:self-end;
+    border-radius: 1vh;
 }
 
 .profileBOOK {
     display: flex;
-    padding: 1vh 2vh;
+    padding: 1vh 2vh 0 2vh;
     justify-content: space-between;
     align-items: center;
     border-top: 2px solid rgba(0, 0, 0, 0.2);
 }
 
 .profileBOOK button {
-    width: 10vh;
+    width: 14.4444vh;
     font-weight: 600;
-    font-family: "Poppins", sans-serif;
+    font-family: "Nunito", sans-serif;
     border-radius: 3vh;
     font-size: 1.72vh;
+    height: 3.3333vh;
     border: none;
-    background-color: #000080;
+    background-color: #0000D1;
     color: whitesmoke;
     cursor: pointer;
     padding: 1vh 4vh;
@@ -459,17 +584,18 @@ main{
 
 .profileBOOK span {
     display: flex;
+    height: 3.3333vh;
     justify-content: center;
     align-items: center;
     /* width: 30%; */
-    font-weight: 600;
+    font-weight: 700;
     padding: 1vh 2vh;
     font-size: 1.3vh;
-    font-family: "Poppins", sans-serif;
+    font-family: "Nunito", sans-serif;
     border-radius: 2vh;
-    background-color: #B6FFDC;
-    color: #000037;
-    border: 0.1vh solid #44FF33;
+    background-color: #C8FFC8;
+    color: #000080;
+    border: 0.1vh solid #49FF49;
 }
 
 .cardSections p, .cardSections h3 {
@@ -485,13 +611,14 @@ main{
 }
 
 .profileINFO .profileName {
-    font-size: 2.2vh;
-    font-weight: 700;
+    font-size: 2.2222vh;
+    font-weight: 600;
     padding: 0;
     display: flex;
     justify-content: left;
     flex-direction: row;
-    margin: 0 0.5vh 0.5vh 0.5vh;
+    gap: 1vh;
+    margin: 0;
 }
 
 .profileINFO .profileName h3{
@@ -499,48 +626,45 @@ main{
 }
 
 .profileINFO .profileTradeType {
-    font-size: 1.72vh;
-    font-weight: 400;
-    margin: 0 0.5vh 0.5vh 0.5vh;
+    font-size: 1.5556vh;
+    font-weight: 500;
+    margin: 0 0.5vh 0.8vh 0.5vh;
 }
 
 .profileTags{
     display: flex;
     flex-wrap: nowrap;
-    justify-content: space-between;
+    gap: 0.5vh;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin: 0 0.5vh 0.8vh 0.5vh;
 }
 
 .profileINFO .tags {
-    font-size: 1.2vh;
+    font-size: 1.1111vh;
     display: inline-block;
-    background-color: #ebdfce;
+    background-color: #E3D5C0;
+    color: #000049;
     border-radius: 2vh;
     padding: 0 1vh;
-    font-weight: 200;
+    font-weight: 300;
     flex-shrink: 0;
-    margin: 0 0.5vh 0.5vh 0.5vh;
 }
 
 .profileINFO .profileLocation {
-    font-size: 1.5vh;
-    font-weight: 200;
-    margin: 0 0.5vh 0.5vh 0.5vh;
+    font-size: 1.5556vh;
+    font-weight: 300;
+    margin: 0 0.5vh 0.8vh 0.5vh;
 }
 .profileINFO .profileRate {
-    font-size: 1.5vh;
-    font-weight: 200;
-    margin: 0 0.5vh 0.5vh 0.5vh;
+    font-size: 1.3333vh;
+    font-weight: 300;
+    margin: 0 0.5vh 0.8vh 0.5vh;
 }
 .profileINFO .profileRatings {
-    font-size: 1.5vh;
-    font-weight: 200;
-    margin: 0 0.5vh 0.5vh 0.5vh;
-}
-
-.ProfileJOB img{
-    width: 98%;
-    height: 95%;
-    border-radius: 1vh;
+    font-size: 1.3333vh;
+    font-weight: 300;
+    margin: 0 0.5vh 0.8vh 0.5vh;
 }
 
 /* Styling for the Job Posting Page */
@@ -551,9 +675,16 @@ main{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    background-color: #F6EFEC;
+    background-color: whitesmoke;
     padding: 2vh 3vh;
     color: #000037;
+}
+
+.neededTrades {
+    font-size: 1.1111vh;
+    color: #000049;
+    font-family: "Nunito", sans-serif;
+    font-weight: 300;
 }
 
 .jobTitle {
@@ -562,8 +693,13 @@ main{
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    padding: 1vh 0;
-    
+}
+
+.jobTitle h4 {
+    font-size: 1.5556vh;
+    color: #000049;
+    font-family: "Nunito", sans-serif;
+    font-weight: 700;
 }
 
 .budgetAndLocation{
@@ -594,13 +730,14 @@ main{
     background-color: #ECE0DA;
     color: #4F3528;
     padding: 0.5vh 1vh;
-    font-family: "Poppins", sans-serif;
+    font-family: "Nunito", sans-serif;
     border: solid 0.1vh #4F3528;
 }
 
 .jobBudget p{
-    font-size: 1.5vh;
-    font-weight: 200;
+    font-size: 1.333vh;
+    font-weight: 300;
+    color: #000049;
 }
 
 .jobLoaction{
@@ -608,11 +745,13 @@ main{
     justify-content: right;
     align-items: center;
     margin: 0.25vh 0;
+    gap: 0.3vh
 }
 
 .jobLoaction  p{
-    font-size: 1.5vh;
-    font-weight: 600;
+    font-size: 1.333vh;
+    font-weight: 300;
+    color: #000049;
 }
 
 .jobOwner{
@@ -623,8 +762,9 @@ main{
 }
 
 .jobOwner p{
-    font-size: 1.5vh;
+    font-size: 1.5556vh;
     font-weight: 600;
+    color: #000049;
 }
 
 .jobDiscription {
@@ -634,25 +774,27 @@ main{
 }
 
 .jobDiscription p{
-    font-size: 1.5vh;
+    font-size: 1.5556vh;
     font-weight: 300;
+    color: #000049;
 }
 
 .datePosted {
     display: flex;
     justify-content: left;
     align-items: center;
-    margin: 0.4vh 0;
+    margin: 1vh 0;
+    gap: 0.3vh;
 }
 
 .datePosted p {
     font-size: 1.3vh;
-    font-weight: 600;
+    font-weight: 300;
+    color: #000049;
 }
 
 .jobApply {
     display: flex;
-    margin: 0.4vh 0;
     justify-content: right;
     align-items: center;
 }
@@ -660,10 +802,10 @@ main{
 .jobApply button{
     width: 30%;
     font-weight: 600;
-    font-family: "Poppins", sans-serif;
+    font-family: "Nunito", sans-serif;
     border-radius: 2vh;
     font-size: 1.6vh;
-    background-color: #000080;
+    background-color: #0000D1;
     color: whitesmoke;
     border: none;
     padding: 1vh 2vh;
@@ -701,49 +843,34 @@ main{
    /*  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2); */
 }
 
-.editBTN {
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    bottom: 10vh;
-    right: 3vh;
-    z-index: 1;
-}
-
-.editBTN button {
-    width: 100%;
-    height: 100%;
-    padding: 1.2vh 2vh;
-    font-family: "Playpen Sans", cursive;
-    font-weight: 600;
-    font-size: 1.75vh;
-    background-color: #0000B6;
-    color: white;
-    border: none;
-    text-align: center;
-    border-radius: 2.8vh;
-    text-decoration: none;
-    cursor: pointer;
-    letter-spacing: 0.2vw;
-}
 
 .workerfyLogoAndProfileEditingLogo {
     margin-bottom: 2vh;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+}
+
+.workerfyLogoAndProfileEditingLogo a{
+    width: 40%;
 }
 
 .workerfyLogoAndProfileEditingLogo P{
-    font-size: 2.2vh;
+    font-size: 2.2222vh;
     font-weight: 700;
     color: #000080;
+    font-family: "Playpen Sans" cursive;
 }
 
 .profileEditing {
-    width: 100%;
+    background-color: #0000D1;
+    width: 30%;
     display: flex;
-    gap: 0.5vh;
     justify-content: space-evenly;
     align-items: center;
+    padding: 1vh;
+    border-radius: 2vh;
 }
 
 .profileEditing p{
@@ -751,17 +878,17 @@ main{
     font-family: "Nunito", sans-serif;
     color: whitesmoke;
     font-weight: 600;
+    font-size: 1.3333vh;
 }
 
 .profileEditing svg{
-    width: 2.2vh;
     height: auto;
     fill: whitesmoke;
 }
 
 .profileImg {
-    width: 18vh;
-    height: 18vh;
+    width: 15.5556vh;
+    height: 15.5556vh;
     border-radius: 50%;
     overflow: hidden;
 }
@@ -772,45 +899,41 @@ main{
     object-fit: cover;
 }
 
-.progressBar {
-    width: 96%;
-    height: 1.2vh;
-    border-radius: 5vh;
-    border: 1px solid rgba(180, 180, 180, 0.5);
-    background-color: whitesmoke;
-}
-
-#progressfluid {
-    width: 80%;
-    height: 100%;
-    font-size: 1vh;
-    border-radius: 5vh;
-    color: #F1EADF;
-    background-color: #2646fc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .profileName{
     display: flex;
     flex-direction: column;
     justify-content: center;;
     align-items: center;
-    margin-bottom: 1.5vh;
+    margin-bottom: 0.5vh;
     line-height: 3vh;
 }
 
 .profileName h2{
+    font-size: 2.6667vh;
     color: #000080;
-    font-size: 2.2vh;
-    margin-top: 1.5vh;
+    margin-top: 1vh;
 }
 
 .profileName p{
-    font-size: 2.2vh;
+    font-size: 2.2222vh;
     font-weight: 500;
     color: #000080
+}
+
+.availabilityStats{
+    width: 35%;
+    padding: 1vh;
+    background-color: #50CF37;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2vh;
+}
+
+.stats {
+    color: white;
+    font-size: 1.3333vh;
 }
 
 .headingsAndBulbs {
@@ -865,75 +988,101 @@ main{
 
 .detailsGroup{
     width: 100%;
-    padding: 2vh 2vh;
+    padding: 2vh 2vh 10vh;
     flex-shrink: 0;
     overflow: auto;
+    scrollbar-width: none;
     height: 100%;
+}
+
+.tagline {
+    color: #00006D;
+    text-align: center;
+    padding-bottom: 1vh;
+    font-family: "Playpen Sans", cursive;
+    font-weight: 700;
 }
 
 
 .basics{
+    width: 100%;
     display: flex;
-    padding-left: 2vh;
-    flex-direction: column;
+    padding: 1vh;
+    column-gap: 0.5vh;
     flex-wrap: wrap;
-    /* align-items: center; */
-    gap: 2vw;
-    height: 15vh;
+    justify-content: space-between;
 }
 
-.basics p{
-    display: inline-block;
-    width: 20vh;
-    font-size: 1.52vh;
-    color: #000037;
-    
+.basicsList {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 47%;
+    padding: 0.5vh 0;
+    gap: 0.5vh;
 }
 
+.basicsList p {
+    font-family: "Nunito", sans-serif;
+}
+
+.currency {
+    color: #006AFF;
+    font-weight: 700;
+}
+
+.basicsList svg {
+    fill: #006AFF;
+}
 
 .bio {
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 4vh;
+    margin: 3vh 0;
 }
 
 .bio h4 {
     font-size: 2.2vh;
     padding: 0.5vh, 1vh;
-    margin-bottom: 1vh;
-    color: #000037;
+    margin-bottom: 1vh 0;
+    color: #00006D;
 }
 
 .bio p {
-    padding: 2vh;
+    padding: 0 2vh;
     /* background-color:rgba(230, 224, 216, 0.3); */
     border-radius: 2vh;
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2) /* , 0 6px 20px 0 rgba(0, 0, 0, 0.19) */;
-    color: #000037;
     line-height: 20px;
-    font-family: "Poppins", sans-serif;
-    font-size: 1.52vh;
+    font-family: "Nunito", sans-serif;
+    font-size: 1.7778vh;
+}
+
+.skillHeader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2vh;
+    gap: 0.5vh
 }
 
 .skills{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 4vh;
+    margin-top: 5vh;
 }
 
 .tags{
     display: flex;
-    gap: 2vw;
+    gap: 1vh;
     flex-wrap: wrap;
 }
 
 .skills h4 {
     font-size: 2.2vh;
     padding: 0.5vh, 1vh;
-    margin-bottom: 2vh;
-    color: #000037;
+    color: #00006D;
 }
 
 .tags p{
@@ -944,12 +1093,34 @@ main{
     color: #000037;
     padding: 1vh;
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+
 }
 
 #jobPortfoilio {
     padding: 2vh;
     display: flex;
     gap: 4vw;
+    position: relative;
+}
+
+.addfloater {
+    width: 6vh;
+    height: 6vh;
+    position: absolute;
+    bottom: 10vh;
+    right: 5vh;
+    background-color: #0000D1;
+    border-radius: 50%;
+    padding: 1vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addfloater p{
+    color: white;
+    font-size: 3.1111vh;
+    font-weight: 700;
 }
 
 #jobPortfoilio .pastJobCard {
@@ -964,22 +1135,23 @@ main{
 
 #jobPortfoilio .pastJobCard img{
     width: 100%;
-    border-radius: 2vh;
+    border-radius: 2vh 2vh 0 0;
     height: 16vh;
     display: block;
     margin: auto;
+    object-fit: cover;
 }
 
 #jobPortfoilio .pastJobCard h4 {
    font-size: 1rem;
    letter-spacing: 0.05vh;
-   color: #000037;
+   color: #00006D;
 }
 
 #jobPortfoilio .pastJobCard time {
    font-size: 0.8rem;
    letter-spacing: 0.05vh;
-   color: #000037;
+   color: #00006D;
 }
 
 .PJT {
@@ -1008,11 +1180,13 @@ main{
     display: flex;
     overflow: hidden;
     font-size: 1.52;
-    /* font-family: "Poppins", sans-serif; */
+    font-family: "Nunito", sans-serif;
 }
 
 .detailsInfo .infoType {
     width: 30%;
+    font-family: "Nunito", sans-serif;
+    font-weight: 600;
 }
 
 #moreDetails .moreDetailsContainer .valueContainer{
@@ -1118,56 +1292,107 @@ main{
 /* This is the styling of the Work section */
 
 #mainSection2 {
-    background-color: whitesmoke;
-}
-
-#mainSection2 header{
-    width: 100%;
-    height: 10vh;
-    background-color: rgba(221, 205, 180, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #000080;
-    border-radius: 0 0 4vh 4vh;
-}
-#mainSection2 header h2{
-    font-size: 2.666vh;
+    background-color: white;
+    position: relative;
 }
 
 .sideNav {
-    width: 70%;
-    height: 84%;
     display: flex;
     background-color: rgba(221, 205, 180, 0.4);
+    height: 92vh;
+    width: 70%;
+    background-color: rgba(221, 205, 180, 0.4);
     flex-direction: column;
+    padding: 2vh 2vh;
+    position: absolute;
+}
+
+.navOpen {
+    top: 0;
+    left: 0;
+}
+
+.navClose {
+    left: -32vh;
+}
+
+.sideNavHeader h1 {
+    font-size: 2.2222vh;
+    color: #00006D;
+    text-align: center;
+    font-family: "Playpen Sans", cursive;
+}
+
+.navandlogout {
+    height: 100%;
+    display: flex;
     justify-content: space-between;
-    padding: 4vh 2vh;   
+    flex-direction: column;
 }
 
-.navs h4 {
-    font-size: 2.5vh;
-    color: #000080;
-    margin: 1vh;
+.navs{
+    padding: 2vh 0;
+    position: relative;
 }
 
-.sideNavFooter {
-    padding: 1vh;
+.navs .NavList h4{
+    font-family: "Playpen Sans", cursive;
+    color: #00006D;
+    padding: 1vh 0;
+}
+
+.navs .NavList {
     display: flex;
     gap: 1vh;
     align-items: center;
-    box-shadow: inset 0 2px 8px 0 rgba(9, 9, 255, 0.2);
+    padding: 1vh 1vh;
 }
-.sideNavFooter img{
-    width: 6.666vh;
+
+.sideNavFooter {
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+}
+
+.sideNavFooter img {
+    width: 5.5556vh;
     height: auto;
     border-radius: 50%;
 }
 
-.sideNavFooter h4{
-    display: flex;
-    font-size: 2.5vh;
-    color: #000080;
-    align-items:end;
-    justify-content: space-between;
+.sideNavFooter h4 {
+    color: #00006D;
+    font-family: "Playpen Sans",;
+
 }
+
+.WorkNavControl {
+    position: absolute;
+    right: -30px;
+    top: 35vh;
+    width: max(2vh);
+    height: max(20vh);
+    border-top-right-radius: 2vh;
+    border-bottom-right-radius: 2vh;
+    background-color: #E7DCCA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.WorkNavControl svg {
+    fill: #8B6E3E;
+    width: max(2.6667vh);
+    height: max(2.6667vh);
+}
+
+
+
+
+
+
+
+
+
+

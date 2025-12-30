@@ -134,7 +134,8 @@ class TradespersonOnboardingForm2(forms.Form):
         widget=forms.TextInput(attrs={
             "type": "text",
             "placeholder": "e.g. Wiring",
-            "class": "form-control"
+            "class": "form-control",
+            "id": "Skills"
         })
     )
 
@@ -303,7 +304,7 @@ class ProfileEditPageform(forms.Form):
     )
 
     gender = forms.ChoiceField(
-        choices = [('', '---------'),('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')],
+        choices = [('', 'Gender'),('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')],
         required=False,
         label= "Gender",
         widget=forms.Select(attrs={
@@ -383,12 +384,24 @@ class ProfileEditPageform(forms.Form):
         })
     )
 
+    tagline = forms.CharField(
+        label="Tagline",
+        required=False,
+        widget=forms.Textarea(attrs={
+            "rows": 3,
+            "placeholder": "A catchy tagline for your profile ",
+            "class": "inputField"
+        })
+    )
+
     country = forms.ModelChoiceField(
         required=False,
         label="Country",
         queryset=Country.objects.all(),
         empty_label="Select Country",
-        widget=forms.Select(attrs={"class": "form-select"})
+        widget=forms.Select(attrs={
+            "class": "form-select",
+            "id": "Country"})
     )
 
     base_location = forms.ModelChoiceField(
@@ -591,5 +604,283 @@ class PortfolioForm(forms.Form):
         required=False,
         widget=forms.ClearableFileInput(attrs={
             "class": "form-control"
+        })
+    )
+
+
+class JobPostForm(forms.Form):
+
+    # Overview fields
+    title = forms.CharField(
+        required=True,
+        help_text="Note: A short description of the job.",
+        label="Job Title:",
+        max_length=255,
+        widget=forms.TextInput(attrs={
+            "id": "Job_Title",
+            "placeholder": "Enter the job title",
+            "class": "inputField"
+        })
+    )
+
+
+    tradesType = forms.ModelChoiceField(
+        required=True,
+        help_text="Note: select the trades category for your work.",
+        label="Trade Type:",
+        empty_label= "Select Trades Type",
+        queryset=TradeCategory.objects.all(),
+        widget=forms.Select(attrs={
+            "id": "Trade_Type",
+            "class": "inputField"
+        })
+    )
+
+    job_type = forms.ChoiceField(
+        required=True,
+        label="Job Type:",
+        help_text="Note: Select the job type.",
+        choices=[
+            ("one_time", "One-time"),
+            ("recurring", "Recurring"),
+            ("contract", "Contract")
+        ],
+        widget=forms.Select(attrs={
+            "id": "Job_Type",
+            "class": "inputField"
+        }
+    )
+    )
+
+    description = forms.CharField(
+        required=True,
+        help_text="Note: Detailed description of the work to be done for you.",
+        label="Job Description:",
+        widget=forms.Textarea(attrs={
+            "rows": 3,
+            "id": "Job_Description",
+            "placeholder": "Describe the job in detail...",
+            "class": "inputField"
+        })
+    )
+
+    # Location fields
+    country = forms.ModelChoiceField(
+        required=True,
+        label="Country:",
+        queryset=Country.objects.all(),
+        empty_label="Select Country",
+        help_text="Note: Select country job is base in.",
+        widget=forms.Select(attrs={
+            "id": "Country",
+            "class": "form-select",
+            "id": "Country"})
+    )
+
+    region = forms.ModelChoiceField(
+        required=True,
+        label="Region:",
+        queryset=Region.objects.all(),
+        empty_label="Select Region",
+        help_text="Note: Select region job is base in.",
+        widget=forms.Select(attrs={
+            "id": "Region",
+            "class": "inputField",
+            "placeholder": "e.g. Greater Accra",
+        })
+    )
+
+    city = forms.ModelChoiceField(
+        required=True,
+        label="City:",
+        queryset=City.objects.all(),
+        empty_label="Select City",
+        help_text="Note: Select city job is base in.",
+        widget=forms.Select(attrs={
+            "id": "City",
+            "placeholder": "e.g. Accra",
+            "class": "inputField"
+        })
+    )
+
+    area = forms.CharField(
+        required=False,
+        help_text="Note: Specify the area for the job.",
+        label="Area:",
+        widget=forms.TextInput(attrs={
+            "id": "Area",
+            "placeholder": "e.g. C5 Junction",
+            "class": "inputField"
+        })
+    )
+
+    work_environment = forms.ChoiceField(
+        required=True,
+        label="Work Environment:",
+        help_text="Note: Select job site condition.",
+        choices=[
+            ("indoor", "Indoor"),
+            ("outdoor", "Outdoor"),
+            ("residential", "Residential"),
+            ("industrial", "Industrial")
+        ],
+        widget=forms.Select(attrs={
+            "id": "Work_Environment",
+            "class": "inputField"
+        }
+    )
+    )
+
+    # Timeline
+
+    start_date = forms.DateField(
+        required = False,
+        label="Start date:",
+        help_text = "Note: Provide date job starts.",
+        widget=forms.DateInput(attrs={
+            "type":"date",
+            "id":"Start_date",
+            "class":"inputField"
+        })
+    )
+
+    end_date = forms.DateField(
+        required = False,
+        label="End date:",
+        help_text = "Note: Provide date job is expected to end.",
+        widget=forms.DateInput(attrs={
+            "type":"date",
+            "id":"End_date",
+            "class":"inputField"
+        })
+    )
+
+    expiry_date = forms.DateField(
+        label="Expiry Date",
+        required=False,
+        widget=forms.DateInput(attrs={
+            "type": "date",
+            "id": "Expiry_Date",
+            "class": "form-control",
+        })
+    )
+
+    urgency_level = forms.ChoiceField(
+        required=False,
+        label="Urgency level:",
+        help_text="Note: Select how urgent the job needs ti be done.",
+        choices=[
+            ("urgent","Urgent"),
+            ("normal","Normal"), 
+        ],
+
+        widget= forms.Select(attrs={
+            "id":"Ugency_level",
+            "class":"inputField"
+        })
+    )
+
+    # Budget
+    budget_type = forms.ChoiceField(
+        required=False,
+        label="Payment Method:",
+        help_text="Note: Select the budget type for the job.",
+        choices=[
+            ("fixed", "Fixed Price"),
+            ("hourly", "Hourly Rate"),
+            ("negotiable", "Negotiable")
+        ],
+        widget=forms.Select(attrs={
+            "id": "Budget_Type",
+            "class":"inputField"
+        })
+    )
+
+    budget_rage = forms.CharField(
+        required=False,
+        label="Budget Range / Amount:",
+        help_text="Note: Specify your budget range or amount.",
+        widget=forms.TextInput(attrs={
+            "id": "Budget_Range",
+            "class":"inputField",
+        })
+    )
+
+    materials_provided = forms.ChoiceField(
+        required=False,
+        label="Materials Provided by Client:",
+        help_text="Note: Indicate if materials will be provided.",
+        choices=[
+            ("No", "No"),
+            ("Yes", "Yes")
+        ],
+        widget=forms.Select(attrs={
+            "id": "Materials_Provided",
+            "class":"inputField"
+        })
+    )
+
+    # Skills
+    required_skills = forms.CharField(
+        required=False,
+        label="Required Skills:",
+        help_text="Note: List any specific skills required for the job.",
+        widget=forms.TextInput(attrs={
+            "id": "Required_Skills",
+            "class":"inputField",
+            "placeholder": "e.g. Plumbing, Electrical"
+        })
+    )
+
+    # Media
+    attachment = forms.FileField(
+        required=False,
+        label="Upload images or short videos:",
+        help_text="Note: Upload any relevant files or images of the job.",
+        widget=forms.ClearableFileInput(attrs={
+            "id": "Attachment",
+            "class":"inputField"
+        })
+    )
+
+    # Additional Requiremensts
+    requirements = forms.CharField(
+        required = False,
+        label = " Additional Requirements",
+        help_text = "Specify any other requirement for the job",
+        widget = forms.TextInput(attrs={
+            "id":"requirement_id",
+            "class":"inputField",
+        })
+
+    )
+    
+
+    #contact
+    contact_method = forms.ChoiceField(
+        required=False,
+        label="Preferred contact method",
+        choices=[
+            ("Whatsapp", "Whatsapp"),
+            ("Email", "Email"),
+            ("Call", "Call"),
+            ("Text", "Text"),
+        ],
+
+        widget=forms.Select(attrs={
+            "id":"ContactMethod",
+            "class":"inputField"
+        })
+        
+        )
+
+    contact_number = forms.CharField(
+        label="Contact",
+        required=True,
+        help_text="Note: If no contact is add the users contact will be used.",
+        widget=forms.TextInput(attrs={
+            "id":"ContactNumber",
+            "class":"inputField",
+            "type": "tel"
         })
     )

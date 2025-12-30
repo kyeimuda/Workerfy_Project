@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('main/', include('MainWorkerfy.urls')),
+    path('api/v1/', include('WorkerfyAPI.urls')),
 ]
 
 if settings.DEBUG:

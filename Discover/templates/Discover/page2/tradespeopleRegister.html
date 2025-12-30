@@ -49,45 +49,60 @@
                                 <fieldset class="fieldset">
                                 <legend>Personal information</legend>
                                 <div class="seperationline"></div>
-                                <div class="inputContainer">
-                                    {% comment %} <label for="FName">First Name:</label> {% endcomment %}
-                                     {{form.first_name.label_tag }}
-                                   {% comment %}  <input type="text" name="FName" id="FName" placeholder="Kofi" required autofocus><br> {% endcomment %}
-                                    {{ form.first_name }}
-                                    {{ form.first_name.errors }}
+                                <div class="fields">
+                                    <div class="inputContainer">
+                                        {% comment %} <label for="FName">First Name:</label> {% endcomment %}
+                                        {{form.first_name.label_tag }}
+                                        <p class='helpTexts'>Provide your first name.</p>
+                                    {% comment %}  <input type="text" name="FName" id="FName" placeholder="Kofi" required autofocus><br> {% endcomment %}
+                                        {{ form.first_name }}
+                                        {{ form.first_name.errors }}
+                                    </div>
+                                    <div class="inputContainer">
+                                        {% comment %} <label for="LName">Last Name:</label> {% endcomment %}
+                                        {{form.last_name.label_tag }}
+                                        <p class='helpTexts'>Provide your last name.</p>
+                                        {% comment %} <input type="text" name="LName" id="LName" placeholder="Mensah" required><br> {% endcomment %}
+                                        {{ form.last_name }}
+                                        {{ form.last_name.errors }}
+                                        {% comment %} <input type="text" name="LName" id="LName" placeholder="Mensah" required><br> {% endcomment %}
+                                    </div>
+                                    <div class="inputContainer">
+                                        {% comment %}  <label for="Other">Other names:</label> {% endcomment %}
+                                        {% comment %} <input type="text" name="Other" id="Other" placeholder="Kumi"><br> {% endcomment %}
+                                        {{ form.other_names.label_tag }}
+                                        <p class='helpTexts'>Provide any other name/names.</p>
+                                        {{ form.other_names }}
+                                        {{ form.other_names.error }}
+                            
+                                        {% comment %} <input type="text" name="Other" id="Other" placeholder="Kumi"><br> {% endcomment %}
+                                    </div>
+                                    <div class="inputContainer">
+                                        {% comment %} <label for="age">Date of birth:</label> {% endcomment %}
+                                        {{form.date_of_birth.label_tag }}
+                                        <p class='helpTexts'>Provide your date of birth.</p>
+                                        {% comment %} <input type="date" name="age" id="age" placeholder="Date of Birth" required><br> {% endcomment %}
+                                        {{ form.date_of_birth }}
+                                        {{ form.date_of_birth.errors }}
+                                        {% comment %} <input type="date" name="age" id="age" placeholder="Date of Birth" required><br> {% endcomment %}
+                                    </div>
+                                    <div class="inputContainer genderDiv">
+                
+                                        {{ form.gender.label_tag }}
+                                        <p class='helpTexts'>Provide your gender.</p>
+
+                                        <div class="genderHolder">
+                                            <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.2821 0.308123C14.1852 0.210489 14.07 0.132995 13.9431 0.0801111C13.8162 0.0272271 13.68 0 13.5425 0C13.405 0 13.2688 0.0272271 13.1419 0.0801111C13.015 0.132995 12.8997 0.210489 12.8029 0.308123L8.03208 5.07896C7.93524 5.17659 7.82003 5.25408 7.69309 5.30697C7.56616 5.35985 7.43001 5.38708 7.29249 5.38708C7.15498 5.38708 7.01883 5.35985 6.89189 5.30697C6.76496 5.25408 6.64975 5.17659 6.55291 5.07896L1.78208 0.308123C1.68524 0.210489 1.57003 0.132995 1.44309 0.0801111C1.31616 0.0272271 1.18 0 1.04249 0C0.90498 0 0.768828 0.0272271 0.641891 0.0801111C0.514955 0.132995 0.399745 0.210489 0.302909 0.308123C0.108897 0.503293 0 0.767305 0 1.0425C0 1.31769 0.108897 1.5817 0.302909 1.77687L5.08416 6.55812C5.6701 7.14333 6.46437 7.47204 7.29249 7.47204C8.12062 7.47204 8.91489 7.14333 9.50083 6.55812L14.2821 1.77687C14.4761 1.5817 14.585 1.31769 14.585 1.0425C14.585 0.767305 14.4761 0.503293 14.2821 0.308123Z" fill="#634E2D"/>
+                                            </svg>
+                                            {{ form.gender }}
+
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="inputContainer">
-                                    {% comment %} <label for="LName">Last Name:</label> {% endcomment %}
-                                    {{form.last_name.label_tag }}
-                                    {% comment %} <input type="text" name="LName" id="LName" placeholder="Mensah" required><br> {% endcomment %}
-                                    {{ form.last_name }}
-                                    {{ form.last_name.errors }}
-                                    {% comment %} <input type="text" name="LName" id="LName" placeholder="Mensah" required><br> {% endcomment %}
-                                </div>
-                                <div class="inputContainer">
-                                    {% comment %}  <label for="Other">Other names:</label> {% endcomment %}
-                                    {% comment %} <input type="text" name="Other" id="Other" placeholder="Kumi"><br> {% endcomment %}
-                                    {{ form.other_names.label_tag }}
-                                    {{ form.other_names }}
-                                    {{ form.other_names.error }}
-                        
-                                    {% comment %} <input type="text" name="Other" id="Other" placeholder="Kumi"><br> {% endcomment %}
-                                </div>
-                                <div class="inputContainer">
-                                    {% comment %} <label for="age">Date of birth:</label> {% endcomment %}
-                                    {{form.date_of_birth.label_tag }}
-                                    {% comment %} <input type="date" name="age" id="age" placeholder="Date of Birth" required><br> {% endcomment %}
-                                    {{ form.date_of_birth }}
-                                    {{ form.date_of_birth.errors }}
-                                    {% comment %} <input type="date" name="age" id="age" placeholder="Date of Birth" required><br> {% endcomment %}
-                                </div>
-                                <div class="inputContainer">
-            
-                                    {{ form.gender.label_tag }}
-                                    {{ form.gender }}
-                                </div>
-                                <!-- <button class="backBTN">&lt; Back</button> -->
-                                <a class="nextBTN" id="PersonalInformation" href="#form2">Next &gt;</a>
+                                    <!-- <button class="backBTN">&lt; Back</button> -->
+                                    <a class="nextBTN" id="PersonalInformation" href="#form2">Next &gt;</a>
+
                                 </fieldset>
                             </div>
                         </div>
@@ -98,31 +113,71 @@
                                 <fieldset class="fieldset">
                                 <legend>Contact information</legend>
                                 <div class="seperationline"></div>
-                                <div class="inputContainer">
 
-                                    {{ form.contact_number.label_tag }}
-                                    {{ form.contact_number }}
-                                    {{ form.contact_number.errors }}
+                                <div class="fields">
+                                    <div class="inputContainer">
 
-                                    {% comment %} <label for="ContactNumber">Contact Number:</label> {% endcomment %}
-                                    {% comment %} <input type="tel" name="ContactNumber" id="ContactNumber" placeholder="050 524 1706" required><br> {% endcomment %}
-                                    {% comment %} <label for="Phone">Phone Number:</label>
-                                    <input type="tel" name="Phone" id="Phone" placeholder="050 524 1706" required><br> {% endcomment %}
+                                        {{ form.contact_number.label_tag }}
+                                        <p class='helpTexts'>Provide your most active contact number.</p>
+                                        <div class="contactholder">
+                                            <div class="countryCode">
+                                                <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M14.2821 0.308123C14.1852 0.210489 14.07 0.132995 13.9431 0.0801111C13.8162 0.0272271 13.68 0 13.5425 0C13.405 0 13.2688 0.0272271 13.1419 0.0801111C13.015 0.132995 12.8997 0.210489 12.8029 0.308123L8.03208 5.07896C7.93524 5.17659 7.82003 5.25408 7.69309 5.30697C7.56616 5.35985 7.43001 5.38708 7.29249 5.38708C7.15498 5.38708 7.01883 5.35985 6.89189 5.30697C6.76496 5.25408 6.64975 5.17659 6.55291 5.07896L1.78208 0.308123C1.68524 0.210489 1.57003 0.132995 1.44309 0.0801111C1.31616 0.0272271 1.18 0 1.04249 0C0.90498 0 0.768828 0.0272271 0.641891 0.0801111C0.514955 0.132995 0.399745 0.210489 0.302909 0.308123C0.108897 0.503293 0 0.767305 0 1.0425C0 1.31769 0.108897 1.5817 0.302909 1.77687L5.08416 6.55812C5.6701 7.14333 6.46437 7.47204 7.29249 7.47204C8.12062 7.47204 8.91489 7.14333 9.50083 6.55812L14.2821 1.77687C14.4761 1.5817 14.585 1.31769 14.585 1.0425C14.585 0.767305 14.4761 0.503293 14.2821 0.308123Z" fill="#634E2D"/>
+                                                </svg>
+                                                
+                                                <select name="countryCode" id="countryCode_id" class="countryCode_cls">
+                                                    <option value="+233">+233</option>
+                                                    <option value="+1">+1</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="number">
+                                                <input type="tel" name="number" id="number_id" class="number_cls">
+                                            </div>
+                                            
+                                        </div>
+                                        {{ form.contact_number }}
+                                        {{ form.contact_number.errors }}
+
+                                        {% comment %} <label for="ContactNumber">Contact Number:</label> {% endcomment %}
+                                        {% comment %} <input type="tel" name="ContactNumber" id="ContactNumber" placeholder="050 524 1706" required><br> {% endcomment %}
+                                        {% comment %} <label for="Phone">Phone Number:</label>
+                                        <input type="tel" name="Phone" id="Phone" placeholder="050 524 1706" required><br> {% endcomment %}
+                                    </div>
+                                    <div class="inputContainer">
+
+                                        {{ form.contact_number2.label_tag }}
+                                        <p class='helpTexts'>Provide an alternative contact number.</p>
+                                        <div class="contactholder">
+                                            <div class="countryCode">
+                                                <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M14.2821 0.308123C14.1852 0.210489 14.07 0.132995 13.9431 0.0801111C13.8162 0.0272271 13.68 0 13.5425 0C13.405 0 13.2688 0.0272271 13.1419 0.0801111C13.015 0.132995 12.8997 0.210489 12.8029 0.308123L8.03208 5.07896C7.93524 5.17659 7.82003 5.25408 7.69309 5.30697C7.56616 5.35985 7.43001 5.38708 7.29249 5.38708C7.15498 5.38708 7.01883 5.35985 6.89189 5.30697C6.76496 5.25408 6.64975 5.17659 6.55291 5.07896L1.78208 0.308123C1.68524 0.210489 1.57003 0.132995 1.44309 0.0801111C1.31616 0.0272271 1.18 0 1.04249 0C0.90498 0 0.768828 0.0272271 0.641891 0.0801111C0.514955 0.132995 0.399745 0.210489 0.302909 0.308123C0.108897 0.503293 0 0.767305 0 1.0425C0 1.31769 0.108897 1.5817 0.302909 1.77687L5.08416 6.55812C5.6701 7.14333 6.46437 7.47204 7.29249 7.47204C8.12062 7.47204 8.91489 7.14333 9.50083 6.55812L14.2821 1.77687C14.4761 1.5817 14.585 1.31769 14.585 1.0425C14.585 0.767305 14.4761 0.503293 14.2821 0.308123Z" fill="#634E2D"/>
+                                                </svg>
+                                                
+                                                <select name="countryCode" id="countryCode2_id" class="countryCode_cls">
+                                                    <option value="+233">+233</option>
+                                                    <option value="+1">+1</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="number">
+                                                <input type="tel" name="number" id="number2_id" class="number_cls">
+                                            </div>
+                                            
+                                        </div>
+                                        {{ form.contact_number2 }}
+                                        {{ form.contact_number2.errors }}
+                    
+                                    {% comment %}  <label for="OtherPhone">Other Phone Number(Whatsapp):</label>
+                                        <input type="tel" name="OtherPhone" id="OtherPhone" placeholder="050 300 4659"><br>
+                                    </div> {% endcomment %}
+                                <!--  <div class="inputContainer">
+                                        <label for="WhatsappPhone">Whatsapp Phone Number:</label>
+                                        <input type="tel" name="WhatsappPhone" id="WhatsappPhone" placeholder="050 300 4659"><br>
+                                    </div>
+                            
+                                    -->
                                 </div>
-                                <div class="inputContainer">
-
-                                    {{ form.contact_number2.label_tag }}
-                                    {{ form.contact_number2 }}
-                                    {{ form.contact_number2.errors }}
-                                    <p id="help_text">{{ form.contact_number2.help_text}}</p>
-                                   {% comment %}  <label for="OtherPhone">Other Phone Number(Whatsapp):</label>
-                                    <input type="tel" name="OtherPhone" id="OtherPhone" placeholder="050 300 4659"><br>
-                                </div> {% endcomment %}
-                               <!--  <div class="inputContainer">
-                                    <label for="WhatsappPhone">Whatsapp Phone Number:</label>
-                                    <input type="tel" name="WhatsappPhone" id="WhatsappPhone" placeholder="050 300 4659"><br>
-                                </div>
-                                 -->
                                 
                                <a href="#form1" class="backBTN">&lt; Back</a>
                                 <a href="#form3" id="ContactInformation" class="nextBTN">Next &gt;</a>
@@ -136,15 +191,31 @@
                                 <legend> Location information</legend>
                                 <div class="seperationline"></div>
 
+                                <div class="fields">
                                 <div class="inputContainer">
                                     {{ form.country.label_tag }}
+                                    <p class='helpTexts'>Which country do you reside or work from</p>
+
+                                     <div class="genderHolder">
+                                            <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.2821 0.308123C14.1852 0.210489 14.07 0.132995 13.9431 0.0801111C13.8162 0.0272271 13.68 0 13.5425 0C13.405 0 13.2688 0.0272271 13.1419 0.0801111C13.015 0.132995 12.8997 0.210489 12.8029 0.308123L8.03208 5.07896C7.93524 5.17659 7.82003 5.25408 7.69309 5.30697C7.56616 5.35985 7.43001 5.38708 7.29249 5.38708C7.15498 5.38708 7.01883 5.35985 6.89189 5.30697C6.76496 5.25408 6.64975 5.17659 6.55291 5.07896L1.78208 0.308123C1.68524 0.210489 1.57003 0.132995 1.44309 0.0801111C1.31616 0.0272271 1.18 0 1.04249 0C0.90498 0 0.768828 0.0272271 0.641891 0.0801111C0.514955 0.132995 0.399745 0.210489 0.302909 0.308123C0.108897 0.503293 0 0.767305 0 1.0425C0 1.31769 0.108897 1.5817 0.302909 1.77687L5.08416 6.55812C5.6701 7.14333 6.46437 7.47204 7.29249 7.47204C8.12062 7.47204 8.91489 7.14333 9.50083 6.55812L14.2821 1.77687C14.4761 1.5817 14.585 1.31769 14.585 1.0425C14.585 0.767305 14.4761 0.503293 14.2821 0.308123Z" fill="#634E2D"/>
+                                            </svg>
                                     {{ form.country }}
+                                    </div>
                                     {{ form.country.errors }}
                                 </div>
 
                                 <div class="inputContainer">
                                     {{ form.base_location.label_tag }}
+                                    <p class='helpTexts'>Which state or region do you reside or work from</p>
+
+                                     <div class="genderHolder">
+                                            <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.2821 0.308123C14.1852 0.210489 14.07 0.132995 13.9431 0.0801111C13.8162 0.0272271 13.68 0 13.5425 0C13.405 0 13.2688 0.0272271 13.1419 0.0801111C13.015 0.132995 12.8997 0.210489 12.8029 0.308123L8.03208 5.07896C7.93524 5.17659 7.82003 5.25408 7.69309 5.30697C7.56616 5.35985 7.43001 5.38708 7.29249 5.38708C7.15498 5.38708 7.01883 5.35985 6.89189 5.30697C6.76496 5.25408 6.64975 5.17659 6.55291 5.07896L1.78208 0.308123C1.68524 0.210489 1.57003 0.132995 1.44309 0.0801111C1.31616 0.0272271 1.18 0 1.04249 0C0.90498 0 0.768828 0.0272271 0.641891 0.0801111C0.514955 0.132995 0.399745 0.210489 0.302909 0.308123C0.108897 0.503293 0 0.767305 0 1.0425C0 1.31769 0.108897 1.5817 0.302909 1.77687L5.08416 6.55812C5.6701 7.14333 6.46437 7.47204 7.29249 7.47204C8.12062 7.47204 8.91489 7.14333 9.50083 6.55812L14.2821 1.77687C14.4761 1.5817 14.585 1.31769 14.585 1.0425C14.585 0.767305 14.4761 0.503293 14.2821 0.308123Z" fill="#634E2D"/>
+                                            </svg>
                                     {{ form.base_location }}
+
+                                     </div>
                                     {{ form.base_location.errors }}
                                     <!-- <label for="CT_location">Region you are based:</label>
                                     <div class="select-wrapper">
@@ -171,7 +242,14 @@
 
                                 <div class="inputContainer">
                                     {{ form.sub_location.label_tag }}
+                                    <p class='helpTexts'>Which town do you reside or work from</p>
+
+                                     <div class="genderHolder">
+                                            <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.2821 0.308123C14.1852 0.210489 14.07 0.132995 13.9431 0.0801111C13.8162 0.0272271 13.68 0 13.5425 0C13.405 0 13.2688 0.0272271 13.1419 0.0801111C13.015 0.132995 12.8997 0.210489 12.8029 0.308123L8.03208 5.07896C7.93524 5.17659 7.82003 5.25408 7.69309 5.30697C7.56616 5.35985 7.43001 5.38708 7.29249 5.38708C7.15498 5.38708 7.01883 5.35985 6.89189 5.30697C6.76496 5.25408 6.64975 5.17659 6.55291 5.07896L1.78208 0.308123C1.68524 0.210489 1.57003 0.132995 1.44309 0.0801111C1.31616 0.0272271 1.18 0 1.04249 0C0.90498 0 0.768828 0.0272271 0.641891 0.0801111C0.514955 0.132995 0.399745 0.210489 0.302909 0.308123C0.108897 0.503293 0 0.767305 0 1.0425C0 1.31769 0.108897 1.5817 0.302909 1.77687L5.08416 6.55812C5.6701 7.14333 6.46437 7.47204 7.29249 7.47204C8.12062 7.47204 8.91489 7.14333 9.50083 6.55812L14.2821 1.77687C14.4761 1.5817 14.585 1.31769 14.585 1.0425C14.585 0.767305 14.4761 0.503293 14.2821 0.308123Z" fill="#634E2D"/>
+                                            </svg>
                                     {{ form.sub_location }}
+                                     </div>
                                     {{ form.sub_location.errors }}
 
                                     <datalist id="{{ form.sub_location.id_for_label}}">
@@ -196,7 +274,9 @@
                                 </div>
                                 <div class="inputContainer">
                                     {{ form.work_areas.label_tag }}
+                                    <p class='helpTexts'>Which area do you reside or work from</p>
                                     {{ form.work_areas }}
+                                    
                                     {{ form.work_areas.errors }}
 
                                     <datalist id="{{ form.work_areas.id_for_label}}">
@@ -207,6 +287,8 @@
                                     <!-- <label for="Other">Which area are you located(Sub of the town):</label>
                                     <input type="text" name="Area" id="Area" placeholder="Atadeka"><br> -->
                                 </div>
+
+                            </div>
                                 
                                 <a href="#form2" class="backBTN">&lt; Back</a>
                                 <a href="#form4" id="LocationInformation" class="nextBTN">Next &gt;</a>
@@ -219,11 +301,19 @@
                                 <fieldset class="fieldset">
                                 <legend>Trades information:</legend>
                                 <div class="seperationline"></div>
+
+                                <div class="fields">
                                 <div class="inputContainer">
                                     {{ form.trade_category.label_tag }}
                                     <p class='helpTexts'>What is kind of Tradesperson are you.(Eg. Mason, Carpenter etc.)</p>
 
+                                     <div class="genderHolder">
+                                            <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.2821 0.308123C14.1852 0.210489 14.07 0.132995 13.9431 0.0801111C13.8162 0.0272271 13.68 0 13.5425 0C13.405 0 13.2688 0.0272271 13.1419 0.0801111C13.015 0.132995 12.8997 0.210489 12.8029 0.308123L8.03208 5.07896C7.93524 5.17659 7.82003 5.25408 7.69309 5.30697C7.56616 5.35985 7.43001 5.38708 7.29249 5.38708C7.15498 5.38708 7.01883 5.35985 6.89189 5.30697C6.76496 5.25408 6.64975 5.17659 6.55291 5.07896L1.78208 0.308123C1.68524 0.210489 1.57003 0.132995 1.44309 0.0801111C1.31616 0.0272271 1.18 0 1.04249 0C0.90498 0 0.768828 0.0272271 0.641891 0.0801111C0.514955 0.132995 0.399745 0.210489 0.302909 0.308123C0.108897 0.503293 0 0.767305 0 1.0425C0 1.31769 0.108897 1.5817 0.302909 1.77687L5.08416 6.55812C5.6701 7.14333 6.46437 7.47204 7.29249 7.47204C8.12062 7.47204 8.91489 7.14333 9.50083 6.55812L14.2821 1.77687C14.4761 1.5817 14.585 1.31769 14.585 1.0425C14.585 0.767305 14.4761 0.503293 14.2821 0.308123Z" fill="#634E2D"/>
+                                            </svg>
                                     {{ form.trade_category }}
+                                     </div>
+                                     
                                     {{ form.trade_category.errors }}
                                     <!-- <label for="CT_tradestype">What is your main trades type:</label>
                                     <div class="select-wrapper">
@@ -284,6 +374,13 @@
                                     {{ form.skills.label_tag }}
                                     <p class='helpTexts'>Add special keywords under you Trdaes.(For Search purposes.)</p>
                                     {{ form.skills }}
+                                    <input type="text" name="Skill_nput" id="Skills_input" placeholder="e.g. Wiring">
+                                    
+                                    <div class="tagHolder" id="TagHolder">
+                                        <!--  Tags will be added here dynamically -->
+
+                                    </div>
+                                    <button type="button" id="add_skill_BTN">Add Skill &nbsp; +</button>
                                     {{ form.skills.errors }}
                                     
 
@@ -292,8 +389,13 @@
                                             <option value="{{ tag.name }}">
                                         {% endfor %}
                                     </datalist>
+
+
+                                    
                                    <!--  <label for="tags">Add your tags:</label>
                                     <input type="email" name="Email" id="tags" placeholder="fitting"><br> -->
+                                </div>
+
                                 </div>
                                 
                                 <a href="#form3" class="backBTN">&lt; Back</a>
@@ -307,12 +409,14 @@
                                 <fieldset class="fieldset">
                                 <legend>Profile Picture & Bio</legend>
                                 <div class="seperationline"></div>
+
+                                <div class="fields">
                                 <div class="inputContainer ProPic">
 
                                     {{ form.profile_picture.label_tag }}
 
                                     <div id="ProfilePicHolder">
-                                        <img src={% static "images/agent.png" %} alt="Profile Image" width="100" height="100" id='imageHolder'>
+                                        <img src={% static "images/user2.png" %} alt="Profile Image" width="100" height="100" id='imageHolder'>
                                     <div class="penSVG">
                                         <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="25" height="25"><path d="M22.853,1.148a3.626,3.626,0,0,0-5.124,0L1.465,17.412A4.968,4.968,0,0,0,0,20.947V23a1,1,0,0,0,1,1H3.053a4.966,4.966,0,0,0,3.535-1.464L22.853,6.271A3.626,3.626,0,0,0,22.853,1.148ZM5.174,21.122A3.022,3.022,0,0,1,3.053,22H2V20.947a2.98,2.98,0,0,1,.879-2.121L15.222,6.483l2.3,2.3ZM21.438,4.857,18.932,7.364l-2.3-2.295,2.507-2.507a1.623,1.623,0,1,1,2.295,2.3Z"/></svg>
 
@@ -328,8 +432,11 @@
                                 <div class="inputContainer BioDiv">
 
                                     {{ form.bio.label_tag }}
+                                    <p class='helpTexts'>Provide a detalied discription of yourself.</p>
                                     {{ form.bio }}
                                     {{ form.bio.errors }}
+
+                                </div>
 
                                 </div>
                                <a href="#form4" class="backBTN">&lt; Back</a>

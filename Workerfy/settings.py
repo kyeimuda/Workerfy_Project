@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
     'Discover',
     'MainPageApp',
-    'MainWorkerfy'
+    'MainWorkerfy',
+    'WorkerfyAPI',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [

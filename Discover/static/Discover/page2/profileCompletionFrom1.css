@@ -105,11 +105,14 @@ figure img {
 
 form{
     width: 100%;
-    height: 100%;
+    height: 96%;
 }
+
+
 .progressBulbs {
     width: 100%;
-    padding: 0 1vw;
+    padding: 1vh 1vw;
+    height: 4%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -151,7 +154,7 @@ form{
     padding: 2vh 4.5vw;
     border: none;
     border-radius: 1.8vh;
-    background-color: whitesmoke;
+    background-color: rgba(128, 128, 128,0.1);
     font-size: 2vh;
     font-family: "Poppins", sans-serif;
     outline: none;
@@ -170,8 +173,22 @@ form{
     margin: auto;
 }
 
+/* .forms > div {
+    height: 90%;
+    overflow: auto;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+} */
+
+.fields {
+    height: 80vh;
+    overflow-y: auto;
+    scrollbar-width: none;
+    padding-bottom: 4vh;
+}
+
 .inputContainer {
     margin: 4vh 0;
+    padding: 0 2vh;
     /* padding: 0 4vw; */
 }
 
@@ -253,14 +270,17 @@ button:hover, a:hover {
     transition: 0.3s;
 }
 
-input:focus{
+.inputContainer > input:focus{
     background-color: whitesmoke;
     box-shadow: 0 1px 6px 0 #1818e9;
+    transition: box-shadow 150ms ease;
 }
 
 select:focus{
     background-color: #f0f0f0;
     box-shadow: 0 1px 6px 0 #1818e9;
+    appearance: none;
+    transition: box-shadow 150ms ease;
 }
 
 .fieldset {
@@ -298,28 +318,20 @@ select{
     appearance: none;
     border: none;
     border-radius: 1.8vh;
-    background-color: rgba(245, 245, 245, 0.7);
+    background-color: rgba(128, 128, 128, 0.1);
     font-size: 2vh;
     font-family: "Poppins", sans-serif;
     outline: none;
+    appearance: none;
 }
 
-.select-wrapper::after {
-    content: "▼";
-    position: absolute;
-    top: 50%;
-    right: 2vh;
-    transform: translateY(-50%);
-    pointer-events: none;
-    font-size: 2vh;
-    color: #000080;
-}
 
 option{
+    width: 50%;
     font-size: 2vh;
-    width: 50vh;
     color: #000080;
     font-family: "Poppins", sans-serif;
+    appearance: none;
 }
 
 @keyframes introSection {
@@ -334,7 +346,9 @@ option{
 }
 
 .Info {
-    padding: 2vh;
+    height: 100%;
+    padding: 2vh 0;
+    background-color: #FDFCFA;
 }
 
 .BioDiv{
@@ -363,7 +377,7 @@ option{
     align-items: center;
     overflow: hidden;
     margin-top: 1vh;
-    box-shadow: 0 1px 10px 0px #1818e9;
+    box-shadow: 0 0 4px 0px #1818e9;
 }
 
 #ProfilePicHolder img {
@@ -399,17 +413,21 @@ option{
     width: 100%;
     padding: 2vh;
     height: 15vh;
+    font-size: 1.7778vh;
     border-radius: 2vh;
     border: 1px solid rgb(0, 0, 128, 0.5);
+    outline: none;
+    font-size: 2vh;
+    font-family: "Poppins", sans-serif;
 }
 
 #form5 .BioDiv textarea:focus {
     border: 1px solid rgb(0, 0, 128, 0.5);
     background-color: #f0f0f0;
     box-shadow: 0 1px 6px 0 #1818e9;
+    transition: box-shadow 150ms ease;
 }
 
-#id_bio
 
 #help_text{
     color: #000080;
@@ -427,4 +445,101 @@ option{
 
 .penSVG svg{
     fill: #000080;
+}
+
+#Skills {
+    display: none;   
+}
+
+#add_skill_BTN {
+    padding: 1vh 2vh;
+    margin-top: 2vh;
+    display: block;
+    margin-left: auto;
+    font-size: 1.5556vh;
+    font-weight: 600;
+    font-family: "Playpen Sans", cursive;
+    border-radius: 2vh;
+    background-color: #0000ff;
+    color: white;
+    border: none;
+
+}
+
+.tagHolder {
+    padding: 1vh 2vh;
+    display: flex;
+    gap: 1vh;
+    flex-wrap: wrap;
+}
+
+.tagHolder p {
+    display: inline-block;
+    border-radius: 2vh;
+    padding: 1vh 2vh;
+    background-color: #E3D5C0;
+    color: #000080;
+    font-size: 1.5556vh;
+    font-weight: 600;
+    font-family: "Playpen Sans", cursive;
+    border: 1px solid rgba(0, 0, 182, 0.5);
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 255, 0.5);
+}
+
+.genderHolder {
+    position: relative;
+
+}
+
+.genderHolder svg, .countryCode svg {
+    position: absolute;
+    right: 2vh;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.contactholder {
+    display: flex;
+    border-radius: 1.8vh;
+    align-self: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.contactholder:focus-within {
+    box-shadow: 0 1px 6px 0 #1818e9;
+    transition: box-shadow 150ms ease;
+}
+
+.countryCode {
+    width: 28%;
+    position: relative;
+    border-right: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+.countryCode_cls {
+    width: 100%;
+    border-radius: 0;
+    padding-right: 1vh;
+    height: 100%;
+}
+
+.countryCode_cls:focus{
+    box-shadow: none;
+}
+
+.number{
+    width: 72%;
+    
+}
+
+.number input {
+    border-radius: 0%;
+    padding-left: 0;
+    padding-left: 1vh;
+}
+
+#Phone, #OtherPhone{
+    display: none;
 }

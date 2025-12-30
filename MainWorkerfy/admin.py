@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from .models import TradeCategory, TradeSpecialty, TradeSkillTag, TradespersonProfile, Area,\
-      City, Region, EarnedBadge, Certificate, Badge, PortfolioItem, Country
+      City, Region, EarnedBadge, Certificate, Badge, PortfolioItem, Country, JobPost, JobPostAttachment
 
 admin.site.register(TradeCategory)
 admin.site.register(TradeSpecialty)
@@ -12,6 +12,8 @@ admin.site.register(City)
 admin.site.register(Area)
 admin.site.register(PortfolioItem)
 admin.site.register(Country)
+admin.site.register(JobPost)
+admin.site.register(JobPostAttachment)
 
 
 @admin.register(Badge)

@@ -1,0 +1,164 @@
+{% extends "main/baseMainpage.html" %}
+{% load static %}
+
+{% block title %}
+    <title>Work Page </title>
+{% endblock title %}
+
+{% block styles %} 
+    <link rel="stylesheet" href={% static "Discover/page2/WorkerfyMainPage.css" %}>
+{% endblock styles %}
+
+{% block body %}
+    <section class="mainSections Notifications_section" id="mainSection4">
+                <div class="notificationSection">
+                    <h2>Notification</h2>
+                </div>
+                
+                <div class="notifications">
+
+
+                    <div class="notificationFilterContainer">
+                        <div class="indicationlights">
+                            <div>
+                                <div class="switchindication"> <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="4" cy="4" r="4" fill="#006AFF"/>
+                                    </svg>
+                                    <p>Unread</p>
+                                </div>
+                                
+                                <div class="switchindication"> <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="4" cy="4" r="4" fill="#B6B6B6"/>
+                                    </svg>
+                                    <p>Read</p>
+                                </div>
+
+                                <div class="switchindication"> <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="4" cy="4" r="4" fill="#6DFF6D"/>
+                                    </svg>
+                                    <p>System</p>
+                                </div>
+
+                                <div class="switchindication"> <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="4" cy="4" r="4" fill="#FF2424"/>
+                                    </svg>
+                                    <p>Alerts</p>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="notificationFilter">
+                        <svg width="20" height="20" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 3.93329C15 2.13163 13.535 0.666626 11.7333 0.666626H3.26667C1.465 0.666626 0 2.13163 0 3.93329C0 4.71246 0.279167 5.46746 0.786667 6.05913L5 10.975V14C5 14.2625 5.12333 14.5091 5.33333 14.6666L8.66667 17.1666C8.81417 17.2766 8.99 17.3333 9.16667 17.3333C9.29333 17.3333 9.42167 17.3041 9.53917 17.2458C9.82167 17.105 10 16.8158 10 16.5V10.975L14.2133 6.05913C14.7208 5.46746 15 4.71246 15 3.93329ZM12.9483 4.97496L8.53417 10.125C8.405 10.2758 8.33333 10.4683 8.33333 10.6675V14.8341L6.66667 13.5841V10.6675C6.66667 10.4683 6.59583 10.2758 6.46583 10.125L2.05167 4.97413C1.80333 4.68413 1.66667 4.31413 1.66667 3.93246C1.66667 3.04996 2.38417 2.33246 3.26667 2.33246H11.7333C12.6158 2.33246 13.3333 3.04996 13.3333 3.93246C13.3333 4.31413 13.1967 4.68496 12.9483 4.97496ZM20 15.6675C20 16.1275 19.6267 16.5008 19.1667 16.5008H12.5C12.04 16.5008 11.6667 16.1275 11.6667 15.6675C11.6667 15.2075 12.04 14.8341 12.5 14.8341H19.1667C19.6267 14.8341 20 15.2075 20 15.6675ZM20 12.3341C20 12.7941 19.6267 13.1675 19.1667 13.1675H12.5C12.04 13.1675 11.6667 12.7941 11.6667 12.3341C11.6667 11.8741 12.04 11.5008 12.5 11.5008H19.1667C19.6267 11.5008 20 11.8741 20 12.3341ZM15 8.16746H19.1667C19.6267 8.16746 20 8.54079 20 9.00079C20 9.46079 19.6267 9.83413 19.1667 9.83413H15C14.54 9.83413 14.1667 9.46079 14.1667 9.00079C14.1667 8.54079 14.54 8.16746 15 8.16746Z" fill="#000080"/>
+                    </svg>
+
+                    <select name="FilterSelect" id="FilterSelect">
+                        <option value="All">All</option>
+                        <option value="Today">Today</option>
+                        <option value="Viewsl">Views</option>
+                        <option value="System">System</option>
+                    </select>
+                    </div>
+                    </div>
+
+                    <div class="notificationCats">
+                        <div class="notificationDay">
+                            <p>Today</p>
+                        </div>
+
+                        <div class="notificationCard">
+                            <div class="switch"> <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="4" cy="4" r="4" fill="#006AFF"/>
+                                </svg>
+                            </div>
+                            <div class="TitleAndTime">
+                                <h3>Notification Title</h3>
+                                <time datetime="datetime">3:00pm</time>
+                            </div>
+                            <div class="details">
+                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta aut beatae iusto cumque qui odit. Officia sint aperiam, reiciendis minus provident amet nihil libero sunt voluptatem. Dicta perferendis itaque veniam!
+                            </div>
+
+                        </div>
+
+                        <div class="notificationCard">
+                            <div class="switch"> <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="4" cy="4" r="4" fill="#006AFF"/>
+                                </svg>
+                            </div>
+                            <div class="TitleAndTime">
+                                <h3>Notification Title</h3>
+                                <time datetime="datetime">3:00pm</time>
+                            </div>
+                            <div class="details">
+                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta aut beatae iusto cumque qui odit. Officia sint aperiam, reiciendis minus provident amet nihil libero sunt voluptatem. Dicta perferendis itaque veniam!
+                            </div>
+
+                        </div>
+
+                        <div class="notificationCard">
+                            <div class="switch"> <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="4" cy="4" r="4" fill="#006AFF"/>
+                                </svg>
+                            </div>
+                            <div class="TitleAndTime">
+                                <h3>Notification Title</h3>
+                                <time datetime="datetime">3:00pm</time>
+                            </div>
+                            <div class="details">
+                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta aut beatae iusto cumque qui odit. Officia sint aperiam, reiciendis minus provident amet nihil libero sunt voluptatem. Dicta perferendis itaque veniam!
+                            </div>
+
+                        </div>
+
+
+                        <div class="notificationCardOld">
+                            <div class="TitleAndTime">
+                                <h3>Notification Title</h3>
+                                <time datetime="datetime">3:00pm</time>
+                            </div>
+                            <div class="details">
+                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta aut beatae iusto cumque qui odit. Officia sint aperiam, reiciendis minus provident amet nihil libero sunt voluptatem. Dicta perferendis itaque veniam!
+                            </div>
+
+                        </div>
+
+                        <div class="notificationCard">
+                            <div class="switch"> <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="4" cy="4" r="4" fill="#6DFF6D"/>
+                                </svg>
+                            </div>
+                            <div class="TitleAndTime">
+                                <h3>Notification Title</h3>
+                                <time datetime="datetime">3:00pm</time>
+                            </div>
+                            <div class="details">
+                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta aut beatae iusto cumque qui odit. Officia sint aperiam, reiciendis minus provident amet nihil libero sunt voluptatem. Dicta perferendis itaque veniam!
+                            </div>
+                        </div>
+
+                        <div class="notificationCard">
+                            <div class="switch"> <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="4" cy="4" r="4" fill="#6DFF6D"/>
+                                </svg>
+                            </div>
+                            <div class="TitleAndTime">
+                                <h3>Notification Title</h3>
+                                <time datetime="datetime">3:00pm</time>
+                            </div>
+                            <div class="details">
+                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta aut beatae iusto cumque qui odit. Officia sint aperiam, reiciendis minus provident amet nihil libero sunt voluptatem. Dicta perferendis itaque veniam!
+                            </div>
+                        </div>
+                    </div>
+
+                   
+
+                </div>
+                
+            </section>
+{% endblock body %}
+
+{% block scripts %}
+<script src="{% static 'Discover/page2/WorkerfyMainPage.js' %}"></script>
+<script src="{% static 'Discover/page2/navs.js' %}"></script>
+{% endblock scripts %}

@@ -142,14 +142,14 @@
     
 }
 
-.content ul{
+.content ul li{
   text-align: center;
   font-family: 'Nunito', sans-serif;
   font-size: 1.75vh;
   color: #000080;
   line-height: 3vh;
   list-style-position: inside;
-  font-weight: 600;
+  font-weight: 700;
   
 
 }

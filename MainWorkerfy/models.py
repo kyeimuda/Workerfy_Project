@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from .validators import validate_certificate_file, validate_video_size, validate_video_extension
 from .paths import portfolio_image_upload_path, portfolio_video_upload_path
@@ -213,6 +214,7 @@ class TradespersonProfile(models.Model):
     username = models.CharField(max_length=150, blank=True, help_text="Username for login")
     profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
     bio = models.TextField(blank=True, help_text="Short bio or introduction")
+    tagline = models.CharField(max_length=100, blank=True, help_text="A catchy tagline for your profile")
     contact_number = models.CharField(max_length=15, blank=True, help_text="Phone number for client contact")
     contact_number2 = models.CharField(max_length=15, blank=True, help_text="Secondary phone number (Whatsapp, etc.)")
     gender = models.CharField(max_length=50, choices=[
@@ -276,4 +278,83 @@ class TradespersonProfile(models.Model):
         return name if name else self.username or f"Tradesperson {self.id}"
 
 
+JOB_TYPE_CHOICES = [
+    ("one_time", "One-time"),
+    ("recurring", "Recurring"),
+    ("contract", "Contract"),
+]
 
+WORK_ENV_CHOICES = [
+    ("indoor", "Indoor"),
+    ("outdoor", "Outdoor"),
+    ("residential", "Residential"),
+    ("industrial", "Industrial"),
+]
+
+URGENCY_CHOICES = [
+    ("urgent", "Urgent"),
+    ("normal", "Normal"),
+]
+
+BUDGET_TYPE_CHOICES = [
+    ("fixed", "Fixed Price"),
+    ("hourly", "Hourly Rate"),
+    ("negotiable", "Negotiable"),
+]
+
+MATERIALS_CHOICES = [
+    ("yes", "Yes"),
+    ("no", "No"),
+]
+
+CONTACT_METHOD_CHOICES = [
+    ("whatsapp", "Whatsapp"),
+    ("email", "Email"),
+    ("call", "Call"),
+    ("text", "Text"),
+]
+
+class JobPost(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="job_posts")
+    title = models.CharField(max_length=255)
+    trade_category = models.ForeignKey(TradeCategory, on_delete=models.SET_NULL, null=True, blank=True)
+    job_type = models.CharField(max_length=20, choices=JOB_TYPE_CHOICES)
+    description = models.TextField()
+
+    country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True, blank=True)
+    region = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True, blank=True)
+    city = models.ForeignKey(City, on_delete=models.SET_NULL, null=True, blank=True)
+    area = models.CharField(max_length=255, blank=True)
+
+    work_environment = models.CharField(max_length=20, choices=WORK_ENV_CHOICES, blank=True)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
+    expiry_date = models.DateField(null=True, blank=True)
+
+    urgency_level = models.CharField(max_length=10, choices=URGENCY_CHOICES, blank=True)
+    budget_type = models.CharField(max_length=20, choices=BUDGET_TYPE_CHOICES, blank=True)
+    budget_range = models.CharField(max_length=100, blank=True)
+
+    materials_provided = models.CharField(max_length=3, choices=MATERIALS_CHOICES, default="no")
+    required_skills = models.JSONField(default=list, blank=True, help_text="List of required skills for the job")
+
+    contact_method = models.CharField(max_length=20, choices=CONTACT_METHOD_CHOICES, blank=True)
+    contact_number = models.CharField(max_length=50, blank=True)
+
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.title} — {self.trade_category or 'Uncategorized'}"
+
+class JobPostAttachment(models.Model):
+    job_post = models.ForeignKey(JobPost, on_delete=models.CASCADE, related_name="attachments")
+    file = models.FileField(upload_to="job_attachments/")
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Attachment for {self.uploaded_at}{self.job_post.pk} - {self.job_post.title}"
