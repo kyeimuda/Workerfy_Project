@@ -41,7 +41,7 @@ class Area(models.Model):
     city = models.ForeignKey(City, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.name}, {self.city.name}"
+        return f"{self.name} {self.city.name}, {self.city.region.name}, {self.city.region.country.initials}"
     
 """
 1. TradeCategory

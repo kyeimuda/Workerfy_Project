@@ -4,44 +4,34 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.models import User
-from MainWorkerfy.models import TradespersonProfile, City, Area, Country, Region, TradeSpecialty, TradeCategory, TradeSkillTag\
+from MainWorkerfy.models import JobPostAttachment, TradespersonProfile, City, Area, Country, Region, TradeSpecialty, TradeCategory, TradeSkillTag\
     , JobPost
 from .serializers import CitySerializer, TradespeopleSerializer, TradeSpecialtySerializer, TradeCategorySerializer, TradeSkillTagSerializer\
-    , CountrySerializer, jobsSerializer
+    , CountrySerializer, jobattachmentsSerializer, jobsSerializer, userSerializer
+from .API_format import api_response
 
-@api_view(['GET'])
-def health_check(request):
-    """
-    A simple health check endpoint to verify that the API is running.
-    """
-    data = []
-    api = {}
 
+@api_view(['GET', 'PUT'])
+def user_view(request):
+    """
+    API for retrieving all users
+    """
     users = User.objects.all()
+    serialized_data = userSerializer(users, many=True)
+    return Response(serialized_data.data)
 
-    for user in users:
-        individual_data = {
-            "id": user.id,
-            "username": user.username,
-            "email": user.email,
-            "first_name": user.first_name,
-            "last_name": user.last_name
-        }
-        data.append(individual_data)
-
-    api['data'] = data
-
-
-    return Response(api, status=status.HTTP_200_OK)
-
-@api_view(['GET'])
+@api_view(['GET','PUT'])
 def Tradespeople(request):
     """
     API for retrieving all tradespeople profiles.
     """
-    Tradespeople = TradespersonProfile.objects.all()
-    serialized_data = TradespeopleSerializer(Tradespeople, many=True)
-    return Response(serialized_data.data)
+    try:
+        Tradespeople = TradespersonProfile.objects.all()
+        serialized_data = TradespeopleSerializer(Tradespeople)
+    except Exception as error:
+        return Response(api_response(success=False, message=f"{error}"), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    return Response(api_response(success=True, message="Tradespeople profiles retrieved successfully", data=serialized_data.data), status=status.HTTP_200_OK)
+
 
 @api_view(['GET'])
 def City_view(request):
@@ -77,4 +67,13 @@ def jobs_view(request):
     """
     Jobs = JobPost.objects.all()
     serialized_data = jobsSerializer(Jobs, many=True)
+    return Response(serialized_data.data)
+
+@api_view(['GET'])
+def jobattachments_view(request):
+    """
+    API for retrieving all job post attachments.
+    """
+    Attachments = JobPostAttachment.objects.all()
+    serialized_data = jobattachmentsSerializer(Attachments, many=True)
     return Response(serialized_data.data)

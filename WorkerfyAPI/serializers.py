@@ -1,12 +1,22 @@
 from rest_framework import serializers
-from MainWorkerfy.models import TradespersonProfile, City, Area, Country, Region, TradeSpecialty, TradeCategory\
+from MainWorkerfy.models import JobPostAttachment, TradespersonProfile, City, Area, Country, Region, TradeSpecialty, TradeCategory\
     , TradeSkillTag, JobPost
+from django.contrib.auth.models import User
 
+
+# This is a serializer for the user model
+class userSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'email', 'date_joined']
 
 class TradespeopleSerializer(serializers.ModelSerializer):
+    trade_category = serializers.StringRelatedField()
+    sub_location = serializers.StringRelatedField()
+    
     class Meta:
         model = TradespersonProfile
-        fields = '__all__'
+        fields = ['id', 'first_name', 'last_name', 'other_names', 'trade_category', 'profile_picture', 'sub_location', 'skills','rate_charged', 'experience_years']
 
 class CitySerializer(serializers.ModelSerializer):
     class Meta:
@@ -43,7 +53,16 @@ class TradeSkillTagSerializer(serializers.ModelSerializer):
         model = TradeSkillTag
         fields = '__all__'
 
+class jobattachmentsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JobPostAttachment
+        fields = ['file', 'uploaded_at']
+
 class jobsSerializer(serializers.ModelSerializer):
+    attachments = jobattachmentsSerializer(many=True, read_only=True)
+    user = userSerializer(read_only=True)
+    
+
     class Meta:
         model = JobPost
         fields = '__all__'
