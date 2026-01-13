@@ -25,6 +25,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('main/', include('MainWorkerfy.urls')),
     path('api/v1/', include('WorkerfyAPI.urls')),
+    path('silk/', include('silk.urls', namespace='silk'))
 ]
 
 if settings.DEBUG:

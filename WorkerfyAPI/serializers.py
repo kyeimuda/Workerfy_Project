@@ -13,6 +13,8 @@ class userSerializer(serializers.ModelSerializer):
 class TradespeopleSerializer(serializers.ModelSerializer):
     trade_category = serializers.StringRelatedField()
     sub_location = serializers.StringRelatedField()
+    skills = serializers.StringRelatedField(many=True)
+
     
     class Meta:
         model = TradespersonProfile

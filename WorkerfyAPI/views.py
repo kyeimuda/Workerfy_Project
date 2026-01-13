@@ -20,19 +20,6 @@ def user_view(request):
     serialized_data = userSerializer(users, many=True)
     return Response(serialized_data.data)
 
-@api_view(['GET','PUT'])
-def Tradespeople(request):
-    """
-    API for retrieving all tradespeople profiles.
-    """
-    try:
-        Tradespeople = TradespersonProfile.objects.all()
-        serialized_data = TradespeopleSerializer(Tradespeople)
-    except Exception as error:
-        return Response(api_response(success=False, message=f"{error}"), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-    return Response(api_response(success=True, message="Tradespeople profiles retrieved successfully", data=serialized_data.data), status=status.HTTP_200_OK)
-
-
 @api_view(['GET'])
 def City_view(request):
     """
@@ -77,3 +64,29 @@ def jobattachments_view(request):
     Attachments = JobPostAttachment.objects.all()
     serialized_data = jobattachmentsSerializer(Attachments, many=True)
     return Response(serialized_data.data)
+
+@api_view(['GET'])
+def skills_view(request):
+    try:
+        skills = TradeSkillTag.objects.all()
+        serialized_data = TradeSkillTagSerializer(skills, many=True)
+    except Exception as error:
+        return Response(api_response(success=False, message=f"{error}"))
+    return Response(api_response(success=True, message="Successful", data=serialized_data.data))
+
+
+@api_view(['GET', 'PUT'])
+def Tradespeople_view(request):
+
+    try:
+        tradespeople = TradespersonProfile.objects.prefetch_related(
+            'trade_category',
+            'sub_location',
+            'sub_location__region',
+            'sub_location__region__country',
+            'skills'
+            ).all()
+        serialized_data = TradespeopleSerializer(tradespeople, many=True, context={'request': request})
+    except Exception as error:
+        return Response(api_response(success=False, message=f"{error}", errors='HTTP_500_INTERNAL_SERVER_ERROR'), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    return Response(api_response(success=True, message="Successful", data=serialized_data.data))

@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'MainPageApp',
     'MainWorkerfy',
     'WorkerfyAPI',
-    'rest_framework'
+    'rest_framework',
+    'silk',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +60,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware'
+    'allauth.account.middleware.AccountMiddleware',
+    'silk.middleware.SilkyMiddleware',
 ]
 
 ROOT_URLCONF = 'Workerfy.urls'

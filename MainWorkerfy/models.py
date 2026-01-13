@@ -109,7 +109,7 @@ class TradeSkillTag(models.Model):
         verbose_name_plural = "Trade Skill Tags"
 
     def __str__(self):
-        return f"{self.name} ({self.category.name})"
+        return f"{self.name}"
     
 class Certificate(models.Model):
     tradesperson = models.ForeignKey(
@@ -207,7 +207,7 @@ Many TradeSkillTags (via ManyToManyField)
 Stores the core professional identity of the tradesperson.
 """
 class TradespersonProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="tradesperson_profile")
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
     other_names = models.CharField(max_length=30, blank=True)
@@ -235,7 +235,7 @@ class TradespersonProfile(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        related_name="tradespeople"
+        related_name="tradespeople_category"
     )
 
     # Uncomment the following line if you want to allow multiple trade categories per tradesperson
@@ -244,18 +244,18 @@ class TradespersonProfile(models.Model):
     trade_specialties = models.ManyToManyField(
         TradeSpecialty,
         blank=True,
-        related_name="tradespeople"
+        related_name="tradespeople_specialty"
     )
 
     skills = models.ManyToManyField(
         TradeSkillTag, 
         blank=True, 
-        related_name="tradespeople"
+        related_name="tradespeople_skills"
     )
 
-    base_location = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True, blank=True, related_name="tradespeople")
-    sub_location = models.ForeignKey(City, on_delete=models.SET_NULL, null=True, blank=True, related_name="tradespeople")
-    work_areas = models.ForeignKey(Area,on_delete=models.SET_NULL, related_name="tradespeople", null=True, blank=True)
+    base_location = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True, blank=True, related_name="tradespeople_base")
+    sub_location = models.ForeignKey(City, on_delete=models.SET_NULL, null=True, blank=True, related_name="tradespeople_sub")
+    work_areas = models.ForeignKey(Area,on_delete=models.SET_NULL, related_name="tradespeople_work_areas", null=True, blank=True)
     working_areas = models.JSONField(default=dict, blank=True, help_text="Areas tradespeople can service")
     availability_status = models.CharField(
         max_length=50, 
