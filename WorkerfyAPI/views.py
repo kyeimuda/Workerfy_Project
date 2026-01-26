@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, viewsets
 from django.contrib.auth.models import User
 from MainWorkerfy.models import JobPostAttachment, TradespersonProfile, City, Area, Country, Region, TradeSpecialty, TradeCategory, TradeSkillTag\
     , JobPost
-from .serializers import CitySerializer, TradespeopleSerializer, TradeSpecialtySerializer, TradeCategorySerializer, TradeSkillTagSerializer\
+from .serializers import CitySerializer, TradespeopleListSerializer, TradespeopleCreateSerializer, TradeSpecialtySerializer, TradeCategorySerializer, TradeSkillTagSerializer\
     , CountrySerializer, jobattachmentsSerializer, jobsSerializer, userSerializer
 from .API_format import api_response
 
@@ -76,6 +77,7 @@ def skills_view(request):
 
 
 @api_view(['GET', 'PUT'])
+@permission_classes([])
 def Tradespeople_view(request):
 
     try:
@@ -86,7 +88,20 @@ def Tradespeople_view(request):
             'sub_location__region__country',
             'skills'
             ).all()
-        serialized_data = TradespeopleSerializer(tradespeople, many=True, context={'request': request})
+        serialized_data = TradespeopleListSerializer(tradespeople, many=True, context={'request': request})
     except Exception as error:
         return Response(api_response(success=False, message=f"{error}", errors='HTTP_500_INTERNAL_SERVER_ERROR'), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     return Response(api_response(success=True, message="Successful", data=serialized_data.data))
+
+
+class TradespeopleViewSet(viewsets.ModelViewSet):
+    queryset = TradespersonProfile.objects.prefetch_related(
+            'trade_category',
+            'sub_location',
+            'sub_location__region',
+            'sub_location__region__country',
+            'skills'
+            ).all()
+    serializer_class = TradespeopleListSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+

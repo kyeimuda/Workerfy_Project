@@ -10,7 +10,7 @@ class userSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'email', 'date_joined']
 
-class TradespeopleSerializer(serializers.ModelSerializer):
+class TradespeopleListSerializer(serializers.ModelSerializer):
     trade_category = serializers.StringRelatedField()
     sub_location = serializers.StringRelatedField()
     skills = serializers.StringRelatedField(many=True)
@@ -19,6 +19,13 @@ class TradespeopleSerializer(serializers.ModelSerializer):
     class Meta:
         model = TradespersonProfile
         fields = ['id', 'first_name', 'last_name', 'other_names', 'trade_category', 'profile_picture', 'sub_location', 'skills','rate_charged', 'experience_years']
+
+class TradespeopleCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TradespersonProfile
+        fields ='__all__'
+
+
 
 class CitySerializer(serializers.ModelSerializer):
     class Meta:
