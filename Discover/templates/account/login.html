@@ -58,15 +58,15 @@
                     <form method="post" action="/accounts/google/login/">
                         {% csrf_token %}
                         <button type="submit" class="google-login" ><img id='google_img' src={% static "images/google_cover-removebg-preview.png" %} alt="Sign in with Google" width="100" height="100"> <p>Login with Google</p> </button>
-                    <!--  <a href="{% provider_login_url 'google' %}" class="google-login"><img src={% static "images/google_cover-removebg-preview.png" %} alt="Sign in with Google" width="100" height="100"></a> -->
+                     
                     </form>
                 </div>
                 <div class="altsignUpBTN">
                     <form method="post" action="/accounts/facebook/login/">
                         {% csrf_token %}
                         <button type="submit" class="google-login" ><img id='facebook_img' src={% static "images/facebook.png" %} alt="Sign in with Google" width="100" height="100"> <p>Login with Facebook</p> </button>
-                    <!--  <a href="{% provider_login_url 'google' %}" class="google-login"><img src={% static "images/google_cover-removebg-preview.png" %} alt="Sign in with Google" width="100" height="100"></a> -->
-                      <!-- <a href="facebook"><img src={% static "images/facebook.png" %} alt="Sign in with Google" width="100" height="100"></a> -->
+                   {% comment %}  <!--  <a href="{% provider_login_url 'google' %}" class="google-login"><img src={% static "images/google_cover-removebg-preview.png" %} alt="Sign in with Google" width="100" height="100"></a> -->
+                      <!-- <a href="facebook"><img src={% static "images/facebook.png" %} alt="Sign in with Google" width="100" height="100"></a> --> {% endcomment %}
                     </form>
                 </div>
             </div>

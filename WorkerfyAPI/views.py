@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from MainWorkerfy.models import JobPostAttachment, TradespersonProfile, City, Area, Country, Region, TradeSpecialty, TradeCategory, TradeSkillTag\
     , JobPost
 from .serializers import CitySerializer, TradespeopleListSerializer, TradespeopleCreateSerializer, TradeSpecialtySerializer, TradeCategorySerializer, TradeSkillTagSerializer\
-    , CountrySerializer, jobattachmentsSerializer, jobsSerializer, userSerializer
+    , CountrySerializer, jobattachmentsSerializer, jobsSerializer, usersCreateSerializer
 from .API_format import api_response
 
 
@@ -93,6 +93,10 @@ def Tradespeople_view(request):
         return Response(api_response(success=False, message=f"{error}", errors='HTTP_500_INTERNAL_SERVER_ERROR'), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     return Response(api_response(success=True, message="Successful", data=serialized_data.data))
 
+class usersViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.prefetch_related().all()
+    serializer_class = usersCreateSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 class TradespeopleViewSet(viewsets.ModelViewSet):
     queryset = TradespersonProfile.objects.prefetch_related(

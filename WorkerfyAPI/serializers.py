@@ -5,11 +5,27 @@ from django.contrib.auth.models import User
 
 
 # This is a serializer for the user model
-class userSerializer(serializers.ModelSerializer):
+class usersListSerializerl(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'email', 'date_joined']
 
+class usersCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'email', 'password', 'date_joined']
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        user = User.objects.create_user(
+            username=validated_data['username'],  # Assuming email is used as username
+            email=validated_data['email'],
+            password=validated_data['password']
+        )
+        return user
+
+
+# Below are serializers for the tradesperson profile and related models
 class TradespeopleListSerializer(serializers.ModelSerializer):
     trade_category = serializers.StringRelatedField()
     sub_location = serializers.StringRelatedField()
@@ -69,7 +85,7 @@ class jobattachmentsSerializer(serializers.ModelSerializer):
 
 class jobsSerializer(serializers.ModelSerializer):
     attachments = jobattachmentsSerializer(many=True, read_only=True)
-    user = userSerializer(read_only=True)
+    user = usersCreateSerializer(read_only=True)
     
 
     class Meta:

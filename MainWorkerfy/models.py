@@ -15,6 +15,7 @@ User = get_user_model() # This will use the custom user model if one is defined,
 class Country(models.Model):
     name = models.CharField(max_length=100, unique=True)
     initials = models.CharField(max_length=10, default="N/A")
+    code = models.CharField(max_length=10, default="N/A")
 
     def __str__(self):
         return self.name
@@ -206,12 +207,32 @@ Many TradeSkillTags (via ManyToManyField)
 
 Stores the core professional identity of the tradesperson.
 """
+
+class ClientProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="client")
+    first_name = models.CharField(max_length=30, blank=True)
+    last_name = models.CharField(max_length=30, blank=True)
+    other_names = models.CharField(max_length=30, blank=True)
+    username = models.CharField(max_length=150, blank=True, help_text="Username for login")
+    profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
+    contact_number = models.CharField(max_length=15, blank=True, help_text="Phone number for client contact")
+    contact_number2 = models.CharField(max_length=15, blank=True, help_text="Secondary phone number (Whatsapp, etc.)")
+    gender = models.CharField(max_length=50, choices=[
+        ('Male', 'Male'),
+        ('Female', 'Female')], 
+        blank=True, null=True)
+    date_joined = models.DateTimeField(auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now=True)
+    data_of_birth = models.DateField(null=True, blank=True)
+    base_location = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True, blank=True, related_name="client_base_location")
+    sub_location = models.ForeignKey(City, on_delete=models.SET_NULL, null=True, blank=True, related_name="client_sub_location")
+    work_areas = models.ForeignKey(Area,on_delete=models.SET_NULL, related_name="client_areas", null=True, blank=True)
+
 class TradespersonProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="tradesperson_profile")
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
     other_names = models.CharField(max_length=30, blank=True)
-    username = models.CharField(max_length=150, blank=True, help_text="Username for login")
     profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
     bio = models.TextField(blank=True, help_text="Short bio or introduction")
     tagline = models.CharField(max_length=100, blank=True, help_text="A catchy tagline for your profile")
