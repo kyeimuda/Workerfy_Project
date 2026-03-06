@@ -41,22 +41,32 @@ document.getElementById("ID_close_school").addEventListener("click", function() 
     const institution_or_school = document.getElementById("institution_or_school").value;
     const school_date = document.getElementById("school_date").value;
     const schoolLevel = document.getElementById("schoolLevel").value;
-    alert(institution_or_school)
 
-    data = '{"institution_or_school": "'+ institution_or_school + '", "school_date": "' + school_date + '", "schoolLevel": "' + schoolLevel + '"}'
-    alert(data)
+    data = {};
+    dataArray = [];
+
+    /* data = '{"institution_or_school": "'+ institution_or_school + '", "school_date": "' + school_date + '", "schoolLevel": "' + schoolLevel + '"}' */
+    data.institution_or_school = institution_or_school;
+    data.school_date = school_date;
+    data.schoolLevel = schoolLevel;
+
+    dataArray.push(data)
+
+
+    alert(JSON.stringify(data))
+    alert(JSON.stringify(dataArray))
 
     const Input = document.getElementById('Education_Schools');
     alert(Input.value)
 
     if (!Input.value) {
     
-        Input.value = data;
+        Input.value = JSON.stringify(dataArray);
         alert(Input.value)
     } else {
-        Input.value += "-- " + data;
-
-
+        retrivedData = JSON.parse(Input.value);
+        retrivedData.push(data);
+        Input.value = JSON.stringify(retrivedData);
     }
 
     document.getElementById("institution_or_school").value = '';

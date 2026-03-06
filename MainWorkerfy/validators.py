@@ -25,3 +25,25 @@ def validate_video_extension(file):
     ext = os.path.splitext(file.name)[1].lower()  # get file extension
     if ext not in valid_extensions:
         raise ValidationError(f"Unsupported file type. Allowed types: {', '.join(valid_extensions)}")
+
+#This vailidator checks is the user is a has a Trades, client or admin acount
+def validate_user_role(user):
+    """Ensure the user has a valid role: Trades, Client, or Admin."""
+    if not user.is_authenticated:
+        raise ValidationError("User must be authenticated.")
+    
+    role = None
+    try:
+        user.tradesperson_profile
+        role = 'Tradesperson'
+    except:
+        try:
+            user.client
+            role = "Client"
+        except:
+           if user.is_staff == True:
+               role = "Admin"
+           else:
+               raise ValidationError("User does not have a valid role. Must be Tradesperson, Client, or Admin ")
+    return role
+               

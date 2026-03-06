@@ -14,6 +14,14 @@
             <div class="skip-btn" onclick="skip(event)">
                 <button>Skip&gt&gt;</button>
             </div> <!-- This id the skip button that allows the user to skip the onboarding and go straight to the login or sign up page. -->
+       
+            {% if messages %}
+                {% for msg in messages %}
+                    <div class="flash-message">
+                        <p> {{ msg }} </p>
+                    </div>
+                {% endfor %}
+            {% endif %}
 
            <!--  Image/Illustration -->
             <div class="onboarding_image">

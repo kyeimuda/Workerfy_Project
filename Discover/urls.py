@@ -6,7 +6,6 @@ urlpatterns = [
         path('onboardings', views.onBoardings, name='Onboardings'),
         path('Sign_up', views.sign_up, name='Signup'),
         path('login', views.login_view, name='Login'),
-        path('get_started', views.get_started, name='Get_started'),
         
         path('TradespeopleRegistration', views.tradesPeopleRegistration, name='Tradesperson-Registration'),
         path('emailNotice', views.email_notice, name='Email-notice'),

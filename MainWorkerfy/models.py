@@ -174,6 +174,7 @@ class PortfolioItem(models.Model):
     )
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
+    year_completed = models.PositiveIntegerField(null=True, blank=False)
 
     image = models.ImageField(
         upload_to=portfolio_image_upload_path, 
@@ -277,7 +278,7 @@ class TradespersonProfile(models.Model):
     base_location = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True, blank=True, related_name="tradespeople_base")
     sub_location = models.ForeignKey(City, on_delete=models.SET_NULL, null=True, blank=True, related_name="tradespeople_sub")
     work_areas = models.ForeignKey(Area,on_delete=models.SET_NULL, related_name="tradespeople_work_areas", null=True, blank=True)
-    working_areas = models.JSONField(default=dict, blank=True, help_text="Areas tradespeople can service")
+    working_areas = models.JSONField(default=list, blank=True, help_text="Areas tradespeople can service")
     availability_status = models.CharField(
         max_length=50, 
         choices=[
@@ -289,7 +290,7 @@ class TradespersonProfile(models.Model):
         default='Available'
     )
 
-    education_schools = models.JSONField(default=dict, blank=True, help_text="List of schools attended")
+    education_schools = models.JSONField(default=list, blank=True, help_text="List of schools attended")
 
     other_skills = models.JSONField(default=list, blank=True, help_text="Other skills not covered by tags")
     rate_charged = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True, help_text="Hourly or project rate charged by the tradesperson")

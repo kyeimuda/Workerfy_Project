@@ -2,9 +2,15 @@ from django.shortcuts import render, redirect
 from .forms import TradespersonOnboardingForm, ProfileEditPageform, CertificateForm, PortfolioForm, JobPostForm
 from django.contrib.auth.decorators import login_required
 from MainWorkerfy.models import TradespersonProfile, City, Area, TradeCategory, TradeSpecialty, TradeSkillTag, Region, Certificate, PortfolioItem, JobPost, JobPostAttachment
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from django.contrib import messages
 import json
+from .validators import validate_user_role
+from django.core.exceptions import ValidationError
 import datetime
+
+
+User = get_user_model()
 
 # Create your views here.
 
@@ -52,19 +58,32 @@ def Work_Page(request):
 @login_required
 def Main_page(request):
     print(request.user)
-
+    loggedInUser = User.objects.get(id = request.user.id)
     Tradespeople = TradespersonProfile.objects.all()
-    user = TradespersonProfile.objects.filter(user = request.user).first()
 
-    print(user)
+    try:
+         userRole = validate_user_role(loggedInUser)
+    except Exception:
+         messages.error(request, 'User does not have a valid role. Must be Tradesperson, Client, or Admin')
+         return redirect('Onboardings')
 
-    context = {
-        'Tradespeople': Tradespeople,
-        'user': TradespersonProfile.objects.filter(user = request.user).first(),
-        'Jobposts': JobPost.objects.all().order_by('-created_at'),
-    }
+    if userRole == "Tradesperson":
+        print(loggedInUser.email)   
+        context = {
+            'Tradespeople': Tradespeople,
+            'user': loggedInUser.tradesperson_profile,
+            'Jobposts': JobPost.objects.all().order_by('-created_at'),
+        }
+        return render(request, 'main/mainPageTradesperson.html', context)
 
-    return render(request, 'main/mainPageTradesperson.html', context)
+    elif userRole == "Client":
+        context = {
+            'Tradespeople': Tradespeople,
+            'user': loggedInUser.client,
+            'Jobposts': JobPost.objects.all().order_by('-created_at'),
+        }
+        return render(request, 'main/mainPageClient.html', context)
+    return render(request, 'main/mainPage.html', {'user': TradespersonProfile.objects.filter(user = request.user).first()})
 
 @login_required
 def TradespersonProfileEdit(request):
