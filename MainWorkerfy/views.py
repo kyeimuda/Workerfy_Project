@@ -91,6 +91,7 @@ def TradespersonProfileEdit(request):
         return val.capitalize() if isinstance(val, str) and val else ""
 
     if request.method == "POST":
+        print(request.POST)
         form = ProfileEditPageform(request.POST, request.FILES)
         certForm = CertificateForm(request.POST, request.FILES)
         portfolioForm = PortfolioForm(request.POST, request.FILES)
@@ -98,7 +99,9 @@ def TradespersonProfileEdit(request):
 
         if form.is_valid() and certForm.is_valid() and portfolioForm.is_valid():
 
-            user = TradespersonProfile.objects.filter(user = request.user).first()
+            print(form.cleaned_data)
+
+            """ user = TradespersonProfile.objects.filter(user = request.user).first()
             print(form.cleaned_data)
             if form.cleaned_data.get('work_areas'):
                 if Area.objects.filter(name__iexact=form.cleaned_data.get('work_areas')).exists():
@@ -221,9 +224,9 @@ def TradespersonProfileEdit(request):
             user = TradespersonProfile.objects.get(user = request.user)
             print(user)
 
-            print(user.first_name)
+            print(user.first_name) """
 
-        return render(request, 'main/TradespeopleProfilePage.html', {'user' : user})
+        return render(request, 'main/TradespeopleProfilePage.html')
 
 
 
@@ -236,9 +239,9 @@ def TradespersonProfileEdit(request):
             'portfolioForm': PortfolioForm(),
             'user': TradespersonProfile.objects.get(user = request.user),
         }
-        print(context['user'].first_name)
+        print(context['user'].first_name, context)
 
-        return render(request, 'main/TradespersonProfileEdit.html', context)
+    return render(request, 'main/TradespersonProfileEdit.html', context)
 
 @login_required
 def job_Post_Page(request):

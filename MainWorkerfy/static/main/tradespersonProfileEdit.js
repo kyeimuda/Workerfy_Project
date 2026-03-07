@@ -1,98 +1,124 @@
 /* Opening and closing the add Past Job PopUp */
 
-document.getElementById("ID_add_job").addEventListener("click", function() {
-    document.getElementById("jobAddPopUp").style.display = "block";
-});
+const addJobBtn = document.getElementById("ID_add_job");
+if (addJobBtn) {
+    addJobBtn.addEventListener("click", function() {
+        document.getElementById("jobAddPopUp").style.display = "block";
+    });
+}
 
-document.getElementById("ID_close_job").addEventListener("click", function() {  
-    const year = document.getElementById("date").value;
-    const organization = document.getElementById("Organization_Or_Title").value;
-    const roleOrDescription = document.getElementById("discription").value;
+const closeJobBtn = document.getElementById("ID_close_job");
+if (closeJobBtn) {
+    closeJobBtn.addEventListener("click", function() {  
+        const year = document.getElementById("date").value;
+        const organization = document.getElementById("Organization_Or_Title").value;
+        const roleOrDescription = document.getElementById("discription").value;
 
-    data = '{"Year": "'+ year + '", "Organization": "' + organization + '", "role": "' + roleOrDescription + '"}'
+        data = '{"Year": "'+ year + '", "Organization": "' + organization + '", "role": "' + roleOrDescription + '"}'
 
-    const Input = document.getElementById('Working_Areas');
+        const Input = document.getElementById('Working_Areas');
 
-    if (!Input.value) {
-    
-        Input.value = data;
+        if (Input) {
+            if (!Input.value) {
+            
+                Input.value = data;
 
-    } else {
-        Input.value += "-- " + data;
+            } else {
+                Input.value += "-- " + data;
+            }
+        }
 
-
-    }
-
-    document.getElementById("date").value = '';
-    document.getElementById("Organization_Or_Title").value = '';
-    document.getElementById("discription").value = '';
- 
-    document.getElementById("jobAddPopUp").style.display = "none";
-})
+        document.getElementById("date").value = '';
+        document.getElementById("Organization_Or_Title").value = '';
+        document.getElementById("discription").value = '';
+     
+        document.getElementById("jobAddPopUp").style.display = "none";
+    });
+}
 
 
 /* Openning and Closing the Add School PopUp */
-document.getElementById("ID_add_school").addEventListener("click", function() {
-    document.getElementById("SchoolAddPopUp").style.display = "block";
-});
+const addSchoolBtn = document.getElementById("ID_add_school");
+if (addSchoolBtn) {
+    addSchoolBtn.addEventListener("click", function() {
+        document.getElementById("SchoolAddPopUp").style.display = "block";
+    });
+}
 
-document.getElementById("ID_close_school").addEventListener("click", function() {
-    
-    const institution_or_school = document.getElementById("institution_or_school").value;
-    const school_date = document.getElementById("school_date").value;
-    const schoolLevel = document.getElementById("schoolLevel").value;
+const closeSchoolBtn = document.getElementById("ID_close_school");
+if (closeSchoolBtn) {
+    closeSchoolBtn.addEventListener("click", function() {
+        
+        const institution_or_school = document.getElementById("institution_or_school").value;
+        const school_date = document.getElementById("school_date").value;
+        const schoolLevel = document.getElementById("schoolLevel").value;
 
-    data = {};
-    dataArray = [];
+        data = {};
+        dataArray = [];
 
-    /* data = '{"institution_or_school": "'+ institution_or_school + '", "school_date": "' + school_date + '", "schoolLevel": "' + schoolLevel + '"}' */
-    data.institution_or_school = institution_or_school;
-    data.school_date = school_date;
-    data.schoolLevel = schoolLevel;
+        /* data = '{"institution_or_school": "'+ institution_or_school + '", "school_date": "' + school_date + '", "schoolLevel": "' + schoolLevel + '"}' */
+        data.institution_or_school = institution_or_school;
+        data.school_date = school_date;
+        data.schoolLevel = schoolLevel;
 
-    dataArray.push(data)
+        dataArray.push(data)
 
 
-    alert(JSON.stringify(data))
-    alert(JSON.stringify(dataArray))
+        alert(JSON.stringify(data))
+        alert(JSON.stringify(dataArray))
 
-    const Input = document.getElementById('Education_Schools');
-    alert(Input.value)
+        const Input = document.getElementById('Education_Schools');
+        alert(Input ? Input.value : 'Input not found')
 
-    if (!Input.value) {
-    
-        Input.value = JSON.stringify(dataArray);
-        alert(Input.value)
-    } else {
-        retrivedData = JSON.parse(Input.value);
-        retrivedData.push(data);
-        Input.value = JSON.stringify(retrivedData);
-    }
+        if (Input) {
+            if (!Input.value) {
+            
+                Input.value = JSON.stringify(dataArray);
+                alert(Input.value)
+            } else {
+                retrivedData = JSON.parse(Input.value);
+                retrivedData.push(data);
+                Input.value = JSON.stringify(retrivedData);
+            }
+        }
 
-    document.getElementById("institution_or_school").value = '';
-    document.getElementById("school_date").value = '';
-    document.getElementById("schoolLevel").value = '';
+        document.getElementById("institution_or_school").value = '';
+        document.getElementById("school_date").value = '';
+        document.getElementById("schoolLevel").value = '';
 
-    document.getElementById("SchoolAddPopUp").style.display = "none";
-})
+        document.getElementById("SchoolAddPopUp").style.display = "none";
+    });
+}
 
 /* Openning and Closing the Add Cert PopUp */
-document.getElementById("ID_add_cert").addEventListener("click", function() {
-    document.getElementById("certAddPopUp").style.display = "block";
-});
+const addCertBtn = document.getElementById("ID_add_cert");
+if (addCertBtn) {
+    addCertBtn.addEventListener("click", function() {
+        document.getElementById("certAddPopUp").style.display = "block";
+    });
+}
 
-document.getElementById("ID_close_cert").addEventListener("click", function() {   
-    document.getElementById("certAddPopUp").style.display = "none";
-})
+const closeCertBtn = document.getElementById("ID_close_cert");
+if (closeCertBtn) {
+    closeCertBtn.addEventListener("click", function() {   
+        document.getElementById("certAddPopUp").style.display = "none";
+    });
+}
 
 /* Openning and Closing the Add Portfolio item PopUp */
-document.getElementById("ID_add_portfolio").addEventListener("click", function() {
-    document.getElementById("portAddPopUp").style.display = "block";
-});
+const addPortfolioBtn = document.getElementById("ID_add_portfolio");
+if (addPortfolioBtn) {
+    addPortfolioBtn.addEventListener("click", function() {
+        document.getElementById("portAddPopUp").style.display = "block";
+    });
+}
 
-document.getElementById("ID_close_Portfolio").addEventListener("click", function() {   
-    document.getElementById("portAddPopUp").style.display = "none";
-})
+const closePortfolioBtn = document.getElementById("ID_close_Portfolio");
+if (closePortfolioBtn) {
+    closePortfolioBtn.addEventListener("click", function() {   
+        document.getElementById("portAddPopUp").style.display = "none";
+    });
+}
 
 //Getting the social links input
 links = document.getElementsByClassName("slinks");
@@ -169,47 +195,73 @@ function addAbility(inputValue, inputField) {
     inputValue = inputValue.value;
     inputField = inputField;
 
-
-    if (inputValue) {
-        inputField.value += inputValue + ",";
+    if (inputField.value) {
+        prevData = JSON.parse(inputField.value);
+        prevData.push(inputValue);
+        inputField.value = JSON.stringify(prevData);
+    } else {
+        data = []; data.push(inputValue);
+        inputField.value = JSON.stringify(data);
+        alert(data);
+        alert(inputField.value);
     }
 
-    inputcontainer.value = "";
+    if (inputcontainer) {
+        inputcontainer.value = "";
+    }
 }
 
-document.getElementById('add_speciality_BTN').addEventListener('click', function() {
-    addAbility(document.getElementById('Speciality_input'), document.getElementById("Trade_Specialties"))
+const addSpecialityBtn = document.getElementById('add_speciality_BTN');
+if (addSpecialityBtn) {
+    addSpecialityBtn.addEventListener('click', function() {
+        addAbility(document.getElementById('Speciality_input'), document.getElementById("Trade_Specialties"))
+    });
 }
-);
 
-document.getElementById('add_skill_BTN').addEventListener('click', function() {
-    addAbility(document.getElementById('Skills_input'), document.getElementById("Skills"))
+const addSkillBtn = document.getElementById('add_skill_BTN');
+if (addSkillBtn) {
+    addSkillBtn.addEventListener('click', function() {
+        addAbility(document.getElementById('Skills_input'), document.getElementById("Skills"))
+    });
 }
-);
 
-document.getElementById('add_otherskill_BTN').addEventListener('click', function() {
-    addAbility(document.getElementById('Other_Skills_input'), document.getElementById("OtherSkills"))
+const addOtherSkillBtn = document.getElementById('add_otherskill_BTN');
+if (addOtherSkillBtn) {
+    addOtherSkillBtn.addEventListener('click', function() {
+        addAbility(document.getElementById('Other_Skills_input'), document.getElementById("OtherSkills"))
+    });
 }
-);
 
 // This is for the cancel button pop up
-document.getElementById('CancelBTNmain').addEventListener('click', function() {
-    document.getElementById('CancelPopUp').style.display = 'flex';
-});
+const cancelBtn = document.getElementById('CancelBTNmain');
+if (cancelBtn) {
+    cancelBtn.addEventListener('click', function() {
+        document.getElementById('CancelPopUp').style.display = 'flex';
+    });
+}
 
-document.getElementById('CancelPopUp').addEventListener('click', function(event) {
-    if (event.target === document.getElementById('CancelPopUp')) {
+const cancelPopup = document.getElementById('CancelPopUp');
+if (cancelPopup) {
+    cancelPopup.addEventListener('click', function(event) {
+        if (event.target === document.getElementById('CancelPopUp')) {
+            document.getElementById('CancelPopUp').style.display = 'none';
+        }
+        
+    });
+}
+
+const continueEditingBtn = document.getElementById('ContinueEditing');
+if (continueEditingBtn) {
+    continueEditingBtn.addEventListener('click', function() {
         document.getElementById('CancelPopUp').style.display = 'none';
-    }
-    
-});
+    });
+}
 
-document.getElementById('ContinueEditing').addEventListener('click', function() {
-    document.getElementById('CancelPopUp').style.display = 'none';
-});
-
-document.getElementById('StillCancel').addEventListener('click', function() {
-    document.location.href = "http://localhost:8000/main/Main";
-});
+const stillCancelBtn = document.getElementById('StillCancel');
+if (stillCancelBtn) {
+    stillCancelBtn.addEventListener('click', function() {
+        document.location.href = "http://localhost:8000/main/Main";
+    });
+}
 
 

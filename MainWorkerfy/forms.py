@@ -576,7 +576,7 @@ class CertificateForm(forms.Form):
 class PortfolioForm(forms.Form):
     titlePort = forms.CharField(
         label="Title",
-        required=True,
+        required=False,
         max_length=255,
         widget=forms.TextInput(attrs={
             "placeholder": "e.g. Kitchen Cabinet Installation",
@@ -585,7 +585,7 @@ class PortfolioForm(forms.Form):
     )
     descriptionPort = forms.CharField(
         label="Description",
-        required=True,
+        required=False,
         widget=forms.Textarea(attrs={
             "placeholder": "Describe this project...",
             "class": "form-control",
@@ -595,7 +595,7 @@ class PortfolioForm(forms.Form):
 
     year_completed = forms.DateField(
         label="Year Completed",
-        required=True,
+        required=False,
         widget=forms.DateInput(attrs={
             "type": "date",
             "class": "form-control"
