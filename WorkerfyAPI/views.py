@@ -7,8 +7,9 @@ from rest_framework import status, viewsets
 from django.contrib.auth.models import User
 from MainWorkerfy.models import JobPostAttachment, TradespersonProfile, City, Area, Country, Region, TradeSpecialty, TradeCategory, TradeSkillTag\
     , JobPost
-from .serializers import CitySerializer, TradespeopleListSerializer, TradespeopleCreateSerializer, TradeSpecialtySerializer, TradeCategorySerializer, TradeSkillTagSerializer\
-    , CountrySerializer, jobattachmentsSerializer, jobsSerializer, usersCreateSerializer
+from .serializers import CitySerializer, TradespeopleListSerializer, TradeSpecialtySerializer, TradeCategorySerializer,\
+      CountrySerializer, jobattachmentsSerializer, jobsSerializer, usersCreateSerializer, usersListSerializerl, skillsTagSerializer,\
+     TradeSpecialtySerializer, TradespeopleWriteSerializer
 from .API_format import api_response
 
 
@@ -30,14 +31,11 @@ def City_view(request):
     serialized_data = CitySerializer(Cities, many=True)
     return Response(serialized_data.data)
 
-@api_view(['GET'])
+""" @api_view(['GET'])
 def TradeSpecialty_view(request):
-    """
-    API for retrieving all trade specialties.
-    """
     TradeSpecialties = TradeSpecialty.objects.all()
     serialized_data = TradeSpecialtySerializer(TradeSpecialties, many=True)
-    return Response(serialized_data.data)
+    return Response(serialized_data.data) """
 
 @api_view(['GET'])
 def Country_view(request):
@@ -66,7 +64,7 @@ def jobattachments_view(request):
     serialized_data = jobattachmentsSerializer(Attachments, many=True)
     return Response(serialized_data.data)
 
-@api_view(['GET'])
+""" @api_view(['GET'])
 def skills_view(request):
     try:
         skills = TradeSkillTag.objects.all()
@@ -74,7 +72,7 @@ def skills_view(request):
     except Exception as error:
         return Response(api_response(success=False, message=f"{error}"))
     return Response(api_response(success=True, message="Successful", data=serialized_data.data))
-
+ """
 
 @api_view(['GET', 'PUT'])
 @permission_classes([])
@@ -95,8 +93,16 @@ def Tradespeople_view(request):
 
 class usersViewSet(viewsets.ModelViewSet):
     queryset = User.objects.prefetch_related().all()
-    serializer_class = usersCreateSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action in ['create', 'update', 'partial_update']:
+            return usersCreateSerializer
+        if self.action in  ['list', 'retrieve']:
+            return usersListSerializerl
+        return usersListSerializerl
+
+
 
 class TradespeopleViewSet(viewsets.ModelViewSet):
     queryset = TradespersonProfile.objects.prefetch_related(
@@ -106,6 +112,59 @@ class TradespeopleViewSet(viewsets.ModelViewSet):
             'sub_location__region__country',
             'skills'
             ).all()
-    serializer_class = TradespeopleListSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action in ['create', 'update', 'partial_update']:
+            return TradespeopleWriteSerializer
+        return TradespeopleListSerializer
+
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
+
+        # Serialize with read serializer for the response
+        read_serializer = TradespeopleListSerializer(instance, context=self.get_serializer_context())
+        return Response(read_serializer.data)
+
+    def partial_update(self, request, *args, **kwargs):
+        kwargs['partial'] = True
+        return self.update(request, *args, **kwargs)
+
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+
+        # Serialize with read serializer for the response
+        read_serializer = TradespeopleListSerializer(serializer.instance, context=self.get_serializer_context())
+        return Response(read_serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    def perform_update(self, serializer):
+        print(self.request.data)
+        serializer.save()
+    
+
+
+class skillsTagViewSet(viewsets.ModelViewSet):
+    queryset = TradeSkillTag.objects.all()
+    serializer_class = skillsTagSerializer
+    permission_classes = [IsAuthenticated]
+
+class TradeSpecialtyViewSet(viewsets.ModelViewSet):
+    queryset = TradeSpecialty.objects.all()
+    serializer_class = TradeSpecialtySerializer
+    permission_classes = [IsAuthenticated]
+    
 

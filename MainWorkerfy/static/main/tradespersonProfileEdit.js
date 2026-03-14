@@ -202,8 +202,6 @@ function addAbility(inputValue, inputField) {
     } else {
         data = []; data.push(inputValue);
         inputField.value = JSON.stringify(data);
-        alert(data);
-        alert(inputField.value);
     }
 
     if (inputcontainer) {
@@ -264,4 +262,45 @@ if (stillCancelBtn) {
     });
 }
 
+// Handle form submit to send PUT request to API
+const form = document.getElementById('form');
+if (form) {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const userId = this.dataset.userId;
+        const formData = new FormData();
+        const inputs = form.querySelectorAll('input[class|="inputField"], select[class|="inputField"], textarea[class|="inputField"]');
+        inputs.forEach(input => {
+            if(input.name === 'csrfmiddlewaretoken') {
+                return;
+            } else if (input.type === 'file') {
+                if (input.files.length > 0) {
+                    formData.append(input.name, input.files[0]);
+                }
+            } else if (input.value.trim() !== '') {
+                formData.append(input.name, input.value);
+            }
+        });
+
+        alert("Form Data: " + JSON.stringify(Object.fromEntries(formData.entries()))); // Debugging line
+        
+        fetch(`/api/v1/tradespeople/${userId}/`, {
+            method: 'PATCH',
+            body: formData,
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            // Redirect or show success message
+            // window.location.href = '/main/Main';  // Adjust URL as needed
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+}
 

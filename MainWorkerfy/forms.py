@@ -400,7 +400,7 @@ class ProfileEditPageform(forms.Form):
         queryset=Country.objects.all(),
         empty_label="Select Country",
         widget=forms.Select(attrs={
-            "class": "form-select",
+            "class": "form-select inputField",
             "id": "Country"})
     )
 
@@ -434,7 +434,7 @@ class ProfileEditPageform(forms.Form):
         widget=forms.TextInput(attrs={
             "type": "text",
             "placeholder": "e.g. Accra New Town",
-            "class": "form-control"
+            "class": "inputField"
         })
     )
     social_links = forms.CharField(
@@ -464,12 +464,12 @@ class ProfileEditPageform(forms.Form):
 
     availability_status = forms.ChoiceField(
         choices=[
-            ("Available", "Available"),
-            ("Urgent", "Urgent"),
-            ("Busy", "Busy"),
-            ("On Leave", "On Leave")
+            ('Available Now', 'Available Now'),
+            ('Urgent', 'Urgent'),
+            ('Busy', 'Busy'),
+            ('On Leave', 'On Leave')
         ],
-        initial="Available",
+        initial="Available Now",
         required=False,
         widget=forms.Select(attrs={
             "id": "Availability_Status",

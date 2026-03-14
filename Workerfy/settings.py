@@ -173,7 +173,7 @@ ACCOUNT_EMAIL_VERIFICATION = "optional"
 ACCOUNT_SIGNUP_REDIRECT_URL = 'Email-notice'
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+     'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
     ]
 }

@@ -22,7 +22,7 @@
     </div>
 </div>
 
-<form action="#" method="post" id="form" enctype="multipart/form-data">
+<form action="#" method="post" id="form" enctype="multipart/form-data" data-user-id="{{ user.id }}">
         {% csrf_token %}
     <div class="header">
         <header>
@@ -535,7 +535,7 @@
 
     <div class="footer">
         <button type="button" class="cancel-btn" id="CancelBTNmain">Cancel</button>
-        <button type="submit" class="save-btn">Submit</button>
+        <button type="submits" class="save-btn">Submit</button>
     </div>
 
 
