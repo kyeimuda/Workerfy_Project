@@ -286,7 +286,7 @@ class ProfileEditPageform(forms.Form):
         label="Primary Contact",
         widget=forms.TextInput(attrs={
             "type": "tel",
-            "id": "Phone",
+            "id": "Phone1",
             "placeholder": "050 524 1706",
             "class": "inputField"
         })
@@ -297,7 +297,7 @@ class ProfileEditPageform(forms.Form):
         required=False,
         widget=forms.TextInput(attrs={
             "type": "tel",
-            "id": "OtherPhone",
+            "id": "Phone2",
             "placeholder": "050 300 4659",
             "class": "inputField"
         })

@@ -65,6 +65,19 @@ class TradespeopleWriteSerializer(serializers.ModelSerializer):
         model = TradespersonProfile
         fields = '__all__'
 
+    def _safe_capitalize(self, value):
+        """Normalize a string value to a consistent capitalized form."""
+        return value.capitalize() if isinstance(value, str) and value else value
+
+    def _normalize_validated_data(self, validated_data):
+        """Apply safe capitalization to string fields in validated_data."""
+        for key, value in list(validated_data.items()):
+            if isinstance(value, str):
+                validated_data[key] = self._safe_capitalize(value.strip())
+            elif isinstance(value, list):
+                validated_data[key] = [self._safe_capitalize(v) for v in value]
+        return validated_data
+
     def tradeSpecialtiesFields(self, validated_data):
         if "trade_specialties" in validated_data:
             specialityData = json.loads(validated_data["trade_specialties"])
@@ -85,6 +98,7 @@ class TradespeopleWriteSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         print(validated_data)
+        validated_data = self._normalize_validated_data(validated_data)
         trade_specialties_data = self.tradeSpecialtiesFields(validated_data)
         skills_data = self.tradeSkillsFields(validated_data)
 
@@ -107,6 +121,7 @@ class TradespeopleWriteSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         print(validated_data)
+        validated_data = self._normalize_validated_data(validated_data)
         trade_specialties_data = self.tradeSpecialtiesFields(validated_data)
         skills_data = self.tradeSkillsFields(validated_data)
 
@@ -124,7 +139,17 @@ class TradespeopleWriteSerializer(serializers.ModelSerializer):
             for skill in skills_data:
                 skill_obj, created = TradeSkillTag.objects.get_or_create(category=instance.trade_category, name=skill)
                 instance.skills.add(skill_obj)
+
+        if "other_skills" in validated_data and not None:
+            perv_other_skills = instance.other_skills if instance.other_skills else []
+            new_other_skills = validated_data["other_skills"]
+            for skill in new_other_skills:
+                if skill not in perv_other_skills:
+                    perv_other_skills.append(skill)
+            instance.other_skills = perv_other_skills
         instance.save()
+
+
         return instance
 
 

@@ -400,6 +400,10 @@ label {
     justify-content: space-between;
 }
 
+input[name="contact_number"], input[name="contact_number2"] {
+    display: none;
+}
+
 .flagAndcontact .flag{
     width: 20%;
 }
@@ -407,7 +411,7 @@ label {
 .flagAndcontact input {
     width: 75%;
     padding-left: 0;
-    padding-right: 0;;
+    padding-right: 0;
 }
 
 .flagAndcontact select{

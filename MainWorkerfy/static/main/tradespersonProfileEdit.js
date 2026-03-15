@@ -120,6 +120,24 @@ if (closePortfolioBtn) {
     });
 }
 
+// This is for the contact number field to add the country code to the number
+const contactField = document.getElementById("PhoneClone");
+if (contactField) {
+    contactField.addEventListener("change", function() {
+        countryCode = document.getElementById("countryCode").value;
+        alert("heree " + countryCode)
+        document.getElementById("Phone1").value = countryCode + this.value.l;
+    });
+};
+
+const contactField2 = document.getElementById("PhoneClone2");
+if (contactField2) {
+    contactField2.addEventListener("change", function() {
+        countryCode = document.getElementById("countryCode2").value;
+        document.getElementById("Phone2").value = countryCode +this.value;
+    });
+};
+
 //Getting the social links input
 links = document.getElementsByClassName("slinks");
 
@@ -268,6 +286,7 @@ if (form) {
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         
+        const submitButton = form.querySelector('[type="submit"]');
         const userId = this.dataset.userId;
         const formData = new FormData();
         const inputs = form.querySelectorAll('input[class|="inputField"], select[class|="inputField"], textarea[class|="inputField"]');
@@ -283,8 +302,13 @@ if (form) {
             }
         });
 
-        alert("Form Data: " + JSON.stringify(Object.fromEntries(formData.entries()))); // Debugging line
-        
+        // Show loading state
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.dataset.originalText = submitButton.textContent;
+            submitButton.textContent = 'Saving…';
+        }
+
         fetch(`/api/v1/tradespeople/${userId}/`, {
             method: 'PATCH',
             body: formData,
@@ -292,7 +316,11 @@ if (form) {
                 'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
             }
         })
-        .then(response => response.json())
+        .then(response => {
+            console.log('Raw response:', response); // Debugging line
+            console.log('Response status:', response.status); // Debugging line
+            return response.json();
+        })
         .then(data => {
             console.log('Success:', data);
             // Redirect or show success message
@@ -300,6 +328,13 @@ if (form) {
         })
         .catch(error => {
             console.error('Error:', error);
+        })
+        .finally(() => {
+            // Restore button state
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = submitButton.dataset.originalText || 'Save';
+            }
         });
     });
 }
