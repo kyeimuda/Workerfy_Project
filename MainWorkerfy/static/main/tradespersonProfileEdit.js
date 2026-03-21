@@ -317,14 +317,23 @@ if (form) {
             }
         })
         .then(response => {
+            if (response.status === 200) {
+                console.log('Profile updated successfully');
+                return response.json();
+            }
             console.log('Raw response:', response); // Debugging line
             console.log('Response status:', response.status); // Debugging line
-            return response.json();
+            return "Failed";
         })
         .then(data => {
-            console.log('Success:', data);
-            // Redirect or show success message
-            // window.location.href = '/main/Main';  // Adjust URL as needed
+            if (data !== "Failed") {
+                console.log('Success:', data);
+                // Redirect or show success message
+                window.location.href = '/main/Main'; 
+            } else {
+                console.error('Failed to update profile');
+            };
+            
         })
         .catch(error => {
             console.error('Error:', error);

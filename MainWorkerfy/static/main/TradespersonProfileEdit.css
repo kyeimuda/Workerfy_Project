@@ -249,6 +249,7 @@ label {
     font-family: "Nunito", sans-serif;
     margin: 1vh 0;
 }
+
 .inputContainer label, .inputContainer h3{
     font-size: 1.7778vh;
     display: block;
@@ -608,5 +609,51 @@ input[name="contact_number"], input[name="contact_number2"] {
     right: 2vh;
     top: 3vh;
     fill: white;
+}
+
+.rateInput p {
+    font-size: 1.5556vh;
+    display: block;
+    color: #000080;
+    font-weight: 600;
+    font-family: "Playpen Sans", sans-cursive;
+    margin: 1vh 0;
+}
+
+.rateInput input {
+    width: 40%;
+    border: 1px solid #634E2D;
+    border-radius: 1.1111vh;
+}
+
+.rateInput {
+    padding-top: 1vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vh;
+}
+
+.help_text {
+    font-size: 1.1111vh;
+    color: #000080;
+    font-family: "Playpen Sans", cursive;
+    margin-top: 0.5vh;
+}
+
+.bigNav {
+    padding: 12px 24px;
+    background-color: #0000D1;
+    border-radius: 4vh;
+}
+
+.bigNav a {
+    display: block;
+    color: white;
+    font-family: "Playpen Sans", cursive;
+    font-size: 1.7778vh;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
 }
 

@@ -138,6 +138,12 @@ body {
     padding: 2vh;
 }
 
+.content h3{
+    color: #000049;
+    font-weight: 500;
+
+}
+
 fieldset {
     border: none;
 }

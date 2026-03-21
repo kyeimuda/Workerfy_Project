@@ -1156,3 +1156,8 @@ main{
     align-items:end;
     justify-content: space-between;
 }
+
+.unverified{
+    padding: 0 1vh;
+    background-color: #EF4444;
+}

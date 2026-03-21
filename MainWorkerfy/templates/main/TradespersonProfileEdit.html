@@ -273,6 +273,16 @@
                     {{ form.tagline.label_tag }}
                     {{ form.tagline }}
                 </div>
+
+                <div class="inputContainer rateCharged">
+                    {{ form.rate_charged.label_tag }}
+                    <div class="rateInput">
+                        <p class="currency">GHS</p>
+                        
+                        {{ form.rate_charged }}
+                    </div>
+                    <p class="help_text">{{ form.rate_charged.help_text }}</p>
+                </div>
             </section>
 
             <section class="LocationInfo">
@@ -390,45 +400,8 @@
 
             <div class="inputContainer" id="add_certificate">
                 <h3>Certificates:</h3><br>
-                <button type="button" id="ID_add_cert">Add a Certificate <p>+</p></button>
-
-                <div class="addHolder" id="certAddPopUp"> 
-                        <div> 
-                            <h3>Adding Cetificate</h3>
-                            {{ certForm.title.label_tag }}
-                            {{ certForm.title }}
-                            
-                            {{ certForm.description.label_tag }}
-                            {{ certForm.description }}
-
-                            {{ certForm.issuing_organization.label_tag }}
-                            {{ certForm.issuing_organization }}
-
-                            {{ certForm.issue_date.label_tag }}
-                            {{ certForm.issue_date }}
-
-                            {{ certForm.expiry_date.label_tag }}
-                            {{ certForm.expiry_date }}
-
-                            {{ certForm.certificate_file.label_tag }}
-                            {{ certForm.certificate_file }}
-
-                            {{ certForm.contact_person.label_tag }}
-                            {{ certForm.contact_person }}
-
-                            {{ certForm.contact_email.label_tag }}
-                            {{ certForm.contact_email }}
-
-                            {{ certForm.contact_phone.label_tag }}
-                            {{ certForm.contact_phone }}
-
-                            {{ certForm.verification_notes.label_tag }}
-                            {{ certForm.verification_notes }} <br>
-
-
-
-                            <button type="button" id="ID_close_cert">Add</button>
-                        </div>
+                <div class="bigNav">
+                    <a href="/main/addCertificate" class="bigNavBTN">Add a Certificate</a>
                 </div>
             </div>
                 
@@ -461,7 +434,9 @@
 
                 <div class="inputContainer" id="AddPortfoilio">
                     <h3>Portfolio Item:</h3><br>
-                    <button type="button" id="ID_add_portfolio">Add Past Work <p>+</p></button>
+                    <div class="bigNav">
+                        <a href="/main/addPortfolioitems" class="bigNavBTN">Add a Portfolio Item</a>
+                    </div>
                 </div>
 
                 <div class="addHolder" id="portAddPopUp"> 

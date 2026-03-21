@@ -477,6 +477,19 @@ class ProfileEditPageform(forms.Form):
         })
     )
 
+    rate_charged = forms.DecimalField(
+        label="Rate Charged",
+        help_text="Note: Specify the rate you charge for your services. This can be an hourly rate or a fixed price, depending on your preference.",
+        max_digits=10,
+        decimal_places=2,
+        required=False,
+        widget=forms.TextInput(attrs={
+            "id": "Rate_Charged",
+            "placeholder": "e.g. 50",
+            "class": "inputField"
+        })
+    )
+
   #  other_skills = forms.CharField(
    #     required=False,
    #     widget=forms.TextInput(attrs={
@@ -580,7 +593,7 @@ class PortfolioForm(forms.Form):
         max_length=255,
         widget=forms.TextInput(attrs={
             "placeholder": "e.g. Kitchen Cabinet Installation",
-            "class": "form-control"
+            "class": "inputField"
         })
     )
     descriptionPort = forms.CharField(
@@ -588,7 +601,7 @@ class PortfolioForm(forms.Form):
         required=False,
         widget=forms.Textarea(attrs={
             "placeholder": "Describe this project...",
-            "class": "form-control",
+            "class": "inputField",
             "rows": 3
         })
     )
@@ -598,7 +611,7 @@ class PortfolioForm(forms.Form):
         required=False,
         widget=forms.DateInput(attrs={
             "type": "date",
-            "class": "form-control"
+            "class": "inputField"
         })
     )
 
@@ -606,14 +619,14 @@ class PortfolioForm(forms.Form):
         label="Image",
         required=False,
         widget=forms.ClearableFileInput(attrs={
-            "class": "form-control"
+            "class": "inputField"
         })
     )
     video = forms.FileField(
         label="Video",
         required=False,
         widget=forms.ClearableFileInput(attrs={
-            "class": "form-control"
+            "class": "inputField"
         })
     )
 

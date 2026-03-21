@@ -1,0 +1,122 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block title %}
+    <title>Workerfy - Add Portfolio Item</title>
+{% endblock title %} 
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'main/jobPostpage.css' %}">
+{% endblock styles %}
+
+{% block body %} 
+
+<div class="Cancel" id="CancelPopUp">
+    <div>
+        <img src="{% static "images/discard.png" %}" alt="Cancel Image" width="100" height="100">
+        <h2>Are you sure you want to cancel?</h2>
+        <p>All unsaved changes will be lost.</p>
+        
+        <div class="cancelBTN">
+            
+            <button type="button" id="ContinueEditing">Continue</button>
+            <button type="button" id="StillCancel" onclick="history.back()">Still Cancel</button>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="header">
+    <h1 class="pageTitle">Add Portfolio Item</h1>
+</div>
+
+<div class="content">
+    <h3>Showcase your work and skills by adding a portfolio item. This can include past projects, completed jobs, or any relevant work that highlights your expertise.</h3>
+    <form method="POST" enctype="multipart/form-data" class="portfolioForm" id="PORTFOLIOFORM">
+        {% csrf_token %}
+
+        <section class="overview headings">
+            <fieldset class="overview_fieldset">
+        
+                <div class="inputContainer">
+                    <div class="fieldContainer">
+                        {{ portfolioForm.titlePort.label_tag }}
+                        {{ portfolioForm.titlePort }}
+                        {% if portfolioForm.titlePort.errors %}
+                            <div class="error-message">
+                                {% for error in portfolioForm.titlePort.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="fieldContainer">
+                        {{ portfolioForm.descrdescriptionPortiption.label_tag }}
+                        {{ portfolioForm.descriptionPort}}
+                        {% if portfolioForm.descriptionPort.errors %}
+                            <div class="error-message">
+                                {% for error in portfolioForm.descriptionPort.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="fieldContainer">
+                        {{ portfolioForm.year_completed.label_tag }}
+                        {{ portfolioForm.year_completed }}
+                        {% if portfolioForm.year_completed.errors %}
+                            <div class="error-message">
+                                {% for error in portfolioForm.year_completed.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="fieldContainer">
+                        {{ portfolioForm.image.label_tag }}
+                        {{ portfolioForm.image }}
+                        <p class="helptext">Upload a high-quality image of your work.</p>
+                        portfolioForm.titlePort.errors
+                        {% if portfolioForm.image.errors %}
+                            <div class="error-message">
+                                {% for error in portfolioForm.image.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="fieldContainer">
+                        {{ portfolioForm.video.label_tag }}
+                        {{ portfolioForm.video }}
+                        <p class="helptext">Optional: Provide a link or upload a short video clip.</p>
+                        {% if portfolioForm.video.errors %}
+                            <div class="error-message">
+                                {% for error in portfolioForm.video.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                
+                </div>
+            </fieldset>
+        </section>
+        
+    </form>
+</div>
+
+<div class="footer">
+    <button type="button" class="cancel-btn" id="CancelBTNmain">Cancel</button>
+    <button type="submit" class="save-btn" form="PORTFOLIOFORM" id="SaveBTNmain">Submit</button>
+</div>
+{% endblock body %}
+
+{% block scripts %}
+        <script src={% static "/main/jobPostPage.js" %}></script>
+{% endblock scripts %}

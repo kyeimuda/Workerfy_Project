@@ -78,7 +78,7 @@ def Main_page(request):
 
     elif userRole == "Client":
         context = {
-            'Tradespeople': Tradespeople,
+            'Client': Tradespeople,
             'user': loggedInUser.client,
             'Jobposts': JobPost.objects.all().order_by('-created_at'),
         }
@@ -280,3 +280,50 @@ def job_Post_Page(request):
 @login_required
 def jobPostDetailsPage(request):
      return render(request, 'main/jobPostDetails.html')
+
+# This view handels the adding certificates for tradespeople
+@login_required
+def add_Certificate_Page(request):
+    if request.method == "POST":
+        certForm = CertificateForm(request.POST, request.FILES)
+
+        if certForm.is_valid():
+            user = TradespersonProfile.objects.get(user = request.user)
+            Cert = Certificate(tradesperson = user)
+
+            for key, value in certForm.cleaned_data.items():
+                 print(key,value)
+                 setattr(Cert, key, value)
+
+            Cert.save()
+
+            return redirect('Profile_Page')
+        else:
+            print(certForm.errors)
+            return render(request, 'main/certificateAddPage.html', {"form":certForm, "errors": certForm.errors})
+    form = CertificateForm()
+    return render(request, 'main/certificateAddPage.html', {"form": form})
+
+# This view handels the adding postfolio items for tradespeople
+@login_required
+def add_Portfolio_Item_Page(request):
+    if request.method == "POST":
+        portfolioForm = PortfolioForm(request.POST, request.FILES)
+
+        if portfolioForm.is_valid():
+            user = TradespersonProfile.objects.get(user=request.user)
+            item = PortfolioItem(tradesperson=user)
+
+            for key, value in portfolioForm.cleaned_data.items():
+                print(key, value)
+                setattr(item, key, value)
+
+            item.save()
+
+            return redirect('Profile_Page')
+        else:
+            print(portfolioForm.errors)
+            return render(request, 'main/portfolioaddPage.html', {"portfolioForm": portfolioForm, "errors": portfolioForm.errors})
+    
+    portfolioForm = PortfolioForm()
+    return render(request, 'main/portfolioaddPage.html', {"portfolioForm": portfolioForm})

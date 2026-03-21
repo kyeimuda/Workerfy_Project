@@ -128,19 +128,19 @@
                                 </h3>
                                 <div class="detailsInfo">
                                     <p class="infoType">Full Name:</p>
-                                    <p class="infoValue">Bernard Kyei Mensah</p>
+                                    <p class="infoValue">{{ user.first_name }} {{ user.other_names}} {{ user.last_name }}</p>
                                 </div>
                                 <div class="detailsInfo">
                                     <p class="infoType">Username:</p>
-                                    <p class="infoValue">Kyeimuda</p>
+                                    <p class="infoValue">{{ user.username }}</p>
                                 </div>
                                 <div class="detailsInfo">
                                     <p class="infoType">Age:</p>
-                                    <p class="infoValue">30yrs</p>
+                                    <p class="infoValue">{{ user.date_of_birth }}</p>
                                 </div>
                                 <div class="detailsInfo">
                                     <p class="infoType">Location:</p>
-                                    <p class="infoValue">Ashaiman, Accra, Ghana</p>
+                                    <p class="infoValue"> {{ user.sub_location }}</p>
                                 </div>
                                 <div class="detailsInfo">
                                     <p class="infoType">Phone:</p>

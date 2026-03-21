@@ -12,4 +12,6 @@ urlpatterns = [
         path('Discover', views.Discover_Page, name='Discover_Page'),
         path('Notifications', views.Notifications_Page, name='Notifications_Page'),
         path('More', views.More_Page, name='More_Page'),
+        path('addCertificate', views.add_Certificate_Page, name='addCertificatePage'),
+        path('addPortfolioitems', views.add_Portfolio_Item_Page, name='addPortfolioItemPage'),
     ]

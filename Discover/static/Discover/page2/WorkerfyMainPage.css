@@ -1387,6 +1387,17 @@ main{
     height: max(2.6667vh);
 }
 
+.unverifiedIcon {
+    padding: 0 16px;
+    border-radius: 16px;
+    background-color: rgb(148, 2, 2);
+}
+
+.unverifiedIcon p {
+    color: whitesmoke;
+    font-family: "Nunito", sans-serif;
+}
+
 
 
 

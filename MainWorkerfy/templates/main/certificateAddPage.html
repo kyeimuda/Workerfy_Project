@@ -1,0 +1,124 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block title %}
+        <title>Workerfy - Add Certificate</title>
+{% endblock title %} 
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'main/jobPostpage.css' %}">
+{% endblock styles %}
+
+{% block body %} 
+<div class="Cancel" id="CancelPopUp">
+    <div>
+        <img src="{% static "images/discard.png" %}" alt="Cancel Image" width="100" height="100">
+        <h2>Are you sure you want to cancel?</h2>
+        <p>All unsaved changes will be lost.</p>
+        
+        <div class="cancelBTN">
+            
+            <button type="button" id="ContinueEditing">Continue</button>
+            <button type="button" id="StillCancel" onclick="history.back()">Still Cancel</button>
+
+        </div>
+    </div>
+</div>
+
+<div class="header">
+    <h1 class="pageTitle">Add Certificate</h1>
+</div>
+
+<div class="certificateAddPageContainer content">
+    <h3>Showcase your qualifications and achievements by adding a certificate. This can include any relevant certifications, licenses, or awards that demonstrate your expertise and credibility in your field.</h3>
+    <form method="POST" enctype="multipart/form-data" class="certificateForm" id="certificateForm">
+        {% csrf_token %}
+
+        <section class="overview headings">
+            <fieldset class="overview_fieldset">
+
+                <div class="inputContainer">
+                    <div class="fieldContainer">
+                        {{ form.title.label_tag }}
+                        {{ form.title }}
+                        {% if form.title.errors %}
+                            <div class="error-message">
+                                {% for error in form.title.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="fieldContainer">
+                        {{ form.description.label_tag }}
+                        {{ form.description }}
+                        {% if form.description.errors %}
+                            <div class="error-message">
+                                {% for error in form.description.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="fieldContainer">
+                        {{ form.issuing_organization.label_tag }}
+                        {{ form.issuing_organization }}
+                        {% if form.issuing_organization.errors %}
+                            <div class="error-message">
+                                {% for error in form.issuing_organization.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="fieldContainer">
+                        {{ form.issue_date.label_tag }}
+                        {{ form.issue_date }}
+                        {% if form.issue_date.errors %}
+                            <div class="error-message">
+                                {% for error in form.issue_date.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="fieldContainer">
+                        {{ form.expiry_date.label_tag }}
+                        {{ form.expiry_date }}
+                        {% if form.expiry_date.errors %}
+                            <div class="error-message">
+                                {% for error in form.expiry_date.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="fieldContainer">
+                        {{ form.certificate_file.label_tag }}
+                        {{ form.certificate_file }}
+                        {% if form.certificate_file.errors %}
+                            <div class="error-message">
+                                {% for error in form.certificate_file.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </fieldset>
+        </section>
+    </form>
+</div>
+
+ <div class="footer">
+    <button type="button" class="cancel-btn" id="CancelBTNmain">Cancel</button>
+    <button type="submit" class="save-btn" form="certificateForm" id="SaveBTNmain">Submit</button>
+</div>
+
+{% endblock body %}
+
+{% block scripts %}
+    <script src={% static "/main/jobPostPage.js" %}></script>
+
+{% endblock scripts %}
