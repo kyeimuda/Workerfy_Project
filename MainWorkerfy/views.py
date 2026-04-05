@@ -73,6 +73,7 @@ def Main_page(request):
             'Tradespeople': Tradespeople,
             'user': loggedInUser.tradesperson_profile,
             'Jobposts': JobPost.objects.all().order_by('-created_at'),
+            'TradesType': TradeCategory.objects.all()
         }
         return render(request, 'main/mainPageTradesperson.html', context)
 
@@ -81,6 +82,7 @@ def Main_page(request):
             'Client': Tradespeople,
             'user': loggedInUser.client,
             'Jobposts': JobPost.objects.all().order_by('-created_at'),
+            'TradesType': TradeCategory.objects.all()
         }
         return render(request, 'main/mainPageClient.html', context)
     return render(request, 'main/mainPage.html', {'user': TradespersonProfile.objects.filter(user = request.user).first()})

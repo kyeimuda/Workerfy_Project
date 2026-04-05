@@ -55,6 +55,7 @@ Selected as the primary category for a tradesperson.
 class TradeCategory(models.Model):
     name = models.CharField(max_length=100, unique=True)
     description = models.TextField(blank=True)
+    image = models.ImageField(upload_to='trade_categories/', blank=True, null=True, default='mason1.jpeg')
 
     class Meta:
         verbose_name_plural = "Trade Categories"
@@ -380,3 +381,35 @@ class JobPostAttachment(models.Model):
 
     def __str__(self):
         return f"Attachment for {self.uploaded_at}{self.job_post.pk} - {self.job_post.title}"
+
+
+class Notification(models.Model):
+    NOTIFICATION_TYPES = [
+        ('job_alert', 'Job Alert'),
+        ('message', 'Message'),
+        ('verification', 'Verification Update'),
+        ('system', 'System Update'),
+        ('application', 'Job Application'),
+    ]
+
+    RECIPIENT_TYPES = [
+        ('tradesperson', 'Tradesperson'),
+        ('client', 'Client'),
+        ('admin', 'Admin'),
+        ('all', 'All'),
+    ]
+
+    recipient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notifications', blank=True, null=True)
+    recipient_type = models.CharField(max_length=20, choices=RECIPIENT_TYPES, default='all')
+    notification_type = models.CharField(max_length=20, choices=NOTIFICATION_TYPES)
+    title = models.CharField(max_length=255)
+    message = models.TextField()
+    link = models.CharField(max_length=500, blank=True, null=True, help_text="URL to redirect when clicked")
+    is_read = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.notification_type} {self.title}"

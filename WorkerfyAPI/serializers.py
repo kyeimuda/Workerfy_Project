@@ -2,7 +2,7 @@ import json
 
 from rest_framework import serializers
 from MainWorkerfy.models import JobPostAttachment, TradespersonProfile, City, Area, Country, Region, TradeSpecialty, TradeCategory\
-    , TradeSkillTag, JobPost
+    , TradeSkillTag, JobPost, Notification
 from django.contrib.auth.models import User
 
 
@@ -151,6 +151,12 @@ class TradespeopleWriteSerializer(serializers.ModelSerializer):
 
 
         return instance
+
+
+class NotificationListCreateUpdateDeleteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notification
+        fields = '__all__'
 
 
 class CitySerializer(serializers.ModelSerializer):

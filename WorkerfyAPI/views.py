@@ -6,10 +6,10 @@ from rest_framework.response import Response
 from rest_framework import status, viewsets
 from django.contrib.auth.models import User
 from MainWorkerfy.models import JobPostAttachment, TradespersonProfile, City, Area, Country, Region, TradeSpecialty, TradeCategory, TradeSkillTag\
-    , JobPost
+    , JobPost, Notification
 from .serializers import CitySerializer, TradespeopleListSerializer, TradeSpecialtySerializer, TradeCategorySerializer,\
       CountrySerializer, jobattachmentsSerializer, jobsSerializer, usersCreateSerializer, usersListSerializerl, skillsTagSerializer,\
-     TradeSpecialtySerializer, TradespeopleWriteSerializer
+     TradeSpecialtySerializer, TradespeopleWriteSerializer, NotificationListCreateUpdateDeleteSerializer
 from .API_format import api_response
 
 
@@ -167,4 +167,12 @@ class TradeSpecialtyViewSet(viewsets.ModelViewSet):
     serializer_class = TradeSpecialtySerializer
     permission_classes = [IsAuthenticated]
     
+
+class NotificationsViewSet(viewsets.ModelViewSet):
+    queryset = Notification.objects.all()
+    serializer_class = NotificationListCreateUpdateDeleteSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(recipient=self.request.user)
 
