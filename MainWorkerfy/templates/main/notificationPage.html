@@ -1,0 +1,64 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block title %}
+    <title>Workerfy - Add Portfolio Item</title>
+{% endblock title %} 
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'main/jobPostpage.css' %}">
+    <link rel='stylesheet' href="{% static 'main/notificationPage.css' %}">
+{% endblock styles %}
+
+{% block body %} 
+    <div class="header">
+    </div>
+
+    <div class="content">
+        <section class="LogoAndDAte"> 
+            <div class="logo"> <img src={% static "images/WorkerfyLogo.png" %} alt='Workerfy Logo' class='Workerfy.img' width='45' height='45'></div> 
+            <div class="notificationType">
+                {% if notification.notification_type == "System Update" %}
+                    <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="3" cy="3" r="3" fill="rgb(255, 36, 36)"/>
+                    </svg>
+                {% elif notification.notification_type == "Message" %}
+                    <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="3" cy="3" r="3" fill="#000080"/>
+                    </svg>
+                {% else %}
+                     <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="3" cy="3" r="3" fill="#49FF49"/>
+                </svg>
+
+                {% endif %}
+                <p>{{ notification.notification_type }}</p> 
+            </div>
+        </section>
+
+        <section class="notificationContent">
+            <div class="notificationTitle">
+                <h2>{{ notification.title }}</h2>
+            </div>
+            <div class="notificationMessage">
+                <p>{{ notification.message }}</p>
+            </div>
+            <div class="notificationDate">
+                <p>{{ notification.created_at }}</p>
+            </div>
+
+
+
+        </section>
+    </div>
+
+    <div class="footer">
+        <button type="button" class="cancel-btn" id="CancelBTNmain" onclick="window.location.href='http://localhost:8000/main/Main#mainSection4'">&lt;&lt; Back</button>
+    </div>
+
+{% endblock body %}
+
+{% block scripts %}
+        <script src={% static "/main/jobPostPage.js" %}></script>
+{% endblock scripts %}

@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from .forms import TradespersonOnboardingForm, ProfileEditPageform, CertificateForm, PortfolioForm, JobPostForm
 from django.contrib.auth.decorators import login_required
-from MainWorkerfy.models import TradespersonProfile, City, Area, TradeCategory, TradeSpecialty, TradeSkillTag, Region, Certificate, PortfolioItem, JobPost, JobPostAttachment
+from MainWorkerfy.models import TradespersonProfile, City, Area, TradeCategory, TradeSpecialty, TradeSkillTag, Region, Certificate, PortfolioItem, JobPost, JobPostAttachment\
+, Notification
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 import json
@@ -57,35 +58,32 @@ def Work_Page(request):
 # This view handles the Discover page
 @login_required
 def Main_page(request):
-    print(request.user)
-    loggedInUser = User.objects.get(id = request.user.id)
+    print(request.user.id)
+    user = User.objects.get(id=request.user.id)
     Tradespeople = TradespersonProfile.objects.all()
+    print(user.user_type)
 
-    try:
-         userRole = validate_user_role(loggedInUser)
-    except Exception:
-         messages.error(request, 'User does not have a valid role. Must be Tradesperson, Client, or Admin')
-         return redirect('Onboardings')
-
-    if userRole == "Tradesperson":
-        print(loggedInUser.email)   
+    if user.user_type == "Tradesperson":
         context = {
             'Tradespeople': Tradespeople,
-            'user': loggedInUser.tradesperson_profile,
+            'user': user.tradesperson_profile,
             'Jobposts': JobPost.objects.all().order_by('-created_at'),
             'TradesType': TradeCategory.objects.all()
         }
         return render(request, 'main/mainPageTradesperson.html', context)
 
-    elif userRole == "Client":
+    elif user.user_type == "Client":
         context = {
-            'Client': Tradespeople,
-            'user': loggedInUser.client,
+            'Client': Tradespeople, # Note: Verify if this should be ClientProfile objects instead
+            'user': user.client,
             'Jobposts': JobPost.objects.all().order_by('-created_at'),
             'TradesType': TradeCategory.objects.all()
         }
         return render(request, 'main/mainPageClient.html', context)
-    return render(request, 'main/mainPage.html', {'user': TradespersonProfile.objects.filter(user = request.user).first()})
+    
+    messages.error(request, 'User does not have a valid role. Must be Tradesperson, Client, or Admin')
+    return redirect('Onboardings')
+
 
 @login_required
 def TradespersonProfileEdit(request):
@@ -260,6 +258,10 @@ def job_Post_Page(request):
             print(jobPostForm.cleaned_data)
 
             for key, value in jobPostForm.cleaned_data.items():
+                if key == "required_skills":
+                    value = value.split(",")
+                elif key == "requirements":
+                    value = value.split(",,")
                 print(key, value)
                 setattr(Job, key, value)
 
@@ -280,8 +282,15 @@ def job_Post_Page(request):
         return render(request, 'main/jobPostpage.html', {"form":form, "user":user})
     
 @login_required
-def jobPostDetailsPage(request):
-     return render(request, 'main/jobPostDetails.html')
+def jobPostDetailsPage(request, id):
+     job = JobPost.objects.get(id=id)
+     JobPostAttachments = JobPostAttachment.objects.filter(job_post=job)
+
+     context = {
+         'job': job,
+         'attachments': JobPostAttachments
+     }
+     return render(request, 'main/jobPostDetails.html', context)
 
 # This view handels the adding certificates for tradespeople
 @login_required
@@ -329,3 +338,26 @@ def add_Portfolio_Item_Page(request):
     
     portfolioForm = PortfolioForm()
     return render(request, 'main/portfolioaddPage.html', {"portfolioForm": portfolioForm})
+
+@login_required
+def tradesperson_View_Page(request, id):
+    tradesperson = TradespersonProfile.objects.get(user=request.user)
+
+    context = {
+        'user': tradesperson,     
+    }
+
+    return render(request, 'main/tradespersonViewPage.html', context)
+
+
+@login_required
+def notification_Page(request, id):
+        notification = Notification.objects.get(id=id)
+        notification.is_read = True
+        notification.save()
+
+        context = {
+            'notification': notification
+        }
+        
+        return render(request, 'main/notificationPage.html', context)

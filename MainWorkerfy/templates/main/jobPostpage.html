@@ -49,9 +49,9 @@
                                 <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M14.2821 0.308123C14.1852 0.210489 14.07 0.132995 13.9431 0.0801111C13.8162 0.0272271 13.68 0 13.5425 0C13.405 0 13.2688 0.0272271 13.1419 0.0801111C13.015 0.132995 12.8997 0.210489 12.8029 0.308123L8.03208 5.07896C7.93524 5.17659 7.82003 5.25408 7.69309 5.30697C7.56616 5.35985 7.43001 5.38708 7.29249 5.38708C7.15498 5.38708 7.01883 5.35985 6.89189 5.30697C6.76496 5.25408 6.64975 5.17659 6.55291 5.07896L1.78208 0.308123C1.68524 0.210489 1.57003 0.132995 1.44309 0.0801111C1.31616 0.0272271 1.18 0 1.04249 0C0.90498 0 0.768828 0.0272271 0.641891 0.0801111C0.514955 0.132995 0.399745 0.210489 0.302909 0.308123C0.108897 0.503293 0 0.767305 0 1.0425C0 1.31769 0.108897 1.5817 0.302909 1.77687L5.08416 6.55812C5.6701 7.14333 6.46437 7.47204 7.29249 7.47204C8.12062 7.47204 8.91489 7.14333 9.50083 6.55812L14.2821 1.77687C14.4761 1.5817 14.585 1.31769 14.585 1.0425C14.585 0.767305 14.4761 0.503293 14.2821 0.308123Z" fill="white"/>
                                 </svg>
-                                {{ form.tradesType }}
+                                {{ form.trade_category }}
                             </div>
-                            <p class="helptext">{{ form.tradesType.help_text }}</p>
+                            <p class="helptext">{{ form.trade_category.help_text }}</p>
                         </div>
                         <div class="fieldContainer">
                             {{ form.job_type.label_tag }}
@@ -184,11 +184,12 @@
 
                             <div class="budgetholder">
                                 <p>GHc:</p>
-                                {{ form.budget_rage }}
                                 <input type="text" name="FromoAmount" id="fromAmount">
                                 <span>-</span>
                                 <input type="text" name="ToAmount" id="toAmount">
                             </div>
+
+                            {{ form.budget_range }}
                             
                             <p class="helptext">{{ form.budget_rage.help_text }} </p>
                         </div>
@@ -320,7 +321,7 @@
                                     <input type="tel" name="contact_number" id="CTN_id">
                                 
                                     {{ form.contact_number }}
-                                    <input type="email" name="ContactEmail" id="ContactEmail_id" placeholder="Kofi123@gmail.com"">
+                                    <input type="email" name="ContactEmail" id="ContactEmail_id" placeholder="Kofi123@gmail.com">
                                     
                                 </div>
                                  <p class="helptext"> {{ form.contact_number.help_text }} </p>

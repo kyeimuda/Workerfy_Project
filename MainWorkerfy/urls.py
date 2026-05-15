@@ -6,7 +6,7 @@ urlpatterns = [
         path('Main', views.Main_page, name='MainPage'),
         path('EditTradesperson', views.TradespersonProfileEdit, name='MainTradespersonProfileEditnPage'),
         path('jobPost', views.job_Post_Page, name='jobPostPage'),
-        path('jobPostDetails', views.jobPostDetailsPage, name="JobPostDetails"),
+        path('jobPostDetails/<int:id>/', views.jobPostDetailsPage, name="JobPostDetails"),
         path('Work', views.Work_Page, name='Work_Page'),
         path('Profile', views.Profile_Page, name='Profile_Page'),
         path('Discover', views.Discover_Page, name='Discover_Page'),
@@ -14,4 +14,6 @@ urlpatterns = [
         path('More', views.More_Page, name='More_Page'),
         path('addCertificate', views.add_Certificate_Page, name='addCertificatePage'),
         path('addPortfolioitems', views.add_Portfolio_Item_Page, name='addPortfolioItemPage'),
+        path('notification/<int:id>/', views.notification_Page, name='notificationPage'),
+        path('tradesperson-view/<int:id>', views.tradesperson_View_Page, name='tradespersonView')
     ]

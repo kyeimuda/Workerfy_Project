@@ -1,15 +1,58 @@
 from django.db import models
 from django.conf import settings
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import AbstractUser, BaseUserManager
+import uuid
 from .validators import validate_certificate_file, validate_video_size, validate_video_extension
 from .paths import portfolio_image_upload_path, portfolio_video_upload_path
 
 # Create your models here.
 
-
-# Create your models here.
 # Main1 : models for the Trades types
-User = get_user_model() # This will use the custom user model if one is defined, otherwise it will use the default User model.
+
+class WorkerfyUserManager(BaseUserManager):
+    def create_user(self, email, password=None, **extra_fields):
+        if not email:
+            raise ValueError('The Email field must be set')
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_active', True)
+
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('Superuser must have is_staff=True.')
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser must have is_superuser=True.')
+
+        return self.create_user(email, password, **extra_fields)
+
+# User model
+class WorkerfyUser(AbstractUser):
+    username = None
+    email = models.EmailField(unique=True)
+
+    USER_TYPE_CHOICES = [
+        ('Client', 'Client'),
+        ('Tradesperson', 'Tradesperson'),
+        ('Admin', 'Admin')
+    ]
+
+    user_type = models.CharField(max_length=20, choices=USER_TYPE_CHOICES)
+    verification_code = models.UUIDField(default=uuid.uuid4, editable=False)
+    verified = models.BooleanField(default=False)
+
+    objects = WorkerfyUserManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    def __str__(self):
+        return self.email
 
 # Country model
 class Country(models.Model):
@@ -211,7 +254,7 @@ Stores the core professional identity of the tradesperson.
 """
 
 class ClientProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="client")
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="client")
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
     other_names = models.CharField(max_length=30, blank=True)
@@ -231,7 +274,7 @@ class ClientProfile(models.Model):
     work_areas = models.ForeignKey(Area,on_delete=models.SET_NULL, related_name="client_areas", null=True, blank=True)
 
 class TradespersonProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="tradesperson_profile")
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="tradesperson_profile")
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
     other_names = models.CharField(max_length=30, blank=True)
@@ -298,31 +341,31 @@ class TradespersonProfile(models.Model):
 
     def __str__(self):
         name = f"{self.first_name} {self.last_name}".strip()
-        return name if name else self.username or f"Tradesperson {self.id}"
+        return name if name else self.user.email or f"Tradesperson {self.id}"
 
 
 JOB_TYPE_CHOICES = [
-    ("one_time", "One-time"),
-    ("recurring", "Recurring"),
-    ("contract", "Contract"),
+    ("One-time", "One-time"),
+    ("Recurring", "Recurring"),
+    ("Contract", "Contract"),
 ]
 
 WORK_ENV_CHOICES = [
-    ("indoor", "Indoor"),
-    ("outdoor", "Outdoor"),
-    ("residential", "Residential"),
-    ("industrial", "Industrial"),
+    ("Indoor", "Indoor"),
+    ("Outdoor", "Outdoor"),
+    ("Residential", "Residential"),
+    ("Industrial", "Industrial"),
 ]
 
 URGENCY_CHOICES = [
-    ("urgent", "Urgent"),
-    ("normal", "Normal"),
+    ("Urgent", "Urgent"),
+    ("Normal", "Normal"),
 ]
 
 BUDGET_TYPE_CHOICES = [
-    ("fixed", "Fixed Price"),
-    ("hourly", "Hourly Rate"),
-    ("negotiable", "Negotiable"),
+    ("Fixed", "Fixed Price"),
+    ("Hourly", "Hourly Rate"),
+    ("Negotiable", "Negotiable"),
 ]
 
 MATERIALS_CHOICES = [
@@ -331,10 +374,10 @@ MATERIALS_CHOICES = [
 ]
 
 CONTACT_METHOD_CHOICES = [
-    ("whatsapp", "Whatsapp"),
-    ("email", "Email"),
-    ("call", "Call"),
-    ("text", "Text"),
+    ("Whatsapp", "Whatsapp"),
+    ("Email", "Email"),
+    ("Call", "Call"),
+    ("Text", "Text"),
 ]
 
 class JobPost(models.Model):
@@ -359,10 +402,13 @@ class JobPost(models.Model):
     budget_range = models.CharField(max_length=100, blank=True)
 
     materials_provided = models.CharField(max_length=3, choices=MATERIALS_CHOICES, default="no")
-    required_skills = models.JSONField(default=list, blank=True, help_text="List of required skills for the job")
+    required_skills = models.JSONField(default=list, blank=True, null=True, help_text="List of required skills for the job")
+    requirements = models.JSONField(default=list, blank=True, help_text="Additional requirements or qualifications for the job")
+
 
     contact_method = models.CharField(max_length=20, choices=CONTACT_METHOD_CHOICES, blank=True)
     contact_number = models.CharField(max_length=50, blank=True)
+
 
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -385,21 +431,21 @@ class JobPostAttachment(models.Model):
 
 class Notification(models.Model):
     NOTIFICATION_TYPES = [
-        ('job_alert', 'Job Alert'),
-        ('message', 'Message'),
-        ('verification', 'Verification Update'),
-        ('system', 'System Update'),
-        ('application', 'Job Application'),
+        ('Job Alert', 'Job Alert'),
+        ('Message', 'Message'),
+        ('Verification Update', 'Verification Update'),
+        ('System Update', 'System Update'),
+        ('Job Application', 'Job Application'),
     ]
 
     RECIPIENT_TYPES = [
-        ('tradesperson', 'Tradesperson'),
-        ('client', 'Client'),
-        ('admin', 'Admin'),
-        ('all', 'All'),
+        ('Tradesperson', 'Tradesperson'),
+        ('Client', 'Client'),
+        ('Admin', 'Admin'),
+        ('All', 'All'),
     ]
 
-    recipient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notifications', blank=True, null=True)
+    recipient = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='notifications', blank=True, null=True)
     recipient_type = models.CharField(max_length=20, choices=RECIPIENT_TYPES, default='all')
     notification_type = models.CharField(max_length=20, choices=NOTIFICATION_TYPES)
     title = models.CharField(max_length=255)

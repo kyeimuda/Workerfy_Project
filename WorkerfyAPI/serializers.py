@@ -1,26 +1,25 @@
 import json
 
 from rest_framework import serializers
-from MainWorkerfy.models import JobPostAttachment, TradespersonProfile, City, Area, Country, Region, TradeSpecialty, TradeCategory\
-    , TradeSkillTag, JobPost, Notification
-from django.contrib.auth.models import User
+from MainWorkerfy.models import JobPostAttachment, TradespersonProfile, City, Area, Country, Region, TradeSpecialty, TradeCategory, TradeSkillTag, JobPost, Notification, ClientProfile
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
 
 # This is a serializer for the user model
-class usersListSerializerl(serializers.ModelSerializer):
+class usersListSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'date_joined']
+        fields = ['id', 'email', 'date_joined']
 
 class usersCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'password', 'date_joined']
+        fields = ['id', 'email', 'password', 'date_joined']
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
         user = User.objects.create_user(
-            username=validated_data['username'],  # Assuming email is used as username
             email=validated_data['email'],
             password=validated_data['password']
         )
@@ -44,13 +43,18 @@ class TradeSpecialtySerializer(serializers.ModelSerializer):
 # Below are serializers for the tradesperson profile
 class TradespeopleListSerializer(serializers.ModelSerializer):
 
-    # trade_category = serializers.StringRelatedField()
+    trade_category = serializers.StringRelatedField()
     # trade_specialties = serializers.StringRelatedField()
     # base_location = serializers.StringRelatedField()
-    # sub_location = serializers.StringRelatedField()
+    sub_location = serializers.StringRelatedField()
     skills = skillsTagSerializer(many=True, read_only=True)
     trade_specialties = TradeSpecialtySerializer(many=True, read_only=True)
 
+    class Meta:
+        model = TradespersonProfile
+        fields = '__all__'
+
+class TradespeopleSerializerAddedToJobs(serializers.ModelSerializer):
     class Meta:
         model = TradespersonProfile
         fields = '__all__'
@@ -196,11 +200,35 @@ class jobattachmentsSerializer(serializers.ModelSerializer):
         model = JobPostAttachment
         fields = ['file', 'uploaded_at']
 
+class ClientProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ClientProfile
+        fields = '__all__'
+
 class jobsSerializer(serializers.ModelSerializer):
     attachments = jobattachmentsSerializer(many=True, read_only=True)
-    user = usersCreateSerializer(read_only=True)
-    
+    user = usersListSerializer(read_only=True)
+    tradesperson = serializers.SerializerMethodField()
+    client = serializers.SerializerMethodField()
 
     class Meta:
         model = JobPost
         fields = '__all__'
+
+    def get_tradesperson(self, obj):
+        if obj.user.user_type == 'Tradesperson':
+            try:
+                profile = obj.user.tradesperson_profile
+                return TradespeopleSerializerAddedToJobs(profile, context=self.context).data
+            except TradespersonProfile.DoesNotExist:
+                return None
+        return None
+
+    def get_client(self, obj):
+        if obj.user.user_type == 'Client':
+            try:
+                profile = obj.user.client
+                return ClientProfileSerializer(profile, context=self.context).data
+            except ClientProfile.DoesNotExist:
+                return None
+        return None

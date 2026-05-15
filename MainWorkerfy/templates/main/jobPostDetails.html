@@ -21,9 +21,9 @@
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M14.3327 0L10.9993 0.00133333C10.0827 0.00133333 9.33333 0.752 9.33333 1.668V6.236C9.334 6.94867 10.1373 7.366 10.7207 6.95667L12.0853 5.99933H14.3333C15.254 5.99933 16 5.25333 16 4.33267V1.666C16 0.746 15.2533 0 14.3327 0ZM14.6553 2.82667L13.266 4.258C12.7353 4.80667 11.854 4.80267 11.3293 4.248L10.8167 3.706C10.572 3.44733 10.574 3.04267 10.8207 2.78667C11.084 2.51267 11.5233 2.51467 11.784 2.79067L12.302 3.338L13.6967 1.90067C13.9573 1.63067 14.39 1.62933 14.652 1.898C14.904 2.156 14.906 2.56667 14.6553 2.82667ZM5 8C7.02133 8 8.66667 6.35533 8.66667 4.33333C8.66667 2.31133 7.02133 0.666667 5 0.666667C2.97867 0.666667 1.33333 2.31133 1.33333 4.33333C1.33333 6.35533 2.97867 8 5 8ZM5 2C6.28667 2 7.33333 3.04667 7.33333 4.33333C7.33333 5.62 6.28667 6.66667 5 6.66667C3.71333 6.66667 2.66667 5.62 2.66667 4.33333C2.66667 3.04667 3.71333 2 5 2ZM10 14.3333V15.3333C10 15.7013 9.702 16 9.33333 16C8.96467 16 8.66667 15.7013 8.66667 15.3333V14.3333C8.66667 12.3113 7.02133 10.6667 5 10.6667C2.97867 10.6667 1.33333 12.3113 1.33333 14.3333V15.3333C1.33333 15.7013 1.03533 16 0.666667 16C0.298 16 0 15.7013 0 15.3333V14.3333C0 11.576 2.24267 9.33333 5 9.33333C7.75733 9.33333 10 11.576 10 14.3333Z" fill="#00006D"/>
                 </svg>
-                <h3>Mason needed</h3>
+                <h3>{{ job.trade_category.name }} needed</h3>
             </div>
-            <h2 >Toilet Sink Overflow</h2>
+            <h2 >{{ job.title }}</h2>
             <span class="sepLine"></span>
         </div>
 
@@ -41,10 +41,10 @@
                     </defs>
                 </svg>
 
-                <p>Posted on 2 days ago</p>
+                <p>{{ job.created_at|date:"c" }}</p>
             </div>
 
-            <p class="id">Job Id: 2537453647747</p>
+            <p class="id">Job Id: 896W{{job.id}}</p>
         </div>
 
         <div class="breifDetails">
@@ -55,7 +55,7 @@
 
                 <div class="elementName">
                     <p class="detailName">Budget :</p>
-                    <p class="detailVAlue">200 - 300</p>
+                    <p class="detailVAlue">{{ job.budget_range }}</p>
                 </div> 
 
             </div>
@@ -75,7 +75,7 @@
 
                 <div class="elementName">
                     <p class="detailName">Location :</p>
-                    <p class="detailVAlue">Kanda, Accra, GH.</p>
+                    <p class="detailVAlue">{{ job.city }}.</p>
                 </div> 
             </div>
 
@@ -86,7 +86,7 @@
 
                 <div class="elementName">
                     <p class="detailName">Payment Method :</p>
-                    <p class="detailVAlue">Fixed Price</p>
+                    <p class="detailVAlue">{{ job.budget_type }}</p>
                 </div> 
             </div>
 
@@ -104,7 +104,7 @@
 
                 <div class="elementName">
                     <p class="detailName">Job Type :</p>
-                    <p class="detailVAlue">One-time Job</p>
+                    <p class="detailVAlue">{{ job.job_type }}</p>
                 </div>
 
             </div>
@@ -117,7 +117,7 @@
 
                 <div class="elementName">
                     <p class="detailName">Urgency :</p>
-                    <p class="detailVAlue">Urgent</p>
+                    <p class="detailVAlue">{{ job.urgency_level}}</p>
                 </div>
             </div>
 
@@ -136,7 +136,7 @@
 
                 <div class="elementName">
                     <p class="detailName">Material Provision :</p>
-                    <p class="detailVAlue">By Client</p>
+                    <p class="detailVAlue">{{ job.materials_provided }}</p>
                 </div>
 
             </div>
@@ -156,7 +156,7 @@
 
                 <div class="elementName">
                     <p class="detailName">Starting Date :</p>
-                    <p class="detailVAlue">1 July 2025</p>
+                    <p class="detailVAlue">{{ job.start_date }}</p>
                 </div>
 
             </div>
@@ -174,8 +174,8 @@
                 </svg>
 
                 <div class="elementName">
-                    <p class="detailName">Job Timeline :</p>
-                    <p class="detailVAlue">2 days</p>
+                    <p class="detailName">End Date :</p>
+                    <p class="detailVAlue">{{ job.end_date }}</p>
                 </div>
 
             </div>
@@ -194,7 +194,7 @@
 
                 <div class="elementName">
                     <p class="detailName">Work Environment: </p>
-                    <p class="detailVAlue">Residentail</p>
+                    <p class="detailVAlue">{{ job.work_environment }}</p>
                 </div>
 
             </div>
@@ -213,7 +213,7 @@
 
                 <div class="elementName">
                     <p class="detailName">Deadline : </p>
-                    <p class="detailVAlue">22nd June, 2025</p>
+                    <p class="detailVAlue">{{ job.expiry_date }}</p>
                 </div>
 
             </div>
@@ -224,8 +224,8 @@
 
         <div class="discription">
             <h4>Job Discription</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis iusto saepe eos voluptates iste fugit molestias alias natus nihil, animi enim doloremque tenetur suscipit iure qui dolorem. Architecto, fugiat doloribus.
-            Quidem quisquam illum molestias asperiores voluptatibus porro repellendus corporis mollitia rerum. Voluptate quae fugit rem tempore laboriosam molestias enim deleniti non dicta quaerat. Ex non deserunt facilis, iure et aliquid!</p>
+            <p> {{ job.description }}
+        </p>
 
         </div>
 
@@ -233,11 +233,9 @@
             <h4>Skills Required</h4>
 
             <div class="skillSet">
-                <p>Plumber</p>
-                <p>Toilet Sink fixer</p>
-                <p>Pipe Fitter</p>
-                <p>Drain Cleaner</p>
-                <p>Toilet pipe fixer</p>
+                 {% for skill in required_skills %}
+                    <p>{{ skill }}</p>
+                {% endfor %}
             </div>
             
 
@@ -247,11 +245,9 @@
             <h4>Attachments</h4>
 
             <div class="items">
-                <img src="" alt="">
-                <img src="" alt="">
-                <img src="" alt="">
-                <img src="" alt="">
-                <img src="" alt="">
+                 {% for attachment in attachments %}
+                    <img src="{{ attachment.url }}" alt="Job Attachment">
+                {% endfor %}
             </div>
 
 
@@ -260,33 +256,23 @@
         <div class="additional">
             <h4>Additional requirements</h4>
 
-            <div class="adds">
+            {% for requirement in requirements %}
+                <div class="adds">
 
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_203_230)">
-                    <path d="M23.34 9.481L19.84 3.481C18.947 1.951 17.292 1 15.521 1H8.452C6.681 1 5.025 1.951 4.133 3.481L0.632001 9.481C-0.272999 11.034 -0.272999 12.964 0.632001 14.519L4.133 20.519C5.026 22.049 6.68 22.999 8.451 22.999H15.52C17.291 22.999 18.946 22.049 19.839 20.519L23.339 14.518C24.244 12.964 24.244 11.034 23.339 9.48L23.34 9.481ZM21.611 13.512L18.112 19.512C17.576 20.43 16.583 21 15.52 21H8.451C7.389 21 6.395 20.43 5.86 19.512L2.36 13.513C1.816 12.58 1.816 11.421 2.36 10.489L5.86 4.489C6.395 3.571 7.388 3 8.451 3H15.52C16.582 3 17.576 3.57 18.111 4.489L21.611 10.489C22.155 11.422 22.155 12.58 21.611 13.512ZM17 12C17 12.552 16.553 13 16 13H13V16C13 16.553 12.553 17 12 17C11.447 17 11 16.553 11 16V13H8C7.447 13 7 12.552 7 12C7 11.448 7.447 11 8 11H11V8C11 7.448 11.447 7 12 7C12.553 7 13 7.448 13 8V11H16C16.553 11 17 11.448 17 12Z" fill="#24FF24"/>
-                    </g>
-                    <defs>
-                    <clipPath id="clip0_203_230">
-                    <rect width="24" height="24" fill="white"/>
-                    </clipPath>
-                    </defs>
-                </svg> <p>I need someone close to my area.</p>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_203_230)">
+                        <path d="M23.34 9.481L19.84 3.481C18.947 1.951 17.292 1 15.521 1H8.452C6.681 1 5.025 1.951 4.133 3.481L0.632001 9.481C-0.272999 11.034 -0.272999 12.964 0.632001 14.519L4.133 20.519C5.026 22.049 6.68 22.999 8.451 22.999H15.52C17.291 22.999 18.946 22.049 19.839 20.519L23.339 14.518C24.244 12.964 24.244 11.034 23.339 9.48L23.34 9.481ZM21.611 13.512L18.112 19.512C17.576 20.43 16.583 21 15.52 21H8.451C7.389 21 6.395 20.43 5.86 19.512L2.36 13.513C1.816 12.58 1.816 11.421 2.36 10.489L5.86 4.489C6.395 3.571 7.388 3 8.451 3H15.52C16.582 3 17.576 3.57 18.111 4.489L21.611 10.489C22.155 11.422 22.155 12.58 21.611 13.512ZM17 12C17 12.552 16.553 13 16 13H13V16C13 16.553 12.553 17 12 17C11.447 17 11 16.553 11 16V13H8C7.447 13 7 12.552 7 12C7 11.448 7.447 11 8 11H11V8C11 7.448 11.447 7 12 7C12.553 7 13 7.448 13 8V11H16C16.553 11 17 11.448 17 12Z" fill="#24FF24"/>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_203_230">
+                        <rect width="24" height="24" fill="white"/>
+                        </clipPath>
+                        </defs>
+                    </svg> <p>{{ requirement }}</p>
 
-            </div>
-            <div class="adds">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_203_230)">
-                    <path d="M23.34 9.481L19.84 3.481C18.947 1.951 17.292 1 15.521 1H8.452C6.681 1 5.025 1.951 4.133 3.481L0.632001 9.481C-0.272999 11.034 -0.272999 12.964 0.632001 14.519L4.133 20.519C5.026 22.049 6.68 22.999 8.451 22.999H15.52C17.291 22.999 18.946 22.049 19.839 20.519L23.339 14.518C24.244 12.964 24.244 11.034 23.339 9.48L23.34 9.481ZM21.611 13.512L18.112 19.512C17.576 20.43 16.583 21 15.52 21H8.451C7.389 21 6.395 20.43 5.86 19.512L2.36 13.513C1.816 12.58 1.816 11.421 2.36 10.489L5.86 4.489C6.395 3.571 7.388 3 8.451 3H15.52C16.582 3 17.576 3.57 18.111 4.489L21.611 10.489C22.155 11.422 22.155 12.58 21.611 13.512ZM17 12C17 12.552 16.553 13 16 13H13V16C13 16.553 12.553 17 12 17C11.447 17 11 16.553 11 16V13H8C7.447 13 7 12.552 7 12C7 11.448 7.447 11 8 11H11V8C11 7.448 11.447 7 12 7C12.553 7 13 7.448 13 8V11H16C16.553 11 17 11.448 17 12Z" fill="#24FF24"/>
-                    </g>
-                    <defs>
-                    <clipPath id="clip0_203_230">
-                    <rect width="24" height="24" fill="white"/>
-                    </clipPath>
-                    </defs>
-                </svg> <p>You should be at least 18 years of age</p>
+                </div>
 
-            </div>
+            {% endfor %}
         </div>
 
         <div class="client">
@@ -367,10 +353,12 @@
     </div>
 
     <div class="footer">
-        <button type="button" class="cancel-btn" id="CancelBTNmain">Back</button>
+        <button type="button" class="cancel-btn" id="CancelBTNmain" onclick="window.history.back()">Back</button>
         <button type="submit" class="save-btn" for="form">Apply Now</button>
     </div>
 
 {% endblock body %}
 
-{% block scripts %}{% endblock scripts %}
+{% block scripts %}
+    <script src="{% static 'main/JS/jobPostDetails.js' %}"></script>
+{% endblock scripts %}

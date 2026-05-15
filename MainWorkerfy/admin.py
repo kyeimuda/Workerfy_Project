@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from .models import TradeCategory, TradeSpecialty, TradeSkillTag, TradespersonProfile, Area,\
       City, Region, EarnedBadge, Certificate, Badge, PortfolioItem, Country, JobPost, JobPostAttachment,\
-        Notification, ClientProfile
+        Notification, ClientProfile, WorkerfyUser
 
 admin.site.register(TradeCategory)
 admin.site.register(TradeSpecialty)
@@ -17,6 +17,7 @@ admin.site.register(JobPost)
 admin.site.register(JobPostAttachment)
 admin.site.register(ClientProfile)
 admin.site.register(Notification)
+admin.site.register(WorkerfyUser)
 
 
 
@@ -29,13 +30,12 @@ class BadgeAdmin(admin.ModelAdmin):
 @admin.register(Certificate)
 class CertificateAdmin(admin.ModelAdmin):
     list_display = ['tradesperson', 'title', 'issue_date']
-    search_fields = ['tradesperson__user__username', 'name']
     list_filter = ['issue_date']
 
 @admin.register(EarnedBadge)
 class EarnedBadgeAdmin(admin.ModelAdmin):
     list_display = ['tradesperson', 'badge', 'awarded_on']
-    search_fields = ['tradesperson__user__username', 'badge__name']
+    search_fields = ['tradesperson__user__email', 'badge__name']
     list_filter = ['awarded_on']
 
 

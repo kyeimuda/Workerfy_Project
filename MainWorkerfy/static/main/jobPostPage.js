@@ -56,7 +56,7 @@ document.getElementById("addrequirements_id").addEventListener("click", () => {
 
 
     if (inputValue) {
-        inputField.value += inputValue + ",";
+        inputField.value += inputValue + ",,";
 
         const tagHolder = document.getElementById('addRequirementHolder');
 

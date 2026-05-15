@@ -647,7 +647,7 @@ class JobPostForm(forms.Form):
     )
 
 
-    tradesType = forms.ModelChoiceField(
+    trade_category = forms.ModelChoiceField(
         required=True,
         help_text="Note: select the trades category for your work.",
         label="Trade Type:",
@@ -664,9 +664,9 @@ class JobPostForm(forms.Form):
         label="Job Type:",
         help_text="Note: Select the job type.",
         choices=[
-            ("one_time", "One-time"),
-            ("recurring", "Recurring"),
-            ("contract", "Contract")
+            ("One-time", "One-time"),
+            ("Recurring", "Recurring"),
+            ("Contract", "Contract")
         ],
         widget=forms.Select(attrs={
             "id": "Job_Type",
@@ -742,10 +742,10 @@ class JobPostForm(forms.Form):
         label="Work Environment:",
         help_text="Note: Select job site condition.",
         choices=[
-            ("indoor", "Indoor"),
-            ("outdoor", "Outdoor"),
-            ("residential", "Residential"),
-            ("industrial", "Industrial")
+            ("Indoor", "Indoor"),
+            ("Outdoor", "Outdoor"),
+            ("Residential", "Residential"),
+            ("Industrial", "Industrial")
         ],
         widget=forms.Select(attrs={
             "id": "Work_Environment",
@@ -793,8 +793,8 @@ class JobPostForm(forms.Form):
         label="Urgency level:",
         help_text="Note: Select how urgent the job needs ti be done.",
         choices=[
-            ("urgent","Urgent"),
-            ("normal","Normal"), 
+            ("Urgent","Urgent"),
+            ("Normal","Normal"), 
         ],
 
         widget= forms.Select(attrs={
@@ -809,9 +809,9 @@ class JobPostForm(forms.Form):
         label="Payment Method:",
         help_text="Note: Select the budget type for the job.",
         choices=[
-            ("fixed", "Fixed Price"),
-            ("hourly", "Hourly Rate"),
-            ("negotiable", "Negotiable")
+            ("Fixed", "Fixed Price"),
+            ("Hourly", "Hourly Rate"),
+            ("Negotiable", "Negotiable")
         ],
         widget=forms.Select(attrs={
             "id": "Budget_Type",
@@ -819,7 +819,7 @@ class JobPostForm(forms.Form):
         })
     )
 
-    budget_rage = forms.CharField(
+    budget_range = forms.CharField(
         required=False,
         label="Budget Range / Amount:",
         help_text="Note: Specify your budget range or amount.",
@@ -883,19 +883,17 @@ class JobPostForm(forms.Form):
     contact_method = forms.ChoiceField(
         required=False,
         label="Preferred contact method",
-        choices=[
-            ("Whatsapp", "Whatsapp"),
-            ("Email", "Email"),
-            ("Call", "Call"),
-            ("Text", "Text"),
-        ],
-
+        choices= [
+                ("Whatsapp", "Whatsapp"),
+                ("Email", "Email"),
+                ("Call", "Call"),
+                ("Text", "Text"),
+            ],
         widget=forms.Select(attrs={
             "id":"ContactMethod",
             "class":"inputField"
         })
-        
-        )
+    )
 
     contact_number = forms.CharField(
         label="Contact",

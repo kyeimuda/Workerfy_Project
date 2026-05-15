@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth import get_user_model
 from django.http import JsonResponse
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
@@ -8,9 +9,11 @@ from django.contrib.auth.models import User
 from MainWorkerfy.models import JobPostAttachment, TradespersonProfile, City, Area, Country, Region, TradeSpecialty, TradeCategory, TradeSkillTag\
     , JobPost, Notification
 from .serializers import CitySerializer, TradespeopleListSerializer, TradeSpecialtySerializer, TradeCategorySerializer,\
-      CountrySerializer, jobattachmentsSerializer, jobsSerializer, usersCreateSerializer, usersListSerializerl, skillsTagSerializer,\
-     TradeSpecialtySerializer, TradespeopleWriteSerializer, NotificationListCreateUpdateDeleteSerializer
+      CountrySerializer, jobattachmentsSerializer, jobsSerializer, usersCreateSerializer, usersListSerializer, skillsTagSerializer,\
+     TradespeopleWriteSerializer, NotificationListCreateUpdateDeleteSerializer
 from .API_format import api_response
+
+User = get_user_model()
 
 
 @api_view(['GET', 'PUT'])
@@ -19,7 +22,7 @@ def user_view(request):
     API for retrieving all users
     """
     users = User.objects.all()
-    serialized_data = userSerializer(users, many=True)
+    serialized_data = usersListSerializer(users, many=True)
     return Response(serialized_data.data)
 
 @api_view(['GET'])
@@ -99,8 +102,8 @@ class usersViewSet(viewsets.ModelViewSet):
         if self.action in ['create', 'update', 'partial_update']:
             return usersCreateSerializer
         if self.action in  ['list', 'retrieve']:
-            return usersListSerializerl
-        return usersListSerializerl
+            return usersListSerializer
+        return usersListSerializer
 
 
 
@@ -176,3 +179,11 @@ class NotificationsViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(recipient=self.request.user)
 
+class JobPostViewset(viewsets.ModelViewSet):
+    queryset = JobPost.objects.prefetch_related(
+        'attachments',
+        'user',
+    ).all()
+
+    serializer_class = jobsSerializer
+    permission_classes = [IsAuthenticated]

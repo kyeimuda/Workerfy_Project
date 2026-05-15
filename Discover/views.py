@@ -24,6 +24,7 @@ def onBoardings(request):
 # This view handles the tradespeople registation
 @login_required
 def tradesPeopleRegistration(request):
+        user = request.user
         def safe_capitalize(val):
                 return val.capitalize() if isinstance(val, str) and val else ""
 
@@ -32,6 +33,7 @@ def tradesPeopleRegistration(request):
                 print(form.is_valid())
                 print(form.errors)
                 if form.is_valid():
+                       
                         if Area.objects.filter(name__iexact=form.cleaned_data.get('work_areas')).exists():
                                 area = Area.objects.get(name__iexact=form.cleaned_data.get('work_areas'))
                         else:
@@ -41,13 +43,14 @@ def tradesPeopleRegistration(request):
                         if TradeSpecialty.objects.filter(name__iexact=form.cleaned_data.get('trade_specialties')).exists():
                                 specialty = TradeSpecialty.objects.get(name__iexact=form.cleaned_data.get('trade_specialties'))
                         else:
-                                specialty = TradeSpecialty.objects.create(name=safe_capitalize(form.cleaned_data.get('trade_specialties')), category=form.cleaned_data.get('trade_category'))
+                                specialty = TradeSpecialty.objects.create(name=safe_capitalize(form.cleaned_data.get('trade_specialties')),\
+                                                                           category=form.cleaned_data.get('trade_category'))
                                 specialty.save()
         
 
                         print(form.cleaned_data)
                         print(request.FILES)
-                        print(request.user)
+                        print(user)
                         Tradesperson = TradespersonProfile(
                                 user=request.user,
                                 first_name=safe_capitalize(form.cleaned_data.get('first_name')),
@@ -86,15 +89,6 @@ def tradesPeopleRegistration(request):
                                                                 skill = TradeSkillTag.objects.create(name=safe_capitalize(skill_name), category=user.trade_category)
                                                                 skill.save()
                                                         Tradesperson.skills.add(skill)
-                        
-
-                        """ USER = form.save(commit=False)
-                        USER.user = request.user
-                        for file in request.FILES.getlist('past_jobs'):
-                                #print(file)
-                                Past_Works = PastWorkImage(user=request.user, image=file)
-                                Past_Works.save()
-                        USER.save() """
 
                         return redirect('Congratulations')
                 else:
@@ -108,6 +102,7 @@ def tradesPeopleRegistration(request):
                         return render(request, "Discover/page2/tradespeopleRegister.html", context)
         else:
                 form = TradespersonOnboardingForm2()
+                print(user)
 
                 # Send existing DB options for datalists
                 context = {

@@ -32,18 +32,12 @@ def validate_user_role(user):
     if not user.is_authenticated:
         raise ValidationError("User must be authenticated.")
     
-    role = None
-    try:
-        user.tradesperson_profile
-        role = 'Tradesperson'
-    except:
-        try:
-            user.client
-            role = "Client"
-        except:
-           if user.is_staff == True:
-               role = "Admin"
-           else:
-               raise ValidationError("User does not have a valid role. Must be Tradesperson, Client, or Admin ")
-    return role
+    if hasattr(user, 'tradesperson_profile'):
+        return 'Tradesperson'
+    if hasattr(user, 'client'):
+        return 'Client'
+    if user.is_staff:
+        return 'Admin'
+        
+    raise ValidationError("User does not have a valid role. Must be Tradesperson, Client, or Admin")
                

@@ -5,7 +5,7 @@ from .models import WorkerfyUser  # Import your custom user model
 class WorkerfyUserBackend(BaseBackend):
     def authenticate(self, request, email=None, password=None, **kwargs):
         try:
-            # Attempt to get a WorkerfyUser by username
+            # Attempt to get a WorkerfyUser by email and password
             workerfy_user = WorkerfyUser.objects.get(email=email)
         except WorkerfyUser.DoesNotExist:
             return None

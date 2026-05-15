@@ -68,6 +68,7 @@ main{
 }
 
 .svgNavs svg{
+    width: 2.6667vh;
     display: block;
     margin: auto;
     fill: #000080
@@ -324,6 +325,7 @@ main{
     height: 100vh;
     position: relative;
     flex: 0 0 100%;
+    display: none;
 }
 
 .findTradespeople, .findJobPostings {
@@ -351,6 +353,8 @@ main{
     text-decoration: none;
     cursor: pointer;
     letter-spacing: 0.2vw;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 .header {
@@ -904,7 +908,7 @@ main{
 
 .profileImg img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -1012,6 +1016,10 @@ main{
     font-weight: 700;
 }
 
+.tagline p {
+    font-family: "Playpen Sans", cursive;
+    font-size: 1.5555vh;
+}
 
 .basics{
     width: 100%;
@@ -1033,6 +1041,7 @@ main{
 
 .basicsList p {
     font-family: "Nunito", sans-serif;
+    font-size: 1.7vh;
 }
 
 .currency {

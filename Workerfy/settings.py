@@ -146,12 +146,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTHENTICATION_BACKENDS = [
-    'Discover.backend_auths.WorkerfyUserBackend',       # Custom backend for WorkerfyUser
     'django.contrib.auth.backends.ModelBackend',   # Default backend for Django's built-in User model
     'allauth.account.auth_backends.AuthenticationBackend'
 ]
 
-#AUTH_USER_MODEL = 'Discover.WorkerfyUser'
+AUTH_USER_MODEL = 'MainWorkerfy.WorkerfyUser'
 
 SITE_ID = 1
 
@@ -162,11 +161,13 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'kyeibernard01@gmail.com'
 EMAIL_HOST_PASSWORD = 'Sweetmy79'
 DEFAULT_FROM_EMAIL = 'kyeibernard01@gmail.com'
-SITE_URL = 'http://http://127.0.0.1:8000/'
+SITE_URL = 'http://127.0.0.1:8000/'
 
 LOGIN_URL = 'account_login'
 LOGIN_REDIRECT_URL = 'MainPage'
 LOGOUT_REDIRECT_URL = 'Intro_home'
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+# ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_LOGIN_METHODS = {'email'}
 ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
 ACCOUNT_EMAIL_VERIFICATION = "optional"

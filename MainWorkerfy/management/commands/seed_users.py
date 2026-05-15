@@ -41,7 +41,7 @@ class Command(BaseCommand):
                 if res == 'yes':
                     try:
                         with transaction.atomic():
-                            User.objects.create_user(username=f'user-{datetime.now()}', email=f'user-{datetime.now()}@gamil.com', password='defaultPass123')
+                            User.objects.create_user(email=f'user-{datetime.now()}@gamil.com', password='defaultPass123')
                             self.stdout.write( self.style.SUCCESS( f'Email: user-{datetime.now()}@gamil.com \n Password: defaultPass123 \n Created Successfully'))
                             self.stdout.write(f'Password: defaultPass123')
                     except Exception as e:
@@ -52,7 +52,7 @@ class Command(BaseCommand):
                     with transaction.atomic():
                         for i in range(entryNumber):
                             try:
-                                User.objects.create_user(username=f'user-{datetime.now()}', email=f'user-{datetime.now()}@gamil.com', password='defaultPass123')
+                                User.objects.create_user(email=f'user-{datetime.now()}@gamil.com', password='defaultPass123')
                                 self.stdout.write( self.style.SUCCESS( f'Email: user-{datetime.now()}@gamil.com \n Password: defaultPass123 \n Created Successfully'))
                                 self.stdout.write(f'Password: defaultPass123')
                             except Exception as e:
@@ -78,10 +78,10 @@ class Command(BaseCommand):
                         with transaction.atomic():
                             for row in reader:
                                 try:
-                                    User.objects.create_user(username=row['username'], email=row['email'], password=row['password'])
-                                    self.stdout.write(self.style.SUCCESS(f"User {row['username']} created successfully."))
+                                    User.objects.create_user(email=row['email'], password=row['password'])
+                                    self.stdout.write(self.style.SUCCESS(f"User {row['email']} created successfully."))
                                 except Exception as e:
-                                    self.stderr.write(self.style.ERROR(f"Error creating user {row['username']}: {e}"))
+                                    self.stderr.write(self.style.ERROR(f"Error creating user {row['email']}: {e}"))
                 except FileNotFoundError as e:
                     self.stderr.write(self.style.ERROR(f'File not found: {CSV_file}'))
                 except Exception as e:
@@ -97,10 +97,10 @@ class Command(BaseCommand):
                                     self.stdout.write(self.style.SUCCESS(f'{entryNumber} entries created successfully. Stopping further processing.'))
                                     break
                                 try:
-                                    User.objects.create_user(username=row['username'], email=row['email'], password=row['password'])
-                                    self.stdout.write(self.style.SUCCESS(f"User {row['username']} created successfully."))
+                                    User.objects.create_user(email=row['email'], password=row['password'])
+                                    self.stdout.write(self.style.SUCCESS(f"User {row['email']} created successfully."))
                                 except Exception as e:
-                                    self.stderr.write(self.style.ERROR(f"Error creating user {row['username']}: {e}"))
+                                    self.stderr.write(self.style.ERROR(f"Error creating user {row['email']}: {e}"))
                         return
                 except FileNotFoundError as e:
                     self.stderr.write(self.style.ERROR(f'File not found: {CSV_file}'))

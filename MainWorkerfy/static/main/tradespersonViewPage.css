@@ -1,0 +1,68 @@
+.mainSections {
+    width: 100%;
+    overflow: hidden;
+}
+
+.detailsArea {
+    height: 55vh;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+
+.detailsGroup {
+    padding-bottom: 3vh
+}
+
+.main {
+    position:relative;
+}
+
+.bookBTN button{
+    border-radius: 5vh;
+    padding: 1vh 4vh;
+    background-color: #0000B6;
+    position: absolute;
+    bottom: 5vh;
+    right: 3vh;
+    color: whitesmoke;
+    font-size: 2.2222vh;
+    z-index: 5;
+    font-family: "Nunito", sans-serif;
+    cursor: pointer;
+    font-weight: 600;
+    border: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.bookBTN button:hover, .bookBTN button:focus{
+     background-color: #0000cd;
+    bottom: 5.5vh;
+    box-shadow: 0 4px 8px 0 rgba(91, 91, 255, 0.5)
+}
+
+.bookingProcess {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.workerfyLogoAndProfileEditingLogo {
+    justify-content:left;
+    align-items: center;
+    gap: 8px;
+}
+
+.bookingcard {
+    width: 34.4444vh;
+    background-color: #F1EADF;
+    border: none;
+    border-radius: 2.2222vh;
+}
+
+.bookingtypes .method {
+    box-shadow: none;
+    background-color: #FECF79;
+}
+
+.cancel button {
+    padding: 1vh 4vh;
+}

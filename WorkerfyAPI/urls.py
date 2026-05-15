@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import Tradespeople_view, City_view, Country_view, TradespeopleViewSet, jobattachments_view,\
-      jobs_view, user_view, usersViewSet, skillsTagViewSet, TradeSpecialtyViewSet, NotificationsViewSet
+      jobs_view, user_view, usersViewSet, skillsTagViewSet, TradeSpecialtyViewSet, NotificationsViewSet, JobPostViewset
 from rest_framework.routers import DefaultRouter
 
 urlpatterns = [
@@ -21,4 +21,5 @@ router.register(r'users', usersViewSet, basename='users')
 router.register(r'skills', skillsTagViewSet, basename='skills')
 router.register(r'trade-specialties', TradeSpecialtyViewSet, basename='trade-specialties') 
 router.register(r'notifications', NotificationsViewSet, basename='notifications')
+router.register(r'job-posts', JobPostViewset, basename='job-posts')
 urlpatterns += router.urls

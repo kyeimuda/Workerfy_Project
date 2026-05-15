@@ -29,14 +29,75 @@ class WorkerfyUser(AbstractBaseUser):
 
     # Methods required by Django
     def has_perm(self, perm, obj=None):
-        return True
+        # Admin gets all permissions
+        if self.is_admin or self.user_type == 'admin':
+            return True
+        
+        # Non-verified users have limited permissions (read-only)
+        if not self.verified:
+            return 'view' in perm or 'list' in perm
+        
+        # Tradesperson permissions
+        if self.user_type == 'tradesperson':
+            # Allow tradesperson profile, portfolio, and application management
+            allowed_perms = [
+                'discover.add_tradesperson',
+                'discover.change_tradesperson',
+                'discover.view_tradesperson',
+                'discover.add_pastworkimage',
+                'discover.change_pastworkimage',
+                'discover.delete_pastworkimage',
+                'discover.view_pastworkimage',
+                'mainworkerfy.view_jobposting',
+                'mainworkerfy.add_jobapplication',
+                'mainworkerfy.view_jobapplication',
+                'mainworkerfy.add_jobposting',
+                'mainworkerfy.change_jobposting',
+                'mainworkerfy.delete_jobposting',
+                'mainworkerfy.view_jobposting',
+                'discover.view_tradesperson',
+            ]
+            return any(allowed_perm in perm for allowed_perm in allowed_perms)
+        
+        # Client permissions
+        if self.user_type == 'client':
+            # Allow client profile and job posting management
+            allowed_perms = [
+                'discover.add_client',
+                'discover.change_client',
+                'discover.view_client',
+                'mainworkerfy.add_jobposting',
+                'mainworkerfy.change_jobposting',
+                'mainworkerfy.delete_jobposting',
+                'mainworkerfy.view_jobposting',
+                'discover.view_tradesperson',
+            ]
+            return any(allowed_perm in perm for allowed_perm in allowed_perms)
+        
+        return False
 
     def has_module_perms(self, app_label):
-        return True
+        # Admin gets all module permissions
+        if self.is_admin or self.user_type == 'admin':
+            return True
+        
+        # Non-verified users can only view
+        if not self.verified:
+            return app_label in ['Discover', 'MainWorkerfy']
+        
+        # All verified users can access Discover and MainWorkerfy apps
+        if app_label in ['Discover', 'MainWorkerfy']:
+            return True
+        
+        return False
 
     @property
     def is_staff(self):
         return self.is_admin
+
+    @property
+    def user_type_verbose(self):
+        return dict(self._meta.get_field('user_type').choices).get(self.user_type, 'Unknown')
 
     class Meta:
         verbose_name = 'Workerfy User'
