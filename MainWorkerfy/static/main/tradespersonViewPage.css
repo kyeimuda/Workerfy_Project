@@ -3,27 +3,22 @@
     overflow: hidden;
 }
 
-.detailsArea {
-    height: 55vh;
-    scrollbar-width: none;
-    scroll-behavior: smooth;
-}
-
-.detailsGroup {
-    padding-bottom: 3vh
-}
-
 .main {
     position:relative;
+}
+
+.bookBTN {
+    position: absolute;
+    bottom: 2vh;
+    right: 2vh;
+    z-index: 5;
+    cursor: pointer;
 }
 
 .bookBTN button{
     border-radius: 5vh;
     padding: 1vh 4vh;
     background-color: #0000B6;
-    position: absolute;
-    bottom: 5vh;
-    right: 3vh;
     color: whitesmoke;
     font-size: 2.2222vh;
     z-index: 5;
@@ -65,4 +60,12 @@
 
 .cancel button {
     padding: 1vh 4vh;
+}
+
+#JobPortFoilio {
+    padding-bottom: 0;
+}
+
+.detailsArea {
+    height: 56vh;
 }

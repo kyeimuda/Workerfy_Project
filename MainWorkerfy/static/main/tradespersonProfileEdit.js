@@ -1,38 +1,57 @@
 /* Opening and closing the add Past Job PopUp */
-
-const addJobBtn = document.getElementById("ID_add_job");
-if (addJobBtn) {
-    addJobBtn.addEventListener("click", function() {
-        document.getElementById("jobAddPopUp").style.display = "block";
+const ID_add_WorkExperience = document.getElementById("ID_add_WorkExperience");
+if (ID_add_WorkExperience) {
+    ID_add_WorkExperience.addEventListener("click", function() {
+        document.getElementById("WorkExperienceAddPopUp").style.display = "block";
     });
 }
 
-const closeJobBtn = document.getElementById("ID_close_job");
-if (closeJobBtn) {
-    closeJobBtn.addEventListener("click", function() {  
-        const year = document.getElementById("date").value;
-        const organization = document.getElementById("Organization_Or_Title").value;
-        const roleOrDescription = document.getElementById("discription").value;
+const ID_close_WorkExperience = document.getElementById("ID_close_experience");
+if (ID_close_WorkExperience) {
+    ID_close_experience.addEventListener("click", function() {
+        document.getElementById("WorkExperienceAddPopUp").style.display = "none";
+    })
+};
 
-        data = '{"Year": "'+ year + '", "Organization": "' + organization + '", "role": "' + roleOrDescription + '"}'
+const add_Experience = document.getElementById("ID_add_experience");
+if (add_Experience) {
+    add_Experience.addEventListener("click", function() {  
+        const Role = document.getElementById("RoleID").value;
+        const Date = document.getElementById("Experience_dateID").value;
+        const Discription = document.getElementById("DiscriptionID").value;
 
-        const Input = document.getElementById('Working_Areas');
+        data = {};
+        dataArray = [];
 
-        if (Input) {
+        data.Role = Role;
+        data.Date = Date;
+        data.Discription = Discription;
+
+        dataArray.push(data)
+
+        alert(JSON.stringify(data))
+        alert(JSON.stringify(dataArray))
+
+        const Input = document.getElementById('Work_Experience');
+
+        if (Input && (Role || Date || Discription)) {
             if (!Input.value) {
             
-                Input.value = data;
-
+                Input.value = JSON.stringify(dataArray);
+                alert(Input.value)
+                document.getElementById("RoleID").value = '';
+                document.getElementById("Experience_dateID").value = '';
+                document.getElementById("DiscriptionID").value = '';
             } else {
-                Input.value += "-- " + data;
+                retrivedData = JSON.parse(Input.value);
+                retrivedData.push(data);
+                Input.value = JSON.stringify(retrivedData);
+                document.getElementById("RoleID").value = '';
+                document.getElementById("Experience_dateID").value = '';
+                document.getElementById("DiscriptionID").value = '';
             }
         }
-
-        document.getElementById("date").value = '';
-        document.getElementById("Organization_Or_Title").value = '';
-        document.getElementById("discription").value = '';
-     
-        document.getElementById("jobAddPopUp").style.display = "none";
+        document.getElementById("WorkExperienceAddPopUp").style.display = "none";
     });
 }
 
@@ -45,7 +64,15 @@ if (addSchoolBtn) {
     });
 }
 
-const closeSchoolBtn = document.getElementById("ID_close_school");
+const closeSchoolPopUP = document.getElementById('ID_close_schoolPopUp');
+if (closeSchoolPopUP) {
+    closeSchoolPopUP.addEventListener("click", function() {
+        document.getElementById("SchoolAddPopUp").style.display = "none";
+    })
+
+}
+
+const closeSchoolBtn = document.getElementById("ID_add_schoolpopUp");
 if (closeSchoolBtn) {
     closeSchoolBtn.addEventListener("click", function() {
         
@@ -68,24 +95,24 @@ if (closeSchoolBtn) {
         alert(JSON.stringify(dataArray))
 
         const Input = document.getElementById('Education_Schools');
-        alert(Input ? Input.value : 'Input not found')
 
-        if (Input) {
+        if (Input && (institution_or_school || school_date || schoolLevel)) {
             if (!Input.value) {
             
                 Input.value = JSON.stringify(dataArray);
                 alert(Input.value)
+                document.getElementById("institution_or_school").value = '';
+                document.getElementById("school_date").value = '';
+                document.getElementById("schoolLevel").value = '';
             } else {
                 retrivedData = JSON.parse(Input.value);
                 retrivedData.push(data);
                 Input.value = JSON.stringify(retrivedData);
+                document.getElementById("institution_or_school").value = '';
+                document.getElementById("school_date").value = '';
+                document.getElementById("schoolLevel").value = '';
             }
         }
-
-        document.getElementById("institution_or_school").value = '';
-        document.getElementById("school_date").value = '';
-        document.getElementById("schoolLevel").value = '';
-
         document.getElementById("SchoolAddPopUp").style.display = "none";
     });
 }
@@ -231,6 +258,7 @@ const addSpecialityBtn = document.getElementById('add_speciality_BTN');
 if (addSpecialityBtn) {
     addSpecialityBtn.addEventListener('click', function() {
         addAbility(document.getElementById('Speciality_input'), document.getElementById("Trade_Specialties"))
+        console.log(document.getElementById("Trade_Specialties").value)
     });
 }
 
@@ -318,24 +346,33 @@ if (form) {
         })
         .then(response => {
             if (response.status === 200) {
+                const createdConfirnmation = document.querySelector('.created');
+                if (createdConfirnmation) {
+                    createdConfirnmation.style.display = 'flex';
+                }
+
+                data = response.json();
                 console.log('Profile updated successfully');
-                return response.json();
+                console.log('Response:', data); // Debugging line'
+                return data;
             }
             console.log('Raw response:', response); // Debugging line
             console.log('Response status:', response.status); // Debugging line
             return "Failed";
         })
         .then(data => {
-            if (data !== "Failed") {
+            if (data == "Failed") {
                 console.log('Success:', data);
                 // Redirect or show success message
-                window.location.href = '/main/Main'; 
-            } else {
-                console.error('Failed to update profile');
-            };
+            }
             
         })
         .catch(error => {
+            const createdConfirnmation = document.querySelector('.not_create');
+            if (createdConfirnmation) {
+                    createdConfirnmation.style.display = 'flex';
+            };
+            console.log('failed')
             console.error('Error:', error);
         })
         .finally(() => {
@@ -345,6 +382,169 @@ if (form) {
                 submitButton.textContent = submitButton.dataset.originalText || 'Save';
             }
         });
+    });
+}
+
+const addAnotherButton = document.getElementById('AddAnother');
+if (addAnotherButton) {
+    addAnotherButton.addEventListener('click', () => {
+        form.reset();
+        const createdConfirnmation = document.querySelector('.created');
+        if (createdConfirnmation) {
+            createdConfirnmation.style.display = 'none';
+        }
+
+    }
+)}
+
+
+// This is for the retry button in case of failed update
+const re_tryButton = document.getElementById('re_try');
+if (re_tryButton) {
+    re_tryButton.addEventListener('click', () => {
+        form.reset();
+        const createdConfirnmation = document.querySelector('.not_create');
+        if (createdConfirnmation) {
+            createdConfirnmation.style.display = 'none';
+        }
+
+    }
+)}
+
+// This is for the remove skill
+
+const remove_skill_BTN = document.getElementById('remove_skill_BTN');
+if (remove_skill_BTN) {
+    remove_skill_BTN.addEventListener('click', function(e) {
+        e.target.style.visibility = "hidden";
+        document.querySelector(".deleteSkillContainer").style.display = "flex";
+    });
+}
+
+const cancel_remove_skill_BTN = document.getElementById('cancel_remove_skill_BTN');
+if (cancel_remove_skill_BTN) {
+    cancel_remove_skill_BTN.addEventListener('click', function(e) {
+        document.getElementById('remove_skill_BTN').style.visibility = "visible";
+        document.querySelector(".deleteSkillContainer").style.display = "none";
+    });
+}
+
+document.querySelectorAll(".skillTag").forEach(tag => {
+    tag.addEventListener("click", function() {
+        if (tag.classList.contains("selected")) {
+            tag.classList.remove("selected");
+            tag.style.backgroundColor = "#E3D5C0";
+        } else {            
+            tag.classList.add("selected");
+            tag.style.backgroundColor = "gray";
+    }
+    });
+});
+
+const done_remove_skill_BTN = document.getElementById('done_remove_skill_BTN');
+if (done_remove_skill_BTN) {
+    done_remove_skill_BTN.addEventListener('click', function() {
+        const selectedTags = document.querySelectorAll(".skillTag.selected");
+        const deletList = [];
+        selectedTags.forEach(tag => {
+            deletList.push(tag.dataset.skill);
+        });
+        console.log(deletList);
+        document.getElementById('Delete_Skill').value = JSON.stringify(deletList);
+        document.getElementById('remove_skill_BTN').style.visibility = "visible";
+        document.querySelector(".deleteSkillContainer").style.display = "none";
+        console.log(document.getElementById('Delete_Skill').value);
+    });
+}
+
+
+// This is for the remove speciality
+const remove_speciality_BTN = document.getElementById('remove_speciality_BTN');
+if (remove_speciality_BTN) {
+    remove_speciality_BTN.addEventListener('click', function(e) {
+        e.target.style.visibility = "hidden";
+        document.querySelector(".deleteSpecialityContainer").style.display = "flex";
+    });
+}
+
+const cancel_remove_speciality_BTN = document.getElementById('cancel_remove_speciality_BTN');
+if (cancel_remove_speciality_BTN) {
+    cancel_remove_speciality_BTN.addEventListener('click', function(e) {
+        document.getElementById('remove_speciality_BTN').style.visibility = "visible";
+        document.querySelector(".deleteSpecialityContainer").style.display = "none";
+    });
+}
+
+document.querySelectorAll(".specialityTag").forEach(tag => {
+    tag.addEventListener("click", function() {
+        if (tag.classList.contains("selected")) {
+            tag.classList.remove("selected");
+            tag.style.backgroundColor = "#E3D5C0";
+        } else {            
+            tag.classList.add("selected");
+            tag.style.backgroundColor = "gray";
+    }
+    });
+});
+
+const done_remove_speciality_BTN = document.getElementById('done_remove_speciality_BTN');
+if (done_remove_speciality_BTN) {
+    done_remove_speciality_BTN.addEventListener('click', function() {
+        const selectedTags = document.querySelectorAll(".specialityTag.selected");
+        const deletList = [];
+        selectedTags.forEach(tag => {
+            deletList.push(tag.dataset.skill);
+        });
+        console.log(deletList);
+        document.getElementById('Delete_Speciality').value = JSON.stringify(deletList);
+        document.getElementById('remove_speciality_BTN').style.visibility = "visible";
+        document.querySelector(".deleteSpecialityContainer").style.display = "none";
+        console.log(document.getElementById('Delete_Speciality').value);
+    });
+}
+
+// This is for the remove other Skill
+const remove_other_skill_BTN = document.getElementById('remove_otherskill_BTN');
+if (remove_other_skill_BTN) {
+    remove_other_skill_BTN.addEventListener('click', function(e) {
+        e.target.style.visibility = "hidden";
+        document.querySelector(".deleteOtherSkillContainer").style.display = "flex";
+    });
+};
+
+const cancel_remove_other_skill_BTN = document.getElementById('cancel_remove_otherskill_BTN');
+if (cancel_remove_other_skill_BTN) {
+    cancel_remove_other_skill_BTN.addEventListener('click', function(e) {
+        document.getElementById('remove_otherskill_BTN').style.visibility = "visible";
+        document.querySelector(".deleteOtherSkillContainer").style.display = "none";
+    });
+};
+
+document.querySelectorAll(".otherSkillTag").forEach(tag => {
+    tag.addEventListener("click", function() {
+        if (tag.classList.contains("selected")) {
+            tag.classList.remove("selected");
+            tag.style.backgroundColor = "#E3D5C0";
+        } else {            
+            tag.classList.add("selected");
+            tag.style.backgroundColor = "gray";
+    }
+    });
+});
+
+const done_remove_other_skill_BTN = document.getElementById('done_remove_otherskill_BTN');
+if (done_remove_other_skill_BTN) {
+    done_remove_other_skill_BTN.addEventListener('click', function() {
+        const selectedTags = document.querySelectorAll(".otherSkillTag.selected");
+        const deletList = [];
+        selectedTags.forEach(tag => {
+            deletList.push(tag.dataset.skill);
+        });
+        console.log(deletList);
+        document.getElementById('Delete_Other_Skill').value = JSON.stringify(deletList);
+        document.getElementById('remove_otherskill_BTN').style.visibility = "visible";
+        document.querySelector(".deleteOtherSkillContainer").style.display = "none";
+        console.log(document.getElementById('Delete_Other_Skill').value);
     });
 }
 

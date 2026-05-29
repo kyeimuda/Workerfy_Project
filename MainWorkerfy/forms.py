@@ -249,9 +249,10 @@ class ProfileEditPageform(forms.Form):
         })
     )
 
-    username = forms.CharField(
+    professional_name = forms.CharField(
         max_length=150, 
-        required=False, 
+        required=False,
+        help_text="Name you use to represent your trade. e.g KWAME ALU WORKS",
         widget=forms.TextInput(attrs={
             "type": "text",
             "id": "Other",
@@ -477,6 +478,16 @@ class ProfileEditPageform(forms.Form):
         })
     )
 
+    work_experience = forms.CharField(
+        required=False,
+        label= "Experience",
+        widget=forms.TextInput(attrs={
+            "id": "Work_Experience",
+            "placeholder": "e.g. KNUST",
+            "class": "inputField"
+        })
+    )
+
     rate_charged = forms.DecimalField(
         label="Rate Charged",
         help_text="Note: Specify the rate you charge for your services. This can be an hourly rate or a fixed price, depending on your preference.",
@@ -489,6 +500,67 @@ class ProfileEditPageform(forms.Form):
             "class": "inputField"
         })
     )
+
+    delete_skill = forms.CharField(
+        required=False,
+        label="Delete Skill",
+        widget=forms.TextInput(attrs={
+            "id": "Delete_Skill",
+            "class": "inputField"
+        })
+    )
+
+    delete_speciality = forms.CharField(
+        required=False,
+        label="Delete Speciality",
+        widget=forms.TextInput(attrs={
+            "id": "Delete_Speciality",
+            "class": "inputField"
+        })
+    )
+
+    delete_other_skill = forms.CharField(
+        required=False,
+        label="Delete Other Skill",
+        widget=forms.TextInput(attrs={
+            "id": "Delete_Other_Skill",
+            "class": "inputField"
+        })
+    )
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+
+        if user:
+            self.fields['first_name'].initial = f"{user.first_name}"
+            self.fields['last_name'].initial = f"{user.last_name}"
+            self.fields['other_names'].initial = f"{user.other_names}"
+            self.fields['professional_name'].initial = f"{user.professional_name}"
+            #self.fields['profile_picture'].widget.attrs['src'] = f"{user.profile_picture.url}"
+            self.fields['bio'].initial = f"{user.bio}"
+            self.fields['tagline'].initial = f"{user.tagline}"
+            self.fields['contact_number'].initial = f"{user.contact_number}"
+            self.fields['contact_number2'].initial = f"{user.contact_number2}"
+            self.fields['gender'].initial = f"{user.gender}"
+            self.fields['website'].initial = f"{user.website}"
+            self.fields['date_of_birth'].initial = f"{user.date_of_birth}"
+            self.fields['experience_years'].initial = f"{user.experience_years}"
+            self.fields['country'].initial = f"{user.base_location.country.name}"
+            self.fields['base_location'].initial = f"{user.base_location}"
+            self.fields['sub_location'].initial = f"{user.sub_location}"
+            self.fields['availability_status'].initial = f"{user.availability_status}"
+            self.fields['trade_category'].initial = f"{user.trade_category}"
+
+
+
+
+
+
+
+
+
+
 
   #  other_skills = forms.CharField(
    #     required=False,
@@ -587,18 +659,18 @@ class CertificateForm(forms.Form):
     )
 
 class PortfolioForm(forms.Form):
-    titlePort = forms.CharField(
+    title = forms.CharField(
         label="Title",
-        required=False,
+        required=True,
         max_length=255,
         widget=forms.TextInput(attrs={
             "placeholder": "e.g. Kitchen Cabinet Installation",
             "class": "inputField"
         })
     )
-    descriptionPort = forms.CharField(
+    description = forms.CharField(
         label="Description",
-        required=False,
+        required=True,
         widget=forms.Textarea(attrs={
             "placeholder": "Describe this project...",
             "class": "inputField",
@@ -608,7 +680,7 @@ class PortfolioForm(forms.Form):
 
     year_completed = forms.DateField(
         label="Year Completed",
-        required=False,
+        required=True,
         widget=forms.DateInput(attrs={
             "type": "date",
             "class": "inputField"
@@ -617,16 +689,18 @@ class PortfolioForm(forms.Form):
 
     image = forms.ImageField(
         label="Image",
-        required=False,
+        required=True,
         widget=forms.ClearableFileInput(attrs={
-            "class": "inputField"
+            "class": "inputField",
+            "id": "Id_imageUpplad"
         })
     )
     video = forms.FileField(
         label="Video",
         required=False,
         widget=forms.ClearableFileInput(attrs={
-            "class": "inputField"
+            "class": "inputField",
+            "id": "Id_videoUpload"
         })
     )
 

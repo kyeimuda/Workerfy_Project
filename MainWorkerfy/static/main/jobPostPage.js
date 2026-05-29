@@ -166,6 +166,7 @@ document.getElementById("preview_id").addEventListener("click", () => {
             reader.onload = function(e) {
                 const imgElement = document.createElement('img');
                 imgElement.src = e.target.result;
+                imgElement.loading = 'lazy';
 
                 previewContainer.appendChild(imgElement);
             };
@@ -259,5 +260,3 @@ document.getElementById("previewDone").addEventListener("click", () => {
 
     document.getElementById("previewContainer_id").style.display = "none";
 });
-
-

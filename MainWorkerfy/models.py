@@ -130,7 +130,7 @@ class TradeSpecialty(models.Model):
         verbose_name_plural = "Trade Specialties"
 
     def __str__(self):
-        return f"{self.name} ({self.category.name})"
+        return f"{self.name}"
 
 """
 3. TradeSkillTag
@@ -218,13 +218,12 @@ class PortfolioItem(models.Model):
     )
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
-    year_completed = models.PositiveIntegerField(null=True, blank=False)
+    year_completed = models.DateField(null=True, blank=False)
 
     image = models.ImageField(
         upload_to=portfolio_image_upload_path, 
         blank=True, 
         null=True,
-        validators=[validate_certificate_file]
     )
 
     video = models.FileField(
@@ -268,7 +267,7 @@ class ClientProfile(models.Model):
         blank=True, null=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
-    data_of_birth = models.DateField(null=True, blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
     base_location = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True, blank=True, related_name="client_base_location")
     sub_location = models.ForeignKey(City, on_delete=models.SET_NULL, null=True, blank=True, related_name="client_sub_location")
     work_areas = models.ForeignKey(Area,on_delete=models.SET_NULL, related_name="client_areas", null=True, blank=True)
@@ -278,6 +277,7 @@ class TradespersonProfile(models.Model):
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
     other_names = models.CharField(max_length=30, blank=True)
+    professional_name = models.CharField(max_length=150, blank=True, help_text="Name to represent your trade")
     profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
     bio = models.TextField(blank=True, help_text="Short bio or introduction")
     tagline = models.CharField(max_length=100, blank=True, help_text="A catchy tagline for your profile")
@@ -335,6 +335,7 @@ class TradespersonProfile(models.Model):
     )
 
     education_schools = models.JSONField(default=list, blank=True, help_text="List of schools attended")
+    work_experience = models.JSONField(default=list, blank=True, help_text="List of work Experience")
 
     other_skills = models.JSONField(default=list, blank=True, help_text="Other skills not covered by tags")
     rate_charged = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True, help_text="Hourly or project rate charged by the tradesperson")
@@ -369,8 +370,8 @@ BUDGET_TYPE_CHOICES = [
 ]
 
 MATERIALS_CHOICES = [
-    ("yes", "Yes"),
-    ("no", "No"),
+    ("Yes", "Yes"),
+    ("No", "No"),
 ]
 
 CONTACT_METHOD_CHOICES = [
@@ -401,7 +402,7 @@ class JobPost(models.Model):
     budget_type = models.CharField(max_length=20, choices=BUDGET_TYPE_CHOICES, blank=True)
     budget_range = models.CharField(max_length=100, blank=True)
 
-    materials_provided = models.CharField(max_length=3, choices=MATERIALS_CHOICES, default="no")
+    materials_provided = models.CharField(max_length=3, choices=MATERIALS_CHOICES, default="No")
     required_skills = models.JSONField(default=list, blank=True, null=True, help_text="List of required skills for the job")
     requirements = models.JSONField(default=list, blank=True, help_text="Additional requirements or qualifications for the job")
 

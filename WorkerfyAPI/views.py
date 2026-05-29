@@ -1,14 +1,14 @@
 from django.shortcuts import render
 from django.contrib.auth import get_user_model
 from django.http import JsonResponse
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, action
 from rest_framework.permissions import IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework import status, viewsets
 from django.contrib.auth.models import User
 from MainWorkerfy.models import JobPostAttachment, TradespersonProfile, City, Area, Country, Region, TradeSpecialty, TradeCategory, TradeSkillTag\
-    , JobPost, Notification
-from .serializers import CitySerializer, TradespeopleListSerializer, TradeSpecialtySerializer, TradeCategorySerializer,\
+    , JobPost, Notification, PortfolioItem
+from .serializers import CitySerializer, PortfolioItemSerializer, TradespeopleListSerializer, TradeSpecialtySerializer, TradeCategorySerializer,\
       CountrySerializer, jobattachmentsSerializer, jobsSerializer, usersCreateSerializer, usersListSerializer, skillsTagSerializer,\
      TradespeopleWriteSerializer, NotificationListCreateUpdateDeleteSerializer
 from .API_format import api_response
@@ -155,10 +155,51 @@ class TradespeopleViewSet(viewsets.ModelViewSet):
         return Response(read_serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     def perform_update(self, serializer):
-        print(self.request.data)
         serializer.save()
-    
 
+    @action(detail=True, methods=['get', 'post', 'delete'], permission_classes=[IsAuthenticated])
+    def skills(self, request, pk=None):
+        if request.method == 'GET':
+            tradesperson = self.get_object()
+            skills = tradesperson.skills.all()
+            serializer = skillsTagSerializer(skills, many=True, context=self.get_serializer_context())
+            return Response(serializer.data)
+        elif request.method == 'DELETE':
+            tradesperson = self.get_object()
+            skill_id = request.data.get('skill_id')
+            if not skill_id:
+                return Response({'error': 'Skill ID is required.'}, status=status.HTTP_400_BAD_REQUEST)
+            try:
+                skill = TradeSkillTag.objects.get(id=skill_id)
+                tradesperson.skills.remove(skill)
+                return Response({'message': 'Skill removed successfully.'}, status=status.HTTP_200_OK)
+            except TradeSkillTag.DoesNotExist:
+                return Response({'error': 'Skill not found.'}, status=status.HTTP_404_NOT_FOUND)
+        elif request.method == 'POST':
+            tradesperson = self.get_object()
+            skill_name = request.data.get('skill_name')
+            if not skill_name:
+                return Response({'error': 'Skill name is required.'}, status=status.HTTP_400_BAD_REQUEST)
+            skill, created = TradeSkillTag.objects.get_or_create(name=skill_name)
+            tradesperson.skills.add(skill)
+            serializer = skillsTagSerializer(skill, context=self.get_serializer_context())
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        @action(detail=True, methods=['get', 'delete'], url_path='(?P<skill_slug>[^/.]+)/(?P<skill_id>[^/.]+)', permission_classes=[IsAuthenticated])
+        def skill_by_slug(self, request, pk=None, skill_slug=None, skill_id=None):
+            tradesperson = self.get_object()
+            try:
+                skill = TradeSkillTag.objects.get(id=skill_id)
+            except TradeSkillTag.DoesNotExist:
+                return Response({'error': 'Skill not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+            if request.method == 'GET':
+                serializer = skillsTagSerializer(skill, context=self.get_serializer_context())
+                return Response(serializer.data)
+
+            if request.method == 'DELETE':
+                tradesperson.skills.remove(skill)
+                return Response({'message': 'Skill removed successfully.'}, status=status.HTTP_200_OK)
 
 class skillsTagViewSet(viewsets.ModelViewSet):
     queryset = TradeSkillTag.objects.all()
@@ -187,3 +228,21 @@ class JobPostViewset(viewsets.ModelViewSet):
 
     serializer_class = jobsSerializer
     permission_classes = [IsAuthenticated]
+
+class PortfolioItemViewSet(viewsets.ModelViewSet):
+    queryset = PortfolioItem.objects.prefetch_related(
+        'tradesperson',
+    ).all()
+    serializer_class = PortfolioItemSerializer
+    permission_classes = [IsAuthenticated]
+
+    def create(self, request, *args, **kwargs):
+        print(request.data)
+        request.data['tradesperson'] = request.user.tradesperson_profile.id
+        print(request.data)
+        return super().create(request, *args, **kwargs)
+
+
+
+
+    

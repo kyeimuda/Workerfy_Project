@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <div class="profileImg">
-                            <img src={{ user.profile_picture.url }} alt="Profile Image" width="100" height="100">
+                            <img src={{ user.profile_picture.url }} alt="Profile Image" width="100" height="100" loading="lazy">
                         </div>
                         <div class="profileName">
                             <h2 class="name">{{ user.first_name }} {{ user.last_name}} <svg xmlns="http://www.w3.org/2000/svg" id="verified" data-name="Layer 1" viewBox="0 0 24 24">
@@ -57,10 +57,25 @@
                                 </svg></h2>
                             <p class="tradeType">{{ user.trade_category }}</p>
                         </div>
-                        <div class="availabilityStats">
+
+                        {% if user.availability_status == 'Available Now' %}
+                        <div class="availabilityStats status_available">
                             <div class="stats">{{ user.availability_status }}</div>
-            
                         </div>
+                        {% elif user.availability_status == 'Urgent' %}
+                        
+                        <div class="availabilityStats status_urgent">
+                            <div class="stats">{{ user.availability_status }}</div>
+                        </div>
+                        {% elif user.availability_status == 'Busy' %}
+                            <div class="availabilityStats status_busy">
+                                <div class="stats">{{ user.availability_status }}</div>
+                            </div>
+                        {% elif user.availability_status == 'On Leave' %}
+                        <div class="availabilityStats status_leave">
+                            <div class="stats stats2">{{ user.availability_status }}</div>
+                        </div>
+                        {% endif %}
 
                         
                     </div>
@@ -69,21 +84,21 @@
                 <div class="body">
                     <div class="headingsAndBulbs">
                         <div class="headings">
-                            <p>Basic Information</p>
-                            <p>Job Portfolio</p>
-                            <p>Details and Business Info</p>
+                            <p class='basicInformationHeader'>Basic Information</p>
+                            <p class='jobPortfolioHeader'>Job Portfolio</p>
+                            <p class='moreDetailsHeader'>Details and Business Info</p>
                         </div>
                         <div class="bulbs">
-                            <div></div>
-                            <div></div>
-                            <div></div>
+                            <div class='basicInformationBulb'></div>
+                            <div class='jobPortfolioBulb'></div>
+                            <div class='moreDetailsBulb'></div>
                         </div>
                     </div>
 
                     <div class="detailsArea">
 
                         <div class="detailsGroup" id="basicInformation">
-                            <div class="tagline"><p>{{ user.tagline }}</p></div>
+                            <div class="tagline"><p>{% if user.tagline %}{{ user.tagline }} {% else %} Done right, done fast. Solutions without the wait. Efficiency you can count on. {% endif %}</p></div>
                             <div class="basics">
                                 <div class="basicsList"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_54_48)">
@@ -95,7 +110,7 @@
                                     <rect width="20" height="20" fill="white"/>
                                     </clipPath>
                                     </defs>
-                                    </svg><p>{{user.sub_location}}</p>
+                                    </svg><p>{% if user.sub_location %}{{ user.sub_location }} {% else %} Not Available {% endif %}</p>
                                 </div>
                                 <div class="basicsList"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_54_52)">
@@ -148,7 +163,11 @@
                                         Not Available
                                     {% endif %}</p>
                                 </div>
-                                <div class="basicsList"><p class="currency">GHc </p><p>{{ user.rate_charged }}</p></div>
+                                <div class="basicsList"><p class="currency">GHc </p><p>{% if user.rate_charged %}
+                                        {{user.rate_charged}}
+                                    {% else %}
+                                        Not Available
+                                    {% endif %}</p></div>
                                 <div class="basicsList">
                                     {% if user.is_verified == False %}
                                     <div class="unverifiedIcon">
@@ -171,7 +190,11 @@
                                 </div>
                                 <div class="basicsList"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24">
                                     <path d="m7.768,8.007c-.756,0-1.28.587-1.384,1.166l-1.199,5.97c-.089.443.25.856.701.856.345,0,.64-.246.703-.584l.165-.888h2.005l.156.882c.061.342.358.59.704.59h.01c.453,0,.792-.416.701-.859l-1.22-5.942c-.12-.667-.589-1.191-1.345-1.191Zm-.644,4.996l.623-3.292.637,3.292h-1.26Zm5.483-2.474v2.938c0,.468.346.879.812.923.498.047.906-.317.964-.788h-.079c-.441,0-.799-.358-.799-.799h0c0-.442.358-.8.799-.8h.901c.441,0,.799.358.799.799v.8h-.011c-.059,1.369-1.211,2.455-2.61,2.388-1.34-.064-2.375-1.21-2.375-2.552v-2.884c0-1.4,1.146-2.58,2.546-2.554.932.018,1.739.546,2.153,1.317.287.534-.097,1.18-.702,1.18-.29,0-.567-.151-.699-.409-.158-.308-.488-.513-.862-.488-.477.032-.838.45-.838.928Zm5.994-.924v1.799h1.1c.441,0,.799.358.799.799s-.358.799-.799.799h-1.1v1.399h1.1c.441,0,.799.358.799.799s-.358.799-.799.799h-1.899c-.441,0-.799-.358-.799-.799v-6.395c0-.441.358-.799.799-.799h1.899c.441,0,.799.358.799.799s-.358.799-.799.799h-1.1Zm4.458,8.941c-2.227,3.415-5.987,5.454-10.059,5.454-6.617,0-12-5.383-12-12S6.383,0,13,0c2.528,0,4.968.799,7,2.261v-1.261c0-.552.448-1,1-1s1,.448,1,1v3c0,1.103-.897,2-2,2h-3c-.552,0-1-.448-1-1s.448-1,1-1h1.997c-1.724-1.294-3.822-2-5.997-2C7.486,2,3,6.486,3,12s4.486,10,10,10c3.393,0,6.527-1.7,8.383-4.546.302-.463.921-.592,1.384-.292.462.302.593.921.292,1.384Z"/>
-                                    </svg><p>26 Years old</p>
+                                    </svg><p class='age1'>{% if user.date_of_birth %}
+                                        {{user.date_of_birth}}
+                                    {% else %}
+                                        Not Available
+                                    {% endif %}</p>
                                 </div>
                                 <div class="basicsList"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_54_58)">
@@ -183,13 +206,17 @@
                                     </clipPath>
                                     </defs>
                                     </svg>
-                                    <p>4.5(6k reviews)</p>
+                                    <p>Not Available</p>
                                 </div>
 
                             </div>
                             <div class="bio">
                                 <h4>Bio</h4>
-                                <p>{{ user.bio}}</p>
+                                <p>{% if user.bio %}
+                                        {{ user.bio }}
+                                    {% else %}
+                                        Not Available
+                                    {% endif %}</p>
                             </div>
                             <div class="skills">
                                 <div class="skillHeader"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -205,9 +232,13 @@
                                     <h4>Skills</h4>
                                 </div>
                                 <div class="tags">
+                                {% if user.skills.all %}
                                     {% for skill in user.skills.all %}
                                         <p> {{ skill.name }} </p>
                                     {% endfor %}
+                                {% else %}
+                                    <p class='no_skill'>No skills available.</p>
+                                {% endif %}
                                 </div>
                             </div>
 
@@ -226,31 +257,72 @@
                                     <h4>Other Skills</h4>
                                 </div>
                                 <div class="tags">
-                                    {% for tag in user.other_skills %}
-                                        <p>{{ tag }}</p>
+                                    {% if user.other_skills %}
+                                    {% for skill in user.other_skills %}
+                                        <p> {{ skill }} </p>
                                     {% endfor %}
+                                {% else %}
+                                    <p class='no_skill'>No skills available.</p>
+                                {% endif %}
+
                                 </div>
                             </div>
                         </div>
-                        <div class="detailsGroup" id="jobPortfoilio">
+                        <div class="detailsGroup" id="JobPortFoilio">
 
-                            <div class="addfloater"> <p>+</p></div>
+                            <button class="addfloater" onclick="location.href='{% url "addPortfolioItemPage" %}'"><p>+</p></button>
 
-                            <div class="pastJobCard">
-                                <img src={% static "images/gas_kitchen.jpg" %} alt="image of past job" width="170" height="140">
-                                <div class="PJT">
-                                    <h4>Kitchen Decoration</h4>
-                                    <time datetime="">15th March, 2025</time>
+                            <div class="jobPortfoilio">
+                                    {% for portfolio in portfolio_items %}
+                                    <div class="pastJobCard">
+                                        <img src={{ portfolio.image.url }} alt="image of past job" width="170" height="140" loading="lazy">
+                                        <div class="PJT">
+                                            <h4>{{ portfolio.title }}</h4>
+                                            <time datetime="">{{ portfolio.year_completed }}</time>
+                                        </div>
+                                    </div>
+
+                                {% endfor %}
+
+                                <div class="pastJobCard">
+                                    <img src={% static "images/gas_kitchen.jpg" %} alt="image of past job" width="170" height="140" loading="lazy">
+                                    <div class="PJT">
+                                        <h4>Kitchen Decoration</h4>
+                                        <time datetime="">15th March, 2025</time>
+                                    </div>
                                 </div>
+                                <div class="pastJobCard">
+                                    <img src={% static "images/gas_kitchen.jpg" %} alt="image of past job" width="170" height="140" loading="lazy">
+                                    <div class="PJT">
+                                        <h4>Kitchen Decoration</h4>
+                                        <time datetime="">15th March, 2025</time>
+                                    </div>
+                                </div>
+                                <div class="pastJobCard">
+                                    <img src={% static "images/gas_kitchen.jpg" %} alt="image of past job" width="170" height="140" loading="lazy">
+                                    <div class="PJT">
+                                        <h4>Kitchen Decoration</h4>
+                                        <time datetime="">15th March, 2025</time>
+                                    </div>
+                                </div>
+                                <div class="pastJobCard">
+                                    <img src={% static "images/gas_kitchen.jpg" %} alt="image of past job" width="170" height="140" loading="lazy">
+                                    <div class="PJT">
+                                        <h4>Kitchen Decoration</h4>
+                                        <time datetime="">15th March, 2025</time>
+                                    </div>
+                                </div>
+
+                                <div class="pastJobCard">
+                                    <img src={% static "images/gas_kitchen.jpg" %} alt="image of past job" width="170" height="140" loading="lazy">
+                                    <div class="PJT">
+                                        <h4>Kitchen Decoration</h4>
+                                        <time datetime="">15th March, 2025</time>
+                                    </div>
+                                </div>
+
                             </div>
 
-                            <div class="pastJobCard">
-                                <img src={% static "images/gas_kitchen.jpg" %} alt="image of past job" width="170" height="140">
-                                <div class="PJT">
-                                    <h4>Kitchen Decoration</h4>
-                                    <time datetime="">15th March, 2025</time>
-                                </div>
-                            </div>
                         </div>
                         <div class="detailsGroup" id="moreDetails">
                             <div class="moreDetailsContainer">
@@ -262,12 +334,12 @@
                                     <p class="infoValue">{{user.first_name}} {% if user.other_names %} {{ user.other_names}} {% endif %} {{ user.last_name}}</p>
                                 </div>
                                 <div class="detailsInfo">
-                                    <p class="infoType">Username:</p>
-                                    <p class="infoValue">{% if user.username %} {{ user.username}} {% endif %}</p>
+                                    <p class="infoType">Professional Name:</p>
+                                    <p class="infoValue">{% if user.professional_name %} {{ user.professional_name}} {% endif %}</p>
                                 </div>
                                 <div class="detailsInfo">
                                     <p class="infoType">Age:</p>
-                                    <p class="infoValue">{{user.date_of_birth}}</p>
+                                    <p class="infoValue age1">{{user.date_of_birth}}</p>
                                 </div>
                                 <div class="detailsInfo">
                                     <p class="infoType">Location:</p>
@@ -283,11 +355,30 @@
                                 </div>
                                 <div class="detailsInfo">
                                     <p class="infoType">Email:</p>
-                                    <p class="infoValue">{{user.Email}}</p>
+                                    <p class="infoValue">{{ User.email }}</p>
+                                </div>
+                                <div class="detailsInfo">
+                                    <p class="infoType">Website:</p>
+                                    <p class="infoValue">{{ user.website }}</p>
                                 </div>
                                 <div class="detailsInfo">
                                     <p class="infoType">Socials:</p>
-                                    <p class="infoValue"></p>
+                                    <div class="infoValue"> {% if user.social_links %}
+                                            {% if user.social_links.facebook %}
+                                                <p>{{ user.social_links.facebook }}</p>
+                                            {% endif %}
+                                            {% if user.social_links.twitter %}
+                                                <p>{{ user.social_links.twitter }}</p>
+                                            {% endif %}
+                                            {% if user.social_links.instagram %}
+                                                <p>{{ user.social_links.instagram }}</p>
+                                            {% endif %}
+                                            {% if user.social_links.tiktok %}
+                                                <p>{{ user.social_links.tiktok }}</p>
+                                            {% endif %}
+                                        
+                                        {% endif %}
+                                    </div>
                                 </div>
                             </div>
                             <div class="moreDetailsContainer"> 
@@ -301,10 +392,10 @@
                                         <p class="infoValue">ABC Company</p>
                                     </div>
                                 </div>
-                                <div class="detailsInfo">
+                                <div class="detailsInfo infoValueport">
                                     <p class="infoType">Portfoilio:</p>
                                     <div class="valueContainer">
-                                        <p class="infoValue">Kyeimuda</p>
+                                        <div class="infoValue"> <button class='switchToPort'>Go to Portfolio</button></div>
                                     </div>
                                 </div>
                             </div>
@@ -315,8 +406,9 @@
                                 <div class="detailsInfo">
                                     <p class="infoType">Schools:</p>
                                     <div class="valueContainer">
-                                        <p class="infoValue"> Mandela Int School</p>
-                                        <p class="infoValue"> Mandela Int School</p>
+                                        {% for school in user.education_schools %}
+                                        <div class="infoValue schoolContainer"><p>School: &nbsp;{{ school.institution_or_school }}</p> <p>Year: &nbsp;{{ school.school_date }}</p> <p>Level: &nbsp;{{ school.schoolLevel }}</p></div>
+                                        {% endfor %}
                                     </div>
                                 </div>
 
@@ -401,7 +493,7 @@
                         </div>
 
                         <div class="sideNavFooter">
-                            <img src={% static "images/mason1.jpeg" %} alt="Profile Picture" width="100" height="100">
+                            <img src={% static "images/mason1.jpeg" %} alt="Profile Picture" width="100" height="100" loading="lazy">
                             <h4>Logout</h4>
                         </div>
                     </div>
@@ -477,7 +569,7 @@
                             <div class="tradesType">
                                 {% for trades in TradesType %}
                                 <div class="tradesTypeContainer">
-                                    <img src= {{ trades.image.url}} alt="" width="200" height="200">
+                                    <img src= {{ trades.image.url}} alt="" width="200" height="200" loading="lazy">
                                     <h4>{{ trades.name}}</h4>
                                 </div>
                                     
@@ -486,77 +578,6 @@
                             </div>
 
                             <div class="cards tradespeopleCards">
-
-                                {% for tradesperson in  Tradespeople %}
-                                <div class="card"  data-tradesperson-id={{ tradesperson.id }}>
-                                    <div class="cardSections cardDetails">
-                                        <div class="profileIMG">
-                                            <img src={% static "images/rasterman1.jpeg" %} alt="profile image" width="100" height="100">
-                                        </div>
-                                        <div class="profileINFO">
-                                            <div class="profileName"> <h3>{{ tradesperson.first_name }} {{ tradesperson.last_name }}</h3> 
-                                                <svg xmlns="http://www.w3.org/2000/svg" id="verified" data-name="Layer 1" viewBox="0 0 24 24">
-                                                    <path d="m23.126,9.868h0l-2.151-2.154v-1.718c0-1.651-1.342-2.995-2.991-2.995h-1.716l-2.151-2.153c-1.131-1.131-3.101-1.131-4.231,0l-2.151,2.153h-1.716c-1.65,0-2.991,1.343-2.991,2.995v1.718l-2.152,2.154c-1.165,1.168-1.165,3.067,0,4.235l2.151,2.154v1.718c0,1.651,1.342,2.995,2.991,2.995h1.716l2.151,2.153c.565.565,1.317.877,2.116.877s1.55-.312,2.115-.877l2.151-2.153h1.716c1.65,0,2.991-1.343,2.991-2.995v-1.718l2.152-2.154c1.165-1.168,1.165-3.067,0-4.235Zm-4.922.343l-5.054,4.995c-.614.61-1.423.916-2.231.916s-1.613-.305-2.229-.913l-2.599-2.499c-.392-.389-.396-1.021-.007-1.414.39-.391,1.021-.396,1.415-.007l2.598,2.498c.453.449,1.19.45,1.644,0l5.055-4.996c.394-.39,1.026-.386,1.415.007s.385,1.025-.007,1.414Z"/>
-                                                </svg>
-                                            </div>
-                                            <p class="profileTradeType">{{ tradesperson.trade_category }}</p>
-
-                                            <div class="profileTags"> <p class="tags">Sink repairs</p>
-                                                <p class="tags">Water pipe fix</p>
-                                                <p class="tags">Water pipe fix</p>
-                                            </div>
-                                            
-                                            <p class="profileLocation"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <g clip-path="url(#clip0_125_77)">
-                                                <path d="M6 3C5.60444 3 5.21776 3.1173 4.88886 3.33706C4.55996 3.55682 4.30362 3.86918 4.15224 4.23463C4.00087 4.60009 3.96126 5.00222 4.03843 5.39018C4.1156 5.77814 4.30608 6.13451 4.58579 6.41421C4.86549 6.69392 5.22186 6.8844 5.60982 6.96157C5.99778 7.03874 6.39992 6.99914 6.76537 6.84776C7.13082 6.69638 7.44318 6.44004 7.66294 6.11114C7.8827 5.78224 8 5.39556 8 5C8 4.46957 7.78929 3.96086 7.41422 3.58579C7.03914 3.21071 6.53043 3 6 3ZM6 6C5.80222 6 5.60888 5.94135 5.44443 5.83147C5.27998 5.72159 5.15181 5.56541 5.07612 5.38268C5.00043 5.19996 4.98063 4.99889 5.01922 4.80491C5.0578 4.61093 5.15304 4.43275 5.29289 4.29289C5.43275 4.15304 5.61093 4.0578 5.80491 4.01921C5.99889 3.98063 6.19996 4.00043 6.38268 4.07612C6.56541 4.15181 6.72159 4.27998 6.83147 4.44443C6.94135 4.60888 7 4.80222 7 5C7 5.26522 6.89464 5.51957 6.70711 5.70711C6.51957 5.89464 6.26522 6 6 6Z" fill="#000080"/>
-                                                <path d="M5.99991 12C5.57888 12.0022 5.16347 11.9034 4.78844 11.712C4.41342 11.5207 4.08971 11.2422 3.84441 10.9C1.93891 8.27152 0.972412 6.29552 0.972412 5.02652C0.972412 3.69315 1.50209 2.41438 2.44493 1.47154C3.38777 0.528705 4.66654 -0.000976562 5.99991 -0.000976562C7.33329 -0.000976562 8.61205 0.528705 9.55489 1.47154C10.4977 2.41438 11.0274 3.69315 11.0274 5.02652C11.0274 6.29552 10.0609 8.27152 8.15541 10.9C7.91011 11.2422 7.5864 11.5207 7.21138 11.712C6.83636 11.9034 6.42094 12.0022 5.99991 12ZM5.99991 1.09052C4.95612 1.09171 3.95542 1.50689 3.21735 2.24496C2.47928 2.98303 2.0641 3.98373 2.06291 5.02752C2.06291 6.03252 3.00941 7.89102 4.72741 10.2605C4.87326 10.4614 5.0646 10.6249 5.28577 10.7377C5.50694 10.8504 5.75166 10.9092 5.99991 10.9092C6.24816 10.9092 6.49288 10.8504 6.71406 10.7377C6.93523 10.6249 7.12656 10.4614 7.27241 10.2605C8.99041 7.89102 9.93691 6.03252 9.93691 5.02752C9.93572 3.98373 9.52055 2.98303 8.78248 2.24496C8.0444 1.50689 7.0437 1.09171 5.99991 1.09052Z" fill="#000080"/>
-                                                </g>
-                                                <defs>
-                                                <clipPath id="clip0_125_77">
-                                                <rect width="12" height="12" fill="white"/>
-                                                </clipPath>
-                                                </defs>
-                                                </svg>
-                                                Ashaiman,Accra, Gh
-                                            </p>
-                                            <p class="profileRate">
-                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <g clip-path="url(#clip0_125_80)">
-                                                <path d="M11.5 9H9.4065C9.2855 9 9.1665 9.02 9.05 9.0485L6.443 6.7245L7.01 6.2015C7.148 6.0715 7.329 5.9995 7.5195 5.9995C7.6875 5.9995 8.1305 6.161 8.5235 6.3325C8.7755 6.4425 9.0475 6.4995 9.3225 6.4995H11.5005C11.7765 6.4995 12.0005 6.2755 12.0005 5.9995C12.0005 5.7235 11.7765 5.4995 11.5005 5.4995H9.116C8.913 5.4025 8.519 5.2255 8.1315 5.11C8.8155 4.4195 9.167 3.3995 8.9235 2.3085C8.675 1.1965 7.77 0.303999 6.655 0.0684986C4.7125 -0.342001 3.001 1.129 3.001 2.9995C3.001 3.823 3.3335 4.5685 3.8705 5.111C3.4815 5.2265 3.088 5.403 2.8855 5.4995H0.5C0.224 5.4995 0 5.7235 0 5.9995C0 6.2755 0.224 6.4995 0.5 6.4995H2.6785C2.9555 6.4995 3.2285 6.441 3.4825 6.3305C3.854 6.169 4.3075 5.9995 4.5 5.9995C4.6855 5.9995 4.8635 6.0685 5.0005 6.1935L5.2735 6.442L4.239 7.396C3.958 7.677 3.918 8.1085 4.1445 8.4235C4.2805 8.6125 4.4915 8.7315 4.7225 8.7495C4.7435 8.751 4.7645 8.752 4.786 8.752C4.9945 8.752 5.193 8.6705 5.3295 8.5335L6.1315 7.787L8.1445 9.5815L6.586 10.798C6.2525 11.0585 5.7465 11.058 5.413 10.798L3.516 9.3175C3.254 9.1125 2.926 9 2.593 9H0.5C0.224 9 0 9.224 0 9.5C0 9.776 0.224 10 0.5 10H2.5935C2.7045 10 2.8135 10.0375 2.901 10.1055L4.798 11.5865C5.14 11.853 5.5665 12 5.9995 12C6.4325 12 6.8595 11.8535 7.201 11.5865L9.098 10.106C9.1855 10.038 9.295 10.0005 9.4055 10.0005H11.499C11.775 10.0005 11.999 9.7765 11.999 9.5005C11.999 9.2245 11.775 9.0005 11.499 9.0005L11.5 9ZM4.4995 4.4835C4.2905 4.2315 4.468 3.8505 4.7955 3.8505C4.909 3.8505 5.0505 3.904 5.1275 3.9875C5.1915 4.057 5.2835 4.1005 5.385 4.1005H6.552C6.691 4.1005 6.818 4.007 6.845 3.8705C6.8765 3.7115 6.772 3.563 6.6195 3.532L5.224 3.2525C4.668 3.141 4.28 2.612 4.3615 2.033C4.4375 1.493 4.9155 1.1 5.461 1.1H5.601V0.899999C5.601 0.678999 5.78 0.499999 6.001 0.499999C6.222 0.499999 6.401 0.678999 6.401 0.899999V1.1H6.6035C6.959 1.1 7.2775 1.262 7.4885 1.5165C7.6975 1.7685 7.52 2.1495 7.1925 2.1495C7.079 2.1495 6.9375 2.096 6.8605 2.0125C6.7965 1.943 6.7045 1.8995 6.603 1.8995H5.4495C5.3105 1.8995 5.1835 1.9925 5.156 2.1285C5.124 2.2875 5.229 2.437 5.3805 2.4675L6.7765 2.747C7.3325 2.858 7.721 3.388 7.639 3.9665C7.5625 4.5065 7.085 4.899 6.5395 4.899H6.3995V5.099C6.3995 5.32 6.2205 5.499 5.9995 5.499C5.7785 5.499 5.5995 5.32 5.5995 5.099V4.899H5.384C5.0285 4.899 4.71 4.7365 4.499 4.4825L4.4995 4.4835Z" fill="#000080"/>
-                                                </g>
-                                                <defs>
-                                                <clipPath id="clip0_125_80">
-                                                <rect width="12" height="12" fill="white"/>
-                                                </clipPath>
-                                                </defs>
-                                                </svg>
-                                                100 - 100/hr
-                                            </p>
-                                            <p class="profileRatings">
-                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <g clip-path="url(#clip0_125_83)">
-                                                <path d="M0.663596 6.19998L2.4436 7.49998L1.7676 9.59348C1.65835 9.91817 1.65697 10.2695 1.76365 10.595C1.87033 10.9206 2.07937 11.2029 2.3596 11.4C2.63502 11.6034 2.96879 11.7123 3.31117 11.7106C3.65355 11.7089 3.98622 11.5966 4.2596 11.3905L6.0001 10.1095L7.7411 11.389C8.01602 11.5912 8.34799 11.701 8.68928 11.7027C9.03057 11.7044 9.3636 11.5978 9.64048 11.3982C9.91736 11.1987 10.1238 10.9165 10.2302 10.5922C10.3366 10.2679 10.3375 9.91826 10.2326 9.59348L9.5566 7.49998L11.3366 6.19998C11.6112 5.99923 11.8153 5.71685 11.9198 5.39317C12.0243 5.06949 12.0238 4.72107 11.9184 4.39767C11.8131 4.07427 11.6082 3.79244 11.3331 3.59243C11.058 3.39242 10.7267 3.28446 10.3866 3.28398H8.2001L7.5366 1.21598C7.43226 0.890456 7.22723 0.606484 6.95108 0.40501C6.67493 0.203535 6.34193 0.0949707 6.0001 0.0949707C5.65826 0.0949707 5.32526 0.203535 5.04911 0.40501C4.77296 0.606484 4.56794 0.890456 4.4636 1.21598L3.8001 3.28398H1.6156C1.27547 3.28446 0.944192 3.39242 0.669086 3.59243C0.39398 3.79244 0.189117 4.07427 0.0837571 4.39767C-0.0216025 4.72107 -0.0220688 5.06949 0.0824248 5.39317C0.186918 5.71685 0.391027 5.99923 0.665596 6.19998H0.663596Z" fill="#000080"/>
-                                                </g>
-                                                <defs>
-                                                <clipPath id="clip0_125_83">
-                                                <rect width="12" height="12" fill="white"/>
-                                                </clipPath>
-                                                </defs>
-                                                </svg>
-                                                (4.5)64 reviews
-                                            </p>
-                                        </div>
-                                        <div class="cardSections ProfileJOB">
-                                            <img src={% static "images/gas_kitchen.jpg" %} alt="profie best job image" width="100" height="100">
-                                        </div>
-                                    </div>
-                                    <div class="cardSections profileBOOK">
-                                        <span class="availability">Available Now</span>
-                                        <button class="bookBtn" type="button">Book</button>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                                
     
                             </div>
 
@@ -628,32 +649,32 @@
 
                     <div class="tradesType">
                         <div class="tradesTypeContainer">
-                            <img src={% static "images/mason1.jpeg" %} alt="" width="200" height="200">
+                            <img src={% static "images/mason1.jpeg" %} alt="" width="200" height="200" loading="lazy">
                             <h4>Capenter</h4>
                         </div>
 
                         <div class="tradesTypeContainer">
-                            <img src="images/create a realistic picture of an electrician from Ghana__ (1).jpeg" alt="" width="200" height="200">
+                            <img src="images/create a realistic picture of an electrician from Ghana__ (1).jpeg" alt="" width="200" height="200" loading="lazy">
                             <h4>Capenter</h4>
                         </div>
 
                         <div class="tradesTypeContainer">
-                            <img src="images/create a realistic picture of an electrician from Ghana__ (1).jpeg" alt="" width="200" height="200">
+                            <img src="images/create a realistic picture of an electrician from Ghana__ (1).jpeg" alt="" width="200" height="200" loading="lazy">
                             <h4>Capenter</h4>
                         </div>
 
                         <div class="tradesTypeContainer">
-                            <img src="images/create a realistic picture of an electrician from Ghana__ (1).jpeg" alt="" width="200" height="200">
+                            <img src="images/create a realistic picture of an electrician from Ghana__ (1).jpeg" alt="" width="200" height="200" loading="lazy">
                             <h4>Capenter</h4>
                         </div>
 
                         <div class="tradesTypeContainer">
-                            <img src="images/create a realistic picture of an electrician from Ghana__ (1).jpeg" alt="" width="200" height="200">
+                            <img src="images/create a realistic picture of an electrician from Ghana__ (1).jpeg" alt="" width="200" height="200" loading="lazy">
                             <h4>Capenter</h4>
                         </div>
 
                         <div class="tradesTypeContainer">
-                            <img src="images/create a realistic picture of an electrician from Ghana__ (1).jpeg" alt="" width="200" height="200">
+                            <img src="images/create a realistic picture of an electrician from Ghana__ (1).jpeg" alt="" width="200" height="200" loading="lazy">
                             <h4>Capenter</h4>
                         </div>
                     </div>
@@ -899,4 +920,5 @@
 
 {% block scripts %}
     <script src="{% static 'Discover/page2/WorkerfyMainPage.js' %}"></script>
+    <script src="{% static 'main/JS/tradespersonViewPage.js' %}"></script>
 {% endblock scripts %}

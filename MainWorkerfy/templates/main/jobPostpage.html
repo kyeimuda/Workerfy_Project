@@ -11,7 +11,7 @@
 
 <div class="Cancel" id="CancelPopUp">
     <div>
-        <img src="{% static "images/discard.png" %}" alt="Cancel Image" width="100" height="100">
+        <img src="{% static "images/discard.png" %}" alt="Cancel Image" width="100" height="100" loading="lazy">
         <h2>Are you sure you want to cancel?</h2>
         <p>All unsaved changes will be lost.</p>
         
@@ -314,7 +314,7 @@
                                             <path d="M14.2821 0.308123C14.1852 0.210489 14.07 0.132995 13.9431 0.0801111C13.8162 0.0272271 13.68 0 13.5425 0C13.405 0 13.2688 0.0272271 13.1419 0.0801111C13.015 0.132995 12.8997 0.210489 12.8029 0.308123L8.03208 5.07896C7.93524 5.17659 7.82003 5.25408 7.69309 5.30697C7.56616 5.35985 7.43001 5.38708 7.29249 5.38708C7.15498 5.38708 7.01883 5.35985 6.89189 5.30697C6.76496 5.25408 6.64975 5.17659 6.55291 5.07896L1.78208 0.308123C1.68524 0.210489 1.57003 0.132995 1.44309 0.0801111C1.31616 0.0272271 1.18 0 1.04249 0C0.90498 0 0.768828 0.0272271 0.641891 0.0801111C0.514955 0.132995 0.399745 0.210489 0.302909 0.308123C0.108897 0.503293 0 0.767305 0 1.0425C0 1.31769 0.108897 1.5817 0.302909 1.77687L5.08416 6.55812C5.6701 7.14333 6.46437 7.47204 7.29249 7.47204C8.12062 7.47204 8.91489 7.14333 9.50083 6.55812L14.2821 1.77687C14.4761 1.5817 14.585 1.31769 14.585 1.0425C14.585 0.767305 14.4761 0.503293 14.2821 0.308123Z" fill="black"/>
                                         </svg>
                                         <select name="countryCode" id="countryCode">
-                                            <option value="+233"> <img src={%  static "images\GH-Ghana-Flag-icon.png" %} alt="ghana Flag"> <p>+233</p></option>
+                                            <option value="+233"> <img src={%  static "images\GH-Ghana-Flag-icon.png" %} alt="ghana Flag" loading="lazy"> <p>+233</p></option>
                                         </select>
                                     </div>
 
@@ -584,7 +584,7 @@
                     <h4>Client Information</h4>
 
                     <div class="card">
-                        <img src={% static "/images/rasterman1.jpeg" %} alt="">
+                        <img src={% static "/images/rasterman1.jpeg" %} alt="" loading="lazy">
                         <div class="cardC">
                             <div class="info">
                                 <p> {{ user.first_name }} {{ user.last_name }} {{ user.other_names }}</p>

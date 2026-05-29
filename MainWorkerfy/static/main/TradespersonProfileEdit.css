@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: "Nunito", sans-serif;
 }
 
 body {
@@ -11,6 +11,7 @@ body {
     overflow-y: hidden;
     position: relative;
     scrollbar-width: none;
+    position: relative;
 }
 
 .Cancel {
@@ -160,7 +161,6 @@ form {
 
 .inputContainer {
     margin-bottom: 5vh;
-    padding: 0 2vh;
 }
 
 .ProPic{
@@ -170,8 +170,8 @@ form {
 
 #ProfilePicHolder {
     position: relative;
-    width: 35%;
-    height: 100%;
+    width: 15vh;
+    height: 15vh;
     /* border: 2px solid #000080; */
     border-radius: 50%;
     display: flex;
@@ -261,26 +261,44 @@ label {
 .inputContainer input {
     width: 100%;
     padding: 2vh 4.5vw;
-    font-size: 1.7778vh;
-    font-family: "Nunito", sans-serif;
-    outline: none;
     border: none;
-    border-bottom: 1px solid #634E2D;
-    background-color: transparent;
+    border-radius: 1.8vh;
+    background-color: rgba(128, 128, 128, 0.1);
+    font-size: 2vh;
+    font-family: "Poppins", sans-serif;
+    outline: none;
+    display: block;
+    margin: auto;
 
+}
+
+.inputContainer > input:focus{
+    background-color: whitesmoke;
+    box-shadow: 0 1px 6px 0 #1818e9;
+    transition: box-shadow 150ms ease;
 }
 
  .inputContainer select, .inputContainer textarea, .addHolder input, .addHolder textarea {
     width: 100%;
     padding: 2vh 4.5vw;
     border: none;
-    background-color: transparent;
-    border-bottom: 1px solid #634E2D;
-    font-size: 1.7778vh;
-    font-family: "Playpen Sans", sans-serif;
+    border-radius: 1.8vh;
+    background-color: rgba(128, 128, 128, 0.1);
+    font-size: 2vh;
+    font-family: "Poppins", sans-serif;
     outline: none;
     display: block;
     margin: auto;
+}
+
+ .inputContainer select:focus, .inputContainer textarea:focus, .addHolder input:focus, .addHolder textarea:focus, .website input:focus, .socialContainer input:focus {
+    background-color: whitesmoke;
+    box-shadow: 0 1px 6px 0 #1818e9;
+    transition: box-shadow 150ms ease;
+ }
+
+.inputContainer textarea {
+    height: 20vh;
 }
 
 .header2 > h2 {
@@ -309,7 +327,7 @@ label {
 .inputContainer button{
     width: 50%;
     padding: 0.5vh 1vh;
-    background-color: #0000ff;
+    background-color: #0000D1;
     color: whitesmoke;
     border-radius: 5vh;
     margin: 1vh;
@@ -322,13 +340,18 @@ label {
 }
 
 .addHolder button{
-    width: 50%;
     padding: 1vh 1vh;
     background-color: #000080;
     color: whitesmoke;
     border-radius: 5vh;
     margin: 1vh;
     border: none;
+}
+
+.addHolder .add_holder_btns {
+    width: 100%;
+    display: flex;
+    margin: 1vh auto;
 }
 
 #experience_years input {
@@ -353,7 +376,7 @@ label {
     box-shadow: 0 2px 10px  rgba(115, 115, 116, 0.5);
 }
 
-.addHolder div{
+.addHolder > div{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -362,11 +385,6 @@ label {
     gap: 1vh;
     padding: 1vh 2vh;
     align-self: center;
-}
-
-.addHolder button {
-    display: block;
-    margin: auto;
 }
 
 .addHolder h3 {
@@ -396,23 +414,25 @@ label {
 
 /* This is where the new css for the refinement to fit UI design is made */
 .flagAndcontact {
-    width: 100%;
     display: flex;
-    justify-content: space-between;
+    border-radius: 1.8vh;
+    align-self: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
-input[name="contact_number"], input[name="contact_number2"] {
-    display: none;
+.flagAndcontact:focus-within {
+    box-shadow: 0 1px 6px 0 #1818e9;
+    transition: box-shadow 150ms ease;
 }
-
 .flagAndcontact .flag{
-    width: 20%;
+    width: 28%;
+    position: relative;
+    border-right: 1px solid rgba(128, 128, 128, 0.5);
 }
 
 .flagAndcontact input {
-    width: 75%;
-    padding-left: 0;
-    padding-right: 0;
+    width: 100%;
 }
 
 .flagAndcontact select{
@@ -426,6 +446,17 @@ input[name="contact_number"], input[name="contact_number2"] {
     height: 24;
 }
 
+.number{
+    width: 72%;
+    
+}
+
+.number input {
+    border-radius: 0%;
+    padding-left: 0;
+    padding-left: 1vh;
+}
+
 
 /* The website input styling */
 
@@ -434,7 +465,6 @@ input[name="contact_number"], input[name="contact_number2"] {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #634E2D;
 }
 
 .website svg {
@@ -443,8 +473,6 @@ input[name="contact_number"], input[name="contact_number2"] {
 
 .website input {
     width: 90%;
-    padding-left: 0;
-    padding-right: 0;
     border: none;
 }
 
@@ -573,7 +601,7 @@ input[name="contact_number"], input[name="contact_number2"] {
     display: none;
 }
 
-#add_school > button{
+#add_school > button {
     margin-left: auto;
     font-family: "Playpen Sans", cursive;
 }
@@ -657,3 +685,175 @@ input[name="contact_number"], input[name="contact_number2"] {
     text-align: center;
 }
 
+.created, .not_create {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(241, 234, 223);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    padding: 2vh 2vh;
+    align-items: center;
+    flex-direction: column;
+}
+
+.created h2, .not_create h2 {
+    color: #000080;
+    font-family: "Playpen Sans", cursive;
+    text-align: center;
+    margin-top: 4vh;
+}
+
+.created img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20vh;
+    border-radius: 50%;
+    height: 20vh;
+    margin-top: 18vh;  
+    box-shadow:0 4px 8px 0 rgba(9, 9, 255, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    animation: slowUpDown 3s ease-in-out infinite;
+}
+
+.not_create img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20vh;
+    border-radius: 50%;
+    height: 20vh;
+    margin-top: 18vh;  
+    box-shadow:0 4px 8px 0 rgba(252, 32, 20, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    animation: slowUpDown 3s ease-in-out infinite;
+}
+
+.created button, .not_create button{
+    display: flex;
+    padding: 1vh 2vh;
+    justify-content: space-evenly;
+    align-items: center;
+    border: none;
+    font-size: 2vh;
+    font-weight: 500;
+    font-family: 'Playpen Sans', cursive;
+    color: whitesmoke;
+    background-color: #0000D1;
+    border-radius: 5vh;
+}
+
+.createdBTN {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    margin-top: 6vh;
+}
+.created .save-btn, .not_create .save-btn {
+    box-shadow: 0 2px 8px 0 rgba(128, 128, 128, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.created .save-btn:hover, .not_create .save-btn:hover{
+    background-color: #0000ED;
+}
+.created .save-btn:hover:focus, .not_create .save-btn:hover {
+    background-color: #0000ED;
+    box-shadow: 0 4px 8px 0 rgba(9, 9, 255, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+@keyframes slowUpDown {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3vh);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.WorkExperiencAdd {
+    display: none;
+}
+
+
+.socialLinkAdd {
+    border-radius: 5vh;
+    box-shadow: 0 2px 10px  rgba(115, 115, 116, 0.5);
+    padding: 1vh;
+}
+
+.tags {
+    display: none;
+    width: 100%;
+    min-height: 15vh;
+    margin: 1vh auto;
+    padding: 1vh;
+    gap: 2vh;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 2vh;
+     /* border: 1px solid rgba(128, 128, 128, 0.5); */
+     box-shadow: 0 2px 10px  rgba(115, 115, 116, 0.5);
+}
+
+.deleteSkillContainer,  .deleteOtherSkillContainer, .deleteSpecialityContainer{
+    text-align: center;
+    width: 100%;
+    color: #000080;
+    font-family: 'Playpen Sans', cursive;
+
+}
+
+.tags .skillTag, .tags .specialityTag, .tags .otherSkillTag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5vh 2vh;
+    background-color: #F1EADF;
+    font-weight: 600;
+    border-radius: 2vh;
+    color: #00006D;
+}
+
+.tags .tag .tagCancel {
+    color: gray;
+    font-size: 2vh; 
+}
+
+.deleteSkillhHolder, .deleteSpecialityHolder, .deleteOtherSkillhHolder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vh;
+    flex-wrap: wrap;
+    margin-top: 1vh;
+}
+
+.deleteOtherSkillText, .deleteSpecialityText, .deleteSkillText {
+    width: 100%;
+
+}
+
+#Delete_Skill, #Delete_Speciality, #Delete_Other_Skill {
+    display: none;
+}
+
+.cancel_remove {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cancel_remove button {
+    width: 9vh;
+    margin: 1vh;
+    padding: 1vh 2vh;
+}
+
+.tag {
+    gap: 0.5vh;
+}

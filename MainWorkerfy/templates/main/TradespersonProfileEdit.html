@@ -9,7 +9,7 @@
 
 <div class="Cancel" id="CancelPopUp">
     <div>
-        <img src="{% static "images/discard.png" %}" alt="Cancel Image" width="100" height="100">
+        <img src="{% static "images/discard.png" %}" alt="Cancel Image" width="100" height="100" loading="lazy">
         <h2>Are you sure you want to cancel?</h2>
         <p>All unsaved changes will be lost.</p>
         
@@ -19,6 +19,24 @@
             <button type="button" id="StillCancel">Still Cancel</button>
 
         </div>
+    </div>
+</div>
+
+<div class="created">
+    <img src="/static/images/successful2.png" alt="Success Image" width="100" height="100" loading="lazy">
+    <h2> You have successfully updated your profile!</h2>
+    <div class="createdBTN">
+        <button type="button" class="save-btn" id="AddAnother">Add Another</button>
+        <button type="button" class="save-btn" id="GoToProfile" onclick="window.location.href='/main/Main'">Go to Profile</button>
+    </div>
+</div>
+
+<div class="not_create">
+    <img src="/static/images/multiply2.png" alt="Success Image" width="100" height="100" loading="lazy">
+    <h2> Unable to update your Profile! </h2>
+    <div class="createdBTN">
+        <button type="button" class="save-btn" id="re_try">Try Again</button>
+        <button type="button" class="save-btn" id="GoToProfile" onclick="window.location.href='/main/Main'">Go to Profile</button>
     </div>
 </div>
 
@@ -42,7 +60,12 @@
                     <label for="ProfilePicture">Profile Picture:</label>
 
                     <div id="ProfilePicHolder">
-                        <img src={% static "images/user.png" %} alt="Profile Image" width="100" height="100" id='imageHolder'>
+                        {% if user.profile_picture %}
+                        <img src={{ user.profile_picture.url }} alt="Profile Image" width="100" height="100" id='imageHolder' loading="lazy">
+                        {% else %}
+                        <img src={% static "images/user.png" %} alt="Profile Image" width="100" height="100" id='imageHolder' loading="lazy">
+                        {% endif %}
+                        
                         <div class="penSVG">
                         <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="25" height="25"><path d="M22.853,1.148a3.626,3.626,0,0,0-5.124,0L1.465,17.412A4.968,4.968,0,0,0,0,20.947V23a1,1,0,0,0,1,1H3.053a4.966,4.966,0,0,0,3.535-1.464L22.853,6.271A3.626,3.626,0,0,0,22.853,1.148ZM5.174,21.122A3.022,3.022,0,0,1,3.053,22H2V20.947a2.98,2.98,0,0,1,.879-2.121L15.222,6.483l2.3,2.3ZM21.438,4.857,18.932,7.364l-2.3-2.295,2.507-2.507a1.623,1.623,0,1,1,2.295,2.3Z"/></svg>
 
@@ -70,8 +93,9 @@
                 </div>
 
                 <div class="inputContainer">
-                    {{ form.username.label_tag }}
-                    {{ form.username }}
+                    {{ form.professional_name.label_tag }}
+                    {{ form.professional_name }}
+                    <p class='help_text'>{{ form.professional_name.help_text }}</p>
                 </div>
 
                 <div class="inputContainer">
@@ -104,13 +128,6 @@
                         {{ form.contact_number.label_tag }}
 
                         <div class="flagAndcontact">
-
-                            <div class="flag">
-                                <select name="countryCode" id="countryCode">
-                                    <option value="+233">+233</option>
-                                </select>
-                            </div>
-                            <input type="tel" name="contact_numberClone" id="PhoneClone" placeholder="050 524 1706" class="inputFieldClone" maxlength="15">
                         
                             {{ form.contact_number }}
                             
@@ -126,14 +143,6 @@
 
                         <div class="flagAndcontact">
 
-                            <div class="flag">
-                                <select name="countryCode" id="countryCode2">
-                                    <option value="+233">+233</option>
-                                </select>
-                            </div>
-
-                            <input type="tel" name="contact_numberClone2" id="PhoneClone2" placeholder="050 524 1706" class="inputFieldClone" maxlength="15">
-                        
                             {{ form.contact_number2 }}
                             
                         </div>
@@ -172,7 +181,7 @@
                                     <path d="M24,12.073c0,5.989-4.394,10.954-10.13,11.855v-8.363h2.789l0.531-3.46H13.87V9.86c0-0.947,0.464-1.869,1.95-1.869h1.509   V5.045c0,0-1.37-0.234-2.679-0.234c-2.734,0-4.52,1.657-4.52,4.656v2.637H7.091v3.46h3.039v8.363C4.395,23.025,0,18.061,0,12.073   c0-6.627,5.373-12,12-12S24,5.445,24,12.073z"/>
                                 </g>
                             </svg> 
-                            <input type="text" name="facebook" placeholder="https//facebook.com" class="slinks" id="facebook_link">
+                            <input type="url" name="facebook" placeholder="https//facebook.com" class="slinks" id="facebook_link">
                         </div>
 
                         <div class="socialContainer"> 
@@ -228,45 +237,90 @@
                     {{ form.trade_specialties.label_tag }}
 
                     <div class="skillsDiv">
-                        <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M14.2821 0.308123C14.1852 0.210489 14.07 0.132995 13.9431 0.0801111C13.8162 0.0272271 13.68 0 13.5425 0C13.405 0 13.2688 0.0272271 13.1419 0.0801111C13.015 0.132995 12.8997 0.210489 12.8029 0.308123L8.03208 5.07896C7.93524 5.17659 7.82003 5.25408 7.69309 5.30697C7.56616 5.35985 7.43001 5.38708 7.29249 5.38708C7.15498 5.38708 7.01883 5.35985 6.89189 5.30697C6.76496 5.25408 6.64975 5.17659 6.55291 5.07896L1.78208 0.308123C1.68524 0.210489 1.57003 0.132995 1.44309 0.0801111C1.31616 0.0272271 1.18 0 1.04249 0C0.90498 0 0.768828 0.0272271 0.641891 0.0801111C0.514955 0.132995 0.399745 0.210489 0.302909 0.308123C0.108897 0.503293 0 0.767305 0 1.0425C0 1.31769 0.108897 1.5817 0.302909 1.77687L5.08416 6.55812C5.6701 7.14333 6.46437 7.47204 7.29249 7.47204C8.12062 7.47204 8.91489 7.14333 9.50083 6.55812L14.2821 1.77687C14.4761 1.5817 14.585 1.31769 14.585 1.0425C14.585 0.767305 14.4761 0.503293 14.2821 0.308123Z" fill="#634E2D"/>
-                        </svg>
-
                         <input type="text" name="Speciality_nput" id="Speciality_input" placeholder="Wiring">
                     </div>
                     {{ form.trade_specialties }}
                     <button type="button" id="add_speciality_BTN">Add Trade Speciality <p>+</p></button>
+                    <button type="button" id="remove_speciality_BTN">Remove Trade Speciality <p>+</p></button>
+
+                    {{ form.delete_speciality}}
+
+                    <div class="tags deleteContainer deleteSpecialityContainer"> 
+                        <h4 class="deleteSkillText">Click on a speciality to delete it</h4>
+                        <div class="deleteSkillhHolder">
+                            {% for speciality in user.trade_specialties.all %}
+                                <div class="specialityTag tag" data-skill="{{ speciality.id }}"><p class="skillTagText">{{ speciality }}</p> <p class="tagCancel">&times;</p></div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="cancel_remove"> 
+                            <button type="button" id="cancel_remove_speciality_BTN">Cancel</button>
+                            <button type="button" id="done_remove_speciality_BTN">Done</button>
+                        </div>
+
+                        
+                    </div>
                 </div>
                 
                 <div class="inputContainer addBTN">
                     {{ form.skills.label_tag }}
 
                     <div class="skillsDiv">
-                        <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M14.2821 0.308123C14.1852 0.210489 14.07 0.132995 13.9431 0.0801111C13.8162 0.0272271 13.68 0 13.5425 0C13.405 0 13.2688 0.0272271 13.1419 0.0801111C13.015 0.132995 12.8997 0.210489 12.8029 0.308123L8.03208 5.07896C7.93524 5.17659 7.82003 5.25408 7.69309 5.30697C7.56616 5.35985 7.43001 5.38708 7.29249 5.38708C7.15498 5.38708 7.01883 5.35985 6.89189 5.30697C6.76496 5.25408 6.64975 5.17659 6.55291 5.07896L1.78208 0.308123C1.68524 0.210489 1.57003 0.132995 1.44309 0.0801111C1.31616 0.0272271 1.18 0 1.04249 0C0.90498 0 0.768828 0.0272271 0.641891 0.0801111C0.514955 0.132995 0.399745 0.210489 0.302909 0.308123C0.108897 0.503293 0 0.767305 0 1.0425C0 1.31769 0.108897 1.5817 0.302909 1.77687L5.08416 6.55812C5.6701 7.14333 6.46437 7.47204 7.29249 7.47204C8.12062 7.47204 8.91489 7.14333 9.50083 6.55812L14.2821 1.77687C14.4761 1.5817 14.585 1.31769 14.585 1.0425C14.585 0.767305 14.4761 0.503293 14.2821 0.308123Z" fill="#634E2D"/>
-                        </svg>
-
                         <input type="text" name="Skill_nput" id="Skills_input">
                     </div>
-
                     
                     {{ form.skills }}
                     <button type="button" id="add_skill_BTN">Add Trade Skill <p>+</p></button>
+                    <button type="button" id="remove_skill_BTN">Remove Trade Skill <p>+</p></button>
+
+                    {{ form.delete_skill}}
+
+                    <div class="tags deleteContainer deleteSkillContainer"> 
+                        <h4 class="deleteSkillText">Click on a skill to delete it</h4>
+                        <div class="deleteSkillhHolder">
+                            {% for skill in user.skills.all %}
+                                <div class="skillTag tag" data-skill="{{ skill.id }}"><p class="skillTagText">{{ skill }}</p> <p class="tagCancel">&times;</p></div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="cancel_remove"> 
+                            <button type="button" id="cancel_remove_skill_BTN">Cancel</button>
+                            <button type="button" id="done_remove_skill_BTN">Done</button>
+                        </div>
+
+                        
+                    </div>
                 </div>
 
                 <div class="inputContainer addBTN">
                     {{ form.other_skills.label_tag }}
 
                     <div class="skillsDiv">
-                        <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M14.2821 0.308123C14.1852 0.210489 14.07 0.132995 13.9431 0.0801111C13.8162 0.0272271 13.68 0 13.5425 0C13.405 0 13.2688 0.0272271 13.1419 0.0801111C13.015 0.132995 12.8997 0.210489 12.8029 0.308123L8.03208 5.07896C7.93524 5.17659 7.82003 5.25408 7.69309 5.30697C7.56616 5.35985 7.43001 5.38708 7.29249 5.38708C7.15498 5.38708 7.01883 5.35985 6.89189 5.30697C6.76496 5.25408 6.64975 5.17659 6.55291 5.07896L1.78208 0.308123C1.68524 0.210489 1.57003 0.132995 1.44309 0.0801111C1.31616 0.0272271 1.18 0 1.04249 0C0.90498 0 0.768828 0.0272271 0.641891 0.0801111C0.514955 0.132995 0.399745 0.210489 0.302909 0.308123C0.108897 0.503293 0 0.767305 0 1.0425C0 1.31769 0.108897 1.5817 0.302909 1.77687L5.08416 6.55812C5.6701 7.14333 6.46437 7.47204 7.29249 7.47204C8.12062 7.47204 8.91489 7.14333 9.50083 6.55812L14.2821 1.77687C14.4761 1.5817 14.585 1.31769 14.585 1.0425C14.585 0.767305 14.4761 0.503293 14.2821 0.308123Z" fill="#634E2D"/>
-                        </svg>
-
                         <input type="text" name="other_nput" id="Other_Skills_input">
                     </div>
                     
                     {{ form.other_skills }}
                     <button type="button" id="add_otherskill_BTN">Add Other Skill <p>+</p></button>
+                    <button type="button" id="remove_otherskill_BTN">Remove Other Skill <p>+</p></button>
+
+
+                    {{ form.delete_other_skill}}
+
+                    <div class="tags deleteContainer deleteOtherSkillContainer"> 
+                        <h4 class="deleteOtherSkillText">Click on a skill to delete it</h4>
+                        <div class="deleteSkillhHolder">
+                            {% for other_skill in user.other_skills %}
+                                <div class="otherSkillTag tag" data-skill="{{ other_skill }}"><p class="skillTagText">{{ other_skill }}</p> <p class="tagCancel">&times;</p></div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="cancel_remove"> 
+                            <button type="button" id="cancel_remove_otherskill_BTN">Cancel</button>
+                            <button type="button" id="done_remove_otherskill_BTN">Done</button>
+                        </div>
+
+                        
+                    </div>
                 </div>
 
                 <div class="inputContainer">
@@ -308,7 +362,7 @@
                         {{ form.country }}
 
                         <div class="flagAndDrop">
-                            <img src={% static "\images\GH-Ghana-Flag-icon.png" %} alt="Country flag" width="24" height="24">
+                            <img src={% static "\images\GH-Ghana-Flag-icon.png" %} alt="Country flag" width="24" height="24" loading="lazy">
                             <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M14.2821 0.308123C14.1852 0.210489 14.07 0.132995 13.9431 0.0801111C13.8162 0.0272271 13.68 0 13.5425 0C13.405 0 13.2688 0.0272271 13.1419 0.0801111C13.015 0.132995 12.8997 0.210489 12.8029 0.308123L8.03208 5.07896C7.93524 5.17659 7.82003 5.25408 7.69309 5.30697C7.56616 5.35985 7.43001 5.38708 7.29249 5.38708C7.15498 5.38708 7.01883 5.35985 6.89189 5.30697C6.76496 5.25408 6.64975 5.17659 6.55291 5.07896L1.78208 0.308123C1.68524 0.210489 1.57003 0.132995 1.44309 0.0801111C1.31616 0.0272271 1.18 0 1.04249 0C0.90498 0 0.768828 0.0272271 0.641891 0.0801111C0.514955 0.132995 0.399745 0.210489 0.302909 0.308123C0.108897 0.503293 0 0.767305 0 1.0425C0 1.31769 0.108897 1.5817 0.302909 1.77687L5.08416 6.55812C5.6701 7.14333 6.46437 7.47204 7.29249 7.47204C8.12062 7.47204 8.91489 7.14333 9.50083 6.55812L14.2821 1.77687C14.4761 1.5817 14.585 1.31769 14.585 1.0425C14.585 0.767305 14.4761 0.503293 14.2821 0.308123Z" fill="#634E2D"/>
                             </svg>
@@ -377,24 +431,30 @@
                 <button type="button" id="ID_add_school">Add a school <p>+</p></button>
 
                 <div class="addHolder holderForSchoolAdd" id="SchoolAddPopUp"> 
-                        <div>
-                            <h3>Adding a School:</h3>
-                            <label for="institution_or_school">Name of institution or school:</label>
-                            <input type="text" name="SchoolName" id="institution_or_school" >
-                            
-                            
-                            <label for="school_date">Year:</label>
-                            <input type="date" name="school_date" id="school_date">
+                    <div>
+                        <h3>Adding a School:</h3>
+                        <label for="institution_or_school">Name of institution or school:</label>
+                        <input type="text" name="SchoolName" id="institution_or_school" placeholder="e.g. University of Ghana">
+                        
+                        
+                        <label for="school_date">Year:</label>
+                        <input type="date" name="school_date" id="school_date">
 
-                            <label for="schoolLevel">Level:</label>
-                            <select name="level" id="schoolLevel">
-                                    <option value="Primary">Primary School</option>
-                                    <option value="Secondry">Secondry School</option>
-                                    <option value="Tertiary">Tertiary School</option>
-                            </select><br>
+                        <label for="schoolLevel">Level:</label>
+                        <select name="level" id="schoolLevel">
+                                <option value="Primary">Primary School</option>
+                                <option value="Secondry">Secondry School</option>
+                                <option value="Tertiary">Tertiary School</option>
+                        </select><br>
+
+                        <div class="add_holder_btns">
+                            <button type="button" id="ID_close_schoolPopUp">Cancel</button>
+                            <button type="button" id="ID_add_schoolpopUp">Add</button>
                             
-                            <button type="button" id="ID_close_school">Add</button>
                         </div>
+                        
+                        
+                    </div>
                 </div>
             </div>
 
@@ -432,37 +492,40 @@
                     </div>
                 </div>
 
+                <div class="inputContainer" id="add_work_experience">
+                    {{ form.work_experience.label_tag }}
+                    {{ form.work_experience }}
+
+                    <button type="button" class="WorkExperience" id="ID_add_WorkExperience">Add a Experience <p>+</p></button>
+
+                    <div class="addHolder WorkExperiencAdd" id="WorkExperienceAddPopUp"> 
+                            <div>
+                                <h3>Adding a Experience:</h3>
+                                <label for="institution_or_school">Role:</label>
+                                <input type="text" name="experience_role" id="RoleID" placeholder="Auto Mechanic" >
+                                
+                                
+                                <label for="school_date">Date:</label>
+                                <input type="date" name="experience_date" id="Experience_dateID">
+
+                                <label for="schoolLevel">Discription:</label>
+                                <input type="text" name="expererience_discription" id="DiscriptionID" placeholder="I was ......." >
+                                
+                                <div class="add_holder_btns">
+                                    <button type="button" id="ID_close_experience">Cancel</button>
+                                    <button type="button" id="ID_add_experience">Add</button>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+
+
                 <div class="inputContainer" id="AddPortfoilio">
                     <h3>Portfolio Item:</h3><br>
                     <div class="bigNav">
                         <a href="/main/addPortfolioitems" class="bigNavBTN">Add a Portfolio Item</a>
                     </div>
                 </div>
-
-                <div class="addHolder" id="portAddPopUp"> 
-                    <div>
-                        <h3 id="h3Port">Adding Portfoilio item</h3>
-
-                        {{ portfolioForm.titlePort.label_tag }}
-                        {{ portfolioForm.titlePort }}
-
-                        {{ portfolioForm.descriptionPort.label_tag }}
-                        {{ portfolioForm.descriptionPort }}
-
-                        {{ portfolioForm.year_completed.label_tag }}
-                        {{ portfolioForm.year_completed }}
-                        
-                        {{ portfolioForm.image.label_tag }}
-                        {{ portfolioForm.image }}
-
-                        {{ portfolioForm.video.label_tag }}
-                        {{ portfolioForm.video }}
-                        <br>
-
-                        <button type="button" id="ID_close_Portfolio">Add</button>
-                    </div>
-                </div>
-                    
                 
             </section>
 
@@ -498,6 +561,7 @@
 
 
 </form>
+
 {% endblock body %}
 
 {% block scripts %}

@@ -11,7 +11,7 @@ html {
 }
 
 body{
-    width: 100%;
+    width: 100vw;
 }
 
 main{
@@ -618,9 +618,10 @@ main{
 .profileIMG img {
     display: block;
     margin: auto;
-    width: 96%;
-    height: auto;
+    width: 6.6667vh;
+    height: 6.6667vh;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .profileINFO .profileName {
@@ -878,12 +879,14 @@ main{
 
 .profileEditing {
     background-color: #0000D1;
+    box-shadow:   0 2px 8px 0 rgba(128, 128, 128, 0.5);
     width: 30%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     padding: 1vh;
     border-radius: 2vh;
+    border: none;
 }
 
 .profileEditing p{
@@ -897,6 +900,15 @@ main{
 .profileEditing svg{
     height: auto;
     fill: whitesmoke;
+}
+
+.profileEditing:focus {
+    background-color: #0000ED;
+    box-shadow: 0 4px 8px 0 rgba(9, 9, 255, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.profileEditing:hover {
+    background-color: #0000ED;
 }
 
 .profileImg {
@@ -937,16 +949,32 @@ main{
 .availabilityStats{
     width: 35%;
     padding: 1vh;
-    background-color: #50CF37;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 2vh;
 }
 
+.status_available {
+    background-color: #38CFBA;
+}
+
+.status_urgent {
+    background-color: #FF8C00;
+}
+
+.status_busy {
+    background-color: #FFD700;
+}
+
+.status_leave {
+    background-color: #BCBCBC;
+}
+
 .stats {
-    color: white;
-    font-size: 1.3333vh;
+    color: #000049;
+    font-size: min(1.5556vh, 1.2em);
+    font-weight: 600;
 }
 
 .headingsAndBulbs {
@@ -973,16 +1001,21 @@ main{
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
+.bulbs .activeBulb {
+    background-color: #524E95;
+}
+
 .headings {
     width: 100%;
     color:#706bc7;
-    padding: 0 25vw;
+    padding: 0 35vw;
     display: flex;
-    margin: 0 20px;
     gap: 20px;
     overflow: auto;
     align-items: center;
     scrollbar-width: none;
+    scroll-behavior: smooth;
+    overflow: scroll;
 
 }
 
@@ -993,19 +1026,28 @@ main{
     padding: 0 4vw;
 }
 
+.headings .activeHeader {
+    color: #524E95;
+}
+
 .detailsArea {
+    width: 100%;
     height: 55vh;
     display: flex;
     overflow: auto;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
 }
 
 .detailsGroup{
     width: 100%;
-    padding: 2vh 2vh 10vh;
+    height: 100%;
+    padding: 2vh 1vh;
     flex-shrink: 0;
     overflow: auto;
     scrollbar-width: none;
-    height: 100%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
 }
 
 .tagline {
@@ -1013,7 +1055,7 @@ main{
     text-align: center;
     padding-bottom: 1vh;
     font-family: "Playpen Sans", cursive;
-    font-weight: 700;
+    font-weight: 400;
 }
 
 .tagline p {
@@ -1057,7 +1099,7 @@ main{
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin: 3vh 0;
+    margin: 1vh 0;
 }
 
 .bio h4 {
@@ -1087,7 +1129,7 @@ main{
 .skills{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    padding: 0 1vh;
     margin-top: 5vh;
 }
 
@@ -1104,35 +1146,48 @@ main{
 }
 
 .tags p{
-    padding: 0 2vw;
-    flex-shrink: 0;
-    background-color: rgba(221, 205, 180, 0.5);
+    display: inline-block;
+    padding: 0.5vh 2vh;
+    background-color: #E3D5C0;
+    font-weight: 600;
     border-radius: 2vh;
-    color: #000037;
-    padding: 1vh;
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
-
+    color: #00006D;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.25);
 }
 
-#jobPortfoilio {
-    padding: 2vh;
-    display: flex;
-    gap: 4vw;
+#JobPortFoilio {
+    height: 100%;
     position: relative;
+    padding-top: 0;
+}
+
+.jobPortfoilio {
+    height: 100%;
+    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 1vh 2vh;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
 }
 
 .addfloater {
     width: 6vh;
-    height: 6vh;
     position: absolute;
-    bottom: 10vh;
+    height: 6vh;
+    bottom: 5vh;
     right: 5vh;
+    border: none;
     background-color: #0000D1;
     border-radius: 50%;
     padding: 1vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 2;
+    box-shadow:   0 2px 8px 0 rgba(128, 128, 128, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
 }
 
 .addfloater p{
@@ -1141,17 +1196,34 @@ main{
     font-weight: 700;
 }
 
-#jobPortfoilio .pastJobCard {
-    width: 186px;
-    height: 220px;
-    box-shadow: 0 2px 8px 0 rgba(9, 9, 255, 0.2);
+.addfloater:hover{
+    background-color: #0000ED;
+}
+
+.addfloater:focus {
+    background-color: #0000ED;
+    box-shadow: 0 4px 8px 0 rgba(9, 9, 255, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.jobPortfoilio .pastJobCard {
+    width: 19vh;
+    height: 24.4444vh;
+    box-shadow:  0 2px 8px 0 rgba(128, 128, 128, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 0;
+    margin: 2vh 0;
+    flex-shrink: 0;
     overflow: hidden;
     border-radius: 2vh;
     background-color: rgba(221, 205, 180, 0.4);
 }
 
-#jobPortfoilio .pastJobCard img{
+.jobPortfoilio .pastJobCard:hover, .jobPortfoilio .pastJobCard:active, .jobPortfoilio .pastJobCard:focus {
+    box-shadow: 0 2px 8px 0 rgba(9, 9, 255, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.jobPortfoilio .pastJobCard img{
     width: 100%;
     border-radius: 2vh 2vh 0 0;
     height: 16vh;
@@ -1160,13 +1232,13 @@ main{
     object-fit: cover;
 }
 
-#jobPortfoilio .pastJobCard h4 {
+.jobPortfoilio .pastJobCard h4 {
    font-size: 1rem;
    letter-spacing: 0.05vh;
    color: #00006D;
 }
 
-#jobPortfoilio .pastJobCard time {
+.jobPortfoilio .pastJobCard time {
    font-size: 0.8rem;
    letter-spacing: 0.05vh;
    color: #00006D;
@@ -1178,11 +1250,6 @@ main{
     flex-direction: column;
     justify-content: space-around;
     padding: 1vh;
-
-}
-
-#jobPortfoilio .pastJobCard:hover, #jobPortfoilio  .pastJobCard:active {
-    box-shadow: 0 2px 8px 0 rgba(9, 9, 255, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
 
@@ -1203,8 +1270,13 @@ main{
 
 .detailsInfo .infoType {
     width: 30%;
+    color: #000049;
     font-family: "Nunito", sans-serif;
-    font-weight: 600;
+    font-weight: 700;
+}
+
+#moreDetails {
+    padding-bottom: 10vh;
 }
 
 #moreDetails .moreDetailsContainer .valueContainer{
@@ -1416,12 +1488,36 @@ main{
     font-family: "Nunito", sans-serif;
 }
 
+#basicInformation {
+    padding-bottom: 10vh;
+}
 
+.tags p.no_skill {
+    background-color: rgba(221, 205, 180, 0.4);
+    box-shadow: none;
+}
 
+.switchToPort {
+    background-color: #0000D1;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1vh;
+    border-radius: 2vh;
+    border: none;
+    color: white;
+    font-weight: 600;
+}
 
+.infoValueport {
+    display: flex;
+    align-items: center;
+}
 
-
-
-
-
-
+.schoolContainer {
+    padding: 1vh;
+    width: 100%;
+    margin-bottom: 1vh;
+    box-shadow:  0 2px 2px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 1vh;
+}

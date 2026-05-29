@@ -8,7 +8,7 @@
 {% block body %}
 <body>
     <header class="WokerfyLogo">
-        <img src={% static "images/WorkerfyLogo01-removebg-preview(1).png" %} alt="WokerfyLogo" width="200px" height="200px">
+        <img src={% static "images/WorkerfyLogo01-removebg-preview(1).png" %} alt="WokerfyLogo" width="200px" height="200px" loading="lazy">
     </header>
     <section class="loginSection">
         <h2 class="login">Login</h2>
@@ -57,16 +57,16 @@
                 <div class="altsignUpBTN">
                     <form method="post" action="/accounts/google/login/">
                         {% csrf_token %}
-                        <button type="submit" class="google-login" ><img id='google_img' src={% static "images/google_cover-removebg-preview.png" %} alt="Sign in with Google" width="100" height="100"> <p>Login with Google</p> </button>
+                        <button type="submit" class="google-login" ><img id='google_img' src={% static "images/google_cover-removebg-preview.png" %} alt="Sign in with Google" width="100" height="100" loading="lazy"> <p>Login with Google</p> </button>
                      
                     </form>
                 </div>
                 <div class="altsignUpBTN">
                     <form method="post" action="/accounts/facebook/login/">
                         {% csrf_token %}
-                        <button type="submit" class="google-login" ><img id='facebook_img' src={% static "images/facebook.png" %} alt="Sign in with Google" width="100" height="100"> <p>Login with Facebook</p> </button>
-                   {% comment %}  <!--  <a href="{% provider_login_url 'google' %}" class="google-login"><img src={% static "images/google_cover-removebg-preview.png" %} alt="Sign in with Google" width="100" height="100"></a> -->
-                      <!-- <a href="facebook"><img src={% static "images/facebook.png" %} alt="Sign in with Google" width="100" height="100"></a> --> {% endcomment %}
+                        <button type="submit" class="google-login" ><img id='facebook_img' src={% static "images/facebook.png" %} alt="Sign in with Google" width="100" height="100" loading="lazy"> <p>Login with Facebook</p> </button>
+                   {% comment %}  <!--  <a href="{% provider_login_url 'google' %}" class="google-login"><img src={% static "images/google_cover-removebg-preview.png" %} alt="Sign in with Google" width="100" height="100" loading="lazy"></a> -->
+                      <!-- <a href="facebook"><img src={% static "images/facebook.png" %} alt="Sign in with Google" width="100" height="100" loading="lazy"></a> --> {% endcomment %}
                     </form>
                 </div>
             </div>

@@ -15,5 +15,22 @@ function formatDate() {
     }
 }
 
+function age() {
+    const userDate = document.getElementById('Age');
+    if (userDate) {
+        const today = new Date();
+        const birthDate = new Date(userDate.textContent);
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+
+        userDate.textContent = `${age} yrs`;
+    }       
+}
+
 formatDate()
+age()
 

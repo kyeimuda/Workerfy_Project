@@ -8,7 +8,7 @@
 {% block body %}
 <body>
     <header class="WokerfyLogo">
-        <img src={% static "images/WorkerfyLogo01-removebg-preview(1).png" %} alt="WokerfyLogo" width="200px" height="200px">
+        <img src={% static "images/WorkerfyLogo01-removebg-preview(1).png" %} alt="WokerfyLogo" width="200px" height="200px" loading="lazy">
     </header>
     <section class="loginSection">
         <h2 class="login">Login</h2>
@@ -54,10 +54,10 @@
                 <form method="post" action="{% url 'account_login' %}">
                     <input type="hidden" name="csrfmiddlewaretoken" value="IicfHtHW4ZgcMKrCKHTtXmH8wIMDyWTRHHZitSnGvFFE7GCARSopIeOiTjGRzuko">
                     <button type="submit">Continue</button>
-                   <!--  <a href="{% provider_login_url 'google' %}" class="google-login"><img src={% static "images/google_cover-removebg-preview.png" %} alt="Sign in with Google" width="100" height="100"></a> -->
+                   <!--  <a href="{% provider_login_url 'google' %}" class="google-login"><img src={% static "images/google_cover-removebg-preview.png" %} alt="Sign in with Google" width="100" height="100" loading="lazy"></a> -->
                 </form>
-                <a href="{% provider_login_url 'google' %}" class="google-login"><img src={% static "images/google_cover-removebg-preview.png" %} alt="Sign in with Google" width="100" height="100"></a>
-                <a href="facebook"><img src={% static "images/facebook.png" %} alt="Sign in with Google" width="100" height="100"></a>
+                <a href="{% provider_login_url 'google' %}" class="google-login"><img src={% static "images/google_cover-removebg-preview.png" %} alt="Sign in with Google" width="100" height="100" loading="lazy"></a>
+                <a href="facebook"><img src={% static "images/facebook.png" %} alt="Sign in with Google" width="100" height="100" loading="lazy"></a>
             </div>
         </div>
         

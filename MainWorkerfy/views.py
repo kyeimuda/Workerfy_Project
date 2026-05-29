@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import TradespersonOnboardingForm, ProfileEditPageform, CertificateForm, PortfolioForm, JobPostForm
 from django.contrib.auth.decorators import login_required
 from MainWorkerfy.models import TradespersonProfile, City, Area, TradeCategory, TradeSpecialty, TradeSkillTag, Region, Certificate, PortfolioItem, JobPost, JobPostAttachment\
-, Notification
+, Notification, ClientProfile
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 import json
@@ -65,10 +65,12 @@ def Main_page(request):
 
     if user.user_type == "Tradesperson":
         context = {
+            'User': user,
             'Tradespeople': Tradespeople,
             'user': user.tradesperson_profile,
             'Jobposts': JobPost.objects.all().order_by('-created_at'),
-            'TradesType': TradeCategory.objects.all()
+            'TradesType': TradeCategory.objects.all(),
+            'portfolio_items': PortfolioItem.objects.filter(tradesperson=user.tradesperson_profile).order_by('-created_at').all(),
         }
         return render(request, 'main/mainPageTradesperson.html', context)
 
@@ -96,135 +98,8 @@ def TradespersonProfileEdit(request):
         certForm = CertificateForm(request.POST, request.FILES)
         portfolioForm = PortfolioForm(request.POST, request.FILES)
 
-
         if form.is_valid() and certForm.is_valid() and portfolioForm.is_valid():
-
             print(form.cleaned_data)
-
-            """ user = TradespersonProfile.objects.filter(user = request.user).first()
-            print(form.cleaned_data)
-            if form.cleaned_data.get('work_areas'):
-                if Area.objects.filter(name__iexact=form.cleaned_data.get('work_areas')).exists():
-                        area = Area.objects.get(name__iexact=form.cleaned_data.get('work_areas'))
-                else:
-                        area = Area.objects.create(name=safe_capitalize(form.cleaned_data.get('work_areas')), city=form.cleaned_data.get('sub_location'))
-                        area.save()
-
-            if form.cleaned_data.get('trade_specialties'):
-
-                if TradeSpecialty.objects.filter(name__iexact=form.cleaned_data.get('trade_specialties')).exists():
-                        specialty = TradeSpecialty.objects.get(name__iexact=form.cleaned_data.get('trade_specialties'))
-                else:
-                        if form.cleaned_data.get('trade_category'):
-                            specialty = TradeSpecialty.objects.create(name=safe_capitalize(form.cleaned_data.get('trade_specialties')), category=form.cleaned_data.get('trade_category'))
-                            specialty.save()
-                        else:
-                            specialty = TradeSpecialty.objects.create(name=safe_capitalize(form.cleaned_data.get('trade_specialties')), category=user.trade_category)
-                            specialty.save()
-
-            if form.cleaned_data.get('skills'):
-                Skills = form.cleaned_data.get('skills').split(",")
-                print(Skills)
-                for skill_name in Skills:
-                    skill_name = skill_name.strip()
-                    if skill_name:
-                         if TradeSkillTag.objects.filter(name__iexact=skill_name).exists():
-                             skill = TradeSkillTag.objects.get(name__iexact=skill_name)
-                         else:
-                             if form.cleaned_data.get('trade_category'):
-                                 skill = TradeSkillTag.objects.create(name=safe_capitalize(skill_name), category=form.cleaned_data.get('trade_category'))
-                                 skill.save()
-                             else:
-                                 skill = TradeSkillTag.objects.create(name=safe_capitalize(skill_name), category=user.trade_category)
-                                 skill.save()
-                             user.skills.add(skill)
-        
-            
-
-
-            for key, value in form.cleaned_data.items():
-                 print(key, value)
-                 
-                 if value:
-                    if key == 'work_areas':
-                        user.work_areas.add(area)
-                    elif key == 'trade_specialties':
-                        user.trade_specialties.add(specialty)
-                    elif key == 'social_links':
-                         value = json.loads(value)
-                         setattr(user, key, value)
-                    elif key == 'working_areas':
-                         covValue = []
-                         
-                         works = value.split("-- ")
-                         print(works)
-                         for work in works:  
-                            value = json.loads(work)
-                            covValue.append(value)
-                         setattr(user, key, covValue)
-                    elif key == 'education_schools':
-                         covValue = []
-                         
-                         schools = value.split("-- ")
-                         print(schools)
-                         for school in schools:  
-                            value = json.loads(school)
-                            covValue.append(value)
-                         setattr(user, key, covValue)
-                    elif key == 'other_skills':
-                         covValue = value.split(",")
-                         setattr(user, key, covValue)
-                    elif key == 'trade_category':
-                         Trades = TradeCategory.objects.filter(name = "value").first()
-                         user.trade_category = Trades
-                    elif key == "experience_years":
-                         setattr(user, key, int(value))
-                    elif key == "skills":
-                         continue
-                    elif key == "date_of_birth":
-                         print(type(value))
-                         user.date_of_birth = value
-                    else:
-                         setattr(user, key, safe_capitalize(value))
-
-                    
-            user.save()
-
-            # I will code entry for ares, specialization and skills here:
-
-
-            # and end here
-
-
-            # Next is the certificate entry
-
-            if certForm.cleaned_data:
-                                  
-                 Cert = Certificate(tradesperson = user)
-
-                 for key, value in certForm.cleaned_data.items():
-                      #print(key,value)
-                      setattr(Cert, key, value)
-
-                 Cert.save()
-
-            if portfolioForm.cleaned_data:
-                 #print(portfolioForm.cleaned_data)
-
-                 item = PortfolioItem(tradesperson = user)
-
-                 for key, value in portfolioForm.cleaned_data.items():
-                      print(key,value)
-                      setattr(item, key, value)
-
-                 item.save()
-
-
-                 
-            user = TradespersonProfile.objects.get(user = request.user)
-            print(user)
-
-            print(user.first_name) """
 
         return render(request, 'main/TradespeopleProfilePage.html')
 
@@ -232,12 +107,11 @@ def TradespersonProfileEdit(request):
 
     else:
         print(request.user)
+        trades_profile = TradespersonProfile.objects.get(user = request.user)
 
         context = {
-            'form': ProfileEditPageform(),
-            'certForm': CertificateForm(),
-            'portfolioForm': PortfolioForm(),
-            'user': TradespersonProfile.objects.get(user = request.user),
+            'form': ProfileEditPageform(user=trades_profile),
+            'user': trades_profile,
         }
         print(context['user'].first_name, context)
 
@@ -260,8 +134,14 @@ def job_Post_Page(request):
             for key, value in jobPostForm.cleaned_data.items():
                 if key == "required_skills":
                     value = value.split(",")
+                    if value[-1] == "":
+                        value.pop()
+                    
                 elif key == "requirements":
                     value = value.split(",,")
+                    if value[-1] == "":
+                        value.pop()
+
                 print(key, value)
                 setattr(Job, key, value)
 
@@ -283,14 +163,26 @@ def job_Post_Page(request):
     
 @login_required
 def jobPostDetailsPage(request, id):
-     job = JobPost.objects.get(id=id)
-     JobPostAttachments = JobPostAttachment.objects.filter(job_post=job)
+    job = JobPost.objects.get(id=id)
+    JobPostAttachments = JobPostAttachment.objects.filter(job_post=job)
 
-     context = {
-         'job': job,
-         'attachments': JobPostAttachments
-     }
-     return render(request, 'main/jobPostDetails.html', context)
+    print(JobPostAttachments)
+
+    user = User.objects.get(id=request.user.id)
+    if user.user_type == "Tradesperson":
+        user_profile = TradespersonProfile.objects.get(user=user)
+    elif user.user_type == "Client":
+        user_profile = ClientProfile.objects.get(user=user)
+
+    for attachment in JobPostAttachments:
+        print(attachment.file.url)
+
+    context = {
+        'job': job,
+        'attachments': JobPostAttachments,
+        'user': user_profile
+    }
+    return render(request, 'main/jobPostDetails.html', context)
 
 # This view handels the adding certificates for tradespeople
 @login_required
@@ -331,7 +223,7 @@ def add_Portfolio_Item_Page(request):
 
             item.save()
 
-            return redirect('Profile_Page')
+            return redirect('MainPage')
         else:
             print(portfolioForm.errors)
             return render(request, 'main/portfolioaddPage.html', {"portfolioForm": portfolioForm, "errors": portfolioForm.errors})
