@@ -217,6 +217,7 @@ class ProfileEditPageform(forms.Form):
         max_length=150,
         required=False,
         label="First Name",
+        help_text="Enter your first name.",
         widget=forms.TextInput(attrs={
             "type": "text",
             "id": "First_Name",
@@ -229,6 +230,7 @@ class ProfileEditPageform(forms.Form):
         max_length=150,
         label="Last Name",
         required=False,
+        help_text="Enter your last name.",
         widget=forms.TextInput(attrs={
             "type": "text",
             "id": "Last_Name",
@@ -241,6 +243,7 @@ class ProfileEditPageform(forms.Form):
         max_length=150,
         label="Other Names",
         required=False,
+        help_text="Add any additional names you use professionally.",
         widget=forms.TextInput(attrs={
             "type": "text",
             "id": "Other",
@@ -252,7 +255,8 @@ class ProfileEditPageform(forms.Form):
     professional_name = forms.CharField(
         max_length=150, 
         required=False,
-        help_text="Name you use to represent your trade. e.g KWAME ALU WORKS",
+        label="Professional Name",
+        help_text="Name you use to represent your trade, e.g. KWAME ALU WORKS.",
         widget=forms.TextInput(attrs={
             "type": "text",
             "id": "Other",
@@ -264,6 +268,7 @@ class ProfileEditPageform(forms.Form):
     profile_picture = forms.ImageField(
         label="Profile Picture",
         required=False,
+        help_text="Upload a clear profile photo for your tradesperson profile.",
         widget=forms.FileInput(attrs={
             "id": "ProfilePicture",
             "class": "inputField"
@@ -274,6 +279,7 @@ class ProfileEditPageform(forms.Form):
     bio = forms.CharField(
         label="Bio",
         required=False,
+        help_text="Tell clients a little about yourself and your skills.",
         widget=forms.Textarea(attrs={
             "rows": 3,
             "placeholder": "Write about yourself........ ",
@@ -285,6 +291,7 @@ class ProfileEditPageform(forms.Form):
         max_length=15,
         required=False,
         label="Primary Contact",
+        help_text="Your main phone number so clients can reach you.",
         widget=forms.TextInput(attrs={
             "type": "tel",
             "id": "Phone1",
@@ -296,6 +303,7 @@ class ProfileEditPageform(forms.Form):
     contact_number2 = forms.CharField(
         label="Other Contact",
         required=False,
+        help_text="Optional second phone number.",
         widget=forms.TextInput(attrs={
             "type": "tel",
             "id": "Phone2",
@@ -308,6 +316,7 @@ class ProfileEditPageform(forms.Form):
         choices = [('', 'Gender'),('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')],
         required=False,
         label= "Gender",
+        help_text="Select your gender.",
         widget=forms.Select(attrs={
             "id": "Gender",
             "class": "inputField"
@@ -317,6 +326,7 @@ class ProfileEditPageform(forms.Form):
     website = forms.URLField(
         required=False,
         label = "Website",
+        help_text="Add a website or portfolio link if you have one.",
         widget = forms.URLInput(attrs={
             "type": "url",
             "id": "Website",
@@ -328,6 +338,7 @@ class ProfileEditPageform(forms.Form):
     date_of_birth = forms.DateField(
         label="Date of Birth",
         required=False,
+        help_text="Select your date of birth.",
         widget=forms.DateInput(attrs={
             "id": "Date_of_birth",
             "type": "date",
@@ -338,6 +349,7 @@ class ProfileEditPageform(forms.Form):
     experience_years = forms.IntegerField(
         min_value=0,
         required=False,
+        help_text="How many years of trade experience do you have?",
         widget=forms.NumberInput(attrs={
             "id": "Experience_Years",
             "class": "inputField",
@@ -348,8 +360,8 @@ class ProfileEditPageform(forms.Form):
     trade_category = forms.ModelChoiceField(
         required=False,
         label="Trade Category",
+        help_text="Choose the main trade category you work in.",
         queryset=TradeCategory.objects.all(),
-        empty_label="Select Trade Category eg.Electrician",
         widget=forms.Select(attrs={
             "id": "Trade_Category",
             "class": "inputField"
@@ -359,6 +371,7 @@ class ProfileEditPageform(forms.Form):
     trade_specialties = forms.CharField(
         label="Specialties",
         required=False,
+        help_text="List specific specialties in your trade.",
         widget=forms.TextInput(attrs={
             "id": "Trade_Specialties",
             "placeholder": "e.g. Ceiling Fan Repair",
@@ -368,6 +381,7 @@ class ProfileEditPageform(forms.Form):
     skills = forms.CharField(
         label="Skills",
         required=False,
+        help_text="List the key skills you offer.",
         widget=forms.TextInput(attrs={
             "id": "Skills",
             "placeholder": "e.g. Wiring",
@@ -378,6 +392,7 @@ class ProfileEditPageform(forms.Form):
     other_skills = forms.CharField(
         label="Other Skills",
         required=False,
+        help_text="Add any additional skills outside your main trade.",
         widget=forms.TextInput(attrs={
             "id": "OtherSkills",
             "placeholder": "e.g. Microsoft Word",
@@ -388,6 +403,7 @@ class ProfileEditPageform(forms.Form):
     tagline = forms.CharField(
         label="Tagline",
         required=False,
+        help_text="Write a short slogan or profile tagline.",
         widget=forms.Textarea(attrs={
             "rows": 3,
             "placeholder": "A catchy tagline for your profile ",
@@ -398,6 +414,7 @@ class ProfileEditPageform(forms.Form):
     country = forms.ModelChoiceField(
         required=False,
         label="Country",
+        help_text="Select the country where you provide services.",
         queryset=Country.objects.all(),
         empty_label="Select Country",
         widget=forms.Select(attrs={
@@ -408,6 +425,7 @@ class ProfileEditPageform(forms.Form):
     base_location = forms.ModelChoiceField(
         required=False,
         label="Region",
+        help_text="Select your main work region.",
         queryset=Region.objects.all(),
         empty_label="Select Region",
         widget=forms.Select(attrs={
@@ -420,6 +438,7 @@ class ProfileEditPageform(forms.Form):
     sub_location = forms.ModelChoiceField(
         required=False,
         label="City / Town",
+        help_text="Select your city or town.",
         queryset=City.objects.all(),
         empty_label="Select City",
         widget=forms.Select(attrs={
@@ -432,6 +451,7 @@ class ProfileEditPageform(forms.Form):
     work_areas = forms.CharField(
         label="Work Area",
         required=False,
+        help_text="Describe the local areas you serve.",
         widget=forms.TextInput(attrs={
             "type": "text",
             "placeholder": "e.g. Accra New Town",
@@ -440,6 +460,8 @@ class ProfileEditPageform(forms.Form):
     )
     social_links = forms.CharField(
         required=False,
+        label="Social Link",
+        help_text="Add a social network or website link.",
         widget=forms.TextInput(attrs={
             "id": "Social_Links",
             "placeholder": "https://facebook.com/yourprofile",
@@ -448,6 +470,8 @@ class ProfileEditPageform(forms.Form):
     )
     working_areas = forms.CharField(
         required=False,
+        label="Working Areas",
+        help_text="Add broader service areas you cover.",
         widget=forms.TextInput(attrs={
             "id": "Working_Areas",
             "placeholder": "e.g. Accra, Tema",
@@ -456,6 +480,8 @@ class ProfileEditPageform(forms.Form):
     )
     education_schools = forms.CharField(
         required=False,
+        label="Education / Schools",
+        help_text="List your education, training, or certifications.",
         widget=forms.TextInput(attrs={
             "id": "Education_Schools",
             "placeholder": "e.g. KNUST",
@@ -472,6 +498,8 @@ class ProfileEditPageform(forms.Form):
         ],
         initial="Available Now",
         required=False,
+        label="Availability Status",
+        help_text="Show whether you are available now, urgent, busy, or on leave.",
         widget=forms.Select(attrs={
             "id": "Availability_Status",
             "class": "inputField"
@@ -481,6 +509,7 @@ class ProfileEditPageform(forms.Form):
     work_experience = forms.CharField(
         required=False,
         label= "Experience",
+        help_text="Describe the work experience you want clients to know about.",
         widget=forms.TextInput(attrs={
             "id": "Work_Experience",
             "placeholder": "e.g. KNUST",
@@ -490,7 +519,7 @@ class ProfileEditPageform(forms.Form):
 
     rate_charged = forms.DecimalField(
         label="Rate Charged",
-        help_text="Note: Specify the rate you charge for your services. This can be an hourly rate or a fixed price, depending on your preference.",
+        help_text="Note: Specify the rate you charge for your services. If you charge within a range, use a hyphen: 50-100.",
         max_digits=10,
         decimal_places=2,
         required=False,
@@ -504,6 +533,7 @@ class ProfileEditPageform(forms.Form):
     delete_skill = forms.CharField(
         required=False,
         label="Delete Skill",
+        help_text="Enter a skill name to remove it.",
         widget=forms.TextInput(attrs={
             "id": "Delete_Skill",
             "class": "inputField"
@@ -513,6 +543,7 @@ class ProfileEditPageform(forms.Form):
     delete_speciality = forms.CharField(
         required=False,
         label="Delete Speciality",
+        help_text="Enter a specialty name to remove it.",
         widget=forms.TextInput(attrs={
             "id": "Delete_Speciality",
             "class": "inputField"
@@ -522,6 +553,7 @@ class ProfileEditPageform(forms.Form):
     delete_other_skill = forms.CharField(
         required=False,
         label="Delete Other Skill",
+        help_text="Enter an other-skill name to remove it.",
         widget=forms.TextInput(attrs={
             "id": "Delete_Other_Skill",
             "class": "inputField"
@@ -542,7 +574,7 @@ class ProfileEditPageform(forms.Form):
             self.fields['tagline'].initial = f"{user.tagline}"
             self.fields['contact_number'].initial = f"{user.contact_number}"
             self.fields['contact_number2'].initial = f"{user.contact_number2}"
-            self.fields['gender'].initial = f"{user.gender}"
+            self.fields['gender'].initial = user.gender
             self.fields['website'].initial = f"{user.website}"
             self.fields['date_of_birth'].initial = f"{user.date_of_birth}"
             self.fields['experience_years'].initial = f"{user.experience_years}"
@@ -550,7 +582,8 @@ class ProfileEditPageform(forms.Form):
             self.fields['base_location'].initial = f"{user.base_location}"
             self.fields['sub_location'].initial = f"{user.sub_location}"
             self.fields['availability_status'].initial = f"{user.availability_status}"
-            self.fields['trade_category'].initial = f"{user.trade_category}"
+            self.fields['trade_category'].initial = user.trade_category
+            self.fields['rate_charged'].initial = user.rate_charged
 
 
 

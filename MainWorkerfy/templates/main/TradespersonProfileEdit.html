@@ -74,22 +74,25 @@
                         {{ form.profile_picture }}
                     </div>
 
-                    <p class='helpTexts'>Note: a headshot is recommended.</p>
+                    <p class='help_text'>Note: {{ form.profile_picture.help_text }}. A headshot is recommended.</p>
                 </div>
 
                 <div class="inputContainer">
                     {{ form.first_name.label_tag }}
                     {{ form.first_name }}
+                    <p class='help_text'>{{ form.first_name.help_text }}</p>
                 </div>
 
                 <div class="inputContainer">
                     {{ form.last_name.label_tag }}
                     {{ form.last_name }}
+                    <p class='help_text'>{{ form.last_name.help_text }}</p>
                 </div>
 
                 <div class="inputContainer">
                     {{ form.other_names.label_tag }}
                     {{ form.other_names }}
+                    <p class='help_text'>{{ form.other_names.help_text }}</p>
                 </div>
 
                 <div class="inputContainer">
@@ -101,16 +104,19 @@
                 <div class="inputContainer">
                     {{ form.date_of_birth.label_tag }}
                     {{ form.date_of_birth }}
+                    <p class='help_text'>{{ form.date_of_birth.help_text }}</p>
                 </div>
 
                 <div class="inputContainer" id="gender">
                     {{ form.gender.label_tag }}
                     {{ form.gender }}
+                    <p class='help_text'>{{ form.gender.help_text }}</p>
                 </div>
 
                 <div class="inputContainer">
                     {{ form.bio.label_tag }}
                     {{ form.bio }}
+                    <p class='help_text'>{{ form.bio.help_text }}</p>
                 </div>
                 
                 
@@ -130,8 +136,9 @@
                         <div class="flagAndcontact">
                         
                             {{ form.contact_number }}
-                            
+                    
                         </div>
+                        <p class='help_text'>{{ form.contact_number.help_text }}</p>
                     </div>
                 </div>
 
@@ -144,8 +151,9 @@
                         <div class="flagAndcontact">
 
                             {{ form.contact_number2 }}
-                            
+                           
                         </div>
+                         <p class='help_text'>{{ form.contact_number2.help_text }}</p>
                     </div>
                     
                     
@@ -162,11 +170,9 @@
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M23.414 16.09C23.414 16.09 14.68 12.12 14.649 12.11C13.921 11.862 13.131 12.045 12.587 12.589C12.043 13.133 11.86 13.923 12.145 14.74L16.089 23.415C16.248 23.766 16.595 23.994 16.981 24.001H17C17.378 24.001 17.725 23.787 17.895 23.448L19.746 19.746L23.448 17.895C23.793 17.722 24.008 17.368 24.001 16.982C23.994 16.597 23.766 16.25 23.415 16.09H23.414ZM18.553 18.106C18.36 18.203 18.202 18.36 18.106 18.553L17.042 20.681L13.998 14.005L20.679 17.043L18.554 18.105L18.553 18.106ZM12.912 21.96C12.74 21.975 12.567 21.986 12.392 21.993C11.724 21.332 9.982 19.475 8.768 17.001H9.5C10.052 17.001 10.5 16.554 10.5 16.001C10.5 15.448 10.052 15.001 9.5 15.001H7.97C7.679 14.049 7.5 13.041 7.5 12.001C7.5 10.961 7.68 9.954 7.972 9.001H16.029C16.147 9.388 16.247 9.784 16.324 10.188C16.428 10.731 16.953 11.089 17.493 10.983C18.035 10.88 18.391 10.356 18.288 9.814C18.236 9.539 18.174 9.268 18.105 9.001H21.498C21.511 9.001 21.525 9.001 21.538 9.001C21.837 9.949 21.998 10.957 21.998 12.002C21.998 12.309 21.984 12.612 21.957 12.912C21.908 13.462 22.313 13.948 22.863 13.998C23.415 14.052 23.9 13.642 23.949 13.092C23.981 12.733 23.998 12.369 23.998 12.002C24 5.383 18.617 0 12 0C5.383 0 0 5.383 0 12C0 18.617 5.383 24 11.999 24C12.366 24 12.729 23.983 13.087 23.951C13.637 23.902 14.044 23.417 13.995 22.866C13.946 22.317 13.462 21.911 12.911 21.959L12.912 21.96ZM5.892 15.001H2.5C2.487 15.001 2.474 15.001 2.46 15.001C2.161 14.053 2 13.045 2 12C2 10.955 2.161 9.947 2.46 8.999C2.473 8.999 2.486 8.999 2.5 8.999H5.892C5.647 9.954 5.5 10.958 5.5 11.999C5.5 13.04 5.646 14.044 5.892 14.999V15.001ZM8.773 7.001C9.794 4.924 11.188 3.277 12.002 2.413C12.817 3.276 14.211 4.92 15.232 7.001H8.773ZM20.658 7.001H17.43C16.639 5.115 15.542 3.513 14.598 2.344C17.177 3.039 19.347 4.741 20.658 7.001ZM9.4 2.344C8.456 3.513 7.358 5.115 6.568 7H3.342C4.652 4.74 6.821 3.038 9.4 2.344ZM3.342 17H6.568C7.358 18.886 8.456 20.487 9.4 21.656C6.822 20.961 4.653 19.259 3.342 17Z" fill="black"/>
                                 </svg>
-
-                        
                             {{ form.website }}
-                            
                         </div>
+                        <p class='help_text'>{{ form.website.help_text }}</p>
                     </div>
 
                 </div>
@@ -181,14 +187,14 @@
                                     <path d="M24,12.073c0,5.989-4.394,10.954-10.13,11.855v-8.363h2.789l0.531-3.46H13.87V9.86c0-0.947,0.464-1.869,1.95-1.869h1.509   V5.045c0,0-1.37-0.234-2.679-0.234c-2.734,0-4.52,1.657-4.52,4.656v2.637H7.091v3.46h3.039v8.363C4.395,23.025,0,18.061,0,12.073   c0-6.627,5.373-12,12-12S24,5.445,24,12.073z"/>
                                 </g>
                             </svg> 
-                            <input type="url" name="facebook" placeholder="https//facebook.com" class="slinks" id="facebook_link">
+                            <input type="url" name="facebook" placeholder="https//facebook.com" class="slinks" id="facebook_link" {% if user.social_links.facebook %} value="{{ user.social_links.facebook }}"{% endif %}>
                         </div>
 
                         <div class="socialContainer"> 
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="24" height="24">
                                 <path id="Logo_00000038394049246713568260000012923108920998390947_" d="M21.543,7.104c0.014,0.211,0.014,0.423,0.014,0.636  c0,6.507-4.954,14.01-14.01,14.01v-0.004C4.872,21.75,2.252,20.984,0,19.539c0.389,0.047,0.78,0.07,1.172,0.071  c2.218,0.002,4.372-0.742,6.115-2.112c-2.107-0.04-3.955-1.414-4.6-3.42c0.738,0.142,1.498,0.113,2.223-0.084  c-2.298-0.464-3.95-2.483-3.95-4.827c0-0.021,0-0.042,0-0.062c0.685,0.382,1.451,0.593,2.235,0.616  C1.031,8.276,0.363,5.398,1.67,3.148c2.5,3.076,6.189,4.946,10.148,5.145c-0.397-1.71,0.146-3.502,1.424-4.705  c1.983-1.865,5.102-1.769,6.967,0.214c1.103-0.217,2.16-0.622,3.127-1.195c-0.368,1.14-1.137,2.108-2.165,2.724  C22.148,5.214,23.101,4.953,24,4.555C23.339,5.544,22.507,6.407,21.543,7.104z"/>
                             </svg> 
-                            <input type="text" name="twitter" placeholder="https//Twitter.com" class="slinks" id="X_link">
+                            <input type="url" name="twitter" placeholder="https//Twitter.com" class="slinks" id="X_link" {% if user.social_links.twitter %} value="{{ user.social_links.twitter }}"{% endif %}>
                         </div>
 
                         <div class="socialContainer"> 
@@ -199,19 +205,20 @@
                                     <circle cx="18.406" cy="5.594" r="1.44"/>
                                 </g>
                             </svg> 
-                            <input type="text" name="instagram" placeholder="https//Instagram.com" class="slinks" id="Instagram_link">
+                            <input type="url" name="instagram" placeholder="https//Instagram.com" class="slinks" id="Instagram_link" {% if user.social_links.instagram %} value="{{ user.social_links.instagram }}"{% endif %}>
                         </div>
 
                         <div class="socialContainer"> 
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" width="24" height="24">
                                 <path d="M22.465,9.866c-2.139,0-4.122-0.684-5.74-1.846v8.385c0,4.188-3.407,7.594-7.594,7.594c-1.618,0-3.119-0.51-4.352-1.376  c-1.958-1.375-3.242-3.649-3.242-6.218c0-4.188,3.407-7.595,7.595-7.595c0.348,0,0.688,0.029,1.023,0.074v0.977v3.235  c-0.324-0.101-0.666-0.16-1.023-0.16c-1.912,0-3.468,1.556-3.468,3.469c0,1.332,0.756,2.489,1.86,3.07  c0.481,0.253,1.028,0.398,1.609,0.398c1.868,0,3.392-1.486,3.462-3.338L12.598,0h4.126c0,0.358,0.035,0.707,0.097,1.047  c0.291,1.572,1.224,2.921,2.517,3.764c0.9,0.587,1.974,0.93,3.126,0.93V9.866z"/>
                             </svg> 
-                            <input type="text" name="tiktok" placeholder="https//Tiktok.com" class="slinks" id="Tiktok_link">
+                            <input type="url" name="tiktok" placeholder="https//Tiktok.com" class="slinks" id="Tiktok_link" {% if user.social_links.tiktok %} value="{{ user.social_links.tiktok }}"{% endif %}>
                         </div>
 
                         {{ form.social_links}}
                     
                     </div>
+                    <p class='help_text'>{{ form.social_links.help_text }}</p>
                 </div>
                 
             </section>
@@ -230,11 +237,13 @@
                         </svg>
 
                         {{ form.trade_category }}
+                        <p class='help_text'>{{ form.trade_category.help_text }}</p>
                     </div>
                 </div>
 
                 <div class="inputContainer addBTN" id="SkillsDiv">
                     {{ form.trade_specialties.label_tag }}
+                    <p class='help_text'>Add or delete trade specialities</p>
 
                     <div class="skillsDiv">
                         <input type="text" name="Speciality_nput" id="Speciality_input" placeholder="Wiring">
@@ -264,7 +273,7 @@
                 
                 <div class="inputContainer addBTN">
                     {{ form.skills.label_tag }}
-
+                    <p class='help_text'>Add or delete trade skills</p>
                     <div class="skillsDiv">
                         <input type="text" name="Skill_nput" id="Skills_input">
                     </div>
@@ -294,6 +303,7 @@
 
                 <div class="inputContainer addBTN">
                     {{ form.other_skills.label_tag }}
+                    <p class='help_text'>Add or delete other skills that are not trade specific</p>
 
                     <div class="skillsDiv">
                         <input type="text" name="other_nput" id="Other_Skills_input">
@@ -326,6 +336,7 @@
                 <div class="inputContainer">
                     {{ form.tagline.label_tag }}
                     {{ form.tagline }}
+                    <p class='help_text'>{{ form.tagline.help_text }}</p>
                 </div>
 
                 <div class="inputContainer rateCharged">
@@ -334,6 +345,8 @@
                         <p class="currency">GHS</p>
                         
                         {{ form.rate_charged }}
+
+                        <p class="perHour">/hr</p> 
                     </div>
                     <p class="help_text">{{ form.rate_charged.help_text }}</p>
                 </div>
@@ -360,6 +373,7 @@
                         </svg>
 
                         {{ form.country }}
+                        <p class='help_text'>{{ form.country.help_text }}</p>
 
                         <div class="flagAndDrop">
                             <img src={% static "\images\GH-Ghana-Flag-icon.png" %} alt="Country flag" width="24" height="24" loading="lazy">
@@ -383,6 +397,7 @@
 
 
                         {{ form.base_location }}
+                        <p class='help_text'>{{ form.base_location.help_text }}</p>
 
                         <div class="flagAndDrop">
                             <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -406,6 +421,7 @@
 
 
                         {{ form.sub_location }}
+                        <p class='help_text'>{{ form.sub_location.help_text }}</p>
 
                         <div class="flagAndDrop">
                             <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -428,6 +444,7 @@
                 <div class="inputContainer" id="add_school">
                 <h3>Schools:</h3>
                 {{ form.education_schools }}
+                <p class='help_text'>{{ form.education_schools.help_text }}</p>
                 <button type="button" id="ID_add_school">Add a school <p>+</p></button>
 
                 <div class="addHolder holderForSchoolAdd" id="SchoolAddPopUp"> 
@@ -460,6 +477,7 @@
 
             <div class="inputContainer" id="add_certificate">
                 <h3>Certificates:</h3><br>
+                <p class='help_text'>Add or delete certificates</p>
                 <div class="bigNav">
                     <a href="/main/addCertificate" class="bigNavBTN">Add a Certificate</a>
                 </div>
@@ -475,26 +493,19 @@
 
 
                 <div class="inputContainer" id="experience_years">
-                {{ form.experience_years.label_tag }}
+                
 
                     <div class="experienceInput" id="ExperienceInput">
-                            {{ form.experience_years }}
-                            <div class="upAndDown">
-                                <svg width="15" height="7" viewBox="0 0 15 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M14.2821 6.59079C14.1852 6.68062 14.07 6.75191 13.9431 6.80057C13.8162 6.84922 13.68 6.87427 13.5425 6.87427C13.405 6.87427 13.2688 6.84922 13.1419 6.80057C13.015 6.75191 12.8997 6.68062 12.8029 6.59079L8.03208 2.20163C7.93524 2.1118 7.82003 2.04051 7.69309 1.99186C7.56616 1.9432 7.43001 1.91815 7.29249 1.91815C7.15498 1.91815 7.01883 1.9432 6.89189 1.99186C6.76496 2.04051 6.64975 2.1118 6.55291 2.20163L1.78208 6.59079C1.68524 6.68062 1.57003 6.75191 1.44309 6.80057C1.31616 6.84922 1.18 6.87427 1.04249 6.87427C0.90498 6.87427 0.768828 6.84922 0.641891 6.80057C0.514955 6.75191 0.399745 6.68062 0.302909 6.59079C0.108897 6.41124 0 6.16835 0 5.91517C0 5.66199 0.108897 5.4191 0.302909 5.23954L5.08416 0.840794C5.6701 0.3024 6.46437 -1.00136e-05 7.29249 -1.00136e-05C8.12062 -1.00136e-05 8.91489 0.3024 9.50083 0.840794L14.2821 5.23954C14.4761 5.4191 14.585 5.66199 14.585 5.91517C14.585 6.16835 14.4761 6.41124 14.2821 6.59079Z" fill="black"/>
-                                </svg>
-
-                                <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M14.2821 0.308123C14.1852 0.210489 14.07 0.132995 13.9431 0.0801111C13.8162 0.0272271 13.68 0 13.5425 0C13.405 0 13.2688 0.0272271 13.1419 0.0801111C13.015 0.132995 12.8997 0.210489 12.8029 0.308123L8.03208 5.07896C7.93524 5.17659 7.82003 5.25408 7.69309 5.30697C7.56616 5.35985 7.43001 5.38708 7.29249 5.38708C7.15498 5.38708 7.01883 5.35985 6.89189 5.30697C6.76496 5.25408 6.64975 5.17659 6.55291 5.07896L1.78208 0.308123C1.68524 0.210489 1.57003 0.132995 1.44309 0.0801111C1.31616 0.0272271 1.18 0 1.04249 0C0.90498 0 0.768828 0.0272271 0.641891 0.0801111C0.514955 0.132995 0.399745 0.210489 0.302909 0.308123C0.108897 0.503293 0 0.767305 0 1.0425C0 1.31769 0.108897 1.5817 0.302909 1.77687L5.08416 6.55812C5.6701 7.14333 6.46437 7.47204 7.29249 7.47204C8.12062 7.47204 8.91489 7.14333 9.50083 6.55812L14.2821 1.77687C14.4761 1.5817 14.585 1.31769 14.585 1.0425C14.585 0.767305 14.4761 0.503293 14.2821 0.308123Z" fill="black"/>
-                                </svg>
-
-                            </div>
+                        {{ form.experience_years.label_tag }}
+                        {{ form.experience_years }}
                     </div>
+                    <p class='help_text'>{{ form.experience_years.help_text }}</p>
                 </div>
 
                 <div class="inputContainer" id="add_work_experience">
                     {{ form.work_experience.label_tag }}
                     {{ form.work_experience }}
+                    <p class='help_text'>{{ form.work_experience.help_text }}</p>
 
                     <button type="button" class="WorkExperience" id="ID_add_WorkExperience">Add a Experience <p>+</p></button>
 
@@ -544,6 +555,7 @@
                         </svg>
                         
                         {{ form.availability_status }}
+                        <p class='help_text'>{{ form.availability_status.help_text }}</p>
                     </div>
 
                 </div>

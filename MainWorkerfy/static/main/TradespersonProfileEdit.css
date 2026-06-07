@@ -182,6 +182,7 @@ form {
 
 .ProPic .helpTexts{
     align-self: center;
+    text-align: center;
 }
 
 #ProfilePicHolder img {
@@ -207,25 +208,25 @@ form {
     padding: 0.7vh;
 }
 
-.helpTexts {
+.help_text {
     font-size: 1.1111vh;
     color: #000080;
     font-family: 'Playpen Sans', cursive;
     padding-bottom: 1vh;
 }
 
-.ProPic .helpTexts {
-    font-size: 1.333vh;
+.ProPic .help_text {
+    font-size: 1.1111vh;
     color: #000080;
     font-family: 'Playpen Sans', cursive;
     padding: 1vh;
 }
 
-#help_text{
+/* .help_text{
     color: #000080;
     margin: 2vh;
 
-}
+} */
 
 .penSVG{
     position: absolute;
@@ -352,10 +353,6 @@ label {
     width: 100%;
     display: flex;
     margin: 1vh auto;
-}
-
-#experience_years input {
-    width: 40%;
 }
 
 .addHolder label {
@@ -554,28 +551,17 @@ label {
     position: relative;
 }
 
-#experience_years {
-    display: flex;
-    align-items: center;
-
-}
-
-#experience_years input{
-    width: 70%;
-    border: none;
-    font-family: "Playpen Sans", cursive;
-}
-
-#experience_years label{
-    flex-wrap: nowrap;
-    width: 50vw;
+.experienceInput #Experience_Years {
+    width: 40%;
+    border: 1px solid #634E2D;
+    border-radius: 1.1111vh;
 }
 
 .experienceInput {
-    position: relative;
-    width: 40%;
-    border: 1px solid #000080;
-    border-radius: 1.1111vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 
@@ -660,6 +646,10 @@ label {
     align-items: center;
     justify-content: center;
     gap: 1vh;
+}
+
+#Rate_Charged {
+    margin: auto 0;
 }
 
 .help_text {

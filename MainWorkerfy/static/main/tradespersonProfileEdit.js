@@ -388,12 +388,7 @@ if (form) {
 const addAnotherButton = document.getElementById('AddAnother');
 if (addAnotherButton) {
     addAnotherButton.addEventListener('click', () => {
-        form.reset();
-        const createdConfirnmation = document.querySelector('.created');
-        if (createdConfirnmation) {
-            createdConfirnmation.style.display = 'none';
-        }
-
+        window.location.reload();
     }
 )}
 
@@ -402,12 +397,7 @@ if (addAnotherButton) {
 const re_tryButton = document.getElementById('re_try');
 if (re_tryButton) {
     re_tryButton.addEventListener('click', () => {
-        form.reset();
-        const createdConfirnmation = document.querySelector('.not_create');
-        if (createdConfirnmation) {
-            createdConfirnmation.style.display = 'none';
-        }
-
+        window.location.reload();
     }
 )}
 
