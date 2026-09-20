@@ -83,7 +83,7 @@ def Main_page(request):
         }
         return render(request, 'main/mainPageClient.html', context)
     
-    messages.error(request, 'User does not have a valid role. Must be Tradesperson, Client, or Admin')
+    messages.error(request, 'User does not have a valid role. Must be Tradesperson or Client')
     return redirect('Onboardings')
 
 

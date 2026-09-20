@@ -89,6 +89,8 @@ def tradesPeopleRegistration(request):
                                                                 skill = TradeSkillTag.objects.create(name=safe_capitalize(skill_name), category=user.trade_category)
                                                                 skill.save()
                                                         Tradesperson.skills.add(skill)
+                        user.user_type = 'tradesperson'
+                        user.save()
 
                         return redirect('Congratulations')
                 else:
